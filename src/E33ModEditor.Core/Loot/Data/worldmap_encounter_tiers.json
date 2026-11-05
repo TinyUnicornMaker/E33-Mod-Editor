@@ -1,0 +1,122 @@
+{
+  "encounters": {
+    "WM_Pelerin_CultistHeavy_Ramasseur": {
+      "tier": 2,
+      "enemies": [
+        "MM_Pelerin",
+        "SC_CultistHeavy",
+        "FB_Ramasseur"
+      ]
+    },
+    "WM_Pelerin_CultistFlying_ChalierSword": {
+      "tier": 2,
+      "enemies": [
+        "MM_Pelerin",
+        "SC_CultistFlying",
+        "FB_ChalierSword"
+      ]
+    },
+    "WM_Bourgeon_Ramasseur_Danseuse": {
+      "tier": 1,
+      "enemies": [
+        "GO_Bourgeon",
+        "FB_Ramasseur",
+        "MM_Danseuse"
+      ]
+    },
+    "WM_Sapling_Rocher_Braseleur": {
+      "tier": 2,
+      "enemies": [
+        "YF_Sapling",
+        "SC_Rocher",
+        "MM_Braseleur"
+      ]
+    },
+    "WM_Cruler*1_CultistFlying*1_Braseleur*1": {
+      "tier": 1,
+      "enemies": [
+        "GO_Cruler",
+        "SC_CultistFlying",
+        "MM_Braseleur"
+      ]
+    },
+    "WM_Stalact_Bruler_ChevaliereA": {
+      "tier": 1,
+      "enemies": [
+        "MM_Stalact",
+        "GO_Bruler",
+        "YF_Chevaliere_A"
+      ]
+    },
+    "WM_Contorsioniste*1_CultistFlying*1_Braseleur*1": {
+      "tier": 2,
+      "enemies": [
+        "MF_Contorsionniste",
+        "SC_CultistFlying",
+        "MM_Braseleur"
+      ]
+    },
+    "WM_Stalact_Ballet_Sapling": {
+      "tier": 2,
+      "enemies": [
+        "MM_Stalact",
+        "YF_Sapling"
+      ]
+    },
+    "WM_Noire_Danseuse_Benisseur": {
+      "tier": 2,
+      "enemies": [
+        "MM_Danseuse"
+      ]
+    },
+    "WM_Bourgeon_Benisseur_OrphelinNailBig": {
+      "tier": 1,
+      "enemies": [
+        "GO_Bourgeon"
+      ]
+    },
+    "WM_Stalact_Glaise_Echassier": {
+      "tier": 2,
+      "enemies": [
+        "MM_Stalact",
+        "YF_Glaise"
+      ]
+    },
+    "WM_Jar_Contorsioniste_Blacksmith": {
+      "tier": 2,
+      "enemies": [
+        "MF_Contorsionniste",
+        "YF_Jar",
+        "MM_Braseleur"
+      ]
+    },
+    "WM_Veilleur*1_Pelerin*1_ChalierHammer": {
+      "tier": 2,
+      "enemies": [
+        "FB_ChalierHammer",
+        "MM_Pelerin"
+      ]
+    },
+    "WM_Benisseur*1_Chapelier*1_Stalact*1": {
+      "tier": 2,
+      "enemies": [
+        "MM_Stalact",
+        "FB_Benisseur",
+        "MF_Chapelier"
+      ]
+    },
+    "WM_ChevaliereC_Glaise_OrphelinSpoonBig": {
+      "tier": 2,
+      "enemies": [
+        "YF_Glaise"
+      ]
+    },
+    "WM_Hexga_Glaise_Veilleur": {
+      "tier": 2,
+      "enemies": [
+        "YF_Glaise",
+        "SC_Hexga"
+      ]
+    }
+  }
+}

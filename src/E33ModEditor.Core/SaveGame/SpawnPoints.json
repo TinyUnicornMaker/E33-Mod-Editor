@@ -1,0 +1,1652 @@
+[
+  {
+    "Tag": "Level.SpawnPoint.AbbestCave.Arena",
+    "Name": "Abbest Cave - Entrance",
+    "LevelAsset": "Level_Cave_AbbestAlpha"
+  },
+  {
+    "Tag": "Level.SpawnPoint.AbbestCave.Entry",
+    "Name": "Abbest Cave - Entry",
+    "LevelAsset": "Level_Cave_AbbestAlpha"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralTreeCity.Entry",
+    "Name": "Ancient Gestral City - Entry",
+    "LevelAsset": "Level_Mini_GestralTreeCity"
+  },
+  {
+    "Tag": "Level.SpawnPoint.AncientSanctuary.RedForest",
+    "Name": "Ancient Sanctuary - Entrance",
+    "LevelAsset": "Level_AncientSanctuary_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.AncientSanctuary.Entry",
+    "Name": "Ancient Sanctuary - Entry",
+    "LevelAsset": "Level_AncientSanctuary_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.AncientSanctuary.Exit",
+    "Name": "Ancient Sanctuary - Exit",
+    "LevelAsset": "Level_AncientSanctuary_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.AncientSanctuary.GestralTotem",
+    "Name": "Ancient Sanctuary - Gestral Totem",
+    "LevelAsset": "Level_AncientSanctuary_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.AncientSanctuary.Arena",
+    "Name": "Ancient Sanctuary - Giant Bell Alley",
+    "LevelAsset": "Level_AncientSanctuary_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.AncientSanctuary.TanksArena",
+    "Name": "Ancient Sanctuary - Sanctuary Maze",
+    "LevelAsset": "Level_AncientSanctuary_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.BladeGraveyard.Entry",
+    "Name": "Blades' Graveyard - Entry",
+    "LevelAsset": "Level_Mini_BladesGraveyard"
+  },
+  {
+    "Tag": "Level.SpawnPoint.BoatGraveyardPurple",
+    "Name": "Boat Graveyard - Boat Graveyard Purple",
+    "LevelAsset": "Level_Mini_BoatGraveyard_1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.BoatGraveyardPurple.Entry",
+    "Name": "Boat Graveyard - Entry",
+    "LevelAsset": "Level_Mini_BoatGraveyard_1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Camp.Entry",
+    "Name": "Camp - Campfire",
+    "LevelAsset": "Level_Camp_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CrulerBruler.Entry",
+    "Name": "Coastal Cave - Entry",
+    "LevelAsset": "SmallLevel_CrulerBrulerWeaponry_Blockout"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CrulerBruler.Forge",
+    "Name": "Coastal Cave - Forge",
+    "LevelAsset": "SmallLevel_CrulerBrulerWeaponry_Blockout"
+  },
+  {
+    "Tag": "Level.SpawnPoint.RedForest.Plazza",
+    "Name": "Crimson Forest - Crimson Perch",
+    "LevelAsset": "Level_RedForest_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.RedForest.Entry",
+    "Name": "Crimson Forest - Entry",
+    "LevelAsset": "Level_RedForest_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.RedForest.TheThreeBlades",
+    "Name": "Crimson Forest - The Three Blades",
+    "LevelAsset": "Level_RedForest_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CavernCrusher.Entry",
+    "Name": "Crushing Cavern - Entrance",
+    "LevelAsset": "SmallLevel_Cavern_CrushingWalls"
+  },
+  {
+    "Tag": "Level.SpawnPoint.DarkGestralArena.Entry",
+    "Name": "Dark Gestral Arena - Entrance",
+    "LevelAsset": "SmallLevel_FA_DarkGestralArena"
+  },
+  {
+    "Tag": "Level.SpawnPoint.DarkShores.Entry",
+    "Name": "Dark Shores - Bloodied Beach",
+    "LevelAsset": "Level_DarkShores_Main_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.DarkShores.Exit",
+    "Name": "Dark Shores - Exit",
+    "LevelAsset": "Level_DarkShores_Main_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.TwilightSanctuary.Entry",
+    "Name": "Endless Night Sanctuary - Entrance",
+    "LevelAsset": "Level_Side_TwilightSanctuary"
+  },
+  {
+    "Tag": "Level.SpawnPoint.TwilightSanctuary.Totem",
+    "Name": "Endless Night Sanctuary - Night Totem",
+    "LevelAsset": "Level_Side_TwilightSanctuary"
+  },
+  {
+    "Tag": "Level.SpawnPoint.TwilightSanctuary.Arena",
+    "Name": "Endless Night Sanctuary - Warrior's Route",
+    "LevelAsset": "Level_Side_TwilightSanctuary"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleasTower.Entrance",
+    "Name": "Endless Tower - Entrance",
+    "LevelAsset": "Level_Side_CleasTower"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleasTower.GroundEntrance",
+    "Name": "Endless Tower - Ground Entrance",
+    "LevelAsset": "CleasTower_GroundFloorEntrance"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleasTower.GroundEntranceTower",
+    "Name": "Endless Tower - Ground Entrance Tower",
+    "LevelAsset": "Level_Side_CleasTower"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleasTower.Simon",
+    "Name": "Endless Tower - Simon",
+    "LevelAsset": "Level_Side_CleasTower"
+  },
+  {
+    "Tag": "Level.SpawnPoint.DoorMaze.Entry",
+    "Name": "Esoteric Ruins - Entry",
+    "LevelAsset": "SmallLevel_DoorMaze_Blockout"
+  },
+  {
+    "Tag": "Level.SpawnPoint.DoorMaze.CliffBottom",
+    "Name": "Esoteric Ruins - Lumiere's Wrecks",
+    "LevelAsset": "SmallLevel_DoorMaze_Blockout"
+  },
+  {
+    "Tag": "Level.SpawnPoint.EsquieNest.GestralEntry",
+    "Name": "Esquie's Nest - Entrance",
+    "LevelAsset": "LevelMain_EsquieNest"
+  },
+  {
+    "Tag": "Level.SpawnPoint.EsquieNest.Entry",
+    "Name": "Esquie's Nest - Entry",
+    "LevelAsset": "LevelMain_EsquieNest"
+  },
+  {
+    "Tag": "Level.SpawnPoint.EsquieNest.FrancoisArena",
+    "Name": "Esquie's Nest - Francois Arena",
+    "LevelAsset": "LevelMain_EsquieNest"
+  },
+  {
+    "Tag": "Level.SpawnPoint.EsquieNest.Francois",
+    "Name": "Esquie's Nest - Francois' Cave",
+    "LevelAsset": "LevelMain_EsquieNest"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleaOrangeForest.Entry",
+    "Name": "Falling Leaves - Entry",
+    "LevelAsset": "Level_OraneForest_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleaOrangeForest.ManorDoor",
+    "Name": "Falling Leaves - Manor Door",
+    "LevelAsset": "Level_OraneForest_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleaOrangeForest.CenterPlazza",
+    "Name": "Falling Leaves - Resinveil Grove",
+    "LevelAsset": "Level_OraneForest_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleaOrangeForest.Scavenger",
+    "Name": "Falling Leaves - Scavenger",
+    "LevelAsset": "Level_OraneForest_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Cemetery.Entry",
+    "Name": "Floating Cemetery - Entrance",
+    "LevelAsset": "SmallLevel_Cemetery_Blockout"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GobluLairs_X_AncientSanctuary.CasinoEntrance",
+    "Name": "Flying Casino - Casino Entrance",
+    "LevelAsset": "SmallLevel_Mix_GL_AS_Zone_01"
+  },
+  {
+    "Tag": "Level.SpawnPoint.FlyingCasino.Entry",
+    "Name": "Flying Casino - Entrance",
+    "LevelAsset": "SmallLevel_Mix_GL_AS_Zone_01"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GobluLairs_X_AncientSanctuary.Entry",
+    "Name": "Flying Casino - Entry",
+    "LevelAsset": "SmallLevel_Mix_GL_AS_Zone_01"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleasFlyingHouse.Center",
+    "Name": "Flying Manor - Central Plaza",
+    "LevelAsset": "Level_CleaFlyingHouse_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleasFlyingHouse.Entry",
+    "Name": "Flying Manor - Entrance",
+    "LevelAsset": "Level_CleaFlyingHouse_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleasFlyingHouse.PlazaTeleport",
+    "Name": "Flying Manor - Plaza Teleport",
+    "LevelAsset": "Level_CleaFlyingHouse_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Goblu.CrulerCave",
+    "Name": "Flying Waters - Coral Cave",
+    "LevelAsset": "Level_Goblu_Main_V5"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Goblu.Entry",
+    "Name": "Flying Waters - Entrance",
+    "LevelAsset": "Level_Goblu_Main_V5"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Goblu.Exit",
+    "Name": "Flying Waters - Exit",
+    "LevelAsset": "Level_Goblu_Main_V5"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Goblu.GobluArena",
+    "Name": "Flying Waters - Flower Field",
+    "LevelAsset": "Level_Goblu_Main_V5"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Goblu.LumiereStreet",
+    "Name": "Flying Waters - Lumieran Streets",
+    "LevelAsset": "Level_Goblu_Main_V5"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Goblu.ManorDoor",
+    "Name": "Flying Waters - Manor Door",
+    "LevelAsset": "Level_Goblu_Main_V5"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Goblu.LimonsolHome",
+    "Name": "Flying Waters - Noco's Hut",
+    "LevelAsset": "Level_Goblu_Main_V5"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ForgottenBattlefield.DuallistArena",
+    "Name": "Forgotten Battlefield - Ancient Bridge",
+    "LevelAsset": "Level_Main_ForgottenBattlefield_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ForgottenBattlefield.SideBattlefield",
+    "Name": "Forgotten Battlefield - Battlefield",
+    "LevelAsset": "Level_Main_ForgottenBattlefield_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ForgottenBattlefield.DeadzoneTower",
+    "Name": "Forgotten Battlefield - Deadzone Tower",
+    "LevelAsset": "Level_Main_ForgottenBattlefield_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ForgottenBattlefield.Entry",
+    "Name": "Forgotten Battlefield - Entrance",
+    "LevelAsset": "Level_Main_ForgottenBattlefield_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ForgottenBattlefield.Exit",
+    "Name": "Forgotten Battlefield - Exit",
+    "LevelAsset": "Level_Main_ForgottenBattlefield_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ForgottenBattlefield.MainRuins",
+    "Name": "Forgotten Battlefield - Fort Ruins",
+    "LevelAsset": "Level_Main_ForgottenBattlefield_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ForgottenBattlefield.MainGate",
+    "Name": "Forgotten Battlefield - Main Gate",
+    "LevelAsset": "Level_Main_ForgottenBattlefield_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ForgottenBattlefield.Battlefield",
+    "Name": "Forgotten Battlefield - Vanguard Point",
+    "LevelAsset": "Level_Main_ForgottenBattlefield_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.FrozenHearts.Entrance",
+    "Name": "Frozen Hearts - Entrance",
+    "LevelAsset": "Level_Side_FrozenHeart"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonocoMountain.Exit",
+    "Name": "Frozen Hearts - Exit",
+    "LevelAsset": "Level_Side_FrozenHeart"
+  },
+  {
+    "Tag": "Level.SpawnPoint.FrozenHearts.Frozenlakes",
+    "Name": "Frozen Hearts - Glacial Falls",
+    "LevelAsset": "Level_Side_FrozenHeart"
+  },
+  {
+    "Tag": "Level.SpawnPoint.FrozenHearts.CaveStation",
+    "Name": "Frozen Hearts - Icebound Terminal",
+    "LevelAsset": "Level_Side_FrozenHeart"
+  },
+  {
+    "Tag": "Level.SpawnPoint.FrozenHearts.TrainStation",
+    "Name": "Frozen Hearts - Icebound Train Station",
+    "LevelAsset": "Level_Side_FrozenHeart"
+  },
+  {
+    "Tag": "Level.SpawnPoint.FrozenHearts.CaveForest",
+    "Name": "Frozen Hearts - Iced Heart",
+    "LevelAsset": "Level_Side_FrozenHeart"
+  },
+  {
+    "Tag": "Level.SpawnPoint.FrozenHearts.ManorDoor",
+    "Name": "Frozen Hearts - Manor Door",
+    "LevelAsset": "Level_Side_FrozenHeart"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.Climb",
+    "Name": "Gestral Beach - Entrance",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.OnlyUp",
+    "Name": "Gestral Beach - Only Up",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.Race",
+    "Name": "Gestral Beach - Race",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.RaceFail",
+    "Name": "Gestral Beach - Race Fail",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.RaceRespawn",
+    "Name": "Gestral Beach - Race Respawn",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.RaceStart",
+    "Name": "Gestral Beach - Race Start",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.VolleyBall",
+    "Name": "Gestral Beach - Volley Ball",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.VolleyHard",
+    "Name": "Gestral Beach - Volley Hard",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.VolleyMedium",
+    "Name": "Gestral Beach - Volley Medium",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.Volley_Easy",
+    "Name": "Gestral Beach - Volley_ Easy",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.WipeOut",
+    "Name": "Gestral Beach - Wipe Out",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralBeach.WipeoutRespawnPoint",
+    "Name": "Gestral Beach - Wipeout Respawn Point",
+    "LevelAsset": "Level_GestralBeach_Day"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralVillage.ArenaAfterGolgra",
+    "Name": "Gestral Village - Arena After Golgra",
+    "LevelAsset": "Level_Main_GestralVillage_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralVillage.VillageEntry",
+    "Name": "Gestral Village - Entrance",
+    "LevelAsset": "Level_Main_GestralVillage_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralVillage.Entry",
+    "Name": "Gestral Village - Entry",
+    "LevelAsset": "Level_Main_GestralVillage_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralVillage.GestralArena",
+    "Name": "Gestral Village - Gestral Arena",
+    "LevelAsset": "Level_Main_GestralVillage_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralVillage.GestralManorDoor",
+    "Name": "Gestral Village - Gestral Manor Door",
+    "LevelAsset": "Level_Main_GestralVillage_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.GestralHiddenArena.Entry",
+    "Name": "Hidden Gestral Arena - Entrance",
+    "LevelAsset": "SmallLevel_YF_Zone_01"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.Climb.Entry",
+    "Name": "Inside The Monolith - Entrance",
+    "LevelAsset": "Level_Monolith_Interior_Climb_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.Climb.Exit",
+    "Name": "Inside The Monolith - Exit",
+    "LevelAsset": "Level_Monolith_Interior_Climb_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.Climb.ManorDoor",
+    "Name": "Inside The Monolith - Manor Door",
+    "LevelAsset": "Level_Monolith_Interior_Climb_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.Climb.ForgottenBattlefield",
+    "Name": "Inside The Monolith - Tainted Battlefield",
+    "LevelAsset": "Level_Monolith_Interior_Climb_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.Climb.SeaCliff",
+    "Name": "Inside The Monolith - Tainted Cliffs",
+    "LevelAsset": "Level_Monolith_Interior_Climb_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.Climb.MonocoMountain",
+    "Name": "Inside The Monolith - Tainted Hearts",
+    "LevelAsset": "Level_Monolith_Interior_Climb_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.Climb.Lumiere",
+    "Name": "Inside The Monolith - Tainted Lumiere",
+    "LevelAsset": "Level_Monolith_Interior_Climb_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.Climb.SpringMeadows",
+    "Name": "Inside The Monolith - Tainted Meadows",
+    "LevelAsset": "Level_Monolith_Interior_Climb_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.Climb.AncientSanctuary",
+    "Name": "Inside The Monolith - Tainted Sanctuary",
+    "LevelAsset": "Level_Monolith_Interior_Climb_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.Climb.Goblu",
+    "Name": "Inside The Monolith - Tainted Waters",
+    "LevelAsset": "Level_Monolith_Interior_Climb_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.Climb.RenoirArena",
+    "Name": "Inside The Monolith - Tower Peak",
+    "LevelAsset": "Level_Monolith_Interior_Climb_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SmallLevelVisages.Bridge",
+    "Name": "Isle of the Eyes - Bridge",
+    "LevelAsset": "SmallLevel_MF_Zone_01"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SmallLevelVisages.Entry",
+    "Name": "Isle of the Eyes - Entrance",
+    "LevelAsset": "SmallLevel_MF_Zone_01"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LostWoods.Entry",
+    "Name": "Lost Woods - Entry",
+    "LevelAsset": "Level_Mini_CleasAreaOrange"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct03.Act02",
+    "Name": "Lumiere - Act02",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct03.Act02RedAndWhite",
+    "Name": "Lumiere - Act02 Red And White",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct03.BigPlazza",
+    "Name": "Lumiere - Central Plaza",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct03.Curator",
+    "Name": "Lumiere - Crooked Tower Walkway",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct01.Entry",
+    "Name": "Lumiere - Entry",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct03.Entry",
+    "Name": "Lumiere - Entry",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct03.FloatingBuildings",
+    "Name": "Lumiere - Floating Buildings",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct03.Dock",
+    "Name": "Lumiere - Harbour",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct03.Gardens",
+    "Name": "Lumiere - Lumiere's Gardens",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct03.Opera",
+    "Name": "Lumiere - Opera House",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct03.CrumblingBuildings",
+    "Name": "Lumiere - Shattered Alley",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.LumiereAct03.PostEnding",
+    "Name": "Lumiere - The End",
+    "LevelAsset": "Level_Lumiere_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonocoStation.EntryForgotten",
+    "Name": "Monoco's Station - Entry Forgotten",
+    "LevelAsset": "Level_MonocoStation"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonocoStation.EntryFrozenHearts",
+    "Name": "Monoco's Station - Entry Frozen Hearts",
+    "LevelAsset": "Level_MonocoStation"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonocoStation.FrozenHearts",
+    "Name": "Monoco's Station - Frozen Heart Entrance",
+    "LevelAsset": "Level_MonocoStation"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonocoStation.IceCorridor",
+    "Name": "Monoco's Station - Ice Corridor",
+    "LevelAsset": "Level_MonocoStation"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonocoStation.InsideStation",
+    "Name": "Monoco's Station - Monoco's Station",
+    "LevelAsset": "Level_MonocoStation"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonocoStation.EntryOldLumiere",
+    "Name": "Monoco's Station - Old Lumiere Entrance",
+    "LevelAsset": "Level_MonocoStation"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithExterior.Peak.Entry",
+    "Name": "Monolith Peak - Entrance",
+    "LevelAsset": "Level_Monolith_Exterior_Peak_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.OldLumiere.BrokenBuildings",
+    "Name": "Old Lumiere - Entrance",
+    "LevelAsset": "Level_OldLumiere_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.OldLumiere.Entry",
+    "Name": "Old Lumiere - Entry",
+    "LevelAsset": "Level_OldLumiere_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.OldLumiere.MaellePath",
+    "Name": "Old Lumiere - Left Street",
+    "LevelAsset": "Level_OldLumiere_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.OldLumiere.ManorDoor",
+    "Name": "Old Lumiere - Manor Door",
+    "LevelAsset": "Level_OldLumiere_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.OldLumiere.ManorArena",
+    "Name": "Old Lumiere - Manor Gardens",
+    "LevelAsset": "Level_OldLumiere_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.OldLumiere.EndPath",
+    "Name": "Old Lumiere - Middle Street",
+    "LevelAsset": "Level_OldLumiere_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.OldLumiere.LunePath",
+    "Name": "Old Lumiere - Right Street",
+    "LevelAsset": "Level_OldLumiere_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.OldLumiere.AlphaArea",
+    "Name": "Old Lumiere - Train Station Ruins",
+    "LevelAsset": "Level_OldLumiere_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleaWorkshop.BrokenLampmaster",
+    "Name": "Painting Workshop - Broken Conception",
+    "LevelAsset": "Level_Side_CleasWorkShop_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleaWorkshop.Path1",
+    "Name": "Painting Workshop - Path1",
+    "LevelAsset": "Level_Side_CleasWorkShop_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleaWorkshop.Path2",
+    "Name": "Painting Workshop - Path2",
+    "LevelAsset": "Level_Side_CleasWorkShop_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.CleaWorkshop.Path3",
+    "Name": "Painting Workshop - Path3",
+    "LevelAsset": "Level_Side_CleasWorkShop_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.RedWoods.Entry",
+    "Name": "Red Woods - Entrance",
+    "LevelAsset": "SmallLevel_AS_Zone_01"
+  },
+  {
+    "Tag": "Level.SpawnPoint.AxonPath.VistaEntrance",
+    "Name": "Renoir's Drafts - Entrance",
+    "LevelAsset": "Level_Monolith_Floor_1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.AxonPath.Entry",
+    "Name": "Renoir's Drafts - Entry",
+    "LevelAsset": "Level_Monolith_Floor_1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.AxonPath.Exit",
+    "Name": "Renoir's Drafts - Exit",
+    "LevelAsset": "Level_Monolith_Floor_1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.AxonPath.SavepointEnd",
+    "Name": "Renoir's Drafts - Golden Tree",
+    "LevelAsset": "Level_Monolith_Floor_1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.EsquieRealCousin.Entry",
+    "Name": "Root of All Evil - Entry",
+    "LevelAsset": "Level_Small_EsquieRealCousin"
+  },
+  {
+    "Tag": "Level.SpawnPoint.EsquieRealCousin.MainField",
+    "Name": "Root of All Evil - Main Field",
+    "LevelAsset": "Level_Small_EsquieRealCousin"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SacredRiver.Entry",
+    "Name": "Sacred River - Entry",
+    "LevelAsset": "SmallLevel_SacredRiver"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SinisterCave.Entrance",
+    "Name": "Sinister Cave - Entrance",
+    "LevelAsset": "Level_Cave_InvisibleCave"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Sirene.Glissando",
+    "Name": "Sirene - Crumbling Path",
+    "LevelAsset": "Level_Sirene_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Sirene.SirenArena",
+    "Name": "Sirene - Dancing Arena",
+    "LevelAsset": "Level_Sirene_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Sirene.Ballet",
+    "Name": "Sirene - Dancing Classes",
+    "LevelAsset": "Level_Sirene_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Sirene.Entry",
+    "Name": "Sirene - Entry",
+    "LevelAsset": "Level_Sirene_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Sirene.ManorDoor",
+    "Name": "Sirene - Manor Door",
+    "LevelAsset": "Level_Sirene_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Sirene.Couturier",
+    "Name": "Sirene - Sewing Atelier",
+    "LevelAsset": "Level_Sirene_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SireneSmallLevel.Entry",
+    "Name": "Sirene's Dress - Entrance",
+    "LevelAsset": "SmallLevel_Sirene_MusicHear"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SireneSmallLevel.Inside",
+    "Name": "Sirene's Dress - Glissando",
+    "LevelAsset": "SmallLevel_Sirene_MusicHear"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SkyIsland.Entry",
+    "Name": "Sky Island - Entrance",
+    "LevelAsset": "SmallLevel_FA_Zone_01"
+  },
+  {
+    "Tag": "Special.Dummy.WM.BarrierBreakerAcquired",
+    "Name": "Special - Dummy for Barrier Breaker Get",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.Dummy.WM.PostMSSwim",
+    "Name": "Special - Dummy for Post Monoco Station Beach",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.Dummy.WM.PostMSShortcut",
+    "Name": "Special - Dummy for Post Monoco Station Shortcut",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.Dummy.WM.PostOLSwim",
+    "Name": "Special - Dummy for Post Old Lumiere Beach",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.Dummy.WM.SireneHeartAcquiredFirst",
+    "Name": "Special - Dummy for Sirene Heart Get",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.Dummy.WM.VisageHeartAcquiredFirst",
+    "Name": "Special - Dummy for Visages Heart Get",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.GestralBeach.GrandisMain",
+    "Name": "Special - Gestral Beach Entrance: Climb the Wall",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.GestralBeach.OnlyUp",
+    "Name": "Special - Gestral Beach Entrance: Gestral Ascension",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.GestralBeach.WipeOut",
+    "Name": "Special - Gestral Beach Entrance: Parkour Course",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.GestralBeach.Race",
+    "Name": "Special - Gestral Beach Entrance: Time Race",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.GestralBeach.Volleyball",
+    "Name": "Special - Gestral Beach Entrance: Volleyball",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.WM.Fly",
+    "Name": "Special - World Map Area Flying",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.WM.SeaNorth",
+    "Name": "Special - World Map Area Northern Sea",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.WM.PostGO",
+    "Name": "Special - World Map Area Post Flying Waters",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.WM.PostFB",
+    "Name": "Special - World Map Area Post Forgotten Battlefield",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.WM.WithCar",
+    "Name": "Special - World Map Area Post Meeting Esquie",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.WM.PostMS",
+    "Name": "Special - World Map Area Post Monoco Station",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Special.WM.SeaSouth",
+    "Name": "Special - World Map Area Southern Sea",
+    "LevelAsset": ""
+  },
+  {
+    "Tag": "Level.SpawnPoint.SpringMeadows.OldExpeditionnerCamp",
+    "Name": "Spring Meadows - Abandoned Expeditioner Camp",
+    "LevelAsset": "Level_SpringMeadows_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SpringMeadows.DestroyedHome",
+    "Name": "Spring Meadows - Destroyed Home",
+    "LevelAsset": "Level_SpringMeadows_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SpringMeadows.Entry",
+    "Name": "Spring Meadows - Entrance",
+    "LevelAsset": "Level_SpringMeadows_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SpringMeadows.GrandArea",
+    "Name": "Spring Meadows - Grand Meadow",
+    "LevelAsset": "Level_SpringMeadows_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SpringMeadows.TreeExit",
+    "Name": "Spring Meadows - Indigo Tree Branches",
+    "LevelAsset": "Level_SpringMeadows_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SpringMeadows.MeadowsCorridor",
+    "Name": "Spring Meadows - Meadows Corridor",
+    "LevelAsset": "Level_SpringMeadows_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SpringMeadows.Eveque",
+    "Name": "Spring Meadows - The Indigo Tree",
+    "LevelAsset": "Level_SpringMeadows_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.StoneQuarry.Entry",
+    "Name": "Stone Quarry - Entrance",
+    "LevelAsset": "SmallLevel_FB_Zone_01"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SeaCliff.BasaltWaves",
+    "Name": "Stone Wave Cliffs - Basalt Waves",
+    "LevelAsset": "Level_SeaCliff_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SeaCliff.ZeppelinEntry",
+    "Name": "Stone Wave Cliffs - Entrance",
+    "LevelAsset": "Level_SeaCliff_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SeaCliff.Entry",
+    "Name": "Stone Wave Cliffs - Entry",
+    "LevelAsset": "Level_SeaCliff_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SeaCliff.Exit",
+    "Name": "Stone Wave Cliffs - Exit",
+    "LevelAsset": "Level_SeaCliff_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SeaCliff.FloodedBuildings",
+    "Name": "Stone Wave Cliffs - Flooded Buildings",
+    "LevelAsset": "Level_SeaCliff_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SeaCliff.ManorDoor",
+    "Name": "Stone Wave Cliffs - Manor Door",
+    "LevelAsset": "Level_SeaCliff_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SeaCliff.Village",
+    "Name": "Stone Wave Cliffs - Old Farm",
+    "LevelAsset": "Level_SeaCliff_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SeaCliff.PaintressShrine",
+    "Name": "Stone Wave Cliffs - Paintress Shrine",
+    "LevelAsset": "Level_SeaCliff_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SeaCliff.Caves",
+    "Name": "Stone Wave Cliffs - Tide Caverns",
+    "LevelAsset": "Level_SeaCliff_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.StonewaveCliffsCave.Vista",
+    "Name": "Stone Wave Cliffs Cave - Entrance",
+    "LevelAsset": "ConceptLevel_SeaCliff_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.StonewaveCliffsCave.Entry",
+    "Name": "Stone Wave Cliffs Cave - Entry",
+    "LevelAsset": "ConceptLevel_SeaCliff_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ChromaZoneEntrance.Cave",
+    "Name": "Sunless Cliffs - Chroma Portal",
+    "LevelAsset": "Level_Main_ChromaZoneEntrance"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ChromaZoneEntrance.Entry",
+    "Name": "Sunless Cliffs - Entry",
+    "LevelAsset": "Level_Main_ChromaZoneEntrance"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ChromaZoneEntrance.Portal",
+    "Name": "Sunless Cliffs - Portal",
+    "LevelAsset": "Level_Main_ChromaZoneEntrance"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SimonArea.Entry",
+    "Name": "The Abyss - Entry",
+    "LevelAsset": "SmallLevel_SimonArea"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SimonArea.Abyss",
+    "Name": "The Abyss - Simon",
+    "LevelAsset": "SmallLevel_SimonArea"
+  },
+  {
+    "Tag": "Level.SpawnPoint.TheBarrier.Entry",
+    "Name": "The Barrier - Entry",
+    "LevelAsset": "Level_TheBarrier_Main_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.TheCanvas.Entrance",
+    "Name": "The Canvas - Entrance",
+    "LevelAsset": "Level_Monolith_Interior_PaintressGrandFinale_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.TheCarrousel.Entrance",
+    "Name": "The Carousel - Entrance",
+    "LevelAsset": "SmallLevel_Carrousel"
+  },
+  {
+    "Tag": "Level.SpawnPoint.TheChosenPath.Entry",
+    "Name": "The Chosen Path - Entrance",
+    "LevelAsset": "Level_Bonus_ChosenPath"
+  },
+  {
+    "Tag": "Level.SpawnPoint.ReacherCliff.Entry",
+    "Name": "The Crows - Entrance",
+    "LevelAsset": "SmallLevel_RZ_Zone_01"
+  },
+  {
+    "Tag": "Level.SpawnPoint.TheFountain.Entry",
+    "Name": "The Fountain - Entrance",
+    "LevelAsset": "SmallLevel_SM_Zone_01"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.AliciaBedroom",
+    "Name": "The Manor - Alicia Bedroom",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.AliciaRoomAct3",
+    "Name": "The Manor - Alicia Room Act3",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.AlineWorkshop",
+    "Name": "The Manor - Aline Workshop",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.Bathroom",
+    "Name": "The Manor - Bathroom",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.CleaBedroom",
+    "Name": "The Manor - Clea Bedroom",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.Entrance",
+    "Name": "The Manor - Entry Hall",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.Kitchen",
+    "Name": "The Manor - Kitchen",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.Library",
+    "Name": "The Manor - Library",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.ParentsBedroom",
+    "Name": "The Manor - Parents Bedroom",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.Room01",
+    "Name": "The Manor - Room01",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.Room02",
+    "Name": "The Manor - Room02",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.Room03",
+    "Name": "The Manor - Room03",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Manor.VersoBedroom",
+    "Name": "The Manor - Verso Bedroom",
+    "LevelAsset": "Manor_Main_WP"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MiniSpringMeadow.Entry",
+    "Name": "The Meadows - Entry",
+    "LevelAsset": "Level_Mini_SpringMeadows"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.PaintressIntro.Entry",
+    "Name": "The Monolith - Entrance",
+    "LevelAsset": "Level_PaintressIntro_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MonolithInterior.PaintressIntro.Exit",
+    "Name": "The Monolith - Exit",
+    "LevelAsset": "Level_PaintressIntro_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Reacher.Alicia",
+    "Name": "The Reacher - Alicia",
+    "LevelAsset": "Level_Reacher_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Reacher.Entry",
+    "Name": "The Reacher - Entrance",
+    "LevelAsset": "Level_Reacher_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Reacher.FogArea",
+    "Name": "The Reacher - Foggy Area",
+    "LevelAsset": "Level_Reacher_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Reacher.LadderArea",
+    "Name": "The Reacher - Ladder Area",
+    "LevelAsset": "Level_Reacher_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Reacher.ManorDoor",
+    "Name": "The Reacher - Manor Door",
+    "LevelAsset": "Level_Reacher_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Reacher.Mountain",
+    "Name": "The Reacher - Mountain",
+    "LevelAsset": "Level_Reacher_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Reacher.MountainTop",
+    "Name": "The Reacher - Peak",
+    "LevelAsset": "Level_Reacher_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.SmallBourgeon.Entry",
+    "Name": "The Small Bourgeon - Entrance",
+    "LevelAsset": "SmallLevel_GL_Zone_01"
+  },
+  {
+    "Tag": "Level.SpawnPoint.BoatGraveyardBlue",
+    "Name": "Twilight Quarry - Boat Graveyard Blue",
+    "LevelAsset": "Level_Mini_BoatGraveyard_2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.BoatGraveyardBlue.Entry",
+    "Name": "Twilight Quarry - Entry",
+    "LevelAsset": "Level_Mini_BoatGraveyard_2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.VersosDraft.CandyLand",
+    "Name": "Verso's Drafts - Candy Land",
+    "LevelAsset": "Level_Side_VersosDraft"
+  },
+  {
+    "Tag": "Level.SpawnPoint.VersosDraft.CandyLandDeadZone1",
+    "Name": "Verso's Drafts - Candy Land Dead Zone1",
+    "LevelAsset": "Level_Side_VersosDraft"
+  },
+  {
+    "Tag": "Level.SpawnPoint.VersosDraft.CandyLandDeadZone2",
+    "Name": "Verso's Drafts - Candy Land Dead Zone2",
+    "LevelAsset": "Level_Side_VersosDraft"
+  },
+  {
+    "Tag": "Level.SpawnPoint.VersosDraft.Entry",
+    "Name": "Verso's Drafts - Entrance",
+    "LevelAsset": "Level_Side_VersosDraft"
+  },
+  {
+    "Tag": "Level.SpawnPoint.VersosDraft.Exit",
+    "Name": "Verso's Drafts - Exit",
+    "LevelAsset": "Level_Side_VersosDraft"
+  },
+  {
+    "Tag": "Level.SpawnPoint.VersosDraft.ForestDeadZone1",
+    "Name": "Verso's Drafts - Forest Dead Zone1",
+    "LevelAsset": "Level_Side_VersosDraft"
+  },
+  {
+    "Tag": "Level.SpawnPoint.VersosDraft.ForestDeadZone2",
+    "Name": "Verso's Drafts - Forest Dead Zone2",
+    "LevelAsset": "Level_Side_VersosDraft"
+  },
+  {
+    "Tag": "Level.SpawnPoint.VersosDraft.GestralBaths",
+    "Name": "Verso's Drafts - Gestral Baths",
+    "LevelAsset": "Level_Side_VersosDraft"
+  },
+  {
+    "Tag": "Level.SpawnPoint.VersosDraft.LicornapiedStation",
+    "Name": "Verso's Drafts - Licornapieds Station",
+    "LevelAsset": "Level_Side_VersosDraft"
+  },
+  {
+    "Tag": "Level.SpawnPoint.VersosDraft.OpenField",
+    "Name": "Verso's Drafts - Open Playground",
+    "LevelAsset": "Level_Side_VersosDraft"
+  },
+  {
+    "Tag": "Level.SpawnPoint.VersosDraft.GooglyEyesDoor",
+    "Name": "Verso's Drafts - Reverie Path",
+    "LevelAsset": "Level_Side_VersosDraft"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Visages.Anger",
+    "Name": "Visages - Anger Vale",
+    "LevelAsset": "Level_Visages_Main_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Visages.Entry",
+    "Name": "Visages - Entry",
+    "LevelAsset": "Level_Visages_Main_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Visages.Joy",
+    "Name": "Visages - Joy Vale",
+    "LevelAsset": "Level_Visages_Main_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Visages.ManorDoor",
+    "Name": "Visages - Manor Door",
+    "LevelAsset": "Level_Visages_Main_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Visages.VisagesArena",
+    "Name": "Visages - Peak",
+    "LevelAsset": "Level_Visages_Main_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Visages.Plazza",
+    "Name": "Visages - Plazza",
+    "LevelAsset": "Level_Visages_Main_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.Visages.Sadness",
+    "Name": "Visages - Sadness Vale",
+    "LevelAsset": "Level_Visages_Main_V1"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WhiteSands.Entry",
+    "Name": "White Sands - Entrance",
+    "LevelAsset": "Level_Monolith_Interior_Beach_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.MiniWhiteTree.Entry",
+    "Name": "White Tree - Entry",
+    "LevelAsset": "Level_Mini_YellowForestWhiteTree"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.AbbestCaveEntry",
+    "Name": "World Map - Abbest Cave Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.AncientSanctuaryEntry",
+    "Name": "World Map - Ancient Sanctuary Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.AncientSanctuaryExit",
+    "Name": "World Map - Ancient Sanctuary Exit",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.AxonPathEntry",
+    "Name": "World Map - Axon Path Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.BarrierDestroyed",
+    "Name": "World Map - Barrier Destroyed Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.Barrier",
+    "Name": "World Map - Barrier Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.BladesGraveyardEntry",
+    "Name": "World Map - Blades Graveyard Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.BoatGraveyardBlueEntry",
+    "Name": "World Map - Boat Graveyard Blue Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.BoatGraveyardPurpleEntry",
+    "Name": "World Map - Boat Graveyard Purple Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.CarrouselEntrance",
+    "Name": "World Map - Carrousel Entrance Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.CavernCrusherEntry",
+    "Name": "World Map - Cavern Crusher Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.ChosenPath",
+    "Name": "World Map - Chosen Path Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.ChromaZoneEntrance",
+    "Name": "World Map - Chroma Zone Entrance Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.CleaOrangeForestEntry",
+    "Name": "World Map - Clea Orange Forest Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.CleaWorkshop1Entry",
+    "Name": "World Map - Clea Workshop1 Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.CleaWorkshop2Entry",
+    "Name": "World Map - Clea Workshop2 Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.CleaWorkshop3Entry",
+    "Name": "World Map - Clea Workshop3 Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.CleasFlyingHouseEntry",
+    "Name": "World Map - Cleas Flying House Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.CleasTowerEntrance",
+    "Name": "World Map - Cleas Tower Entrance Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.CoastalCaveEntry",
+    "Name": "World Map - Coastal Cave Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.DarkGestralArenaEntry",
+    "Name": "World Map - Dark Gestral Arena Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.DarkShoresEntrance",
+    "Name": "World Map - Dark Shores Entrance Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.DarkShores",
+    "Name": "World Map - Dark Shores Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.DarkShoresExit",
+    "Name": "World Map - Dark Shores Exit",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.DoorMazeEntry",
+    "Name": "World Map - Door Maze Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.Dynamic",
+    "Name": "World Map - Dynamic Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.EsquieNest",
+    "Name": "World Map - Esquie Nest Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.FloatingCemeteryEntry",
+    "Name": "World Map - Floating Cemetery Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.FlyingCasino",
+    "Name": "World Map - Flying Casino Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.ForgottenBattlefieldEntry",
+    "Name": "World Map - Forgotten Battlefield Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.ForgottenBattlefieldExit",
+    "Name": "World Map - Forgotten Battlefield Exit",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.FrozenHeartsEntry",
+    "Name": "World Map - Frozen Hearts Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.GestralBeach_1",
+    "Name": "World Map - Gestral Beach_1 Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.GestralBeach_2",
+    "Name": "World Map - Gestral Beach_2 Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.GestralHiddenArena",
+    "Name": "World Map - Gestral Hidden Arena Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.GestralTreeCityEntry",
+    "Name": "World Map - Gestral Tree City Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.GestralVillageEntry",
+    "Name": "World Map - Gestral Village Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.Gestralbeach_3",
+    "Name": "World Map - Gestralbeach_3 Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.Gestralbeach_4",
+    "Name": "World Map - Gestralbeach_4 Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.Gestralbeach_5",
+    "Name": "World Map - Gestralbeach_5 Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.GobluEntry",
+    "Name": "World Map - Goblu Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.GobluExit",
+    "Name": "World Map - Goblu Exit",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.LostWoods",
+    "Name": "World Map - Lost Woods Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.Lumiere",
+    "Name": "World Map - Lumiere Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.ManorDoor1",
+    "Name": "World Map - Manor Door1 Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.ManorDoor2",
+    "Name": "World Map - Manor Door2 Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.MiniSpringMeadowEntry",
+    "Name": "World Map - Mini Spring Meadow Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.MiniWhiteTreeEntry",
+    "Name": "World Map - Mini White Tree Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.MonocoStationEntry",
+    "Name": "World Map - Monoco Station Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.MonocoStationEntryForgotten",
+    "Name": "World Map - Monoco Station Entry Forgotten Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.MonocoStationEntryFrozenHearts",
+    "Name": "World Map - Monoco Station Entry Frozen Hearts Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.MonocoStationEntryOldLumiere",
+    "Name": "World Map - Monoco Station Entry Old Lumiere Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.MonolithInteriorEntry",
+    "Name": "World Map - Monolith Interior Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.OldLumiereEntry",
+    "Name": "World Map - Old Lumiere Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.OldLumiereExit",
+    "Name": "World Map - Old Lumiere Exit",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.PostEsquieNestForcedCamp",
+    "Name": "World Map - Post Esquie Nest Forced Camp Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.PostSeaCliffForcedCamp",
+    "Name": "World Map - Post Sea Cliff Forced Camp Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.ReacherCliff",
+    "Name": "World Map - Reacher Cliff Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.ReacherEntry",
+    "Name": "World Map - Reacher Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.RedForest",
+    "Name": "World Map - Red Forest Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.RedWoodsEntry",
+    "Name": "World Map - Red Woods Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.SacredRiverEntry",
+    "Name": "World Map - Sacred River Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.SeaCliffEntry",
+    "Name": "World Map - Sea Cliff Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.SeaCliffExit",
+    "Name": "World Map - Sea Cliff Exit",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.SimonArea",
+    "Name": "World Map - Simon Area Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.SinisterCaveEntry",
+    "Name": "World Map - Sinister Cave Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.SireneEntry",
+    "Name": "World Map - Sirene Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.SireneSmallLevelEntry",
+    "Name": "World Map - Sirene Small Level Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.SkyIsland",
+    "Name": "World Map - Sky Island Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.SmallBourgeon",
+    "Name": "World Map - Small Bourgeon Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.SpringMeadowsEntry",
+    "Name": "World Map - Spring Meadows Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.StoneQuarry",
+    "Name": "World Map - Stone Quarry Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.StonewaveCliffsCaveEntry",
+    "Name": "World Map - Stonewave Cliffs Cave Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.TheCanvasEntry",
+    "Name": "World Map - The Canvas Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.TheFountain",
+    "Name": "World Map - The Fountain Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.TheGreatestExpedition",
+    "Name": "World Map - The Greatest Expedition Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.TwilightSanctuaryEntry",
+    "Name": "World Map - Twilight Sanctuary Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.VersosDraftEntry",
+    "Name": "World Map - Versos Draft Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.VisagesEntry",
+    "Name": "World Map - Visages Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.VisagesSmallLevelEntry",
+    "Name": "World Map - Visages Small Level Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.WhiteSandsEntry",
+    "Name": "World Map - White Sands Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.YellowForestEntry",
+    "Name": "World Map - Yellow Forest Entry",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.WorldMap.YellowForestExit",
+    "Name": "World Map - Yellow Forest Exit",
+    "LevelAsset": "Level_WorldMap_Main_V2"
+  },
+  {
+    "Tag": "Level.SpawnPoint.YellowForest.Entry",
+    "Name": "Yellow Harvest - Entrance",
+    "LevelAsset": "Level_YellowForest_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.YellowForest.Exit",
+    "Name": "Yellow Harvest - Exit",
+    "LevelAsset": "Level_YellowForest_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.YellowForest.Lake",
+    "Name": "Yellow Harvest - Harvester's Hollow",
+    "LevelAsset": "Level_YellowForest_Main"
+  },
+  {
+    "Tag": "Level.SpawnPoint.YellowForest.Arena",
+    "Name": "Yellow Harvest - Yellow Spire Wrecks",
+    "LevelAsset": "Level_YellowForest_Main"
+  }
+]

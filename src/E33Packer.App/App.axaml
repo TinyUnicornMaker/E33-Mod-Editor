@@ -1,0 +1,55 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="E33Packer.App.App"
+             RequestedThemeVariant="Dark">
+    <Application.Resources>
+        <SolidColorBrush x:Key="InkBrush" Color="#FF161411" />
+        <SolidColorBrush x:Key="PanelBrush" Color="#FF211D17" />
+        <SolidColorBrush x:Key="PanelAltBrush" Color="#FF2B261D" />
+        <SolidColorBrush x:Key="GoldBrush" Color="#FFC9A961" />
+        <SolidColorBrush x:Key="GoldDimBrush" Color="#FF7E6A3F" />
+        <SolidColorBrush x:Key="CreamBrush" Color="#FFEFE3C8" />
+        <SolidColorBrush x:Key="MutedBrush" Color="#FF9C9280" />
+        <SolidColorBrush x:Key="LineBrush" Color="#FF3B3529" />
+        <Color x:Key="SystemAccentColor">#FFC9A961</Color>
+        <FontFamily x:Key="SerifDisplay">Georgia, Liberation Serif, Times New Roman</FontFamily>
+        <FontFamily x:Key="BodyFont">Inter, Segoe UI, DejaVu Sans</FontFamily>
+    </Application.Resources>
+    <Application.Styles>
+        <FluentTheme />
+        <Style Selector="Window">
+            <Setter Property="Background" Value="{StaticResource InkBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource BodyFont}" />
+        </Style>
+        <Style Selector="TextBlock.title">
+            <Setter Property="FontFamily" Value="{StaticResource SerifDisplay}" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="Foreground" Value="{StaticResource GoldBrush}" />
+        </Style>
+        <Style Selector="TextBlock.hint">
+            <Setter Property="Foreground" Value="{StaticResource MutedBrush}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="{StaticResource PanelAltBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource GoldDimBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="Padding" Value="12,6" />
+        </Style>
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="{StaticResource PanelBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource LineBrush}" />
+            <Setter Property="CornerRadius" Value="3" />
+        </Style>
+        <Style Selector="ProgressBar">
+            <Setter Property="Foreground" Value="{StaticResource GoldBrush}" />
+            <Setter Property="Background" Value="{StaticResource PanelAltBrush}" />
+            <Setter Property="Height" Value="14" />
+            <Setter Property="MinHeight" Value="14" />
+        </Style>
+    </Application.Styles>
+</Application>

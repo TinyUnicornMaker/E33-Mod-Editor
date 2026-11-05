@@ -1,0 +1,4 @@
+*
+!.gitignore
+!liboodle-data-shared.so
+!oodle-data-shared.dll

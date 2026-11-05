@@ -1,0 +1,3037 @@
+[
+  {
+    "CustomName": "Place holder battle (Cut Content)",
+    "CodeName": "Test_PlaceHolderBattleDude",
+    "Archetype": "Regular",
+    "IsCutContent": true
+  },
+  {
+    "CustomName": "Lancelier - Free Aim Tutorial 1 (Spring Meadows)",
+    "CodeName": "SM_FirstLancelier",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Lancelier (Spring Meadows)",
+    "CodeName": "SM_Lancelier",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Portier - Lune Tutorial 1 (Spring Meadows)",
+    "CodeName": "SM_First_Portier",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Portier (Spring Meadows)",
+    "CodeName": "SM_Portier",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Volester (Spring Meadows)",
+    "CodeName": "SM_Volester",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Abbest (Spring Meadows)",
+    "CodeName": "SM_Abbest",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Eveque (Spring Meadows)",
+    "CodeName": "SM_Boss_Eveque",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 5
+  },
+  {
+    "CustomName": "Chromatic Lancelier (Spring Meadows)",
+    "CodeName": "SM_Lancelier_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 5
+  },
+  {
+    "CustomName": "Chromatic Abbest (Abbest Cave)",
+    "CodeName": "SM_Abbest_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "EvequeLuneScript (Cut Content)",
+    "CodeName": "SM_Boss_EvequeLuneScript",
+    "Archetype": "Boss",
+    "IsCutContent": true,
+    "Level": 12
+  },
+  {
+    "CustomName": "Ceramic Chevaliere (Old Lumiere)",
+    "CodeName": "YF_Chevaliere_A",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 28
+  },
+  {
+    "CustomName": "Gault A (Yellow Harvest)",
+    "CodeName": "YF_GaultA",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Gault B (Yellow Harvest)",
+    "CodeName": "YF_GaultB",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 19
+  },
+  {
+    "CustomName": "Potier (Yellow Harvest)",
+    "CodeName": "YF_Potier",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 23
+  },
+  {
+    "CustomName": "Jar (Yellow Harvest)",
+    "CodeName": "YF_Jar",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 23
+  },
+  {
+    "CustomName": "Sapling (Falling Leaves)",
+    "CodeName": "YF_Sapling",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 35
+  },
+  {
+    "CustomName": "Glaise (Falling Leaves)",
+    "CodeName": "YF_Glaise",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 35
+  },
+  {
+    "CustomName": "Steel Chevaliere (Old Lumiere)",
+    "CodeName": "YF_Chevaliere_B",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 28
+  },
+  {
+    "CustomName": "Gold Chevaliere (Crimson Forest)",
+    "CodeName": "YF_Chevaliere_C",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Scavenger (Falling Leaves)",
+    "CodeName": "YF_Boss_Scavenger",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 42
+  },
+  {
+    "CustomName": "Chromatic Gold Chevaliere (Crimson Forest)",
+    "CodeName": "YF_Chevaliere_C_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Chromatic Steel Chevaliere (Endless Tower)",
+    "CodeName": "YF_Chevaliere_B_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Chromatic Ceramic Chevaliere (Endless Tower)",
+    "CodeName": "YF_Chevaliere_A_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Limonsol (Cut Content)",
+    "CodeName": "YF_Gestral_Limonsol",
+    "Archetype": "Elite",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Chromatic Gault (Stone Wave Cliffs)",
+    "CodeName": "YF_GaultB_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "Robust Sakapatate (Ancient Sanctuary)",
+    "CodeName": "AS_PotatoBag_Tank",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 12
+  },
+  {
+    "CustomName": "Catapult Sakapatate (Ancient Sanctuary)",
+    "CodeName": "AS_PotatoBag_Mage",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 12
+  },
+  {
+    "CustomName": "Ranger Sakapatate (Ancient Sanctuary)",
+    "CodeName": "AS_PotatoBag_Ranger",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 12
+  },
+  {
+    "CustomName": "Ultimate Sakapatate (Ancient Sanctuary)",
+    "CodeName": "AS_PotatoBag_Boss",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 18
+  },
+  {
+    "CustomName": "Gestral Dragoon (Cut Content)",
+    "CodeName": "AS_Gestral_Dragoon",
+    "Archetype": "Elite",
+    "IsCutContent": true,
+    "Level": 12
+  },
+  {
+    "CustomName": "AS_GestralBully_A (Cut Content)",
+    "CodeName": "AS_GestralBully_A",
+    "Archetype": "Elite",
+    "IsCutContent": true,
+    "Level": 12
+  },
+  {
+    "CustomName": "AS_GestralBully_B (Cut Content)",
+    "CodeName": "AS_GestralBully_B",
+    "Archetype": "Elite",
+    "IsCutContent": true,
+    "Level": 12
+  },
+  {
+    "CustomName": "AS_GestralBully_C (Cut Content)",
+    "CodeName": "AS_GestralBully_C",
+    "Archetype": "Elite",
+    "IsCutContent": true,
+    "Level": 12
+  },
+  {
+    "CustomName": "Luster (Flying Waters)",
+    "CodeName": "GO_Luster",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 8
+  },
+  {
+    "CustomName": "Bruler (Flying Waters)",
+    "CodeName": "GO_Bruler",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 8
+  },
+  {
+    "CustomName": "Cruler (Flying Waters)",
+    "CodeName": "GO_Cruler",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 8
+  },
+  {
+    "CustomName": "Demineur (Flying Waters)",
+    "CodeName": "GO_Demineur",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 8
+  },
+  {
+    "CustomName": "Bourgeon (Flying Waters)",
+    "CodeName": "GO_Bourgeon",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 10
+  },
+  {
+    "CustomName": "Goblu (Flying Waters)",
+    "CodeName": "GO_Goblu",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 8
+  },
+  {
+    "CustomName": "Chromatic Luster (Forgotten Battlefield)",
+    "CodeName": "GO_Luster_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "Dualsword Cultist (Cut Content)",
+    "CodeName": "SC_CultistDualSword",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 19
+  },
+  {
+    "CustomName": "Greatsword Cultist (Stone Wave Cliffs)",
+    "CodeName": "SC_CultistHeavy",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "Mage Cultist (Cut Content)",
+    "CodeName": "SC_CultistMage",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 19
+  },
+  {
+    "CustomName": "Reaper Cultist (Stone Wave Cliffs)",
+    "CodeName": "SC_CultistFlying",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "SC_FearLight (Cut Content)",
+    "CodeName": "SC_FearLight",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 19
+  },
+  {
+    "CustomName": "SC_SapNevronBoss (Cut Content)",
+    "CodeName": "SC_SapNevronBoss",
+    "Archetype": "Boss",
+    "IsCutContent": true,
+    "Level": 19
+  },
+  {
+    "CustomName": "Sunniso (Cut Content)",
+    "CodeName": "SC_Gestral_Sonnyso",
+    "Archetype": "Elite",
+    "IsCutContent": true,
+    "Level": 19
+  },
+  {
+    "CustomName": "Chromatic Greatsword Cultist (Sirene)",
+    "CodeName": "SC_CultistHeavy_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 35
+  },
+  {
+    "CustomName": "Francois (Esquie's Nest)",
+    "CodeName": "EN_Francois",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 16
+  },
+  {
+    "CustomName": "Ramasseur (Forgotten Battlefield)",
+    "CodeName": "FB_Ramasseur",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 28
+  },
+  {
+    "CustomName": "Troubadour (Forgotten Battlefield)",
+    "CodeName": "FB_Troubadour",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 28
+  },
+  {
+    "CustomName": "Benisseur (Sirene)",
+    "CodeName": "FB_Benisseur",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 35
+  },
+  {
+    "CustomName": "DuallisteR (Forgotten Battlefield)",
+    "CodeName": "FB_DuallisteR",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 23
+  },
+  {
+    "CustomName": "DuallisteL (Forgotten Battlefield)",
+    "CodeName": "FB_DuallisteL",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 23
+  },
+  {
+    "CustomName": "Dualliste (Forgotten Battlefield)",
+    "CodeName": "FB_DuallisteLR",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Dualliste_Phase1 (Forgotten Battlefield)",
+    "CodeName": "FB_Dualliste_Phase1",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 23
+  },
+  {
+    "CustomName": "Chalier - Sword (Forgotten Battlefield)",
+    "CodeName": "FB_ChalierSword",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 28
+  },
+  {
+    "CustomName": "Chalier - Hammer (Forgotten Battlefield)",
+    "CodeName": "FB_ChalierHammer",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 28
+  },
+  {
+    "CustomName": "Chalier - Spear (Forgotten Battlefield)",
+    "CodeName": "FB_ChalierSpear",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 28
+  },
+  {
+    "CustomName": "Chromatic Chalier (Sinister Cave)",
+    "CodeName": "FB_ChalierSword_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 55
+  },
+  {
+    "CustomName": "Chromatic Benisseur (World Map)",
+    "CodeName": "FB_Benisseur_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 71
+  },
+  {
+    "CustomName": "Wall (Cut Content)",
+    "CodeName": "NevronWall",
+    "Archetype": "Regular",
+    "IsCutContent": true
+  },
+  {
+    "CustomName": "Pelerin (Frozen Hearts)",
+    "CodeName": "MM_Pelerin",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 58
+  },
+  {
+    "CustomName": "Danseuse (Frozen Hearts)",
+    "CodeName": "MM_Danseuse",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 58
+  },
+  {
+    "CustomName": "Danseuse Clone (Frozen Hearts)",
+    "CodeName": "MM_Danseuse_Clone",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 49
+  },
+  {
+    "CustomName": "Stalact (Frozen Hearts)",
+    "CodeName": "MM_Stalact",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 58
+  },
+  {
+    "CustomName": "Braseleur (Frozen Hearts)",
+    "CodeName": "MM_Braseleur",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 58
+  },
+  {
+    "CustomName": "Chromatic Danseuse (Old Lumiere)",
+    "CodeName": "MM_Danseuse_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 36
+  },
+  {
+    "CustomName": "Chromatic Danseuse - Clone (Old Lumiere)",
+    "CodeName": "MM_Danseuse_CloneAlpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 36
+  },
+  {
+    "CustomName": "Painted Renoir (The Monolith)",
+    "CodeName": "MM_MirrorRenoir",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 50
+  },
+  {
+    "CustomName": "Gargant (Frozen Hearts)",
+    "CodeName": "MM_Gargant",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Lancelier Alternatif A (Cut Content)",
+    "CodeName": "SM_Lancelier_AlternatifA",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 3
+  },
+  {
+    "CustomName": "Lancelier Alternatif B (Cut Content)",
+    "CodeName": "SM_Lancelier_AlternatifB",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 3
+  },
+  {
+    "CustomName": "Lancelier Alternatif C (Cut Content)",
+    "CodeName": "SM_Lancelier_AlternatifC",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 3
+  },
+  {
+    "CustomName": "Lancelier Alternatif D (Cut Content)",
+    "CodeName": "SM_Lancelier_AlternatifD",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 3
+  },
+  {
+    "CustomName": "Lancelier - TestMichel (Cut Content)",
+    "CodeName": "TestMichel_Lancelier",
+    "Archetype": "Regular",
+    "IsCutContent": true
+  },
+  {
+    "CustomName": "Gault Alternativ A (Cut Content)",
+    "CodeName": "YF_Gault_AlternativA",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Gault Alternativ B (Cut Content)",
+    "CodeName": "YF_Gault_AlternativB",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Gault Alternativ C (Cut Content)",
+    "CodeName": "YF_Gault_AlternativC",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Gault Alternativ D (Cut Content)",
+    "CodeName": "YF_Gault_AlternativD",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Gault Alternativ E (Cut Content)",
+    "CodeName": "YF_Gault_AlternativE",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Portier alternativ A (Cut Content)",
+    "CodeName": "SM_Portier_AlternativA",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Portier alternativ B (Cut Content)",
+    "CodeName": "SM_Portier_AlternativB",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Portier alternativ C (Cut Content)",
+    "CodeName": "SM_Portier_AlternativC",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Portier alternativ D (Cut Content)",
+    "CodeName": "SM_Portier_AlternativD",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Portier alternativ E (Cut Content)",
+    "CodeName": "SM_Portier_AlternativE",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Volester alternativ A (Cut Content)",
+    "CodeName": "SM_Volester_AlternativA",
+    "Archetype": "Elusive",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Volester alternativ B (Cut Content)",
+    "CodeName": "SM_Volester_AlternativB",
+    "Archetype": "Elusive",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Volester alternativ C (Cut Content)",
+    "CodeName": "SM_Volester_AlternativC",
+    "Archetype": "Elusive",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Volester alternativ D (Cut Content)",
+    "CodeName": "SM_Volester_AlternativD",
+    "Archetype": "Elusive",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Volester alternativ E (Cut Content)",
+    "CodeName": "SM_Volester_AlternativE",
+    "Archetype": "Elusive",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "PotierA (Cut Content)",
+    "CodeName": "YF_Potier_AlternativeA",
+    "Archetype": "Elusive",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "PotierB (Cut Content)",
+    "CodeName": "YF_Potier_AlternativeB",
+    "Archetype": "Elusive",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "PotierC (Cut Content)",
+    "CodeName": "YF_Potier_AlternativeC",
+    "Archetype": "Elusive",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "PotierD (Cut Content)",
+    "CodeName": "YF_Potier_AlternativeD",
+    "Archetype": "Elusive",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "PotierE (Cut Content)",
+    "CodeName": "YF_Potier_AlternativeE",
+    "Archetype": "Elusive",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Sapling Alternative A (Cut Content)",
+    "CodeName": "YF_Sapling_AlternativeA",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Sapling Alternative B (Cut Content)",
+    "CodeName": "YF_Sapling_AlternativeB",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Sapling Alternative C (Cut Content)",
+    "CodeName": "YF_Sapling_AlternativeC",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Jar alternative A (Cut Content)",
+    "CodeName": "YF_Jar_AlternativeA",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Jar alternative B (Cut Content)",
+    "CodeName": "YF_Jar_AlternativeB",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Jar alternative C (Cut Content)",
+    "CodeName": "YF_Jar_AlternativeC",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Ceramic Chevaliere (Cut Content)",
+    "CodeName": "GDC_Chevaliere_A",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Troubadour (Cut Content)",
+    "CodeName": "GDC_Troubadour",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Chalier (Cut Content)",
+    "CodeName": "GDC_Chalier",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Dualliste (Cut Content)",
+    "CodeName": "GDC_Dualliste",
+    "Archetype": "Boss",
+    "IsCutContent": true,
+    "Level": 23
+  },
+  {
+    "CustomName": "Chroma Maelle (Cut Content)",
+    "CodeName": "CZ_ChromaMaelle",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 92
+  },
+  {
+    "CustomName": "Chroma Verso (Cut Content)",
+    "CodeName": "CZ_ChromaVerso",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 92
+  },
+  {
+    "CustomName": "Chroma Lune (Cut Content)",
+    "CodeName": "CZ_ChromaLune",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 92
+  },
+  {
+    "CustomName": "Chroma Sciel (Cut Content)",
+    "CodeName": "CZ_ChromaSciel",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 92
+  },
+  {
+    "CustomName": "Chroma Monoco (Cut Content)",
+    "CodeName": "CZ_ChromaMonoco",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 92
+  },
+  {
+    "CustomName": "Moissonneuse (Visages)",
+    "CodeName": "MF_Moissonneuse",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Boucheclier (Visages)",
+    "CodeName": "MF_Boucheclier",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Chapelier (Visages)",
+    "CodeName": "MF_Chapelier",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Contorsionniste (Visages)",
+    "CodeName": "MF_Contorsionniste",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Boucheclier - Anger (Visages)",
+    "CodeName": "MF_BoucheclierAnger",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Chromatic Moissonneuse (Endless Tower)",
+    "CodeName": "MF_Moissonneuse_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Chromatic Robust Sakapatate (Dark Gestral Arena)",
+    "CodeName": "AS_PotatoBag_Tank_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Chromatic Ultimate Sakapatate (Cut Content)",
+    "CodeName": "AS_PotatoBag_Boss_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 12
+  },
+  {
+    "CustomName": "Chromatic Ranger Sakapatate (Dark Gestral Arena)",
+    "CodeName": "AS_PotatoBag_Ranger_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Chromatic Catapult Sakapatate (Dark Gestral Arena)",
+    "CodeName": "AS_PotatoBag_Mage_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Chromatic Eveque - Earth (Endless Tower)",
+    "CodeName": "SM_Boss_Eveque_Earth_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 79
+  },
+  {
+    "CustomName": "Chromatic Boucheclier (Isle of the Eyes)",
+    "CodeName": "MF_Boucheclier_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Chromatic Bourgeon (The Monolith)",
+    "CodeName": "GO_Bourgeon_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Chromatic Braseleur (The Reacher)",
+    "CodeName": "MM_Braseleur_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Chromatic Bruler (World Map)",
+    "CodeName": "GO_Bruler_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 18
+  },
+  {
+    "CustomName": "Chromatic Chapelier (The Crows)",
+    "CodeName": "MF_Chapelier_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Dualsword Cultist Alpha (Cut Content)",
+    "CodeName": "SC_CultistDualSword_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 19
+  },
+  {
+    "CustomName": "Chromatic Reaper Cultist (World Map)",
+    "CodeName": "SC_CultistFlying_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 35
+  },
+  {
+    "CustomName": "Chromatic Mage Cultist (Cut Content)",
+    "CodeName": "SC_CultistMage_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 19
+  },
+  {
+    "CustomName": "Chromatic Dualliste (Cut Content)",
+    "CodeName": "FB_DuallisteLR_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 23
+  },
+  {
+    "CustomName": "Chromatic Gargant (Cut Content)",
+    "CodeName": "MM_Gargant_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 40
+  },
+  {
+    "CustomName": "Chromatic Pelerin (Cut Content)",
+    "CodeName": "MM_Pelerin_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Chromatic Portier (Endless Tower)",
+    "CodeName": "SM_Portier_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Chromatic Ramasseur (Visages)",
+    "CodeName": "FB_Ramasseur_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Chromatic Stalact (Cut Content)",
+    "CodeName": "MM_Stalact_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Chromatic Troubadour (Flying Waters)",
+    "CodeName": "FB_Troubadour_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 13
+  },
+  {
+    "CustomName": "Chromatic Volester (Cut Content)",
+    "CodeName": "SM_Volester_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Chromatic Sapling (Cut Content)",
+    "CodeName": "YF_Sapling_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Chromatic Glaise (Sky Island)",
+    "CodeName": "YF_Glaise_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Chromatic Jar (Endless Tower)",
+    "CodeName": "YF_Jar_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Chromatic Potier (Cut Content)",
+    "CodeName": "YF_Potier_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Mask of Anger (Cut Content)",
+    "CodeName": "MF_MaskAnger",
+    "Archetype": "Elite",
+    "IsCutContent": true,
+    "Level": 32
+  },
+  {
+    "CustomName": "Mask of Sadness (Cut Content)",
+    "CodeName": "MF_MaskSadness",
+    "Archetype": "Elite",
+    "IsCutContent": true,
+    "Level": 32
+  },
+  {
+    "CustomName": "Mask of Joy (Cut Content)",
+    "CodeName": "MF_MaskJoy",
+    "Archetype": "Elite",
+    "IsCutContent": true,
+    "Level": 32
+  },
+  {
+    "CustomName": "Chapelier - Sadness (Visages)",
+    "CodeName": "MF_ChapelierSadness",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Gestral Warrior - Sumo (Dark Gestral Arena)",
+    "CodeName": "GA_GestralSumo",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Gestral Warrior - Skinny (Dark Gestral Arena)",
+    "CodeName": "GA_GestralSkinny",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Gestral Warrior - Chad (Gestral Village)",
+    "CodeName": "GA_GestralChad",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 15
+  },
+  {
+    "CustomName": "Gestral Warrior - Buff (Dark Gestral Arena)",
+    "CodeName": "GA_GestralBuff",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Gestral Warrior - Tall (Dark Gestral Arena)",
+    "CodeName": "GA_GestralTall",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Gestral Warrior - Baby (Dark Gestral Arena)",
+    "CodeName": "GA_GestralBaby",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Moissonneuse - Joy (Visages)",
+    "CodeName": "MF_MoissonneuseJoy",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Cut Content Citizen (Cut Content)",
+    "CodeName": "L_LumiereCitizen",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 48
+  },
+  {
+    "CustomName": "Matthieu the Colossus (Gestral Village)",
+    "CodeName": "QUEST_MatthieuTheColossus",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 15
+  },
+  {
+    "CustomName": "Bertrand Big Hands (Gestral Village)",
+    "CodeName": "QUEST_BertrandBigHands",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 15
+  },
+  {
+    "CustomName": "Dominique Giant Feet (Gestral Village)",
+    "CodeName": "QUEST_DominiqueGiantFeet",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 15
+  },
+  {
+    "CustomName": "Julien Tiny Head (Gestral Village)",
+    "CodeName": "QUEST_JulienTinyHead",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 15
+  },
+  {
+    "CustomName": "Chromatic Goblu (World Map)",
+    "CodeName": "GO_Goblu_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Chromatic Demineur (Endless Tower)",
+    "CodeName": "GO_Demineur_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Chromatic Cruler (Endless Night Sanctuary)",
+    "CodeName": "GO_Cruler_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 73
+  },
+  {
+    "CustomName": "Ballet (Sirene)",
+    "CodeName": "SI_Ballet",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 37
+  },
+  {
+    "CustomName": "Chromatic Ballet (Cut Content)",
+    "CodeName": "SI_Ballet_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Monoco (Monoco's Station)",
+    "CodeName": "MS_Monoco",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "Flame Eveque (Cut Content)",
+    "CodeName": "SM_Boss_Eveque_Fire_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 83
+  },
+  {
+    "CustomName": "Frost Eveque (World Map)",
+    "CodeName": "SM_Boss_Eveque_Ice_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 83
+  },
+  {
+    "CustomName": "Thunder Eveque (Endless Tower)",
+    "CodeName": "SM_Boss_Eveque_Lightning_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 79
+  },
+  {
+    "CustomName": "Glissando (Sirene)",
+    "CodeName": "SI_Glissando",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 37
+  },
+  {
+    "CustomName": "Sirene (Sirene)",
+    "CodeName": "SI_Axon_Sirene",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 37
+  },
+  {
+    "CustomName": "Visages (Visages)",
+    "CodeName": "MF_Axon_Visages",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "The Weaponless Chalier (Cut Content)",
+    "CodeName": "QUEST_WeaponlessChalier",
+    "Archetype": "Elite",
+    "IsCutContent": true,
+    "Level": 86
+  },
+  {
+    "CustomName": "Orphelin - Hammer (The Reacher)",
+    "CodeName": "RE_OrphelinHammer",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Orphelin - Spoon (The Reacher)",
+    "CodeName": "RE_OrphelinSpoon",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Orphelin - Nail (The Reacher)",
+    "CodeName": "RE_OrphelinNail",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "White Demineur - No Mine (Flying Waters)",
+    "CodeName": "QUEST_DemineurWithoutMine",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 8
+  },
+  {
+    "CustomName": "White Demineur (Flying Waters)",
+    "CodeName": "QUEST_DemineurWithMine",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 8
+  },
+  {
+    "CustomName": "Tisseur (Sirene)",
+    "CodeName": "SI_Tisseur",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 37
+  },
+  {
+    "CustomName": "Danseuse Teacher Parry Trial (Frozen Hearts)",
+    "CodeName": "QUEST_Danseuse_DanceClass",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 63
+  },
+  {
+    "CustomName": "White Jar (Spring Meadows)",
+    "CodeName": "QUEST_JarNeedLight",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Alicia (The Reacher)",
+    "CodeName": "RC_Alicia",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 69
+  },
+  {
+    "CustomName": "Giant Sapling (Crushing Cavern)",
+    "CodeName": "SL_Sapling_CrushingWall",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 27
+  },
+  {
+    "CustomName": "Lumiere Citizen - Fleuret_Female (Lumiere - Act 3)",
+    "CodeName": "L_LumiereCitizen_Fleuret_Female",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 48
+  },
+  {
+    "CustomName": "Lumiere Citizen - Fleuret_Male (Lumiere - Act 3)",
+    "CodeName": "L_LumiereCitizen_Fleuret_Male",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 48
+  },
+  {
+    "CustomName": "Lumiere Citizen - Mage_Female (Lumiere - Act 3)",
+    "CodeName": "L_LumiereCitizen_Mage_Female",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 48
+  },
+  {
+    "CustomName": "Cut Content Citizen - Mage_Male (Cut Content)",
+    "CodeName": "L_LumiereCitizen_Mage_Male",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 48
+  },
+  {
+    "CustomName": "Lumiere Citizen - GunSword_Female (Lumiere - Act 3)",
+    "CodeName": "L_LumiereCitizen_GunSword_Female",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 48
+  },
+  {
+    "CustomName": "Lumiere Citizen - GunSword_Male (Lumiere - Act 3)",
+    "CodeName": "L_LumiereCitizen_GunSword_Male",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 48
+  },
+  {
+    "CustomName": "White Portier (Esoteric Ruins)",
+    "CodeName": "Portier_DoorSoul",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 28
+  },
+  {
+    "CustomName": "The Paintress (The Monolith)",
+    "CodeName": "MO_Boss_Paintress",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Renoir (Lumiere - Act 3)",
+    "CodeName": "L_Boss_Curator",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 48
+  },
+  {
+    "CustomName": "Dualliste_Phase2 (Forgotten Battlefield)",
+    "CodeName": "FB_Dualliste_Phase2",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 23
+  },
+  {
+    "CustomName": "Jovial Moissonneuse (Visages)",
+    "CodeName": "MF_MoissonneuseMaskJoy",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Sorrowful Chapelier (Visages)",
+    "CodeName": "MF_Chapelier_MaskSadness",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Seething Boucheclier (Visages)",
+    "CodeName": "MF_Boucheclier_MaskAnger",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Hexga (Stone Wave Cliffs)",
+    "CodeName": "SC_Hexga",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "Noco (Flying Waters)",
+    "CodeName": "Merchant_GoblusLair",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 8
+  },
+  {
+    "CustomName": "Jujubree (Gestral Village)",
+    "CodeName": "Merchant_GestralVillage1",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 15
+  },
+  {
+    "CustomName": "Eesda (Gestral Village)",
+    "CodeName": "Merchant_GestralVillage2",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 15
+  },
+  {
+    "CustomName": "Delsitra (Sacred River)",
+    "CodeName": "Merchant_GestralVillage3",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 60
+  },
+  {
+    "CustomName": "Jerijeri (Stone Wave Cliffs)",
+    "CodeName": "Merchant_SeaCliff",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 19
+  },
+  {
+    "CustomName": "Kasumi (Forgotten Battlefield)",
+    "CodeName": "Merchant_ForgottenBattlefield",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 23
+  },
+  {
+    "CustomName": "Rasablas (Cut Content)",
+    "CodeName": "Merchant_GrandisStation",
+    "Archetype": "Merchant",
+    "IsCutContent": true,
+    "Level": 93
+  },
+  {
+    "CustomName": "Mandelgo (Old Lumiere)",
+    "CodeName": "Merchant_OldLumiere",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 28
+  },
+  {
+    "CustomName": "Blooraga (Visages)",
+    "CodeName": "Merchant_Visages",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Klaudiso (Sirene)",
+    "CodeName": "Merchant_Sirene",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 37
+  },
+  {
+    "CustomName": "Mistra (The Monolith)",
+    "CodeName": "Merchant_Monolith",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Cribappa (Lumiere - Act 3)",
+    "CodeName": "Merchant_Lumiere",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 48
+  },
+  {
+    "CustomName": "Pinabby (Yellow Harvest)",
+    "CodeName": "Merchant_YellowForest",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Persik (Falling Leaves)",
+    "CodeName": "Merchant_OrangeForest",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Melosh (Frozen Hearts)",
+    "CodeName": "Merchant_MonocosMountain",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 63
+  },
+  {
+    "CustomName": "Eragol (The Reacher)",
+    "CodeName": "Merchant_Reacher",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Fusoka (Flying Manor)",
+    "CodeName": "Merchant_CleaIsland",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 83
+  },
+  {
+    "CustomName": "Ramodo (Cut Content)",
+    "CodeName": "Merchant_Optional1",
+    "Archetype": "Merchant",
+    "IsCutContent": true,
+    "Level": 8
+  },
+  {
+    "CustomName": "Casmer (Cut Content)",
+    "CodeName": "Merchant_Optional2",
+    "Archetype": "Merchant",
+    "IsCutContent": true,
+    "Level": 8
+  },
+  {
+    "CustomName": "Grour (Renoir's Drafts)",
+    "CodeName": "Merchant_Optional3",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Obscure Clone (Cut Content)",
+    "CodeName": "MirrorRenoirCloneObscure",
+    "Archetype": "Boss",
+    "IsCutContent": true,
+    "Level": 19
+  },
+  {
+    "CustomName": "Verso (The Heart of the Canvas)",
+    "CodeName": "FinalBoss_Verso",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 55
+  },
+  {
+    "CustomName": "Maelle (The Heart of the Canvas)",
+    "CodeName": "FinalBoss_Maelle",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 55
+  },
+  {
+    "CustomName": "The Paintress - Foot of the Monolith (The Monolith)",
+    "CodeName": "ML_PaintressIntro",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Maelle - Prologue 4 (Lumiere - Act 1)",
+    "CodeName": "L_MaelleTutorial",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 2
+  },
+  {
+    "CustomName": "Clair Clone (Cut Content)",
+    "CodeName": "MirrorRenoirCloneClaire",
+    "Archetype": "Boss",
+    "IsCutContent": true,
+    "Level": 19
+  },
+  {
+    "CustomName": "Benisseur (Sirene)",
+    "CodeName": "SI_Benisseur",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 37
+  },
+  {
+    "CustomName": "Cruler - Jump Tutorial (Cut Content)",
+    "CodeName": "GO_Cruler_JumpTutorial",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Mask Keeper (Visages)",
+    "CodeName": "MF_Axon_MaskKeeper_VisagesPhase2",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 60
+  },
+  {
+    "CustomName": "Chorale (Sirene)",
+    "CodeName": "SI_Chorale",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 37
+  },
+  {
+    "CustomName": "Painted Renoir (Old Lumiere)",
+    "CodeName": "OL_MirrorRenoir_FirstFight",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 28
+  },
+  {
+    "CustomName": "Chalier - Gradient Counter Tutorial (Forgotten Battlefield)",
+    "CodeName": "FB_Chalier_GradientCounterTutorial",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 23
+  },
+  {
+    "CustomName": "Sciel (Gestral Village)",
+    "CodeName": "GV_Sciel_Arena",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 15
+  },
+  {
+    "CustomName": "Stalact - Gradient Attack Tutorial (Monoco's Station)",
+    "CodeName": "MM_Stalact_GradientAttackTutorial",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "White Benisseur (Red Woods)",
+    "CodeName": "QUEST_SleepingBenisseur",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 60
+  },
+  {
+    "CustomName": "White Hexga (Stone Wave Cliffs)",
+    "CodeName": "QUEST_HexgaLuster",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 19
+  },
+  {
+    "CustomName": "White Troubadour Dodge Trial (Stone Quarry)",
+    "CodeName": "QUEST_TroubadourCantPlay",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 30
+  },
+  {
+    "CustomName": "Echassier (The Reacher)",
+    "CodeName": "RE_Echassier",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Serpenphare (World Map)",
+    "CodeName": "WM_Serpenphare",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 75
+  },
+  {
+    "CustomName": "Grosse Tete (World Map)",
+    "CodeName": "MF_GrossTete",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 55
+  },
+  {
+    "CustomName": "Sprong (World Map)",
+    "CodeName": "WM_Sprong",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Lampmaster (Stone Wave Cliffs)",
+    "CodeName": "SC_LampMaster",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 19
+  },
+  {
+    "CustomName": "Ono Puncho (Gestral Village)",
+    "CodeName": "Quest_GestralSumo9999",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Blanche (The Fountain)",
+    "CodeName": "QUEST_JudgeOfMercy",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 80
+  },
+  {
+    "CustomName": "Golgra (Dark Gestral Arena)",
+    "CodeName": "QUEST_Golgra_DarkArena",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 75
+  },
+  {
+    "CustomName": "Golgra (Sacred River)",
+    "CodeName": "QUEST_Golgra_SacredRiver",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 60
+  },
+  {
+    "CustomName": "White Grown Bourgeon (The Small Bourgeon)",
+    "CodeName": "GO_Bourgeon_Quest",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 18
+  },
+  {
+    "CustomName": "Obscur (The Monolith)",
+    "CodeName": "ML_Obscur",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Clair (The Monolith)",
+    "CodeName": "ML_Clair",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Clair Obscur (The Monolith)",
+    "CodeName": "ML_ClairObscur",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Petank (Blue)",
+    "CodeName": "Petank_Blue",
+    "Archetype": "Petank",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Petank (Green)",
+    "CodeName": "Petank_Green",
+    "Archetype": "Petank",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Petank (Yellow)",
+    "CodeName": "Petank_Yellow",
+    "Archetype": "Petank",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Petank (Orange)",
+    "CodeName": "Petank_Orange",
+    "Archetype": "Petank",
+    "IsCutContent": false,
+    "Level": 19
+  },
+  {
+    "CustomName": "Petank (Red)",
+    "CodeName": "Petank_Red",
+    "Archetype": "Petank",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Petank (Violet)",
+    "CodeName": "Petank_Violet",
+    "Archetype": "Petank",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Petank Parent (Cut Content)",
+    "CodeName": "Petank_Parent",
+    "Archetype": "Petank",
+    "IsCutContent": true,
+    "Level": 12
+  },
+  {
+    "CustomName": "Aberration (Lumiere - Act 3)",
+    "CodeName": "L_Aberration",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Creation (Lumiere - Act 3)",
+    "CodeName": "L_Creation",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 48
+  },
+  {
+    "CustomName": "Ballet - Melee (Sirene)",
+    "CodeName": "SI_Ballet_Melee",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 37
+  },
+  {
+    "CustomName": "Rocher (Stone Wave Cliffs)",
+    "CodeName": "SC_Rocher",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "The Curator - Jump Tutorial (The Manor)",
+    "CodeName": "GO_Curator_JumpTutorial",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 9
+  },
+  {
+    "CustomName": "Veilleur (The Reacher)",
+    "CodeName": "RE_Veilleur",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Noire (Dark Shores)",
+    "CodeName": "DS_Noire",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 55
+  },
+  {
+    "CustomName": "Braseleur_NoFreeAim (Cut Content)",
+    "CodeName": "MM_Braseleur_NoFreeAim",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Glaise - Boss (Yellow Harvest)",
+    "CodeName": "YF_Glaise_Boss",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Robust Sakapatate (Endless Night Sanctuary)",
+    "CodeName": "TS_PotatoBag_Tank_Twilight",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 73
+  },
+  {
+    "CustomName": "Catapult Sakapatate (Endless Night Sanctuary)",
+    "CodeName": "TS_PotatoBag_Mage_Twilight",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 73
+  },
+  {
+    "CustomName": "Ranger Sakapatate (Endless Night Sanctuary)",
+    "CodeName": "TS_PotatoBag_Ranger_Twilight",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 73
+  },
+  {
+    "CustomName": "Ultimate Sakapatate (Endless Night Sanctuary)",
+    "CodeName": "TS_PotatoBag_Boss_Twilight",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 73
+  },
+  {
+    "CustomName": "Dualliste (Flying Manor)",
+    "CodeName": "CFH_Dualliste",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 83
+  },
+  {
+    "CustomName": "Lampmaster (Flying Manor)",
+    "CodeName": "CFH_LampMaster",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 83
+  },
+  {
+    "CustomName": "Goblu (Flying Manor)",
+    "CodeName": "CFH_Goblu",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 83
+  },
+  {
+    "CustomName": "Orphelin - Hammer Big (The Reacher)",
+    "CodeName": "RE_OrphelinHammer_Big",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Orphelin - Spoon Big (The Reacher)",
+    "CodeName": "RE_OrphelinSpoon_Big",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Orphelin - Nail Big (The Reacher)",
+    "CodeName": "RE_OrphelinNail_Big",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Chromatic Creation (Renoir's Drafts)",
+    "CodeName": "RD_Creation_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Simon - Phase 1 (The Abyss)",
+    "CodeName": "Boss_Simon",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "White-haired Man (Stone Wave Cliffs)",
+    "CodeName": "SC_MirrorRenoir_GustaveEnd",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 19
+  },
+  {
+    "CustomName": "Dancing Petals (Cut Content)",
+    "CodeName": "OL_MirrorRenoir_HealingSource",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 19
+  },
+  {
+    "CustomName": "Mime (Cut Content)",
+    "CodeName": "Mime",
+    "Archetype": "Regular",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Mask Keeper 1 (Cut Content)",
+    "CodeName": "CT_MaskKeeper_NoMask",
+    "Archetype": "Boss",
+    "IsCutContent": true,
+    "Level": 55
+  },
+  {
+    "CustomName": "Monoco (Camp)",
+    "CodeName": "QUEST_MonocoDuel",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 39
+  },
+  {
+    "CustomName": "Francois - Esquie's Quest (Esquie's Nest)",
+    "CodeName": "QUEST_FrancoisDuel",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 16
+  },
+  {
+    "CustomName": "Clea (Flying Manor)",
+    "CodeName": "CFH_Boss_Clea",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Lampmaster (Painting Workshop)",
+    "CodeName": "CW_LampMasterAlpha",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Lancelier (The Monolith)",
+    "CodeName": "ML_Lancelier_Gold",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Portier (The Monolith)",
+    "CodeName": "ML_Portier_Gold",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Abbest (The Monolith)",
+    "CodeName": "ML_Abbest_Gold",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Volester (The Monolith)",
+    "CodeName": "ML_Volester_Gold",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Eveque (The Monolith)",
+    "CodeName": "ML_Eveque_Gold",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Demineur (The Monolith)",
+    "CodeName": "ML_Demineur_Gold",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Bourgeon (Cut Content)",
+    "CodeName": "ML_Bourgeon_Gold",
+    "Archetype": "Elite",
+    "IsCutContent": true,
+    "Level": 1
+  },
+  {
+    "CustomName": "Luster (The Monolith)",
+    "CodeName": "ML_Luster_Gold",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Cruler (The Monolith)",
+    "CodeName": "ML_Cruler_Gold",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Bruler (The Monolith)",
+    "CodeName": "ML_Bruler_Gold",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Robust Sakapatate (The Monolith)",
+    "CodeName": "ML_PotatoBag_Tank_Gold",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Ranger Sakapatate (The Monolith)",
+    "CodeName": "ML_PotatoBag_Ranger_Gold",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Catapult Sakapatate (The Monolith)",
+    "CodeName": "ML_PotatoBag_Mage_Gold",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Rocher (The Monolith)",
+    "CodeName": "ML_Rocher_Gold",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Hexga (The Monolith)",
+    "CodeName": "ML_Hexga_Gold",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Reaper Cultist (The Monolith)",
+    "CodeName": "ML_CultistFlying_Gold",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Mage Cultist (Cut Content)",
+    "CodeName": "ML_CultistMage_Gold",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 40
+  },
+  {
+    "CustomName": "Greatsword Cultist (The Monolith)",
+    "CodeName": "ML_CultistHeavy_Gold",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Chalier - Sword (The Monolith)",
+    "CodeName": "ML_ChalierSword_Gold",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Ramasseur (The Monolith)",
+    "CodeName": "ML_Ramasseur_Gold",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Troubadour (The Monolith)",
+    "CodeName": "ML_Troubadour_Gold",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Danseuse (The Monolith)",
+    "CodeName": "ML_Danseuse_Gold",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Danseuse Clone (The Monolith)",
+    "CodeName": "ML_Danseuse_Clone_Gold",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Gargant (The Monolith)",
+    "CodeName": "ML_Gargant_Gold",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Pelerin (The Monolith)",
+    "CodeName": "ML_Pelerin_Gold",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Braseleur (The Monolith)",
+    "CodeName": "ML_Braseleur_Gold",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Stalact (The Monolith)",
+    "CodeName": "ML_Stalact_Gold",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Lampmaster (Endless Tower)",
+    "CodeName": "SC_LampMaster_CleasTower",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Chromatic Luster (Endless Tower)",
+    "CodeName": "GO_Luster_Alpha_CleasTower",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 79
+  },
+  {
+    "CustomName": "Flame Eveque (Endless Tower)",
+    "CodeName": "SM_Boss_Eveque_Fire_ALPHA_CleaTower",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 79
+  },
+  {
+    "CustomName": "Frost Eveque (Endless Tower)",
+    "CodeName": "SM_Boss_Eveque_Ice_ALPHA_CleaTower",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 79
+  },
+  {
+    "CustomName": "Chromatic Chalier (Cut Content)",
+    "CodeName": "FB_ChalierSword_Alpha__CleaTower",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 38
+  },
+  {
+    "CustomName": "Dualliste (Endless Tower)",
+    "CodeName": "FB_Dualliste_CleasTower",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Mask Keeper 2 (Endless Tower)",
+    "CodeName": "CT_MaskKeeper_NoMask_CleaTwoer",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Maelle - Prologue 3 (Lumiere - Act 1)",
+    "CodeName": "L_MaelleTutorial_NoTutorial",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 2
+  },
+  {
+    "CustomName": "Mime_Bald (Sunless Cliffs)",
+    "CodeName": "WM_Mime_Bald",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 92
+  },
+  {
+    "CustomName": "Golgra (Gestral Village)",
+    "CodeName": "GV_Golgra",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 15
+  },
+  {
+    "CustomName": "Chromatic Clair Obscur (The Monolith)",
+    "CodeName": "MM_ClairObscurAlpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Chalier - Spear (The Monolith)",
+    "CodeName": "ML_ChalierSpear_Gold",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Ultimate Sakapatate (The Monolith)",
+    "CodeName": "ML_PotatoBag_Boss_Gold",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Ceramic Chevaliere (The Monolith)",
+    "CodeName": "ML_ChevaliereA_Gold",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Steel Chevaliere (The Monolith)",
+    "CodeName": "ML_ChevaliereB_Gold",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Gold Chevaliere (The Monolith)",
+    "CodeName": "ML_ChevaliereC_Gold",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Mime (Spring Meadows)",
+    "CodeName": "SM_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Mime (Yellow Harvest)",
+    "CodeName": "YF_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Mime (Flying Waters)",
+    "CodeName": "GO_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 5
+  },
+  {
+    "CustomName": "Mime (The Monolith)",
+    "CodeName": "ML_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Chromatic Glissando (Sirene's Dress)",
+    "CodeName": "SI_Glissando_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 65
+  },
+  {
+    "CustomName": "Chromatic Echassier (Lumiere - Act 3)",
+    "CodeName": "LU_EchassierAlpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 48
+  },
+  {
+    "CustomName": "Practice Balloon - Prologue (Lumiere - Act 1)",
+    "CodeName": "LU_Act1_PunchingBall",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 2
+  },
+  {
+    "CustomName": "Sophie (Lumiere - Act 1)",
+    "CodeName": "LU_Act1_Sophie",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 2
+  },
+  {
+    "CustomName": "Mime (Lumiere - Act 1)",
+    "CodeName": "LU_Act1_Mime",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 2
+  },
+  {
+    "CustomName": "Maelle - Prologue 1 (Lumiere - Act 1)",
+    "CodeName": "L_MaelleTutorial_NoTutorial_Civilian",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 2
+  },
+  {
+    "CustomName": "Maelle - Prologue 2 (Lumiere - Act 1)",
+    "CodeName": "L_MaelleTutorial_Civilian",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 2
+  },
+  {
+    "CustomName": "Lancelier - Free Aim Tutorial 2 (Spring Meadows)",
+    "CodeName": "SM_FirstLancelier_NoTuto",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Eveque - Shield Tutorial (Spring Meadows)",
+    "CodeName": "SM_Boss_Eveque_ShieldTutorial",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Portier - Lune Tutorial 2 (Spring Meadows)",
+    "CodeName": "SM_First_Portier_NoTuto",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Chalier - Gradient Counter Tutorial 2 (Cut Content)",
+    "CodeName": "FB_Chalier_GradientCounterTutorial_Notuto",
+    "Archetype": "Strong",
+    "IsCutContent": true,
+    "Level": 23
+  },
+  {
+    "CustomName": "The Curator - Jump Tutorial 2 (The Manor)",
+    "CodeName": "GO_Curator_JumpTutorial_NoTuto",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 10
+  },
+  {
+    "CustomName": "Volester - Tutorial (Spring Meadows)",
+    "CodeName": "SM_Volester_TutoFlying",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 3
+  },
+  {
+    "CustomName": "Dominique Giant Feet - Sciel's Tutorial (Gestral Village)",
+    "CodeName": "GV_GestralScielTuto",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 15
+  },
+  {
+    "CustomName": "Pelerin - Monoco's Tutorial (Monoco's Station)",
+    "CodeName": "MM_Pelerin_MonocoTuto",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "Simon - Phase 2 (The Abyss)",
+    "CodeName": "Boss_Simon_Phase2",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Mime (Esquie's Nest)",
+    "CodeName": "EN_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 16
+  },
+  {
+    "CustomName": "Dark Ballet (Cut Content)",
+    "CodeName": "SI_DarkBallet",
+    "Archetype": "Elusive",
+    "IsCutContent": true,
+    "Level": 60
+  },
+  {
+    "CustomName": "Painted Love - Curator (Endless Tower)",
+    "CodeName": "CT_Boss_Curator_CleaTower",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Painted Love - Paintress (Endless Tower)",
+    "CodeName": "CT_Boss_Paintress_CleaTower",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Chromatic Petank (World Map)",
+    "CodeName": "WM_Petank_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 81
+  },
+  {
+    "CustomName": "Petank - Chromatic Summon (Summon)",
+    "CodeName": "WM_PetankAlphaSummon_Blue",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Petank - Chromatic Summon (Summon)",
+    "CodeName": "WM_PetankAlphaSummon_Green",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Petank - Chromatic Summon (Summon)",
+    "CodeName": "WM_PetankAlphaSummon_Red",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Petank - Chromatic Summon (Summon)",
+    "CodeName": "WM_PetankAlphaSummon_Violet",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Petank - Chromatic Summon (Summon)",
+    "CodeName": "WM_PetankAlphaSummon_Yellow",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "While Rocher (Stone Wave Cliffs)",
+    "CodeName": "QUEST_Rocher_HexgaQuest",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 19
+  },
+  {
+    "CustomName": "Chromatic Hexga (Stone Wave Cliffs Cave)",
+    "CodeName": "SC_Hexga_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "Mime (Sirene)",
+    "CodeName": "SI_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 37
+  },
+  {
+    "CustomName": "Mime (Visages)",
+    "CodeName": "MF_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 32
+  },
+  {
+    "CustomName": "Mime 1 (World Map)",
+    "CodeName": "WM_Mime_01",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 60
+  },
+  {
+    "CustomName": "Mime 2 (World Map)",
+    "CodeName": "WM_Mime_02",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 60
+  },
+  {
+    "CustomName": "Mime (Ancient Sanctuary)",
+    "CodeName": "AS_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 13
+  },
+  {
+    "CustomName": "Chromatic Aberration (Endless Tower)",
+    "CodeName": "L_Aberration_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 39
+  },
+  {
+    "CustomName": "Practice Balloon - Camp (Cut Content)",
+    "CodeName": "CAMP_PunchingBall",
+    "Archetype": "Weak",
+    "IsCutContent": true,
+    "Level": 48
+  },
+  {
+    "CustomName": "Lancelier (Summon)",
+    "CodeName": "PETANK_Lancelier_Summon",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 12
+  },
+  {
+    "CustomName": "Luster (Summon)",
+    "CodeName": "PETANK_Luster_Summon",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 12
+  },
+  {
+    "CustomName": "Gault (Summon)",
+    "CodeName": "PETANK_GaultA_Summon",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 12
+  },
+  {
+    "CustomName": "Chromatic Ballet - Charm (Falling Leaves)",
+    "CodeName": "SI_Ballet_ALPHA_Charm",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Chromatic Ballet - Range (Falling Leaves)",
+    "CodeName": "SI_Ballet_ALPHA_Range",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Chromatic Ballet - Melee (Falling Leaves)",
+    "CodeName": "SI_Ballet_ALPHA_Melee",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 41
+  },
+  {
+    "CustomName": "Chromatic Veilleur (Frozen Hearts)",
+    "CodeName": "RE_Veilleur_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 63
+  },
+  {
+    "CustomName": "Chromatic Orphelin - Hammer (Yellow Harvest)",
+    "CodeName": "RE_OrphelinHammer_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Chromatic Orphelin - Spoon (Yellow Harvest)",
+    "CodeName": "RE_OrphelinSpoon_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Chromatic Orphelin - Nail (Yellow Harvest)",
+    "CodeName": "RE_OrphelinNail_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 21
+  },
+  {
+    "CustomName": "Chromatic Contorsionniste (Cut Content)",
+    "CodeName": "MF_Contorsionniste_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": true,
+    "Level": 32
+  },
+  {
+    "CustomName": "Mime (Flying Manor)",
+    "CodeName": "CFH_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 83
+  },
+  {
+    "CustomName": "Mime (Frozen Hearts)",
+    "CodeName": "MM_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 58
+  },
+  {
+    "CustomName": "Mime (Old Lumiere)",
+    "CodeName": "OL_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 28
+  },
+  {
+    "CustomName": "Mime (The Reacher)",
+    "CodeName": "RE_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Ultimate Sakapatate - Karatom Quest (Gestral Village)",
+    "CodeName": "AS_PotatoBag_Boss_Quest",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 12
+  },
+  {
+    "CustomName": "Cruler (Coastal Cave)",
+    "CodeName": "CC_Cruler",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "Bruler (Coastal Cave)",
+    "CodeName": "CC_Bruler",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 25
+  },
+  {
+    "CustomName": "White Chalier - Sword (Flying Cemetery)",
+    "CodeName": "FC_ChalierSword",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 79
+  },
+  {
+    "CustomName": "White Chalier - Hammer (Flying Cemetery)",
+    "CodeName": "FC_ChalierHammer",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 79
+  },
+  {
+    "CustomName": "White Chalier - Spear (Flying Cemetery)",
+    "CodeName": "FC_ChalierSpear",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 79
+  },
+  {
+    "CustomName": "Anthonypo (Endless Night Sanctuary)",
+    "CodeName": "Merchant_TwilightSanctuary",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 73
+  },
+  {
+    "CustomName": "Glaise (The Chosen Path)",
+    "CodeName": "CP_Glaise",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Stalact (The Chosen Path)",
+    "CodeName": "CP_Stalact",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Benisseur (The Chosen Path)",
+    "CodeName": "CP_Benisseur",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Jar (The Chosen Path)",
+    "CodeName": "CP_Jar",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Contorsionniste (The Chosen Path)",
+    "CodeName": "CP_Contorsionniste",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 61
+  },
+  {
+    "CustomName": "Contorsionniste (Renoir's Drafts)",
+    "CodeName": "RD_Contorsionniste",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Aberration (Renoir's Drafts)",
+    "CodeName": "RD_Aberration",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 991
+  },
+  {
+    "CustomName": "Ballet (Renoir's Drafts)",
+    "CodeName": "RD_Ballet",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Benisseur (Renoir's Drafts)",
+    "CodeName": "RD_Benisseur",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Chapelier (Renoir's Drafts)",
+    "CodeName": "RD_Chapelier",
+    "Archetype": "Elusive",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Moissonneuse (Renoir's Drafts)",
+    "CodeName": "RD_Moissonneuse",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Orphelin - Hammer (Renoir's Drafts)",
+    "CodeName": "RD_OrphelinHammer",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Orphelin - Spoon (Renoir's Drafts)",
+    "CodeName": "RD_OrphelinSpoon",
+    "Archetype": "Weak",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Boucheclier (Renoir's Drafts)",
+    "CodeName": "RD_Boucheclier",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Creation (Renoir's Drafts)",
+    "CodeName": "RD_Creation",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Echassier (Renoir's Drafts)",
+    "CodeName": "RD_Echassier",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Frost Eveque (Flying Manor)",
+    "CodeName": "CFH_Boss_Eveque_Ice_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 83
+  },
+  {
+    "CustomName": "Thunder Eveque (Flying Manor)",
+    "CodeName": "CFH_Boss_Eveque_Lightning_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 83
+  },
+  {
+    "CustomName": "Flame Eveque (Flying Manor)",
+    "CodeName": "CFH_Boss_Eveque_Fire_ALPHA",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 83
+  },
+  {
+    "CustomName": "Veilleur (Renoir's Drafts)",
+    "CodeName": "RD_Veilleur",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 91
+  },
+  {
+    "CustomName": "Gargant (Flying Manor)",
+    "CodeName": "CFH_Gargant",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 40
+  },
+  {
+    "CustomName": "White Troubadour Fight (Stone Quarry)",
+    "CodeName": "QUEST_TroubadourCantPlay_Kill",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 30
+  },
+  {
+    "CustomName": "Danseuse Teacher Fight (Frozen Hearts)",
+    "CodeName": "QUEST_Danseuse_DanceClass_Kill",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 63
+  },
+  {
+    "CustomName": "Danseuse - Teacher Clone (Frozen Hearts)",
+    "CodeName": "QUEST_Danseuse_DanceClass_Clone",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 63
+  },
+  {
+    "CustomName": "Goblu (Endless Tower)",
+    "CodeName": "GO_Goblu_CleaTower",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 19
+  },
+  {
+    "CustomName": "Gestral Minion (Sacred River)",
+    "CodeName": "Merchant_GestralVillage3_Minions",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 60
+  },
+  {
+    "CustomName": "Grosse Tete (Flying Manor)",
+    "CodeName": "CFH_GrossTete",
+    "Archetype": "Elite",
+    "IsCutContent": false,
+    "Level": 83
+  },
+  {
+    "CustomName": "Simon, the Divergent Star (DLC Enemy)",
+    "CodeName": "Boss_Simon_ALPHA",
+    "Archetype": "SuperBoss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Chromatic Lampmaster (DLC Enemy)",
+    "CodeName": "Boss_LampMaster_ALPHA",
+    "Archetype": "SuperBoss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Duollistes - Dark (DLC Enemy)",
+    "CodeName": "Duolliste_A",
+    "Archetype": "SuperBoss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Duollistes - Light (DLC Enemy)",
+    "CodeName": "Duolliste_B",
+    "Archetype": "SuperBoss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Duollistes - P2 (DLC Enemy)",
+    "CodeName": "Duolliste_P2",
+    "Archetype": "SuperBoss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Clea Unleashed (DLC Enemy)",
+    "CodeName": "Boss_Clea_ALPHA",
+    "Archetype": "SuperBoss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Licorne (DLC Enemy)",
+    "CodeName": "VD_Licorne",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Chromatic Licorne (DLC Enemy)",
+    "CodeName": "VD_Licorne_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Barbasucette (DLC Enemy)",
+    "CodeName": "VD_Barbasucette",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Chromatic Barbasucette (DLC Enemy)",
+    "CodeName": "VD_Barbasucette_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Half-baked Gestral - Balloon Fight (DLC Enemy)",
+    "CodeName": "VD_GestralBalloon",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Franctale (DLC Enemy)",
+    "CodeName": "VD_Franctale",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Chromatic Franctale (DLC Enemy)",
+    "CodeName": "VD_Franctale_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Machinapieds (DLC Enemy)",
+    "CodeName": "VD_Machinapieds",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Chromatic Machinapieds (DLC Enemy)",
+    "CodeName": "VD_Machinapieds_Alpha",
+    "Archetype": "Alpha",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Licornapieds (DLC Enemy)",
+    "CodeName": "VD_Licornapieds",
+    "Archetype": "Boss",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Osquio (DLC Enemy)",
+    "CodeName": "VD_Osquio",
+    "Archetype": "SuperBoss",
+    "IsCutContent": false,
+    "Level": 99
+  },
+  {
+    "CustomName": "Monsieur Frappe (DLC Enemy)",
+    "CodeName": "Quest_FeintFight",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Half-baked Gestral - Seesaw Quest (DLC Enemy)",
+    "CodeName": "VD_Quest_GestralSeesaw",
+    "Archetype": "Regular",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Najabla (DLC Merchant)",
+    "CodeName": "Merchant_VersosDraft",
+    "Archetype": "Merchant",
+    "IsCutContent": false,
+    "Level": 86
+  },
+  {
+    "CustomName": "Mime (DLC Enemy)",
+    "CodeName": "VD_Mime",
+    "Archetype": "Strong",
+    "IsCutContent": false,
+    "Level": 81
+  }
+]

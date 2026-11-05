@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="E33ModEditor.App.Views.RecordEditorView"
+             Background="{StaticResource InkBrush}">
+
+    <Grid RowDefinitions="Auto,*,Auto" Margin="20,14,20,12">
+        <!-- Header -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <TextBlock x:Name="TitleText" Classes="title" Text="Record" />
+                <TextBlock x:Name="DirtyText" Classes="hint" VerticalAlignment="Bottom" Margin="0,0,0,4"
+                           Text="" />
+            </StackPanel>
+            <Button Grid.Column="1" Content="✕  Close" Click="OnCloseClick" />
+        </Grid>
+
+        <TabControl Grid.Row="1" x:Name="Tabs"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch" />
+
+        <Border Grid.Row="2" Classes="panel" Padding="10,6" Margin="0,8,0,0">
+            <TextBlock Classes="hint" FontSize="14"
+                       Text="edits queue instantly — Apply &amp;amp; Pack builds the mod; greyed fields are references or localized text" />
+        </Border>
+    </Grid>
+</UserControl>

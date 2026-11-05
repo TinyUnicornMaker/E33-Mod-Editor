@@ -1,0 +1,27 @@
+Move Name,AP Cost,Base element,Base Damage Mult,Break Damage Mult,Element Consumption and Damage Modifiers,Min Hits,Max Hits,Targets,Status Inflicted,Turns,CanMakeAnotherMove,Special Effects,Original or New move,Min Total Dmg (×hits),Max Total Dmg (×hits),Avg Total Dmg,Hit Label
+Electrify,1,Lightning,0.2,0.5,Overcharge x2.0,1,1,SingleEnemyAlive,-,1,Yes,Stain generator,Original,0.2,0.4,0.3,x1
+Immolation,1,Fire,0.7,1.0,Burn 500 base; Overcharge Burn 5; Dmg x1.5; SelfDmg x1.0,1,1,SingleEnemyAlive,Burn 500/5,1,Yes,Low AP Burn applier,Original,0.7,1.05,0.875,x1
+Quake (Tremor),3,Earth,30.0,3.0,GradientAttack,1,1,AllEnemiesAlive,-,1,Yes,GRADIENT - x30 Earth AoE; shield strip; gen 4 Earth,Original,30.0,30.0,30.0,x1
+Thermal Transfer,2,Ice,0.5,0.7,+4 AP Gain,1,1,SingleEnemyAlive,-,1,Yes,Battery: +4 AP on Ice,Original,0.5,0.5,0.5,x1
+Tree of Life,5,Light,,,GradientAttack; Revive AllAllies; Heal 50% AllAllies,1,1,AllAllies,Revive + Heal 50% All,1,Yes,GRADIENT - revive all + heal; gen 4 Light,Original,,,,x1
+Earthquake,3,Earth,1.2,1.0,Overcharge x1.5,2,2,AllEnemiesAlive,-,1,Yes,x2 hits (SEQ_EarthRising) AoE,Original,2.4,3.6,3.0,x2
+Elemental Trick,3,Typeless,0.3,0.4,Fixed,1,1,SingleEnemyAlive,Random Stain,1,Yes,Utility / Prismatic,Original,0.3,0.3,0.3,x1
+Healing Light,3,Light,0.3,,Heal +0.05/QTE; OverchargeAPCost 0,1,1,SingleAllyAlive,Heal 30%,1,Yes,Single heal; no element in DA,Original,0.3,0.3,0.3,x1
+Mayhem,3,Typeless,0.6,0.4,Stains: 0x1.0 1x1.15 2x1.5 3x2.0 4x3.0; Break,1,1,SingleEnemyAlive,-,1,Yes,Scales with stain count,Original,0.6,1.8,1.2,x1
+Meteor (Sky Break),7,Fire,70.0,5.0,GradientAttack; Break (PerformBreakStun); always Fire,1,1,AllEnemiesAlive,Break/Stun,1,Yes,GRADIENT - x70 Fire AoE; gen 4 Fire,Original,70,70,70.0,x1
+Elemental Genesis,4,Typeless,3.0,0.1,Fixed (4-element),1,1,AllEnemiesAlive,Stains x4,1,Yes,Random stains; 9 anim keys 1 dmg hit,Original,3.0,3.0,3.0,x1
+Ice Gust,4,Ice,1.4,1.0,Overcharge x1.5,1,1,SingleEnemyAlive,-,1,Yes,Single Ice,Original,1.4,2.1,1.75,x1
+Wildfire,4,Fire,1.25,1.0,BurnOnHit 3; Overcharge x2.0; SelfDmg x1.0,1,1,AllEnemiesAlive,Burn 3/hit,1,Yes,AoE Fire + burn,Original,1.25,2.5,1.875,x1
+Crippling Tsunami,5,Ice,2.5,1.0,Overcharge x5.0; Slow,1,1,AllEnemiesAlive,Slow 3s,1 (+Slow 3s),Yes,AoE Ice + Slow; Overcharge burst,Original,2.5,12.5,7.5,x1
+Earth Spike (Rock Slide),5,Earth,1.25,0.7,Overcharge x5.0; PerformBreakStun,1,1,SingleEnemyAlive,Stun,1,Yes,Break/Stun single,Original,1.25,6.25,3.75,x1
+Fire Rage,5,Fire,2.5,1.0,Overcharge x2.0; +1.5/turn decel 0.85 cap 99,1,1,AllEnemiesAlive,Burn,2 +DoT 2 turns,Yes,DoT stacking; 2-turn burn (see Notes),Original,2.5,5.0,3.75,x1
+Rebirth,5,Light,,,+2 AP; Heal 30%+0.1/QTE; OverchargeAPCost 0,1,1,SingleAllyDead,Revive Heal 30%,1,Yes,Revive,Original,,,,x1
+Revitalization,5,Light,,,Heal 40%+0.1/QTE; Overcharge x2.0 heal,1,1,SingleAllyAlive,Heal 40%,1,Yes,Single+heal,Original,,,,x1
+Terraquake,5,Earth,1.5,1.0,Initial 0.8; Duration 3->5; Break% 10%; BreakBarDmg x1.5,1,1,AllEnemiesAlive,-,3->5 Zone,Yes,Zone DoT; duration scales,Original,1.5,1.5,1.5,x1
+Thunderfall,5,Lightning,0.3,0.2,Overcharge x1.5,1,1,AllEnemiesAlive,-,1,Yes,AoE Lightning,Original,0.3,0.45,0.375,x1
+Storm Caller,6,Lightning,0.6,0.2,Hits 1->2 Overcharge; DmgOnHit 0.2; Duration 3s,1,1,AllEnemiesAlive,-,1 + Storm 3s,Yes,Hits scale with Overcharge,Original,0.6,1.2,0.9,x1
+Crustal Crush,7,Earth,0.9,2.0,Overcharge x3.0; BreakBarBase x2.0,1,1,SingleEnemyAlive,-,1,Yes,High break; single-target Earth,Original,0.9,2.7,1.8,x1
+Lightning Dance,7,Lightning,0.6,0.2,Overcharge x5.0,1,1,SingleEnemyAlive,-,1,Yes,7 anim keys 1 dmg hit; high ceiling,Original,0.6,3.0,1.8,x1
+Typhoon,8,Ice,2.5,1.0,Initial 1.2; Duration 3->5; Heal 20%,1,1,AllEnemiesAlive,Heal 20%,3->5 Zone + heal,Yes,Zone Ice + heal; duration scales,Original,2.5,2.5,2.5,x1
+Hell,9,Fire,0.4455,0.7,Overcharge x3.33; Burn 5/hit; SelfDmg x1.0,2,2,AllEnemiesAlive,Burn 5/hit,1,Yes,Top Fire; self-damage,Original,0.89,2.97,1.93,x2
+Brimstone (Hell variant),19,Fire,1.653,0.7,"Consume 1 Ice+1 Earth+2 Fire; Overcharge x10.0; Burn 50/hit; SelfDmg x1.0",2,2,AllEnemiesAlive,Burn 50/hit,1,Yes,Gen 2 Fire+1 Earth; top Fire nuke,New,3.31,33.07,18.19,x2

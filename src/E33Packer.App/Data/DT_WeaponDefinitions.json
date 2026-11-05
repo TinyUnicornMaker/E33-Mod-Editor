@@ -1,0 +1,2540 @@
+{
+  "Noahram": {
+    "DefinitionID": "Noahram",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.7
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 0.7,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Maellum": {
+    "DefinitionID": "Maellum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "WepFx_CounterBurn10",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Lunerim": {
+    "DefinitionID": "Lunerim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.75
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 0.75,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Scieleson": {
+    "DefinitionID": "Scieleson",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.07
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 1.07,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator4"
+  },
+  "Verleso": {
+    "DefinitionID": "Verleso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.07
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 1.07,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Monocaro": {
+    "DefinitionID": "Monocaro",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.85
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Masks_StartBalanced",
+    "Level3Lumina": "Masks_PowerfulOnBalanced",
+    "Level4Lumina": "Masks_CritDMG+OnBalanced",
+    "ChromaValueMultiplier": 0.85,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Lanceram": {
+    "DefinitionID": "Lanceram",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.15
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_MinC",
+    "Level3Lumina": "Perfection_Attackx2",
+    "Level4Lumina": "Perfection_Parryx2",
+    "ChromaValueMultiplier": 1.15,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Nosaram": {
+    "DefinitionID": "Nosaram",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.1
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_DoubleOnFreeAimShots",
+    "Level3Lumina": "FreeAimBreaksMoreShields",
+    "Level4Lumina": "AugmentedAim_Weapon",
+    "ChromaValueMultiplier": 1.1,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Volesterum": {
+    "DefinitionID": "Volesterum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.02
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_APOnSwitch",
+    "Level3Lumina": "Stance_AttackDefensive",
+    "Level4Lumina": "Stance_HealOnSwitch",
+    "ChromaValueMultiplier": 1.02,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Gaulteram": {
+    "DefinitionID": "Gaulteram",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.01
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_RankLossOneByOne",
+    "Level3Lumina": "Perfection_RushOnS",
+    "Level4Lumina": "Perfection_OnTurnStart",
+    "ChromaValueMultiplier": 1.01,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Elerim": {
+    "DefinitionID": "Elerim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.1
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_EarthAppliesShield",
+    "Level3Lumina": "SkillsEarthDMG+",
+    "Level4Lumina": "Stains_AttackEarth+",
+    "ChromaValueMultiplier": 1.1,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Medalum": {
+    "DefinitionID": "Medalum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.9
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_StartOnVStance",
+    "Level3Lumina": "Stance_VirtuoseDoubleBurn",
+    "Level4Lumina": "Stance_VirtuoseDoubleDMG",
+    "ChromaValueMultiplier": 0.9,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Potierim": {
+    "DefinitionID": "Potierim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.9
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_+RandomStainOnHeal",
+    "Level3Lumina": "Stains_IceAppliesSlow",
+    "Level4Lumina": "Stains_AttackLight+",
+    "ChromaValueMultiplier": 0.9,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Brulerum": {
+    "DefinitionID": "Brulerum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.85
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "CritAppliesBurn",
+    "Level3Lumina": "AttackBurn",
+    "Level4Lumina": "Stance_FullCritIfStanceless",
+    "ChromaValueMultiplier": 0.85,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Jarum": {
+    "DefinitionID": "Jarum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.8
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_CounterSwitchToVStance",
+    "Level3Lumina": "CounterBurn",
+    "Level4Lumina": "CounterDamagePerShield",
+    "ChromaValueMultiplier": 0.8,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Chevalam": {
+    "DefinitionID": "Chevalam",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.95
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_StartRankSButNoHeal",
+    "Level3Lumina": "DMG+WhenNoDMGTaken",
+    "Level4Lumina": "Perfection_RushOnS",
+    "ChromaValueMultiplier": 0.95,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "Delaram": {
+    "DefinitionID": "Delaram",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.05
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_StartRankBButLessHP",
+    "Level3Lumina": "AttackLifesteal_Weapon",
+    "Level4Lumina": "Perfection_PowerfulOnB",
+    "ChromaValueMultiplier": 1.05,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Saperim": {
+    "DefinitionID": "Saperim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.95
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_GenerateStainsOnGradientAttack",
+    "Level3Lumina": "Stains_LightningOnFire",
+    "Level4Lumina": "GradientAttackAndCounterDMG+",
+    "ChromaValueMultiplier": 0.95,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Seashelum": {
+    "DefinitionID": "Seashelum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.93
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_ShieldOnOSstance",
+    "Level3Lumina": "Stance_AttackOffensive",
+    "Level4Lumina": "Stance_CritChanceOffensive",
+    "ChromaValueMultiplier": 0.93,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Scaverim": {
+    "DefinitionID": "Scaverim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.3
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator4",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_GenerateDarkStainRandom",
+    "Level3Lumina": "Stains_ConsumeDarkStainsOnAttackDMG+",
+    "Level4Lumina": "Stains_ConsumeFourDarkStainsDMG+OnSkills",
+    "ChromaValueMultiplier": 1.3,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Glaisum": {
+    "DefinitionID": "Glaisum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.15
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_VirtuoseHealAllies",
+    "Level3Lumina": "Stance_ShellOutVStance",
+    "Level4Lumina": "Stance_CleanseVirtuose",
+    "ChromaValueMultiplier": 1.15,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Cruleram": {
+    "DefinitionID": "Cruleram",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.07
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_NoPerfectionLossOnPowerlessEnemy",
+    "Level3Lumina": "Perfection_Perfection+1OnPowerlessEnemy",
+    "Level4Lumina": "PowerlessOnCounter",
+    "ChromaValueMultiplier": 1.07,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Minason": {
+    "DefinitionID": "Minason",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.87
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_SunSkillsDMG+PerForetell",
+    "Level3Lumina": "Foretell_SunAPIncrease",
+    "Level4Lumina": "Foretell_AttackConsumeSunCharge",
+    "ChromaValueMultiplier": 0.87,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator4"
+  },
+  "Seeram": {
+    "DefinitionID": "Seeram",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.15
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_Perfection+butDMG+",
+    "Level3Lumina": "Perfection_Attackx2",
+    "Level4Lumina": "SkillsLightDMG+",
+    "ChromaValueMultiplier": 1.15,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Deminerim": {
+    "DefinitionID": "Deminerim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.85
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "LightningAPCost-",
+    "Level3Lumina": "SkillsLightningDMG+",
+    "Level4Lumina": "Stains_FireStart",
+    "ChromaValueMultiplier": 0.85,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Lusteson": {
+    "DefinitionID": "Lusteson",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.06
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator4",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_PropagationOnKill",
+    "Level3Lumina": "Foretell_MarkOnConsume",
+    "Level4Lumina": "SkillsDarkDMG+",
+    "ChromaValueMultiplier": 1.06,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator4"
+  },
+  "Abysseram": {
+    "DefinitionID": "Abysseram",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_IncreasedDamageOnRankD",
+    "Level3Lumina": "AugmentedAttack_Weapon",
+    "Level4Lumina": "Perfection_AttackLifestealOnD",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Gobluson": {
+    "DefinitionID": "Gobluson",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.04
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_PropagateForetellOnApplication",
+    "Level3Lumina": "Foretell_ApplyBurnEveryXForetell",
+    "Level4Lumina": "SkillsFireDMG+",
+    "ChromaValueMultiplier": 1.04,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Sakaram": {
+    "DefinitionID": "Sakaram",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.91
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_NoPerfectionLossButNoDamageIncrease",
+    "Level3Lumina": "AugmentedAttack_Weapon",
+    "Level4Lumina": "Perfection_Attackx2",
+    "ChromaValueMultiplier": 0.91,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "Coralim": {
+    "DefinitionID": "Coralim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.85
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "IceAPCost-",
+    "Level3Lumina": "SkillsIceDMG+",
+    "Level4Lumina": "Stains_EarthStart",
+    "ChromaValueMultiplier": 0.85,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Algueron": {
+    "DefinitionID": "Algueron",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_FreeAimShotsConsumeForDMG+",
+    "Level3Lumina": "Foretell_ApplyOnAttack",
+    "Level4Lumina": "Foretell_TwilightFreeAimDMG+",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator4"
+  },
+  "Gesam": {
+    "DefinitionID": "Gesam",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "SkillsLightToPhysical",
+    "Level3Lumina": "SkillsPhysicalDMG+",
+    "Level4Lumina": "PhysicalAPCost-",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Redalim": {
+    "DefinitionID": "Redalim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.8
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_+RandomStainOnHeal",
+    "Level3Lumina": "Stains_IceStainOnTurnStart",
+    "Level4Lumina": "InstantReplayOnOverchargedHealSkills",
+    "ChromaValueMultiplier": 0.8,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Sekarum": {
+    "DefinitionID": "Sekarum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.05
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_VirtuoseOnShieldBreak",
+    "Level3Lumina": "FreeAimBreaksMoreShields",
+    "Level4Lumina": "Stance_PierceOnVStance",
+    "ChromaValueMultiplier": 1.05,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Bourgelon": {
+    "DefinitionID": "Bourgelon",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.96
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_ApplyBurnPerSunChargeOnConsume",
+    "Level3Lumina": "Foretell_OnTwilightBurnDMG+",
+    "Level4Lumina": "Foretell_SunSkillsCharge+",
+    "ChromaValueMultiplier": 0.96,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Blodam": {
+    "DefinitionID": "Blodam",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.08
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_PerfectionBaseOnCurrentHP",
+    "Level3Lumina": "SkillsLightDMG+",
+    "Level4Lumina": "Perfection_GainAPOnRankUp",
+    "ChromaValueMultiplier": 1.08,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Corderon": {
+    "DefinitionID": "Corderon",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.85
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator4",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_CurseSelfButDMG+",
+    "Level3Lumina": "Foretell_ResetCurseOnTwilight",
+    "Level4Lumina": "Foretell_InstantReplayOnTwilight",
+    "ChromaValueMultiplier": 0.85,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator4"
+  },
+  "Cultam": {
+    "DefinitionID": "Cultam",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.97
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator4",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_PerfectionLostOnHeal",
+    "Level3Lumina": "APOnCounter",
+    "Level4Lumina": "Perfection_RankUpOnCounter",
+    "ChromaValueMultiplier": 0.97,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Demonam": {
+    "DefinitionID": "Demonam",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.87
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "DMG+OnAlternatingPhysicalLight",
+    "Level3Lumina": "SkillsPhysicalDMG+",
+    "Level4Lumina": "LightSkillsRegenHP",
+    "ChromaValueMultiplier": 0.87,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Trebuchim": {
+    "DefinitionID": "Trebuchim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.95
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_RandomGeneration",
+    "Level3Lumina": "Stains_APOnConsumption",
+    "Level4Lumina": "Stains_RandomGenerationOnAttack",
+    "ChromaValueMultiplier": 0.95,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Rangeson": {
+    "DefinitionID": "Rangeson",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.97
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator4",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_HealOnApply",
+    "Level3Lumina": "HealAPCost-",
+    "Level4Lumina": "Foretell_HealEfficiencyPerMoonCharge",
+    "ChromaValueMultiplier": 0.97,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator4"
+  },
+  "Betelim": {
+    "DefinitionID": "Betelim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_OverchargeDMG+",
+    "Level3Lumina": "Stains_TurnStart+StainsIfNoStain",
+    "Level4Lumina": "Stains_APOnConsumption",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Veremum": {
+    "DefinitionID": "Veremum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.02
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_AttackOffensive",
+    "Level3Lumina": "CounterDefenseless",
+    "Level4Lumina": "Stance_CritChanceOffensive",
+    "ChromaValueMultiplier": 1.02,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Hevason": {
+    "DefinitionID": "Hevason",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.07
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_ConsumeChargesOnFreeAim",
+    "Level3Lumina": "Foretell_GivesAPOnConsumingCharge",
+    "Level4Lumina": "Foretell_AttackGainMoonCharge",
+    "ChromaValueMultiplier": 1.07,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Painerim": {
+    "DefinitionID": "Painerim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.85
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "EarthAPCost-",
+    "Level3Lumina": "SkillsEarthDMG+",
+    "Level4Lumina": "Stains_LightningStart",
+    "ChromaValueMultiplier": 0.85,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Yeverum": {
+    "DefinitionID": "Yeverum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.04
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "ShieldOnShell",
+    "Level3Lumina": "APOnShield",
+    "Level4Lumina": "Stance_VirtuoseDoubleShields",
+    "ChromaValueMultiplier": 1.04,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Direton": {
+    "DefinitionID": "Direton",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.25
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_GainAPPerMoonChargeOnTurnStart",
+    "Level3Lumina": "Foretell_AttackGainMoonCharge",
+    "Level4Lumina": "Foretell_BaseAttackConsumeAllAPOnTwilight",
+    "ChromaValueMultiplier": 1.25,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Melarum": {
+    "DefinitionID": "Melarum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.11
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_VirtuoseHealAllies",
+    "Level3Lumina": "Stance_ShellOnHighHP",
+    "Level4Lumina": "Stance_VirtuoseOnLowHP",
+    "ChromaValueMultiplier": 1.11,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Lighterim": {
+    "DefinitionID": "Lighterim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.85
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "FireAPCost-",
+    "Level3Lumina": "SkillsFireDMG+",
+    "Level4Lumina": "Stains_IceStart",
+    "ChromaValueMultiplier": 0.85,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Duenum": {
+    "DefinitionID": "Duenum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.75
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_DefensiveSharedAP",
+    "Level3Lumina": "Stance_AttackDefensive",
+    "Level4Lumina": "Stance_APOnSwitch",
+    "ChromaValueMultiplier": 0.75,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Chation": {
+    "DefinitionID": "Chation",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.1
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator4",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_ApplyMaxForetellOnSunSkills",
+    "Level3Lumina": "Foretell_AttackConsumeToApplyBurnMoonCharge",
+    "Level4Lumina": "Foretell_OnTwilightBurnDMG+",
+    "ChromaValueMultiplier": 1.1,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Chainebum": {
+    "DefinitionID": "Chainebum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.12
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator7",
+    "Level1Lumina": "",
+    "Level2Lumina": "CanStealShield",
+    "Level3Lumina": "Stance_VirtuoseOnShieldBreak",
+    "Level4Lumina": "MarkBreakShields",
+    "ChromaValueMultiplier": 1.12,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator7"
+  },
+  "Troubadum": {
+    "DefinitionID": "Troubadum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.06
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_ShieldOnParry",
+    "Level3Lumina": "SkillsLightDMG+",
+    "Level4Lumina": "CounterDamagePerShield",
+    "ChromaValueMultiplier": 1.06,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Ramasson": {
+    "DefinitionID": "Ramasson",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.09
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_HealOnTurnStartConsumeMoonCharge",
+    "Level3Lumina": "Foretell_AttackGainMoonCharge",
+    "Level4Lumina": "Foretell_MoonSkillsCharge+",
+    "ChromaValueMultiplier": 1.09,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Chaliso": {
+    "DefinitionID": "Chaliso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.55
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "AttackPlayAgain",
+    "Level3Lumina": "AugmentedAttack_Weapon",
+    "Level4Lumina": "Perfection_Attackx2",
+    "ChromaValueMultiplier": 0.55,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator4"
+  },
+  "Benisim": {
+    "DefinitionID": "Benisim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.85
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "HealAPCost-",
+    "Level3Lumina": "Stains_EarthStainOnTurnStart",
+    "Level4Lumina": "InstantReplayOnOverchargedHealSkills",
+    "ChromaValueMultiplier": 0.85,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Battlum": {
+    "DefinitionID": "Battlum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.95
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_DefensiveGradientCharges",
+    "Level3Lumina": "Stance_AttackDefensive",
+    "Level4Lumina": "GradientChargesOnParry",
+    "ChromaValueMultiplier": 0.95,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Charnon": {
+    "DefinitionID": "Charnon",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.92
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator7",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_ChangeTwilightAlwaysCrit",
+    "Level3Lumina": "Foretell_ApplyForetellOnCrit",
+    "Level4Lumina": "DMG+WhenNoDMGTaken",
+    "ChromaValueMultiplier": 0.92,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator7"
+  },
+  "Corpeso": {
+    "DefinitionID": "Corpeso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.13
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_BurnOnBaseAtkPerRank",
+    "Level3Lumina": "Perfection_GainAPOnRankUp",
+    "Level4Lumina": "Perfection_BurnDamagePerRank",
+    "ChromaValueMultiplier": 1.13,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Dualim": {
+    "DefinitionID": "Dualim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.95
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "FreeAimDoubleShot",
+    "Level3Lumina": "AugmentedAim_Weapon",
+    "Level4Lumina": "Stains_RandomGeneration",
+    "ChromaValueMultiplier": 0.95,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Stalum": {
+    "DefinitionID": "Stalum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "SelfBurnButDmg+",
+    "Level3Lumina": "AttackBurn",
+    "Level4Lumina": "Stance_BurnHealOnDStance",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Contorson": {
+    "DefinitionID": "Contorson",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.03
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_DarkConversionOnTwilight",
+    "Level3Lumina": "SkillsDarkDMG+",
+    "Level4Lumina": "Foretell_BuffsOnStates",
+    "ChromaValueMultiplier": 1.03,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Danseso": {
+    "DefinitionID": "Danseso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.92
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_DoublePerfectionVSBurn",
+    "Level3Lumina": "AttackBurnWhilePowerful",
+    "Level4Lumina": "Perfection_GainAPOnRankUp",
+    "ChromaValueMultiplier": 0.92,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Braselim": {
+    "DefinitionID": "Braselim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.05
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_IncreaseCritChancePerFireStain",
+    "Level3Lumina": "GradientPointOnCrit",
+    "Level4Lumina": "SkillsFireDMG+",
+    "ChromaValueMultiplier": 1.05,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Coldum": {
+    "DefinitionID": "Coldum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.8
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "HealOnCrit",
+    "Level3Lumina": "Stance_CritChanceDefensive",
+    "Level4Lumina": "Stance_AttackDefensive",
+    "ChromaValueMultiplier": 0.8,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Glaceso": {
+    "DefinitionID": "Glaceso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.89
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_Perfection+1OnCrit",
+    "Level3Lumina": "HealOnCrit",
+    "Level4Lumina": "AlwaysCritOnCounterDamage",
+    "ChromaValueMultiplier": 0.89,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "Snowim": {
+    "DefinitionID": "Snowim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.2
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "FreezeSelfOnLowHP2",
+    "Level3Lumina": "DefreezeAndHealOnTurnStart",
+    "Level4Lumina": "Stains_Ice+IfSelfFrozen",
+    "ChromaValueMultiplier": 1.2,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Sadon": {
+    "DefinitionID": "Sadon",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.8
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_ShieldOnTurnStartWhenSunCharge",
+    "Level3Lumina": "Foretell_ApplyForetellOnShieldBreakPerSunCharge",
+    "Level4Lumina": "Foretell_GivesSunChargesOnCounterAttack",
+    "ChromaValueMultiplier": 0.8,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator4"
+  },
+  "Clierum": {
+    "DefinitionID": "Clierum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.99
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "APOnCrit",
+    "Level3Lumina": "SkillsLightningDMG+",
+    "Level4Lumina": "Stance_CritChanceOffensive",
+    "ChromaValueMultiplier": 0.99,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Garganon": {
+    "DefinitionID": "Garganon",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.97
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_ApplyBurnOnHitTakenOnSun",
+    "Level3Lumina": "Foretell_ApplyBurnPerSunChargeOnCounterAttack",
+    "Level4Lumina": "Foretell_AttackConsumeBurnToApplyForetell",
+    "ChromaValueMultiplier": 0.97,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Moissoso": {
+    "DefinitionID": "Moissoso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.88
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_SwitchRankSOnBreak",
+    "Level3Lumina": "Perfection_AlwaysCritOnRankS",
+    "Level4Lumina": "TriggerLightningOnCrit",
+    "ChromaValueMultiplier": 0.88,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Angerim": {
+    "DefinitionID": "Angerim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.02
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_ApplyBurnStackPerFireStainOnAttack",
+    "Level3Lumina": "Stains_FireStainOnTurnStart",
+    "Level4Lumina": "Stains_IncreaseBurnDMGPerFireStain",
+    "ChromaValueMultiplier": 1.02,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Blizzon": {
+    "DefinitionID": "Blizzon",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.3
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_MoonSkillsAlwaysCritOnMoon",
+    "Level3Lumina": "Foretell_DMG+PerMoonCharge",
+    "Level4Lumina": "Foretell_AttackGainMoonCharge",
+    "ChromaValueMultiplier": 1.3,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Confuso": {
+    "DefinitionID": "Confuso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.95
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "LightDMGBurnOnCrit",
+    "Level3Lumina": "MarkIsBurn",
+    "Level4Lumina": "Perfection_BurnDamagePerRank",
+    "ChromaValueMultiplier": 0.95,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "Facesum": {
+    "DefinitionID": "Facesum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.09
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_OffensiveBurnStacks",
+    "Level3Lumina": "BurnDamage",
+    "Level4Lumina": "AttackPropagatesBurn",
+    "ChromaValueMultiplier": 1.09,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Chapelim": {
+    "DefinitionID": "Chapelim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.98
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_IncreaseBreakDMGPerEarthStain",
+    "Level3Lumina": "APonBreak",
+    "Level4Lumina": "Stains_EarthStainOnTurnStart",
+    "ChromaValueMultiplier": 0.98,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Sireso_1": {
+    "DefinitionID": "Sireso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.8
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_PerfectionBonusDamageShare",
+    "Level3Lumina": "Perfection_Perfection+1OnPowerful",
+    "Level4Lumina": "SupportSkillsCostReduced",
+    "ChromaValueMultiplier": 0.8,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Sirenon_1": {
+    "DefinitionID": "Sirenon",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.95
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_ExtendOrIncreaseTwilight",
+    "Level3Lumina": "Foretell_ExtendTwilight",
+    "Level4Lumina": "Foretell_InstantReplayOnTwilight",
+    "ChromaValueMultiplier": 0.95,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Sirenum_1": {
+    "DefinitionID": "Sirenum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.2
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_DefensiveBreakDamage",
+    "Level3Lumina": "APonBreak",
+    "Level4Lumina": "BreakEarthBurst",
+    "ChromaValueMultiplier": 1.2,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Sireso_2": {
+    "DefinitionID": "Sireso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.95
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_RankUpOnCounter",
+    "Level3Lumina": "IncreaseCounterDamage",
+    "Level4Lumina": "APOnCounter",
+    "ChromaValueMultiplier": 0.95,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Sirenim_1": {
+    "DefinitionID": "Sirenim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.1
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_FullCritIfFullStain",
+    "Level3Lumina": "DMG+WhenNoDMGTaken",
+    "Level4Lumina": "CritAppliesBurn",
+    "ChromaValueMultiplier": 1.1,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Sirenum_2": {
+    "DefinitionID": "Sirenum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.88
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_StancelessSwitchToOStance",
+    "Level3Lumina": "FireAPCost-",
+    "Level4Lumina": "Stance_ShieldOnOSstance",
+    "ChromaValueMultiplier": 0.88,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Sirenim_2": {
+    "DefinitionID": "Sirenim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.8
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_GenerateLightStainRandom",
+    "Level3Lumina": "Stains_GainAPOnLightStainConsumption",
+    "Level4Lumina": "Stains_IncreaseDMGPerLightStain",
+    "ChromaValueMultiplier": 0.8,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "Sirenon_2": {
+    "DefinitionID": "Sirenon",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.2
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_DealAOEDamagePerChargeOnTwilightSwitch",
+    "Level3Lumina": "Foretell_ApplyForetellPerChargeOnTwilightSwitch",
+    "Level4Lumina": "Foretell_DoubleChargeGain",
+    "ChromaValueMultiplier": 1.2,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Reacheso_1": {
+    "DefinitionID": "Reacheso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.15
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "Perfection_RankUpOnMark",
+    "Level3Lumina": "MarkOnBaseAttack",
+    "Level4Lumina": "PowerlessOnMarking",
+    "ChromaValueMultiplier": 1.15,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Reachum_1": {
+    "DefinitionID": "Reachum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator7",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_VirtuoseKeepMark",
+    "Level3Lumina": "Stance_CounterSwitchToVStance",
+    "Level4Lumina": "Stance_ShellOutVStance",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator7"
+  },
+  "Reacherim_1": {
+    "DefinitionID": "Reacherim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.05
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_ElementalCyclingDMG+",
+    "Level3Lumina": "Stains_TurnStart+StainsIfNoStain",
+    "Level4Lumina": "Stains_APOnConsumption",
+    "ChromaValueMultiplier": 1.05,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator4"
+  },
+  "Reacheron_1": {
+    "DefinitionID": "Reacheron",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.97
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_OnTwilightSwitchApplyMarkAOE",
+    "Level3Lumina": "Foretell_DontRemoveMarkOnTwilight",
+    "Level4Lumina": "Foretell_ApplyForetellOnApplyMark",
+    "ChromaValueMultiplier": 0.97,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "Reacheso_2": {
+    "DefinitionID": "Reacheso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.1
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "AttackConsumeShieldForExtraDMG",
+    "Level3Lumina": "ShieldOnCounter",
+    "Level4Lumina": "Perfection_Attackx2",
+    "ChromaValueMultiplier": 1.1,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Reacheron_2": {
+    "DefinitionID": "Reacheron",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.87
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Foretell_ApplyGreaterRushSlowOnSunMoon",
+    "Level3Lumina": "Foretell_ApplyGreaterRushSlowOnTwilight",
+    "Level4Lumina": "GainAPOnApplyBuffsDebuffs",
+    "ChromaValueMultiplier": 0.87,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Reachum_2": {
+    "DefinitionID": "Reachum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.94
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stance_StancelessSwitchToDStance",
+    "Level3Lumina": "Stance_DefensiveBreakDamage",
+    "Level4Lumina": "SupportSkillsCostReduced",
+    "ChromaValueMultiplier": 0.94,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator7"
+  },
+  "Reacherim_2": {
+    "DefinitionID": "Reacherim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.96
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator7",
+    "Level1Lumina": "",
+    "Level2Lumina": "Stains_GenerateLightOrDarkStainRandom",
+    "Level3Lumina": "Stains_GainAPOnLightStainConsumption",
+    "Level4Lumina": "Stains_ConsumeDarkStainsOnAttackDMG+",
+    "ChromaValueMultiplier": 0.96,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator7"
+  },
+  "GDC_Weapon_Sciel": {
+    "DefinitionID": "GDC_Weapon_Sciel",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 3.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator1": "EAttributeScalingGrade::NewEnumerator3"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 3.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "GDC_Weapon_Maelle": {
+    "DefinitionID": "GDC_Weapon_Maelle",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 3.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator1": "EAttributeScalingGrade::NewEnumerator3"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 3.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator7"
+  },
+  "GDC_Weapon_Lune": {
+    "DefinitionID": "GDC_Weapon_Lune",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 3.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator1": "EAttributeScalingGrade::NewEnumerator3"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 3.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "GDC_Weapon_Verso": {
+    "DefinitionID": "GDC_Weapon_Verso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 3.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator1": "EAttributeScalingGrade::NewEnumerator3"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 3.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "GDC_Weapon_Monoco": {
+    "DefinitionID": "GDC_Weapon_Monoco",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 3.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator1": "EAttributeScalingGrade::NewEnumerator3"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 3.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "Grandaro": {
+    "DefinitionID": "Grandaro",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.1
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "Masks_StartHeavy",
+    "Level3Lumina": "Masks_ShellOnHeavy",
+    "Level4Lumina": "Masks_GainAPOnDMGTakenOnHeavy",
+    "ChromaValueMultiplier": 1.1,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Chromaro": {
+    "DefinitionID": "Chromaro",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.05
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator1",
+    "Level1Lumina": "",
+    "Level2Lumina": "Masks_StartCaster",
+    "Level3Lumina": "Masks_RegenOnCaster",
+    "Level4Lumina": "Mask_APCost-1OnCaster",
+    "ChromaValueMultiplier": 1.05,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Boucharo": {
+    "DefinitionID": "Boucharo",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "Masks_StartAgile",
+    "Level3Lumina": "Masks_RushOnAgile",
+    "Level4Lumina": "Masks_CritChanceOnAgile",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "Joyaro": {
+    "DefinitionID": "Joyaro",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.15
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "Masks_StartAlmighty",
+    "Level3Lumina": "DMG+WhenNoDMGTaken",
+    "Level4Lumina": "Masks_DoubleBreakDMGOnAlmighty",
+    "ChromaValueMultiplier": 1.15,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "Sirenaro_1": {
+    "DefinitionID": "Sirenaro",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.95
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "Masks_ReverseBestialMeter",
+    "Level3Lumina": "Masks_Overcharge+APOnAllies",
+    "Level4Lumina": "Masks_GainAPAllAlliesOnAlmightySwitch",
+    "ChromaValueMultiplier": 0.95,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Sirenaro_2": {
+    "DefinitionID": "Sirenaro",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.06
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "Masks_SwitchToAlmightyOnBreak",
+    "Level3Lumina": "Masks_GainAPAllAlliesOnAlmightySwitch",
+    "Level4Lumina": "BreakDMG+",
+    "ChromaValueMultiplier": 1.06,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Reacharo_1": {
+    "DefinitionID": "Reacharo",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.3
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator4",
+    "Level1Lumina": "",
+    "Level2Lumina": "Masks_BestialMeter+OnParrybutResetOnDMG",
+    "Level3Lumina": "Masks_DMG+OverchargedSkills",
+    "Level4Lumina": "Masks_GainAPOnMaskSwitch",
+    "ChromaValueMultiplier": 1.3,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "Reacharo_2": {
+    "DefinitionID": "Reacharo",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.3
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "Masks_WheelSpinOnFreeAimShot",
+    "Level3Lumina": "Masks_DMG+FreeAimIfNotAlmighty",
+    "Level4Lumina": "Masks_AlwaysCritOnAlmighty",
+    "ChromaValueMultiplier": 1.3,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator4"
+  },
+  "Brumaro": {
+    "DefinitionID": "Brumaro",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.05
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "Masks_InstantReplayOnAlmighty",
+    "Level3Lumina": "Masks_APOnAlmighty",
+    "Level4Lumina": "Masks_InstantReviveOnDeathOnAlmighty",
+    "ChromaValueMultiplier": 1.05,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "Sidaro": {
+    "DefinitionID": "Sidaro",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 0.94
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator1": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator4",
+    "Level1Lumina": "",
+    "Level2Lumina": "Masks_DMG+BonusStackOnOverchargedSkillsChain",
+    "Level3Lumina": "Masks_WheelSpinOnAttack",
+    "Level4Lumina": "Masks_Overcharge+APOnAllies",
+    "ChromaValueMultiplier": 0.94,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator1"
+  },
+  "MitigatedPerfection": {
+    "DefinitionID": "MitigatedPerfection",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {},
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Beselbum": {
+    "DefinitionID": "Beselbum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {},
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Gelerim": {
+    "DefinitionID": "Gelerim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {},
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Nibalum": {
+    "DefinitionID": "Nibalum",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {},
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Velokan": {
+    "DefinitionID": "Velokan",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.1
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator3"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 1.1,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "Telarim": {
+    "DefinitionID": "Telarim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {},
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Milerim": {
+    "DefinitionID": "Milerim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {},
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "03_Weapon_Placeholder": {
+    "DefinitionID": "03_Weapon_Placeholder",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.1
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "",
+    "Level3Lumina": "",
+    "Level4Lumina": "",
+    "ChromaValueMultiplier": 1.1,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "DebugSciel": {
+    "DefinitionID": "DebugSciel",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator7",
+    "Level1Lumina": "",
+    "Level2Lumina": "AutoDeath",
+    "Level3Lumina": "SecondChance",
+    "Level4Lumina": "FirstStrike",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "DebugLune": {
+    "DefinitionID": "DebugLune",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator7",
+    "Level1Lumina": "",
+    "Level2Lumina": "AutoDeath",
+    "Level3Lumina": "SecondChance",
+    "Level4Lumina": "FirstStrike",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "DebugVerso": {
+    "DefinitionID": "DebugVerso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator7",
+    "Level1Lumina": "",
+    "Level2Lumina": "AutoDeath",
+    "Level3Lumina": "SecondChance",
+    "Level4Lumina": "FirstStrike",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "DebugMaelle": {
+    "DefinitionID": "DebugMaelle",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator7",
+    "Level1Lumina": "",
+    "Level2Lumina": "AutoDeath",
+    "Level3Lumina": "SecondChance",
+    "Level4Lumina": "FirstStrike",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "DebugMonoco": {
+    "DefinitionID": "DebugMonoco",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator7",
+    "Level1Lumina": "",
+    "Level2Lumina": "AutoDeath",
+    "Level3Lumina": "SecondChance",
+    "Level4Lumina": "FirstStrike",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Simoso": {
+    "DefinitionID": "Simoso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.0
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "DoubleHit",
+    "Level3Lumina": "LightDamageBurn",
+    "Level4Lumina": "Perfection_SurvivorRankA",
+    "ChromaValueMultiplier": 1.0,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "VD_Verso_1": {
+    "DefinitionID": "VD_Verso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.15
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "StartD",
+    "Level3Lumina": "PerfectDefense",
+    "Level4Lumina": "DamageOnPerfectionRank",
+    "ChromaValueMultiplier": 1.15,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "VD_Verso_2": {
+    "DefinitionID": "VD_Verso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.15
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "PerfectionOnDamage",
+    "Level3Lumina": "PerfectDefenseB",
+    "Level4Lumina": "PowerlessMark",
+    "ChromaValueMultiplier": 1.15,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "VD_Verso_3": {
+    "DefinitionID": "VD_Verso",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.1
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "AureoleRankSToD",
+    "Level3Lumina": "DamageBonusOnRevive",
+    "Level4Lumina": "MoreGradientDamageLessCharge",
+    "ChromaValueMultiplier": 1.1,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "VD_Maelle_1": {
+    "DefinitionID": "VD_Maelle",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.1
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "DamageBonusPerHit",
+    "Level3Lumina": "firstHitApplyMark",
+    "Level4Lumina": "SecondHitDontConsumeMark",
+    "ChromaValueMultiplier": 1.1,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "VD_Maelle_2": {
+    "DefinitionID": "VD_Maelle",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.14
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "More4ApDamageBonus",
+    "Level3Lumina": "BurnInVirtuose",
+    "Level4Lumina": "InflictMarkIfSkillLess4Ap",
+    "ChromaValueMultiplier": 1.14,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "VD_Lune_1": {
+    "DefinitionID": "VD_Lune",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.18
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator2",
+    "Level1Lumina": "",
+    "Level2Lumina": "CritPerBurn",
+    "Level3Lumina": "BurnOnCrit",
+    "Level4Lumina": "ThunderSkillConsumeBurn",
+    "ChromaValueMultiplier": 1.18,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator2"
+  },
+  "VD_Lune_2": {
+    "DefinitionID": "VD_Lune",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.12
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator4",
+    "Level1Lumina": "",
+    "Level2Lumina": "NoOverchargeSkillBuff",
+    "Level3Lumina": "BaseAttackToDarkStain",
+    "Level4Lumina": "Stains_ConsumeFourDarkStainsDMG+OnSkills",
+    "ChromaValueMultiplier": 1.12,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator4"
+  },
+  "Simonim": {
+    "DefinitionID": "Simonim",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.1
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "BypassAffinities",
+    "Level3Lumina": "LuneDoubleHit",
+    "Level4Lumina": "SimonimOvercharge",
+    "ChromaValueMultiplier": 1.1,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "VD_Monoco_1": {
+    "DefinitionID": "VD_Monoco",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.13
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator5",
+    "Level1Lumina": "",
+    "Level2Lumina": "FreeAimForwardWheel",
+    "Level3Lumina": "DamagePerMaskChange",
+    "Level4Lumina": "DoubleFreeAimDamageAlmighty",
+    "ChromaValueMultiplier": 1.13,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator5"
+  },
+  "VD_Monoco_2": {
+    "DefinitionID": "VD_Monoco",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.16
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator3",
+    "Level1Lumina": "",
+    "Level2Lumina": "BaseAttackToHeavy",
+    "Level3Lumina": "ShieldAllHeroesOnHeavy",
+    "Level4Lumina": "ReducedDamageOnHeavy",
+    "ChromaValueMultiplier": 1.16,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator3"
+  },
+  "Baguettaro": {
+    "DefinitionID": "Baguettaro",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.16
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator4": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "BurnOnCrit",
+    "Level3Lumina": "AlmightyDoubleBurn",
+    "Level4Lumina": "AlmightyConsumeBurn",
+    "ChromaValueMultiplier": 1.16,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "VD_Sciel_1": {
+    "DefinitionID": "VD_Sciel",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.17
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator0",
+    "Level1Lumina": "",
+    "Level2Lumina": "FourthHitForetell",
+    "Level3Lumina": "DamagePerSunCharge",
+    "Level4Lumina": "SunAPDiscount",
+    "ChromaValueMultiplier": 1.17,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator0"
+  },
+  "VD_Sciel_2": {
+    "DefinitionID": "VD_Sciel",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.19
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator0": "EAttributeScalingGrade::NewEnumerator1",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator2"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "ChargesBalance",
+    "Level3Lumina": "RandomChargeTurnStart",
+    "Level4Lumina": "AttackSunItemMoon",
+    "ChromaValueMultiplier": 1.19,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  },
+  "Duollison": {
+    "DefinitionID": "Duollison",
+    "BaseStatsMultipliers": {
+      "E_jRPG_StatType::NewEnumerator3": 1.14
+    },
+    "AttributeScaling": {
+      "ECharacterAttribute::NewEnumerator3": "EAttributeScalingGrade::NewEnumerator2",
+      "ECharacterAttribute::NewEnumerator5": "EAttributeScalingGrade::NewEnumerator1"
+    },
+    "BaseDamageType": "NewEnumerator6",
+    "Level1Lumina": "",
+    "Level2Lumina": "FrenzyAttack",
+    "Level3Lumina": "ShotApplyAttackConsumeForetell",
+    "Level4Lumina": "TwilightForetellNotConsumed",
+    "ChromaValueMultiplier": 1.14,
+    "MagicalAttackMultiplier": 1.0,
+    "PhysicalAttackMultiplier": 1.0,
+    "FreeAimDamageType": "NewEnumerator6"
+  }
+}

@@ -1,0 +1,3 @@
+
+# Non-redistributable Oodle 2.9.16 runtime; CUE4Parse may fetch a user-supplied copy at runtime.
+tools/liboodle-data-shared.so

@@ -1,0 +1,34 @@
+Bugs
+
+x Maelle Momentum Strike vs Ultimate Sakapatake - Game Crash always.
+
+x Also a good idea. I will also make sure they sell 999 of the lower tiers for every shop in the next patch.
+ 
+x That is a good idea actually! I will modify the drops in the next patch to also have a good chance of dropping lower tier chromas in addition to their main drop. 
+ 
+x Ah yes he probably has defense now which makes 9999 very difficult early on. Yeah looks like he has ~2.69M defense so it's going to be a while before you can beat him. I haven't changed his drop though so you aren't missing out on much. Probably could make a special picto in future e.g. 10x first hit then 0x for all remaining hits. 
+ 
+ 1 In theory they are all scaled up. I will take a look in to that because looking at the raw stats doesn't flag anything. [In  response to query about weak white nevrons]
+3 Oh that is a very good point! I didn't think of that. I wonder if this stats are changing because of the tutorial edit I made. It might be getting redirected to the World Map variant. I will make sure this is fixed before I release the seed maker. [Issues with the fight against Stalact which is normal a tutorial but might be failing because I disabled all tutorials.]
+
+Need to verify Dualliste health.
+
+Eventually making Polish and Russian language versions. Possibly integration in to Mod manager.
+
+x Auto learning pictos?
+
+1 I was aware of the Gros Tete but you bring up a valid point about it dropping T4 weapons. Yeah I'll add that to the list to bring down the world variant to T3.
+
+2 I will investigate the parry specialist pictos
+
+3 Yes you are right about the balance of Full Strength, I will add that to the list for rebalancing. 
+
+4 Funny how universally disliked the light stain wild card removal is. I will bring back it's wild card nature or at least make it an option when I make the seed generator program. I think there were a few skills (Mayhem) and elemental genesis (and variants) that still won't be able to use it but for other skills I think it should be fine.
+
+5 The lack of early access to Break is intentional. I could probably move it to T2 so it is possible to get sometime after Gestral village [Sniper Pictos]
+
+6 Option for buffed regular enemies
+
+7 Toggle option for nerfing lumina drops
+
+8 Reduce Petanks from 55 luminas to 50.

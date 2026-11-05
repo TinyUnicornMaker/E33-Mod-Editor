@@ -1,0 +1,1410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expedition 33 — Spoiler Codex</title>
+<style>
+@font-face{font-family:'Cinzel';src:url(data:font/ttf;base64,__CINZEL_FONT__) format('truetype');font-weight:400 900;font-style:normal;font-display:swap}
+@font-face{font-family:'EB Garamond';src:url(data:font/ttf;base64,__GARAMOND_FONT__) format('truetype');font-weight:400 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Bebas Neue';src:url(data:font/ttf;base64,__BEBAS_FONT__) format('truetype');font-weight:400;font-style:normal;font-display:swap}
+:root{
+  --ink:#0d0909;
+  --ink-2:#120d0d;
+  --charcoal:#1b1918;
+  --panel:#141011;
+  --panel-2:#191415;
+  --bone:#e9ddc5;
+  --parchment:#d1d1d1;
+  --gold:#c9a86a;
+  --gold-soft:#e3c98e;
+  --blood:#8b1e1e;
+  --blood-soft:#c25a4d;
+  --stone:#8a8a8a;
+  --line:rgba(201,168,106,.22);
+  --line-soft:rgba(233,221,197,.09);
+  --good:#8fc7a6;
+  --violet:#c7a8e8;
+  --cyan:#8fc3c7;
+  --shadow:0 22px 70px rgba(0,0,0,.55);
+  --radius:3px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--bone);
+  background:
+    radial-gradient(1100px 620px at 12% -10%, rgba(139,30,30,.18), transparent 60%),
+    radial-gradient(1000px 700px at 92% 4%, rgba(201,168,106,.08), transparent 60%),
+    radial-gradient(800px 600px at 50% 110%, rgba(30,18,18,.7), transparent 70%),
+    var(--ink);
+  font-family:"EB Garamond",Georgia,serif;
+  font-size:16px;
+  line-height:1.5;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  opacity:.16;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.012) 3px 4px),
+    repeating-linear-gradient(90deg, transparent 0 5px, rgba(0,0,0,.16) 5px 6px);
+  mix-blend-mode:overlay;
+}
+::selection{background:rgba(201,168,106,.35);color:#fff}
+a{color:var(--gold)}
+button,input,select{font:inherit}
+button{color:inherit}
+h1,h2,h3,h4{font-family:"Cinzel",Georgia,serif;font-weight:500;letter-spacing:.015em;margin:0}
+.mono,.num{font-family:"Bebas Neue","Oswald",sans-serif;letter-spacing:.06em;font-weight:400}
+
+/* ── gate ─────────────────────────────────────────────────────────────── */
+.gate{
+  position:relative;z-index:1;min-height:100vh;display:grid;place-items:center;
+  padding:32px;text-align:center;
+}
+.gate-card{
+  max-width:860px;width:100%;border:1px solid var(--line);
+  background:
+    linear-gradient(145deg, rgba(201,168,106,.06), transparent 36%),
+    linear-gradient(180deg, rgba(27,25,24,.9), rgba(13,9,9,.95));
+  box-shadow:var(--shadow);padding:clamp(28px,5vw,64px);position:relative;overflow:hidden;
+}
+.gate-card::before,
+.gate-card::after{
+  content:"";position:absolute;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:.7;
+}
+.gate-card::before{top:22px}.gate-card::after{bottom:22px}
+.gate .kicker{margin-top:8px}
+.gate h1{
+  font-size:clamp(46px,9vw,104px);line-height:.9;margin:12px 0 8px;
+  color:var(--bone);text-shadow:0 0 44px rgba(201,168,106,.14);
+}
+.gate h1 span{display:block;color:var(--gold);font-size:.38em;letter-spacing:.26em;margin-bottom:10px}
+.gate .lede{max-width:620px;margin:18px auto 0;color:var(--parchment);font-size:clamp(17px,2vw,21px)}
+.gate .warning{
+  margin:26px auto 0;padding:14px 18px;border:1px solid rgba(139,30,30,.55);
+  background:linear-gradient(90deg,rgba(139,30,30,.2),rgba(139,30,30,.03));
+  color:#e8c7bd;max-width:640px;font-size:15px;
+}
+.gate-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.gate-counts{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:32px;color:var(--stone);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.gate-counts b{display:block;color:var(--gold);font-family:"Bebas Neue",sans-serif;font-size:30px;letter-spacing:.06em;font-weight:400}
+.gate-note{margin-top:26px;color:var(--stone);font-size:12px;letter-spacing:.08em;text-transform:uppercase;white-space:pre-line}
+.gate-error{margin-top:22px;color:#e6a69b;border:1px solid rgba(139,30,30,.6);padding:14px;background:rgba(139,30,30,.12)}
+
+/* ── shell ────────────────────────────────────────────────────────────── */
+.app{position:relative;z-index:1;display:grid;grid-template-columns:258px minmax(0,1fr);min-height:100vh}
+.sidebar{
+  position:sticky;top:0;height:100vh;padding:26px 18px 22px;display:flex;flex-direction:column;gap:22px;
+  border-right:1px solid var(--line-soft);
+  background:
+    linear-gradient(180deg, rgba(201,168,106,.05), transparent 26%),
+    linear-gradient(160deg, rgba(27,25,24,.96), rgba(13,9,9,.98));
+}
+.brand{padding:0 10px}
+.brand .mark{font-family:"Bebas Neue",sans-serif;letter-spacing:.25em;color:var(--gold);font-size:13px}
+.brand h1{font-size:26px;line-height:1;margin-top:8px}
+.brand p{margin:8px 0 0;color:var(--stone);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.nav{display:flex;flex-direction:column;gap:2px;overflow:auto;padding-right:2px}
+.nav button{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;border:0;
+  border-left:2px solid transparent;padding:10px 11px;cursor:pointer;color:var(--parchment);
+  transition:background .16s,border-color .16s,color .16s;
+}
+.nav button:hover{background:rgba(201,168,106,.07);color:var(--bone)}
+.nav button.active{background:linear-gradient(90deg,rgba(201,168,106,.15),transparent);border-left-color:var(--gold);color:var(--bone)}
+.nav .glyph{width:20px;text-align:center;color:var(--gold);font-size:15px}
+.nav .label{flex:1;font-size:15px;letter-spacing:.02em}
+.nav .count{font-family:"Bebas Neue",sans-serif;color:var(--stone);font-size:13px;letter-spacing:.08em}
+.nav button.active .count{color:var(--gold)}
+.side-foot{margin-top:auto;padding:14px 10px 0;border-top:1px solid var(--line-soft);color:var(--stone);font-size:12px;line-height:1.5}
+.side-foot b{color:var(--parchment);font-weight:500}
+.side-foot .swatchline{display:flex;gap:5px;margin-top:10px}
+.side-foot .swatchline i{width:18px;height:3px;background:var(--gold);opacity:.8}
+.side-foot .swatchline i:nth-child(2){background:var(--blood)}
+.side-foot .swatchline i:nth-child(3){background:var(--stone)}
+
+.main{min-width:0;padding:26px clamp(18px,3.2vw,54px) 70px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.search-wrap{position:relative;flex:1 1 320px;max-width:620px}
+.search-wrap svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);opacity:.55}
+.search{
+  width:100%;background:rgba(20,16,17,.8);border:1px solid var(--line-soft);color:var(--bone);
+  padding:12px 14px 12px 40px;outline:none;border-radius:var(--radius);
+}
+.search:focus{border-color:var(--line);box-shadow:0 0 0 3px rgba(201,168,106,.08)}
+.search::placeholder{color:#776f66}
+.controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.control{display:flex;align-items:center;gap:8px;color:var(--stone);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.control select{
+  background:var(--panel);border:1px solid var(--line-soft);color:var(--bone);
+  padding:8px 10px;border-radius:var(--radius);outline:none;
+}
+.switch{display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.switch input{appearance:none;width:34px;height:18px;border:1px solid var(--line);border-radius:20px;position:relative;background:var(--panel);cursor:pointer;transition:.18s}
+.switch input::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--stone);transition:.18s}
+.switch input:checked{background:rgba(201,168,106,.18);border-color:var(--gold)}
+.switch input:checked::after{left:18px;background:var(--gold)}
+
+/* ── hero ─────────────────────────────────────────────────────────────── */
+.hero{
+  position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);
+  padding:clamp(22px,3vw,34px);margin-bottom:22px;
+  background:
+    radial-gradient(620px 220px at 88% -20%, rgba(201,168,106,.14), transparent 66%),
+    radial-gradient(520px 260px at 10% 120%, rgba(139,30,30,.18), transparent 70%),
+    linear-gradient(145deg, rgba(27,25,24,.9), rgba(16,12,13,.94));
+  box-shadow:0 16px 60px rgba(0,0,0,.28);
+}
+.hero::after{
+  content:"";position:absolute;width:280px;height:280px;right:-80px;top:-90px;border:1px solid rgba(201,168,106,.16);
+  transform:rotate(24deg);pointer-events:none;
+}
+.kicker{font-family:"Bebas Neue",sans-serif;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-size:12px}
+.hero h2{font-size:clamp(32px,4.4vw,58px);line-height:.95;margin:8px 0 10px}
+.hero p{max-width:760px;margin:0;color:var(--parchment);font-size:16px}
+.hero-stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.hero-stat{
+  border:1px solid var(--line-soft);background:rgba(13,9,9,.45);padding:8px 12px;min-width:88px;
+}
+.hero-stat span{display:block;color:var(--stone);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.hero-stat strong{display:block;font-family:"Bebas Neue",sans-serif;font-weight:400;color:var(--bone);font-size:24px;line-height:1.05;letter-spacing:.04em}
+.hero-stat.accent strong{color:var(--gold)}
+.hero-meta{margin-top:14px;color:var(--stone);font-size:12px;letter-spacing:.05em}
+.hero-meta b{color:var(--parchment);font-weight:500}
+
+/* ── filters / chips / buttons ────────────────────────────────────────── */
+.filter-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 18px}
+.filter-label{display:flex;align-items:center;gap:8px;color:var(--stone);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.filter-label select{background:var(--panel);border:1px solid var(--line-soft);color:var(--bone);padding:8px 10px;border-radius:var(--radius);outline:none;text-transform:none;letter-spacing:0;font-size:14px}
+.chip-row{display:flex;flex-wrap:wrap;gap:7px}
+.chipbtn{
+  border:1px solid var(--line-soft);background:rgba(20,16,17,.6);color:var(--parchment);
+  padding:6px 10px;cursor:pointer;border-radius:2px;font-size:12px;letter-spacing:.05em;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.chipbtn:hover{border-color:var(--line);background:rgba(201,168,106,.08);color:var(--bone)}
+.chipbtn.active{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:1px solid var(--gold);background:transparent;color:var(--bone);
+  padding:10px 18px;cursor:pointer;border-radius:2px;letter-spacing:.14em;text-transform:uppercase;
+  font-family:"Bebas Neue",sans-serif;font-size:15px;transition:background .16s,color .16s;
+}
+.btn:hover{background:var(--gold);color:var(--ink)}
+.btn.ghost{border-color:var(--line-soft);color:var(--parchment)}
+.btn.ghost:hover{border-color:var(--line);background:rgba(201,168,106,.1);color:var(--bone)}
+.btn.tiny{padding:5px 9px;font-size:12px;letter-spacing:.1em}
+.spacer{flex:1}
+.muted{color:var(--stone)}
+.section-note{color:var(--stone);font-size:13px;margin:-4px 0 18px}
+.section-note b{color:var(--parchment);font-weight:500}
+.divider{height:1px;background:linear-gradient(90deg,var(--line),transparent);margin:26px 0}
+
+/* ── area blocks / cards ──────────────────────────────────────────────── */
+.area-head{display:flex;align-items:baseline;gap:12px;margin:34px 0 14px;flex-wrap:wrap}
+.area-head h2{font-size:clamp(22px,2.6vw,32px)}
+.area-head .area-sub{color:var(--stone);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.area-head .hairline{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);min-width:30px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.nevron-card{
+  position:relative;border:1px solid var(--line-soft);background:
+    linear-gradient(160deg, rgba(27,25,24,.92), rgba(16,12,13,.9));
+  padding:16px 16px 14px;cursor:pointer;border-radius:var(--radius);
+  transition:transform .16s,border-color .16s,box-shadow .16s,background .16s;
+}
+.nevron-card:hover{transform:translateY(-2px);border-color:var(--line);box-shadow:0 18px 44px rgba(0,0,0,.35);background:linear-gradient(160deg, rgba(32,27,27,.98), rgba(18,13,14,.96))}
+.nevron-card .card-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.nevron-card h3{font-size:19px;line-height:1.15;padding-right:4px}
+.nevron-card .meta{margin-top:5px;color:var(--stone);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+.nevron-card .statline{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--line-soft)}
+.nevron-card .statline .s{min-width:56px}
+.nevron-card .statline .s span{display:block;color:var(--stone);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.nevron-card .statline .s b{display:block;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:21px;color:var(--bone);letter-spacing:.04em}
+.nevron-card .statline .s i{display:block;font-style:normal;color:var(--gold);font-family:"Bebas Neue",sans-serif;font-size:11px;letter-spacing:.08em;margin-top:1px;opacity:.85}
+.nevron-card .drop-wrap{margin-top:12px}
+.drop-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);margin-bottom:6px}
+.drop-chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-soft);
+  background:rgba(13,9,9,.35);color:var(--parchment);padding:3px 7px;border-radius:2px;
+  font-size:11.5px;line-height:1.4;
+}
+.chip .chance{color:var(--gold);font-family:"Bebas Neue",sans-serif;font-size:12px;letter-spacing:.06em}
+.chip .qty{color:var(--stone);font-family:"Bebas Neue",sans-serif}
+.chip.item-chip{cursor:pointer;transition:border-color .15s,background .15s}
+.chip.item-chip:hover{border-color:var(--gold);background:rgba(201,168,106,.08)}
+.chip.ref{border-style:dashed;color:var(--stone)}
+.badge{
+  display:inline-flex;align-items:center;border:1px solid var(--line-soft);padding:2px 7px;border-radius:2px;
+  font-family:"Bebas Neue",sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--parchment);
+  background:rgba(13,9,9,.4);white-space:nowrap;
+}
+.badge.gold{color:var(--gold);border-color:rgba(201,168,106,.36)}
+.badge.boss{color:#efc9b2;border-color:rgba(194,90,77,.45);background:rgba(139,30,30,.16)}
+.badge.alpha{color:var(--violet);border-color:rgba(199,168,232,.32);background:rgba(93,60,120,.16)}
+.badge.super{color:#f0a9a0;border-color:rgba(194,90,77,.55);background:rgba(139,30,30,.26)}
+.badge.cut{color:#b6a99b;border-style:dashed;border-color:rgba(182,169,155,.28)}
+.badge.mod{color:var(--cyan);border-color:rgba(143,195,199,.3);background:rgba(40,80,84,.15)}
+.badge.tier{color:var(--gold);border-color:rgba(201,168,106,.28)}
+.badge.boss.alpha{color:var(--violet)}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+
+/* ── details / tables ─────────────────────────────────────────────────── */
+.area-block{border:1px solid var(--line-soft);background:linear-gradient(160deg,rgba(27,25,24,.6),rgba(16,12,13,.5));margin-bottom:12px;border-radius:var(--radius)}
+.area-block>summary{
+  display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;list-style:none;
+  user-select:none;
+}
+.area-block>summary::-webkit-details-marker{display:none}
+.area-block>summary:hover{background:rgba(201,168,106,.05)}
+.area-block>summary .sum-title{font-family:"Cinzel",Georgia,serif;font-size:18px;flex:1}
+.area-block>summary .sum-meta{color:var(--stone);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.area-block>summary .chev{width:16px;color:var(--gold);transition:transform .16s}
+.area-block[open]>summary .chev{transform:rotate(90deg)}
+.area-body{padding:0 16px 12px}
+.chest-row{
+  display:grid;grid-template-columns:minmax(200px,1fr) 2fr;gap:14px;align-items:start;
+  border-top:1px solid var(--line-soft);padding:12px 0;
+}
+.chest-row:first-child{border-top:0}
+.chest-head{display:flex;flex-wrap:wrap;align-items:center;gap:7px}
+.chest-name{font-size:15px;color:var(--bone);letter-spacing:.01em}
+.chest-drops{min-width:0}
+.table-wrap{overflow:auto;border:1px solid var(--line-soft);border-radius:var(--radius);background:rgba(13,9,9,.32)}
+.table-wrap.tall{max-height:72vh}
+table.table{width:100%;border-collapse:collapse;font-size:14px}
+table.table th{
+  position:sticky;top:0;z-index:2;text-align:left;background:#181313;color:var(--gold);
+  font-family:"Bebas Neue",sans-serif;font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:11px;
+  padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;
+}
+table.table td{padding:9px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+table.table tbody tr{cursor:pointer}
+table.table tbody tr:hover{background:rgba(201,168,106,.055)}
+table.table tbody tr:last-child td{border-bottom:0}
+.table .name{font-weight:600;color:var(--bone)}
+.table .sub{color:var(--stone);font-size:11.5px;letter-spacing:.03em}
+.table .num-cell{font-family:"Bebas Neue",sans-serif;font-size:17px;letter-spacing:.04em;color:var(--bone);white-space:nowrap}
+.table .desc{max-width:440px;color:var(--parchment);font-size:13px;line-height:1.45}
+.table .sources-cell{max-width:260px;color:var(--stone);font-size:12px}
+.stat-chip{display:inline-flex;gap:4px;border:1px solid var(--line-soft);padding:2px 5px;margin:1px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--parchment);white-space:nowrap}
+.stat-chip b{color:var(--gold);font-family:"Bebas Neue",sans-serif;font-size:12px;font-weight:400;letter-spacing:.06em}
+.chroma-bar{width:100%;height:7px;background:rgba(255,255,255,.05);border:1px solid var(--line-soft);position:relative;min-width:80px}
+.chroma-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blood),var(--gold));opacity:.85}
+.empty{
+  padding:44px 24px;text-align:center;border:1px dashed var(--line-soft);color:var(--stone);
+}
+.empty strong{display:block;color:var(--bone);font-family:"Cinzel",serif;font-size:22px;margin-bottom:6px}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.stat-box{border:1px solid var(--line-soft);background:rgba(13,9,9,.35);padding:12px 14px}
+.stat-box span{display:block;color:var(--stone);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.stat-box strong{display:block;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:28px;letter-spacing:.04em;line-height:1.05;margin-top:4px}
+.stat-box strong.gold{color:var(--gold)}
+
+/* ── modal ────────────────────────────────────────────────────────────── */
+.modal{
+  position:fixed;inset:0;z-index:60;display:none;place-items:center;padding:20px;
+  background:rgba(4,3,3,.82);backdrop-filter:blur(7px);
+}
+.modal.open{display:grid}
+.modal-card{
+  width:min(1060px,100%);max-height:92vh;overflow:auto;position:relative;
+  border:1px solid var(--line);box-shadow:var(--shadow);padding:clamp(20px,3vw,34px);
+  background:
+    radial-gradient(600px 240px at 90% -10%, rgba(201,168,106,.12), transparent 60%),
+    linear-gradient(160deg,rgba(27,25,24,.98),rgba(12,9,9,.99));
+}
+.modal-close{
+  position:sticky;top:0;float:right;margin:-8px -8px 0 12px;background:transparent;border:1px solid var(--line-soft);
+  color:var(--parchment);width:34px;height:34px;cursor:pointer;border-radius:2px;font-size:18px;line-height:1;
+}
+.modal-close:hover{border-color:var(--gold);color:var(--gold)}
+.modal-head{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+.modal-head h2{font-size:clamp(26px,3.4vw,42px);line-height:1;margin:6px 0 8px}
+.modal-sub{color:var(--stone);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.modal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:16px}
+.panel{border:1px solid var(--line-soft);background:rgba(13,9,9,.3);padding:16px}
+.panel h3{font-size:17px;margin-bottom:12px;color:var(--gold)}
+.panel h4{font-size:14px;color:var(--parchment);margin:14px 0 8px;letter-spacing:.04em}
+.panel p{margin:0 0 10px;color:var(--parchment)}
+.kv{width:100%;border-collapse:collapse;font-size:13px}
+.kv th{text-align:left;color:var(--stone);font-weight:400;padding:4px 8px 4px 0;border-bottom:1px solid var(--line-soft);width:52%;vertical-align:top}
+.kv td{text-align:right;padding:4px 0;border-bottom:1px solid var(--line-soft);font-family:"Bebas Neue",sans-serif;font-size:16px;letter-spacing:.04em;color:var(--bone);vertical-align:top}
+.kv tr:last-child th,.kv tr:last-child td{border-bottom:0}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px}
+.passive{border-top:1px solid var(--line-soft);padding:10px 0}
+.passive:first-child{border-top:0;padding-top:0}
+.passive .p-name{color:var(--bone);font-weight:600}
+.passive .p-meta{color:var(--gold);font-family:"Bebas Neue",sans-serif;font-size:12px;letter-spacing:.08em;margin-left:6px}
+.passive .p-desc{color:var(--stone);font-size:13px;line-height:1.45;margin-top:3px}
+.modal hr{border:0;border-top:1px solid var(--line-soft);margin:22px 0}
+.modal .table-wrap{margin-top:10px}
+.modal .source-line{color:var(--parchment);font-size:13px}
+.modal .source-line b{color:var(--gold);font-family:"Bebas Neue",sans-serif;font-weight:400;letter-spacing:.06em}
+
+/* ── footer ───────────────────────────────────────────────────────────── */
+.footer{margin-top:42px;padding-top:18px;border-top:1px solid var(--line-soft);color:var(--stone);font-size:12px;line-height:1.7}
+.footer b{color:var(--parchment);font-weight:500}
+.footer .rule{display:flex;gap:6px;margin-top:10px}
+.footer .rule i{height:2px;flex:1;background:var(--line-soft)}
+.footer .rule i:first-child{background:var(--gold);flex:2}
+.footer .rule i:nth-child(2){background:var(--blood)}
+
+@media (max-width:980px){
+  .app{display:block}
+  .sidebar{position:relative;height:auto;padding:18px;gap:14px;border-right:0;border-bottom:1px solid var(--line-soft)}
+  .brand h1{font-size:22px}
+  .nav{flex-direction:row;overflow:auto;padding-bottom:4px}
+  .nav button{border-left:0;border-bottom:2px solid transparent;min-width:max-content;padding:8px 10px}
+  .nav button.active{border-left-color:transparent;border-bottom-color:var(--gold);background:rgba(201,168,106,.1)}
+  .nav .count{display:none}
+  .side-foot{display:none}
+  .main{padding-top:18px}
+}
+@media (max-width:720px){
+  .topbar{align-items:stretch}
+  .controls{justify-content:space-between;width:100%}
+  .chest-row{grid-template-columns:1fr;gap:6px}
+  .modal-grid{grid-template-columns:1fr}
+  .gate-counts{gap:18px}
+  .gate-counts b{font-size:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div id="gate" class="gate">
+  <div class="gate-card">
+    <div class="kicker">Expedition 33 · Companion Codex</div>
+    <h1><span>Spoiler</span>Codex</h1>
+    <div class="lede">Every Nevron, every stat multiplier, every drop, every chest, and the full pictos, weapon, chroma, key item and tint catalogues — in one searchable off-line reference.</div>
+    <div class="warning"><b>Full spoilers.</b> This tool reveals enemy rosters, boss stats, locations, loot tables and story-area names. Open it only if you want the numbers.</div>
+    <div class="gate-actions">
+      <button class="btn" id="enter">Open the Codex</button>
+      <button class="btn ghost" id="enterNoWarn">Enter without the warning</button>
+    </div>
+    <div class="gate-counts" id="gateCounts"></div>
+    <div class="gate-note" id="gateNote">Loading local game data…</div>
+  </div>
+</div>
+
+<div class="app" id="app" hidden>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="mark">E33 · EXPEDITION INFINITY</div>
+      <h1>Spoiler Codex</h1>
+      <p>Stats · Drops · Chests</p>
+    </div>
+    <nav class="nav" id="nav" aria-label="Sections"></nav>
+    <div class="side-foot">
+      <b>Offline reference.</b> Generated from the local game and editor tables. The Nevron dataset switch in the top bar toggles vanilla rows and the current Expedition Infinity staging.
+      <div class="swatchline"><i></i><i></i><i></i></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="search-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input class="search" id="search" type="search" autocomplete="off" spellcheck="false" placeholder="Search the codex…">
+      </div>
+      <div class="controls">
+        <span id="seedBadge" class="badge gold" hidden></span>
+        <label class="control">Nevron data
+          <select id="dataset"></select>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="cut">
+          <span>Show cut content</span>
+        </label>
+      </div>
+    </div>
+    <section id="hero"></section>
+    <section id="content"></section>
+    <footer class="footer">
+      <div><b>Effective stats</b> are <span class="mono">archetype[level] × EnemyScaling</span>, matching <span class="mono">FL_EnemyScalingHelpers.ComputeCharacterStats</span>. Raw <span class="mono">EnemyStats</span> are shown beside them for reference.</div>
+      <div><b>Drop percentages</b> are cooked <span class="mono">LootPercentageChance</span> values. The Expedition Infinity randomizer can reroll chest and enemy loot per seed.</div>
+      <div class="rule"><i></i><i></i><i></i><i></i></div>
+    </footer>
+  </main>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Detail">
+  <div class="modal-card" id="modalCard"></div>
+</div>
+
+<script>window.SPOILER_DATA = __SPOILER_DATA__;</script>
+<script>
+(function(){
+  "use strict";
+
+  const D = window.SPOILER_DATA;
+  const gate = document.getElementById('gate');
+  const app = document.getElementById('app');
+  const nav = document.getElementById('nav');
+  const content = document.getElementById('content');
+  const hero = document.getElementById('hero');
+  const search = document.getElementById('search');
+  const datasetSel = document.getElementById('dataset');
+  const cutToggle = document.getElementById('cut');
+  const modal = document.getElementById('modal');
+  const modalCard = document.getElementById('modalCard');
+
+  if (!D) {
+    document.getElementById('gateNote').innerHTML = '<span class="gate-error">This spoiler file is missing its embedded data. Re-run Apply &amp; Pack in the E33 Mod Editor to regenerate it.</span>';
+    return;
+  }
+
+  const state = {
+    tab: 'nevrons',
+    dataset: 'mod',
+    cut: false,
+    search: '',
+    area: 'All',
+    arch: 'All',
+    tier: 'All',
+    owner: 'All',
+    itemCat: 'All',
+    chromaArea: 'All',
+  };
+
+  const ARCH_ORDER = ['Regular','Strong','Weak','Elite','Elusive','Boss','Alpha','Petank'];
+  const TABS = [
+    { id:'nevrons', label:'Nevrons', glyph:'◆' },
+    { id:'chests', label:'Chests', glyph:'▣' },
+    { id:'pictos', label:'Pictos', glyph:'◈' },
+    { id:'chroma', label:'Chroma', glyph:'✦' },
+    { id:'key', label:'Key Items', glyph:'⚿' },
+    { id:'tints', label:'Tints', glyph:'✚' },
+    { id:'weapons', label:'Weapons', glyph:'⚔' },
+    { id:'items', label:'All Items', glyph:'▦' },
+  ];
+  const ITEM_CATEGORY_ORDER = [
+    'Key Item','Weapon','Pictos','Music Record','Journal','Skill Unlock','Merchant Unlock',
+    'Upgrade Material','Consumable','Cosmetic','Lovely Foot','Item_Pickup','DLC Items','Cut Content Items'
+  ];
+
+  // ── helpers ────────────────────────────────────────────────────────────
+  const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const escAttr = esc;
+  const q = () => state.search.trim().toLowerCase();
+
+  function fmt(n){
+    if (n === null || n === undefined || n === '') return '—';
+    const x = Number(n);
+    if (!isFinite(x)) return '—';
+    const a = Math.abs(x);
+    if (a >= 1e9) return trim((x/1e9).toFixed(2)) + 'B';
+    if (a >= 1e6) return trim((x/1e6).toFixed(2)) + 'M';
+    if (a >= 1e5) return trim((x/1e3).toFixed(1)) + 'K';
+    return Number.isInteger(x) ? x.toLocaleString() : trim(x.toFixed(2));
+  }
+  function trim(s){ return String(s).replace(/\.0+$/,'').replace(/(\.\d)0$/,'$1'); }
+  function pct(n, digits=2){
+    if (n === null || n === undefined || n === '') return '—';
+    const x = Number(n);
+    if (!isFinite(x)) return '—';
+    return trim(x.toFixed(digits)) + '%';
+  }
+  function mult(n){
+    if (n === null || n === undefined || n === '') return '—';
+    const x = Number(n);
+    if (!isFinite(x)) return '—';
+    return '×' + trim(x.toFixed(x < 10 ? 2 : 1));
+  }
+  function signed(n){
+    const x = Number(n);
+    if (!isFinite(x)) return '—';
+    return (x >= 0 ? '+' : '') + trim(x.toFixed(2));
+  }
+  function matches(text, needle){
+    return !needle || String(text ?? '').toLowerCase().includes(needle);
+  }
+  function enemyList(){
+    return (D.enemies && D.enemies[state.dataset]) || [];
+  }
+  function visibleEnemies(){
+    return enemyList().filter(e => state.cut || !e.cut);
+  }
+  function byId(list, id){ return list.find(x => x.id === id); }
+  function visibleSources(sources){
+    return (sources || []).filter(s => state.cut || !s.cut);
+  }
+  function sourceCounts(sources){
+    const c = {};
+    for (const s of visibleSources(sources)) c[s.kind] = (c[s.kind] || 0) + 1;
+    return c;
+  }
+  function sourceSummary(sources){
+    const c = sourceCounts(sources);
+    const parts = [];
+    if (c.Chest) parts.push(c.Chest + ' chest' + (c.Chest === 1 ? '' : 's'));
+    if (c.Enemy) parts.push(c.Enemy + ' Nevron' + (c.Enemy === 1 ? '' : 's'));
+    return parts.length ? parts.join(' · ') : 'No fixed source';
+  }
+  function sourceTable(sources){
+    const visible = visibleSources(sources);
+    if (!visible.length)
+      return '<p class="muted">No fixed chest or Nevron source in the cooked tables. It may come from a quest, dialogue, shop, DLC or the randomizer.</p>';
+    const rows = visible.slice().sort((a,b) => (a.kind+b.area+a.name).localeCompare(b.kind+b.area+b.name, undefined, {numeric:true}));
+    return `<div class="table-wrap"><table class="table compact">
+      <thead><tr><th>Source</th><th>Where</th><th>Chance</th><th>Qty</th></tr></thead>
+      <tbody>${rows.map(s => `<tr>
+        <td><span class="badge ${s.kind === 'Chest' ? 'gold' : 'boss'}">${esc(s.kind)}</span> <span class="name">${esc(s.name)}</span></td>
+        <td class="sub">${esc(s.area)}${s.level ? ' · Lv ' + esc(s.level) : ''}</td>
+        <td class="num-cell">${pct(s.chance)}</td>
+        <td class="num-cell">${esc(s.qty ?? 1)}</td>
+      </tr>`).join('')}</tbody></table></div>`;
+  }
+  function dropChips(drops, max=4){
+    if (!drops || !drops.length) return '<span class="muted">No cooked drop.</span>';
+    const shown = drops.slice(0,max).map(d => {
+      if (d.ref) return `<span class="chip ref" title="${escAttr(d.id)}">${esc(d.name)}</span>`;
+      return `<span class="chip item-chip" data-item="${escAttr(d.id)}" title="Open item">${esc(d.name)} <b class="chance">${pct(d.chance)}</b>${Number(d.qty) > 1 ? `<span class="qty">×${esc(d.qty)}</span>` : ''}</span>`;
+    }).join('');
+    const more = drops.length > max ? `<span class="chip">+${drops.length - max} more</span>` : '';
+    return `<div class="drop-chips">${shown}${more}</div>`;
+  }
+  function statChips(multObj){
+    const map = {'Max HP':'HP','Physical Defense':'DEF','Speed':'SPD','Critical Rate':'CRIT','Physical Attack':'ATK','Free Aim Attack':'AIM','Magical Defense':'MDEF'};
+    const chips = [];
+    for (const [k,v] of Object.entries(multObj || {})) {
+      if (Number(v) === 0) continue;
+      chips.push(`<span class="stat-chip">${esc(map[k] || k)} <b>${mult(v)}</b></span>`);
+    }
+    return chips.length ? chips.join('') : '<span class="muted">—</span>';
+  }
+  function badgesForEnemy(e){
+    const out = [];
+    out.push(`<span class="badge gold">${esc(e.archetype)}</span>`);
+    if (e.isSuperBoss) out.push('<span class="badge super">Super Boss</span>');
+    else if (e.isBoss && e.archetype !== 'Boss' && e.archetype !== 'Alpha') out.push('<span class="badge boss">Boss</span>');
+    if (e.cut) out.push('<span class="badge cut">Cut</span>');
+    return out.join('');
+  }
+  function tabCount(id){
+    switch (id) {
+      case 'nevrons': return enemyList().filter(e => state.cut || !e.cut).length;
+      case 'chests': return D.chests.filter(c => state.cut || !c.cut).length;
+      case 'pictos': return D.pictos.filter(p => state.cut || !p.cut).length;
+      case 'chroma': return D.chromaPacks.length;
+      case 'key': return D.keyItems.filter(i => state.cut || !i.cut).length;
+      case 'tints': return D.tints.filter(i => state.cut || !i.cut).length;
+      case 'weapons': return D.weapons.filter(w => state.cut || !w.cut).length;
+      case 'items': return Object.values(D.items).filter(i => state.cut || !i.cut).length;
+      default: return 0;
+    }
+  }
+
+  // ── boot ───────────────────────────────────────────────────────────────
+  function boot(){
+    const c = D.meta.counts;
+    if (D.meta.seed != null) {
+      document.title = `${D.meta.title}${D.meta.edition ? ' · ' + D.meta.edition : ''} · Seed ${D.meta.seed}`;
+      const badge = document.getElementById('seedBadge');
+      badge.hidden = false;
+      badge.textContent = `Seed ${D.meta.seed}`;
+      badge.title = D.meta.pack || '';
+    }
+    document.getElementById('gateCounts').innerHTML = [
+      ['Nevrons', c.enemiesMod],
+      ['Chests', c.chests],
+      ['Pictos', c.pictos],
+      ['Weapons', c.weapons],
+      ['Items', c.items],
+    ].map(([label,val]) => `<div><b>${Number(val).toLocaleString()}</b>${esc(label)}</div>`).join('');
+    const notes = D.meta.notes || [];
+    document.getElementById('gateNote').textContent =
+      D.meta.seed != null
+        ? `${D.meta.edition ? D.meta.edition + ' · ' : ''}Seed ${D.meta.seed}${D.meta.pack ? ' · ' + D.meta.pack : ''}${D.meta.editionNote ? '\n' + D.meta.editionNote : ''}`
+        : (notes[0] || '');
+
+    datasetSel.innerHTML = D.meta.datasets.map(d => `<option value="${escAttr(d.id)}">${esc(d.label)}</option>`).join('');
+    datasetSel.value = state.dataset;
+
+    document.getElementById('enter').addEventListener('click', openApp);
+    document.getElementById('enterNoWarn').addEventListener('click', openApp);
+    datasetSel.addEventListener('change', () => {
+      state.dataset = datasetSel.value;
+      closeModal();
+      render();
+    });
+    cutToggle.addEventListener('change', () => {
+      state.cut = cutToggle.checked;
+      render();
+    });
+    search.addEventListener('input', debounce(() => {
+      state.search = search.value;
+      render();
+    }, 110));
+    search.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { search.value = ''; state.search = ''; render(); }
+    });
+
+    nav.addEventListener('click', e => {
+      const b = e.target.closest('[data-tab]');
+      if (!b) return;
+      state.tab = b.dataset.tab;
+      state.area = 'All';
+      state.arch = 'All';
+      state.tier = 'All';
+      state.owner = 'All';
+      state.itemCat = 'All';
+      state.chromaArea = 'All';
+      render();
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+
+    content.addEventListener('click', e => {
+      const item = e.target.closest('[data-item]');
+      if (item) { e.preventDefault(); e.stopPropagation(); openItemModal(item.dataset.item); return; }
+      const copy = e.target.closest('[data-copy]');
+      if (copy) { e.preventDefault(); e.stopPropagation(); copyText(copy.dataset.copy); return; }
+      const opener = e.target.closest('[data-open]');
+      if (opener) { e.preventDefault(); openByType(opener.dataset.open, opener.dataset.id); return; }
+      const arch = e.target.closest('[data-arch]');
+      if (arch) { state.arch = arch.dataset.arch; render(); return; }
+      const owner = e.target.closest('[data-owner]');
+      if (owner) { state.owner = owner.dataset.owner; render(); return; }
+      const tier = e.target.closest('[data-tier]');
+      if (tier) { state.tier = tier.dataset.tier; render(); return; }
+      const cat = e.target.closest('[data-cat]');
+      if (cat) { state.itemCat = cat.dataset.cat; render(); return; }
+      if (e.target.closest('#expandChests')) { document.querySelectorAll('.area-block').forEach(d => d.open = true); return; }
+      if (e.target.closest('#collapseChests')) { document.querySelectorAll('.area-block').forEach(d => d.open = false); return; }
+    });
+    content.addEventListener('change', e => {
+      if (e.target.id === 'areaFilter') { state.area = e.target.value; render(); }
+      if (e.target.id === 'chromaAreaFilter') { state.chromaArea = e.target.value; render(); }
+      if (e.target.id === 'weaponTierFilter') { state.tier = e.target.value; render(); }
+    });
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) { closeModal(); return; }
+      if (e.target.closest('[data-close]')) { closeModal(); return; }
+      const item = e.target.closest('[data-item]');
+      if (item) { e.preventDefault(); openItemModal(item.dataset.item); return; }
+      const opener = e.target.closest('[data-open]');
+      if (opener) { e.preventDefault(); openByType(opener.dataset.open, opener.dataset.id); return; }
+      const copy = e.target.closest('[data-copy]');
+      if (copy) { e.preventDefault(); copyText(copy.dataset.copy); return; }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      if (e.key === '/' && document.activeElement !== search && !modal.classList.contains('open')) {
+        e.preventDefault(); search.focus();
+      }
+    });
+
+    renderNav();
+    render();
+  }
+
+  function openApp(){
+    gate.hidden = true;
+    app.hidden = false;
+    search.focus({preventScroll:true});
+  }
+
+  function copyText(text){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(() => {});
+    }
+  }
+  function debounce(fn, ms){
+    let t;
+    return function(){ clearTimeout(t); t = setTimeout(fn, ms); };
+  }
+
+  // ── shell render ───────────────────────────────────────────────────────
+  function renderNav(){
+    nav.innerHTML = TABS.map(t => `<button data-tab="${t.id}" class="${state.tab === t.id ? 'active' : ''}">
+      <span class="glyph">${t.glyph}</span><span class="label">${esc(t.label)}</span><span class="count">${fmt(tabCount(t.id))}</span>
+    </button>`).join('');
+  }
+
+  function render(){
+    renderNav();
+    const placeholders = {
+      nevrons:'Search Nevrons, areas, drops…',
+      chests:'Search chests, areas, items…',
+      pictos:'Search pictos, effects, descriptions…',
+      chroma:'Search Chroma packs, areas, Nevrons…',
+      key:'Search key items, quests, sources…',
+      tints:'Search tints, shards, consumables…',
+      weapons:'Search weapons, owners, passives…',
+      items:'Search every item, category, source…',
+    };
+    search.placeholder = placeholders[state.tab] || 'Search the codex…';
+    hero.innerHTML = '';
+    content.innerHTML = '';
+    switch (state.tab) {
+      case 'nevrons': renderNevrons(); break;
+      case 'chests': renderChests(); break;
+      case 'pictos': renderPictos(); break;
+      case 'chroma': renderChroma(); break;
+      case 'key': renderKeyItems(); break;
+      case 'tints': renderTints(); break;
+      case 'weapons': renderWeapons(); break;
+      case 'items': renderItems(); break;
+    }
+  }
+
+  function heroBlock({ kicker, title, lede, stats, meta }){
+    return `<div class="hero">
+      <div class="kicker">${esc(kicker)}</div>
+      <h2>${esc(title)}</h2>
+      ${lede ? `<p>${lede}</p>` : ''}
+      ${stats && stats.length ? `<div class="hero-stats">${stats.map(s => `<div class="hero-stat ${s.accent ? 'accent' : ''}"><span>${esc(s.label)}</span><strong>${esc(s.value)}</strong></div>`).join('')}</div>` : ''}
+      ${meta ? `<div class="hero-meta">${meta}</div>` : ''}
+    </div>`;
+  }
+
+  // ── Nevrons ────────────────────────────────────────────────────────────
+  function renderNevrons(){
+    const all = visibleEnemies();
+    const areas = [...new Set(all.map(e => e.area))];
+    if (state.area !== 'All' && !areas.includes(state.area)) state.area = 'All';
+    const archs = ['All', ...new Set(all.map(e => e.archetype))].sort((a,b) => {
+      if (a === 'All') return -1; if (b === 'All') return 1;
+      return (ARCH_ORDER.indexOf(a) + 1 || 99) - (ARCH_ORDER.indexOf(b) + 1 || 99) || a.localeCompare(b);
+    });
+    if (state.arch !== 'All' && !archs.includes(state.arch)) state.arch = 'All';
+
+    const needle = q();
+    const filtered = all.filter(e => {
+      if (state.area !== 'All' && e.area !== state.area) return false;
+      if (state.arch !== 'All' && e.archetype !== state.arch) return false;
+      if (!needle) return true;
+      return matches(e.name, needle) || matches(e.id, needle) || matches(e.area, needle) || matches(e.archetype, needle)
+        || e.drops.some(d => matches(d.name, needle) || matches(d.id, needle));
+    });
+
+    const ds = D.meta.datasets.find(d => d.id === state.dataset);
+    const bosses = filtered.filter(e => e.isBoss).length;
+    const withDrops = filtered.filter(e => e.drops.length).length;
+    const dropRows = filtered.reduce((n,e) => n + e.drops.length, 0);
+    hero.innerHTML = heroBlock({
+      kicker: 'Bestiary · ' + (ds ? ds.label : state.dataset),
+      title: 'Nevrons',
+      lede: 'Every enemy row, grouped by its location. Effective stats are the in-fight values; click a card for raw table stats, all multipliers, drops, encounter rows and the full location trail.',
+      stats: [
+        {label:'Nevrons', value: fmt(filtered.length), accent:true},
+        {label:'Boss rows', value: fmt(bosses)},
+        {label:'With drops', value: fmt(withDrops)},
+        {label:'Drop entries', value: fmt(dropRows)},
+        {label:'Areas', value: fmt(new Set(filtered.map(e=>e.area)).size)},
+      ],
+      meta: ds ? `Dataset: <b>${esc(ds.label)}</b> — ${esc(ds.description)}${state.cut ? '' : ' Cut content hidden.'}` : ''
+    });
+
+    const areaOptions = ['All', ...D.areaOrder.filter(a => areas.includes(a)), ...areas.filter(a => !D.areaOrder.includes(a))];
+    const openAttr = '';
+    const areaBlocks = [];
+    const groups = {};
+    for (const e of filtered) (groups[e.area] ||= []).push(e);
+    for (const area of [...D.areaOrder.filter(a => groups[a]), ...Object.keys(groups).filter(a => !D.areaOrder.includes(a))]) {
+      const list = groups[area].slice().sort((a,b) => a.level - b.level || a.name.localeCompare(b.name));
+      const lvl = (D.combatAreaLevels && D.combatAreaLevels[area]) || D.areaLevels[area];
+      areaBlocks.push(`<section class="area-section">
+        <div class="area-head"><h2>${esc(area)}</h2><span class="area-sub">${lvl ? 'Lv ' + esc(lvl) : 'Special'} · ${list.length} Nevron${list.length === 1 ? '' : 's'}</span><span class="hairline"></span></div>
+        <div class="card-grid">${list.map(e => nevronCard(e)).join('')}</div>
+      </section>`);
+    }
+
+    content.innerHTML = `
+      <div class="filter-row">
+        <label class="filter-label">Area
+          <select id="areaFilter">${areaOptions.map(a => `<option value="${escAttr(a)}">${esc(a)}</option>`).join('')}</select>
+        </label>
+        <div class="chip-row">${archs.map(a => `<button class="chipbtn ${state.arch === a ? 'active' : ''}" data-arch="${escAttr(a)}">${esc(a)}${a === 'All' ? ' · ' + all.length : ''}</button>`).join('')}</div>
+      </div>
+      <div class="section-note">Showing <b>${filtered.length}</b> of <b>${all.length}</b> Nevrons. ${state.cut ? 'Cut content included.' : 'Cut content hidden.'} Click any card to open the stat sheet.</div>
+      ${filtered.length ? areaBlocks.join('') : `<div class="empty"><strong>No Nevrons match.</strong>Clear the search or filters, or enable cut content.</div>`}
+    `;
+    const sel = document.getElementById('areaFilter');
+    if (sel) sel.value = state.area;
+  }
+
+  function nevronCard(e){
+    return `<article class="nevron-card" data-open="enemy" data-id="${escAttr(e.id)}" tabindex="0" role="button" aria-label="${escAttr(e.name)}">
+      <div class="card-top">
+        <div><h3>${esc(e.name)}</h3><div class="meta">${esc(e.area)} · Lv ${esc(e.level)} · ${esc(e.id)}</div></div>
+        <div class="badge-row">${badgesForEnemy(e)}</div>
+      </div>
+      <div class="statline">
+        <div class="s"><span>HP</span><b>${fmt(e.stats.hp)}</b><i>${mult(e.scaling.hp)}</i></div>
+        <div class="s"><span>ATK</span><b>${fmt(Math.max(e.stats.atk, e.stats.matk || 0))}</b><i>${mult(e.scaling.patk)}</i></div>
+        <div class="s"><span>SPD</span><b>${fmt(e.stats.speed)}</b><i>${mult(e.scaling.speed)}</i></div>
+        <div class="s"><span>XP</span><b>${fmt(e.stats.xp)}</b><i>${mult(e.scaling.xp)}</i></div>
+        <div class="s"><span>CHROMA</span><b>${fmt(e.stats.chroma)}</b><i>${mult(e.scaling.chroma)}</i></div>
+      </div>
+      <div class="drop-wrap"><div class="drop-label">Possible drops</div>${dropChips(e.drops, 3)}</div>
+    </article>`;
+  }
+
+  // ── Chests ─────────────────────────────────────────────────────────────
+  function renderChests(){
+    const all = D.chests.filter(c => state.cut || !c.cut);
+    const areas = [...new Set(all.map(c => c.area))];
+    if (state.area !== 'All' && !areas.includes(state.area)) state.area = 'All';
+    const needle = q();
+    const filtered = all.filter(c => {
+      if (state.area !== 'All' && c.area !== state.area) return false;
+      if (!needle) return true;
+      return matches(c.name, needle) || matches(c.id, needle) || matches(c.area, needle)
+        || c.drops.some(d => matches(d.name, needle) || matches(d.id, needle));
+    });
+    const dropRows = filtered.reduce((n,c) => n + c.drops.length, 0);
+    const groups = {};
+    for (const c of filtered) (groups[c.area] ||= []).push(c);
+    const orderedAreas = [...D.areaOrder.filter(a => groups[a]), ...Object.keys(groups).filter(a => !D.areaOrder.includes(a))];
+    const areaOptions = ['All', ...D.areaOrder.filter(a => areas.includes(a)), ...areas.filter(a => !D.areaOrder.includes(a))];
+    const openWhenFiltered = state.area !== 'All' || needle.length > 0;
+
+    hero.innerHTML = heroBlock({
+      kicker: 'Loot · DT_ChestsContent',
+      title: 'Chests by area',
+      lede: 'Every cooked chest and pickup row, grouped by the area it belongs to. Direct item slots show their percentage; upgrade-table references are marked as rolls.',
+      stats: [
+        {label:'Chests', value: fmt(filtered.length), accent:true},
+        {label:'Areas', value: fmt(orderedAreas.length)},
+        {label:'Drop slots', value: fmt(dropRows)},
+        {label:'Empty / rolls', value: fmt(filtered.filter(c => !c.drops.length || c.drops.some(d=>d.ref)).length)},
+      ],
+      meta: 'Chest areas come from the curated chest-area map plus location scaling. Search matches chest names, ids, areas and drop items.'
+    });
+
+    const blocks = orderedAreas.map(area => {
+      const list = groups[area].slice().sort((a,b) => a.level - b.level || a.name.localeCompare(b.name));
+      const lvl = D.areaLevels[area];
+      return `<details class="area-block" ${openWhenFiltered ? 'open' : ''}>
+        <summary><span class="chev">▶</span><span class="sum-title">${esc(area)}</span><span class="sum-meta">${lvl ? 'Lv ' + esc(lvl) : 'Special'} · ${list.length} chest${list.length === 1 ? '' : 's'}</span></summary>
+        <div class="area-body">${list.map(chestRow).join('')}</div>
+      </details>`;
+    }).join('');
+
+    content.innerHTML = `
+      <div class="filter-row">
+        <label class="filter-label">Area
+          <select id="areaFilter">${areaOptions.map(a => `<option value="${escAttr(a)}">${esc(a)}</option>`).join('')}</select>
+        </label>
+        <div class="spacer"></div>
+        <button class="btn ghost tiny" id="expandChests">Expand all</button>
+        <button class="btn ghost tiny" id="collapseChests">Collapse all</button>
+      </div>
+      <div class="section-note">Click an area to open it. Percentages are the cooked <b>ChancePercent</b> for that slot${state.cut ? '' : '; cut content hidden'}.</div>
+      ${filtered.length ? blocks : `<div class="empty"><strong>No chests match.</strong>Clear the search or area filter.</div>`}
+    `;
+    const sel = document.getElementById('areaFilter');
+    if (sel) sel.value = state.area;
+  }
+
+  function chestRow(c){
+    const badges = [`<span class="badge tier">T${esc(c.tier)}</span>`, `<span class="badge">Lv ${esc(c.level)}</span>`];
+    if (c.cut) badges.push('<span class="badge cut">Cut</span>');
+    return `<div class="chest-row">
+      <div>
+        <div class="chest-head"><span class="chest-name">${esc(c.name)}</span>${badges.join('')}</div>
+        <div class="sub muted" style="margin-top:4px">${esc(c.id)}</div>
+      </div>
+      <div class="chest-drops">${c.drops.length ? dropChips(c.drops, 6) : '<span class="muted">No fixed drop (empty or upgrade-table reference).</span>'}</div>
+    </div>`;
+  }
+
+  // ── Pictos ─────────────────────────────────────────────────────────────
+  function renderPictos(){
+    const all = D.pictos.filter(p => state.cut || !p.cut);
+    const tiers = ['All','1','2','3','4','5','0'];
+    if (!tiers.includes(state.tier)) state.tier = 'All';
+    const needle = q();
+    const filtered = all.filter(p => {
+      if (state.tier !== 'All') {
+        if (state.tier === '0' && p.tier) return false;
+        if (state.tier !== '0' && String(p.tier) !== state.tier) return false;
+      }
+      if (!needle) return true;
+      return matches(p.name, needle) || matches(p.id, needle) || matches(p.description, needle) || matches(p.group, needle);
+    });
+    const withSources = filtered.filter(p => visibleSources(p.sources).length).length;
+    const created = filtered.filter(p => p.created).length;
+    hero.innerHTML = heroBlock({
+      kicker: 'Pictos · passives & stat rolls',
+      title: 'Pictos',
+      lede: 'Every pictos row with its stat multipliers, Chroma multiplier, Lumina cost, description and known chest / Nevron sources. Tier bands are the Expedition Infinity T1–T5 pictos bands where available.',
+      stats: [
+        {label:'Pictos', value: fmt(filtered.length), accent:true},
+        {label:'With source', value: fmt(withSources)},
+        {label:'T1–T5 tagged', value: fmt(filtered.filter(p => p.tier).length)},
+        {label:'Mod-added', value: fmt(created)},
+      ],
+      meta: 'Multipliers are <b>×</b> values from DT_PictosDefinitions. A dash means no definition row — created or cut content.'
+    });
+
+    const rows = filtered.map(p => `<tr data-open="pictos" data-id="${escAttr(p.id)}">
+      <td><span class="name">${esc(p.name)}</span> <span class="sub">${esc(p.id)}</span><div class="tag-list" style="margin-top:4px">${p.tier ? `<span class="badge tier">T${esc(p.tier)}</span>` : '<span class="badge">Untiered</span>'}${p.created ? '<span class="badge mod">Mod</span>' : ''}${p.cut ? '<span class="badge cut">Cut</span>' : ''}</div></td>
+      <td>${statChips(p.multipliers)}</td>
+      <td class="num-cell">${p.chromaMultiplier != null ? mult(p.chromaMultiplier) : '—'}</td>
+      <td class="num-cell">${p.luminaCost != null ? esc(p.luminaCost) : '—'}</td>
+      <td class="sources-cell">${esc(sourceSummary(p.sources))}</td>
+      <td class="desc">${esc((p.description || '').slice(0, 150))}${(p.description || '').length > 150 ? '…' : ''}</td>
+    </tr>`).join('');
+
+    content.innerHTML = `
+      <div class="filter-row">
+        <div class="chip-row">${tiers.map(t => `<button class="chipbtn ${state.tier === t ? 'active' : ''}" data-tier="${t}">${t === 'All' ? 'All tiers' : t === '0' ? 'Untiered' : 'T' + t}</button>`).join('')}</div>
+      </div>
+      <div class="table-wrap tall"><table class="table">
+        <thead><tr><th>Pictos</th><th>Stat multipliers</th><th>Chroma ×</th><th>Lumina</th><th>Sources</th><th>Effect</th></tr></thead>
+        <tbody>${rows || `<tr><td colspan="6"><div class="empty"><strong>No pictos match.</strong>Clear the search or tier filter.</div></td></tr>`}</tbody>
+      </table></div>
+      <div class="section-note" style="margin-top:12px">Click a row for the full description, actual stat bonuses and every source.</div>
+    `;
+  }
+
+  // ── Chroma ─────────────────────────────────────────────────────────────
+  function renderChroma(){
+    const all = visibleEnemies();
+    const areas = [...new Set(all.map(e => e.area))];
+    if (state.chromaArea !== 'All' && !areas.includes(state.chromaArea)) state.chromaArea = 'All';
+    const needle = q();
+    const top = all.slice().sort((a,b) => (b.stats.chroma || 0) - (a.stats.chroma || 0));
+    const maxChroma = Math.max(1, ...top.map(e => e.stats.chroma || 0));
+    const filtered = top.filter(e => {
+      if (state.chromaArea !== 'All' && e.area !== state.chromaArea) return false;
+      if (!needle) return true;
+      return matches(e.name, needle) || matches(e.id, needle) || matches(e.area, needle);
+    });
+    const packs = D.chromaPacks || [];
+    const packRows = [];
+    for (const pack of packs) {
+      const sources = visibleSources(pack.sources);
+      if (!sources.length) {
+        if (!needle || matches(pack.name, needle)) packRows.push({pack, src:null});
+      } else {
+        for (const src of sources) {
+          if (!needle || matches(pack.name, needle) || matches(src.name, needle) || matches(src.area, needle))
+            packRows.push({pack, src});
+        }
+      }
+    }
+    const topOne = top[0];
+    hero.innerHTML = heroBlock({
+      kicker: 'Chroma · currency & packs',
+      title: 'Chroma',
+      lede: 'Two ways to read Chroma: the effective Chroma a Nevron pays out on death (archetype Chroma × scaling), and the Chroma Pack pickups that sit in chests or drop from enemies.',
+      stats: [
+        {label:'Pack items', value: fmt(packs.length), accent:true},
+        {label:'Top per kill', value: topOne ? fmt(topOne.stats.chroma) : '—'},
+        {label:'Top source', value: topOne ? topOne.name : '—'},
+        {label:'Nevrons', value: fmt(all.length)},
+      ],
+      meta: 'Chroma per kill uses the currently selected Nevron dataset. Packs are fixed item rows; the randomizer can reroll their chest sources per seed.'
+    });
+
+    const packTable = `<div class="table-wrap"><table class="table">
+      <thead><tr><th>Chroma pack</th><th>Source</th><th>Where</th><th>Chance</th><th>Qty</th></tr></thead>
+      <tbody>${packRows.length ? packRows.map(({pack,src}) => `<tr ${src ? '' : 'style="cursor:default"'}>
+        <td><span class="name">${esc(pack.name)}</span> <span class="sub">${esc(pack.id)}</span></td>
+        <td>${src ? `<span class="badge ${src.kind === 'Chest' ? 'gold' : 'boss'}">${esc(src.kind)}</span> ${esc(src.name)}` : '<span class="muted">No fixed source</span>'}</td>
+        <td class="sub">${src ? esc(src.area) + (src.level ? ' · Lv ' + esc(src.level) : '') : '—'}</td>
+        <td class="num-cell">${src ? pct(src.chance) : '—'}</td>
+        <td class="num-cell">${src ? esc(src.qty ?? 1) : '—'}</td>
+      </tr>`).join('') : '<tr><td colspan="5"><div class="empty"><strong>No Chroma pack sources match.</strong></div></td></tr>'}</tbody>
+    </table></div>`;
+
+    const areaOptions = ['All', ...D.areaOrder.filter(a => areas.includes(a)), ...areas.filter(a => !D.areaOrder.includes(a))];
+    const chromaRows = filtered.map((e, i) => {
+      const value = e.stats.chroma || 0;
+      return `<tr data-open="enemy" data-id="${escAttr(e.id)}">
+        <td class="num-cell">${i + 1}</td>
+        <td><span class="name">${esc(e.name)}</span><div class="sub">${esc(e.id)}</div></td>
+        <td class="sub">${esc(e.area)} · Lv ${esc(e.level)}</td>
+        <td class="num-cell" style="color:var(--gold)">${fmt(value)}</td>
+        <td class="num-cell">${mult(e.scaling.chroma)}</td>
+        <td style="min-width:130px"><div class="chroma-bar"><i style="width:${Math.max(1, Math.round(value / maxChroma * 100))}%"></i></div></td>
+      </tr>`;
+    }).join('');
+
+    content.innerHTML = `
+      <div class="area-head"><h2>Chroma packs</h2><span class="area-sub">${packRows.length} entries</span><span class="hairline"></span></div>
+      ${packTable}
+      <div class="area-head"><h2>Chroma per kill</h2><span class="area-sub">effective Chroma stat</span><span class="hairline"></span></div>
+      <div class="filter-row">
+        <label class="filter-label">Area
+          <select id="chromaAreaFilter">${areaOptions.map(a => `<option value="${escAttr(a)}">${esc(a)}</option>`).join('')}</select>
+        </label>
+      </div>
+      <div class="table-wrap tall"><table class="table">
+        <thead><tr><th>#</th><th>Nevron</th><th>Area</th><th>Chroma</th><th>Chroma ×</th><th></th></tr></thead>
+        <tbody>${chromaRows || `<tr><td colspan="6"><div class="empty"><strong>No Nevron Chroma rows match.</strong></div></td></tr>`}</tbody>
+      </table></div>
+    `;
+    const sel = document.getElementById('chromaAreaFilter');
+    if (sel) sel.value = state.chromaArea;
+  }
+
+  // ── Key items ──────────────────────────────────────────────────────────
+  function renderKeyItems(){
+    const all = D.keyItems.filter(i => state.cut || !i.cut);
+    const needle = q();
+    const filtered = all.filter(i => !needle || matches(i.name, needle) || matches(i.id, needle) || matches(i.description, needle) || matches(i.category, needle));
+    const sourced = filtered.filter(i => visibleSources(i.sources).length).length;
+    hero.innerHTML = heroBlock({
+      kicker: 'Key items · quests & keys',
+      title: 'Key Items',
+      lede: 'Quest keys, cake pieces, inks, unlocks and story objects. Most never appear in a chest or enemy row — they come from dialogue, quest beats or scripted rewards.',
+      stats: [
+        {label:'Key items', value: fmt(filtered.length), accent:true},
+        {label:'With fixed source', value: fmt(sourced)},
+        {label:'Cut content', value: fmt(filtered.filter(i=>i.cut).length)},
+      ],
+      meta: 'Click a row for the full description and every known chest / Nevron source.'
+    });
+    const rows = filtered.map(i => `<tr data-open="item" data-id="${escAttr(i.id)}">
+      <td><span class="name">${esc(i.name)}</span><div class="sub">${esc(i.id)}</div>${i.cut ? '<span class="badge cut">Cut</span>' : ''}${i.dlc ? '<span class="badge mod">DLC</span>' : ''}</td>
+      <td class="sub">${esc(i.category || i.type || '')}</td>
+      <td class="sources-cell">${esc(sourceSummary(i.sources))}</td>
+      <td class="desc">${esc((i.description || '').slice(0, 170))}${(i.description || '').length > 170 ? '…' : ''}</td>
+    </tr>`).join('');
+    content.innerHTML = `<div class="table-wrap tall"><table class="table">
+      <thead><tr><th>Key item</th><th>Category</th><th>Sources</th><th>Description</th></tr></thead>
+      <tbody>${rows || `<tr><td colspan="4"><div class="empty"><strong>No key items match.</strong></div></td></tr>`}</tbody>
+    </table></div>`;
+  }
+
+  // ── Tints ──────────────────────────────────────────────────────────────
+  function renderTints(){
+    const all = D.tints.filter(i => state.cut || !i.cut);
+    const needle = q();
+    const filtered = all.filter(i => !needle || matches(i.name, needle) || matches(i.id, needle) || matches(i.description, needle) || matches(i.kind, needle));
+    hero.innerHTML = heroBlock({
+      kicker: 'Consumables · tint shards',
+      title: 'Tints & Consumables',
+      lede: 'Healing, energy, revive and party tints, plus the tint shards used to craft them. Sources list every chest or Nevron drop in the cooked tables.',
+      stats: [
+        {label:'Entries', value: fmt(filtered.length), accent:true},
+        {label:'Healing', value: fmt(filtered.filter(i=>i.kind==='Healing').length)},
+        {label:'Energy', value: fmt(filtered.filter(i=>i.kind==='Energy').length)},
+        {label:'Revive / Party', value: fmt(filtered.filter(i=>i.kind==='Revive'||i.kind==='Party').length)},
+      ],
+      meta: 'Tint <b>pictos</b> (Auto Shell, Cleansing Tint, SOS Healing Tint, …) live in the Pictos tab; this list is the consumable and shard inventory.'
+    });
+    const groups = {};
+    for (const i of filtered) (groups[i.kind] ||= []).push(i);
+    const body = ['Healing','Energy','Revive','Party','Other'].filter(k => groups[k]).map(kind => `
+      <div class="area-head"><h2>${esc(kind)}</h2><span class="area-sub">${groups[kind].length} entries</span><span class="hairline"></span></div>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Item</th><th>Type</th><th>Sources</th><th>Description</th></tr></thead>
+        <tbody>${groups[kind].map(i => `<tr data-open="item" data-id="${escAttr(i.id)}">
+          <td><span class="name">${esc(i.name)}</span><div class="sub">${esc(i.id)}</div>${i.cut ? '<span class="badge cut">Cut</span>' : ''}</td>
+          <td class="sub">${esc(i.type)}</td>
+          <td class="sources-cell">${esc(sourceSummary(i.sources))}</td>
+          <td class="desc">${esc((i.description || '').slice(0,180))}</td>
+        </tr>`).join('')}</tbody>
+      </table></div>`).join('');
+    content.innerHTML = body || `<div class="empty"><strong>No tints match.</strong></div>`;
+  }
+
+  // ── Weapons ────────────────────────────────────────────────────────────
+  function renderWeapons(){
+    const all = D.weapons.filter(w => state.cut || !w.cut);
+    const owners = ['All', ...new Set(all.map(w => w.owner).filter(Boolean))].sort();
+    if (state.owner !== 'All' && !owners.includes(state.owner)) state.owner = 'All';
+    const tiers = ['All','1','2','3','4','5','0'];
+    if (!tiers.includes(state.tier)) state.tier = 'All';
+    const needle = q();
+    const filtered = all.filter(w => {
+      if (state.owner !== 'All' && w.owner !== state.owner) return false;
+      if (state.tier !== 'All') {
+        if (state.tier === '0' && w.tier) return false;
+        if (state.tier !== '0' && String(w.tier) !== state.tier) return false;
+      }
+      if (!needle) return true;
+      return matches(w.name, needle) || matches(w.id, needle) || matches(w.owner, needle) || matches(w.damage, needle)
+        || matches(w.freeAim, needle) || w.passives.some(p => matches(p.name, needle) || matches(p.id, needle));
+    });
+    const withSource = filtered.filter(w => visibleSources(w.sources).length).length;
+    hero.innerHTML = heroBlock({
+      kicker: 'Armory · DT_WeaponDefinitions',
+      title: 'Weapons',
+      lede: 'Every weapon definition with owner, damage elements, base multipliers, Chroma multiplier, attribute scaling grades and its level 33 / 66 / 111 / 222 / 333 passives.',
+      stats: [
+        {label:'Weapons', value: fmt(filtered.length), accent:true},
+        {label:'Owners', value: fmt(new Set(filtered.map(w=>w.owner).filter(Boolean)).size)},
+        {label:'With source', value: fmt(withSource)},
+        {label:'Cut content', value: fmt(filtered.filter(w=>w.cut).length)},
+      ],
+      meta: 'Passive names resolve through DT_PassiveEffects and the custom weapon-effect catalogue. Click a row for the full stat and passive sheet.'
+    });
+    const rows = filtered.map(w => `<tr data-open="weapon" data-id="${escAttr(w.id)}">
+      <td><span class="name">${esc(w.name)}</span><div class="sub">${esc(w.id)}</div><div class="tag-list" style="margin-top:4px">${w.tier ? `<span class="badge tier">T${esc(w.tier)}</span>` : '<span class="badge">Untiered</span>'}${w.cut ? '<span class="badge cut">Cut</span>' : ''}${w.dlc ? '<span class="badge mod">DLC</span>' : ''}</div></td>
+      <td>${esc(w.owner || '—')}</td>
+      <td>${esc(w.damage)}<div class="sub">free aim: ${esc(w.freeAim)}</div></td>
+      <td class="num-cell">${w.multipliers['Physical Attack'] != null ? mult(w.multipliers['Physical Attack']) : '—'}</td>
+      <td class="num-cell">${w.chromaMultiplier != null ? mult(w.chromaMultiplier) : '—'}</td>
+      <td class="sources-cell">${w.passives.length ? w.passives.map(p => esc(p.name)).join(' · ') : '<span class="muted">—</span>'}</td>
+      <td class="sources-cell">${esc(sourceSummary(w.sources))}</td>
+    </tr>`).join('');
+    content.innerHTML = `
+      <div class="filter-row">
+        <div class="chip-row">${owners.map(o => `<button class="chipbtn ${state.owner === o ? 'active' : ''}" data-owner="${escAttr(o)}">${esc(o)}</button>`).join('')}</div>
+        <div class="spacer"></div>
+        <label class="filter-label">Tier
+          <select id="weaponTierFilter">${tiers.map(t => `<option value="${t}">${t === 'All' ? 'All' : t === '0' ? 'Untiered' : 'T' + t}</option>`).join('')}</select>
+        </label>
+      </div>
+      <div class="table-wrap tall"><table class="table">
+        <thead><tr><th>Weapon</th><th>Owner</th><th>Damage</th><th>ATK ×</th><th>Chroma ×</th><th>Passives</th><th>Sources</th></tr></thead>
+        <tbody>${rows || `<tr><td colspan="7"><div class="empty"><strong>No weapons match.</strong></div></td></tr>`}</tbody>
+      </table></div>
+    `;
+    const sel = document.getElementById('weaponTierFilter');
+    if (sel) sel.value = state.tier;
+  }
+
+  // ── All items ──────────────────────────────────────────────────────────
+  function renderItems(){
+    const all = Object.values(D.items).filter(i => state.cut || !i.cut);
+    const catCounts = {};
+    for (const i of all) catCounts[i.category || 'Uncategorised'] = (catCounts[i.category || 'Uncategorised'] || 0) + 1;
+    const cats = ['All', ...ITEM_CATEGORY_ORDER.filter(c => catCounts[c]), ...Object.keys(catCounts).filter(c => !ITEM_CATEGORY_ORDER.includes(c)).sort()];
+    if (state.itemCat !== 'All' && !cats.includes(state.itemCat)) state.itemCat = 'All';
+    const needle = q();
+    const filtered = all.filter(i => {
+      if (state.itemCat !== 'All' && (i.category || 'Uncategorised') !== state.itemCat) return false;
+      if (!needle) return true;
+      return matches(i.name, needle) || matches(i.id, needle) || matches(i.type, needle) || matches(i.category, needle) || matches(i.description, needle);
+    });
+    hero.innerHTML = heroBlock({
+      kicker: 'Inventory · all cooked item rows',
+      title: 'All Items',
+      lede: 'The complete item catalogue — pictos, weapons, key items, chroma packs, catalysts, tints, cosmetics, music, journals, feet and cut content. Use the category chips to narrow it down.',
+      stats: [
+        {label:'Items', value: fmt(filtered.length), accent:true},
+        {label:'Categories', value: fmt(Object.keys(catCounts).length)},
+        {label:'With source', value: fmt(filtered.filter(i => visibleSources(i.sources).length).length)},
+        {label:'Cut content', value: fmt(filtered.filter(i=>i.cut).length)},
+      ],
+      meta: 'Source counts are fixed chest and Nevron drops. Shops, quests, dialogue and seed-rolled loot are not enumerated here.'
+    });
+    const rows = filtered.slice(0, 1600).map(i => `<tr data-open="item" data-id="${escAttr(i.id)}">
+      <td><span class="name">${esc(i.name)}</span><div class="sub">${esc(i.id)}</div></td>
+      <td class="sub">${esc(i.type)}</td>
+      <td class="sub">${esc(i.category || '—')}</td>
+      <td class="sources-cell">${esc(sourceSummary(i.sources))}</td>
+      <td>${i.cut ? '<span class="badge cut">Cut</span>' : i.dlc ? '<span class="badge mod">DLC</span>' : ''}</td>
+    </tr>`).join('');
+    content.innerHTML = `
+      <div class="filter-row"><div class="chip-row">${cats.map(c => `<button class="chipbtn ${state.itemCat === c ? 'active' : ''}" data-cat="${escAttr(c)}">${esc(c)}${catCounts[c] ? ' · ' + catCounts[c] : ''}</button>`).join('')}</div></div>
+      <div class="table-wrap tall"><table class="table">
+        <thead><tr><th>Item</th><th>Type</th><th>Category</th><th>Sources</th><th></th></tr></thead>
+        <tbody>${rows || `<tr><td colspan="5"><div class="empty"><strong>No items match.</strong></div></td></tr>`}</tbody>
+      </table></div>
+      <div class="section-note" style="margin-top:12px">Showing ${fmt(Math.min(filtered.length, 1600))} of ${fmt(filtered.length)} rows. Use the search and category chips to narrow further.</div>
+    `;
+  }
+
+  // ── modals ─────────────────────────────────────────────────────────────
+  function openByType(type, id){
+    if (type === 'enemy') openEnemyModal(id);
+    else if (type === 'pictos') openPictosModal(id);
+    else if (type === 'weapon') openWeaponModal(id);
+    else openItemModal(id);
+  }
+
+  function openModal(html){
+    modalCard.innerHTML = `<button class="modal-close" data-close aria-label="Close">×</button>${html}`;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modalCard.scrollTop = 0;
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function openEnemyModal(id){
+    const e = byId(enemyList(), id);
+    if (!e) return;
+    const ds = D.meta.datasets.find(d => d.id === e.dataset);
+    const statRows = [
+      ['Max HP', `<span class="num">${fmt(e.stats.hp)}</span>`],
+      ['Physical Attack', `<span class="num">${fmt(e.stats.atk)}</span>`],
+      ['Magical Attack', `<span class="num">${fmt(e.stats.matk)}</span>`],
+      ['Physical Defense', `<span class="num">${fmt(e.stats.pdef)}</span>`],
+      ['Magical Defense', `<span class="num">${fmt(e.stats.mdef)}</span>`],
+      ['Speed', `<span class="num">${fmt(e.stats.speed)}</span>`],
+      ['Critical Rate', `<span class="num">${pct(e.stats.crit * 100, 1)}</span>`],
+      ['Experience', `<span class="num">${fmt(e.stats.xp)}</span>`],
+      ['Chroma', `<span class="num">${fmt(e.stats.chroma)}</span>`],
+    ];
+    const scalingRows = [
+      ['HP ×', mult(e.scaling.hp)], ['Physical Attack ×', mult(e.scaling.patk)],
+      ['Physical Defense ×', mult(e.scaling.pdef)], ['Magical Attack ×', mult(e.scaling.matk)],
+      ['Magical Defense ×', mult(e.scaling.mdef)], ['Mastery ×', mult(e.scaling.mastery)],
+      ['Accuracy ×', mult(e.scaling.accuracy)], ['Speed ×', mult(e.scaling.speed)],
+      ['Critical ×', mult(e.scaling.crit)], ['Chroma ×', mult(e.scaling.chroma)],
+      ['Experience ×', mult(e.scaling.xp)],
+    ];
+    const rawRows = Object.entries(e.raw || {}).map(([k,v]) => [k, `<span class="num">${fmt(v)}</span>`]);
+    const dropRows = e.drops.length ? e.drops.map(d => `<tr>
+      <td><span class="chip item-chip" data-item="${escAttr(d.id)}">${esc(d.name)}</span><div class="sub">${esc(d.id)}</div></td>
+      <td class="sub">${esc(d.type)}</td><td class="num-cell">${esc(d.qty)}</td><td class="num-cell" style="color:var(--gold)">${pct(d.chance)}</td>
+    </tr>`).join('') : `<tr><td colspan="4"><span class="muted">No cooked PossibleLoot entries.</span></td></tr>`;
+    const enc = (e.encounters || []).map(x => `<span class="chip">${esc(x)}</span>`).join('');
+    openModal(`
+      <div class="modal-head">
+        <div>
+          <div class="kicker">Nevron · ${esc(e.area)} · ${esc(ds ? ds.label : e.dataset)}</div>
+          <h2>${esc(e.name)}</h2>
+          <div class="badge-row">${badgesForEnemy(e)}<span class="badge">Lv ${esc(e.level)}</span><span class="badge">${esc(e.id)}</span></div>
+        </div>
+        <button class="btn ghost tiny" data-copy="${escAttr(e.id)}">Copy ID</button>
+      </div>
+      <p class="source-line">${esc(e.area)} · fight level <b>${esc(e.level)}</b>${e.tableLevel !== e.level ? ` (table level ${esc(e.tableLevel)})` : ''} · ${esc(e.archetype)} archetype${e.cut ? ' · cut content' : ''}</p>
+      <div class="modal-grid">
+        <section class="panel"><h3>Effective in-fight stats</h3>${kv(statRows)}</section>
+        <section class="panel"><h3>Multipliers</h3>${kv(scalingRows)}</section>
+      </div>
+      <section class="panel" style="margin-top:16px">
+        <h3>Possible drops</h3>
+        <div class="table-wrap"><table class="table compact">
+          <thead><tr><th>Item</th><th>Type</th><th>Qty</th><th>Chance</th></tr></thead><tbody>${dropRows}</tbody>
+        </table></div>
+      </section>
+      <div class="modal-grid">
+        <section class="panel"><h3>Raw EnemyStats</h3>${rawRows.length ? kv(rawRows) : '<p class="muted">No raw stat rows.</p>'}<p class="muted" style="margin-top:12px">The runtime ignores these for most rows; they are the table placeholders / legacy values.</p></section>
+        <section class="panel"><h3>Location & encounters</h3>
+          <p><b>${esc(e.area)}</b>${(D.combatAreaLevels && D.combatAreaLevels[e.area]) || D.areaLevels[e.area] ? ` · area level ${esc((D.combatAreaLevels && D.combatAreaLevels[e.area]) || D.areaLevels[e.area])}` : ''}</p>
+          <p class="muted">${esc(e.encounterCount)} encounter row${e.encounterCount === 1 ? '' : 's'} reference this Nevron.</p>
+          <details><summary class="muted" style="cursor:pointer">Show encounter rows</summary><div class="tag-list" style="margin-top:8px">${enc || '<span class="muted">None found.</span>'}</div></details>
+        </section>
+      </div>
+    `);
+  }
+
+  function openPictosModal(id){
+    const p = byId(D.pictos, id);
+    if (!p) { openItemModal(id); return; }
+    const multRows = Object.entries(p.multipliers || {}).filter(([,v]) => Number(v) !== 0).map(([k,v]) => [k, `<span class="num">${mult(v)}</span>`]);
+    const actualRows = Object.entries(p.actual || {}).filter(([,v]) => Number(v) !== 0).map(([k,v]) => [k, `<span class="num">${signed(v)}</span>`]);
+    openModal(`
+      <div class="modal-head">
+        <div>
+          <div class="kicker">Pictos · ${p.tier ? 'Tier ' + p.tier : 'Untiered'}${p.created ? ' · Mod-added' : ''}</div>
+          <h2>${esc(p.name)}</h2>
+          <div class="badge-row">${p.tier ? `<span class="badge tier">T${esc(p.tier)}</span>` : '<span class="badge">Untiered</span>'}${p.created ? '<span class="badge mod">Mod-added</span>' : ''}${p.cut ? '<span class="badge cut">Cut</span>' : ''}<span class="badge">${esc(p.id)}</span></div>
+        </div>
+        <button class="btn ghost tiny" data-copy="${escAttr(p.id)}">Copy ID</button>
+      </div>
+      <p class="source-line">${esc(p.description || 'No description in the local string tables.')}</p>
+      <div class="modal-grid">
+        <section class="panel"><h3>Stat multipliers</h3>${multRows.length ? kv(multRows) : '<p class="muted">No DT_PictosDefinitions multiplier row. Created pictos often carry their stats on a separate definition asset.</p>'}</section>
+        <section class="panel"><h3>Details</h3>${kv([
+          ['Chroma ×', p.chromaMultiplier != null ? `<span class="num">${mult(p.chromaMultiplier)}</span>` : '—'],
+          ['Lumina cost', p.luminaCost != null ? `<span class="num">${esc(p.luminaCost)}</span>` : '—'],
+          ['Battles to master', p.unlockSteps != null ? `<span class="num">${esc(p.unlockSteps)}</span>` : '—'],
+          ['Group', esc(p.group || '—')],
+        ])}</section>
+      </div>
+      ${actualRows.length ? `<section class="panel" style="margin-top:16px"><h3>Actual stat bonuses in the item row</h3>${kv(actualRows)}</section>` : ''}
+      <section class="panel" style="margin-top:16px"><h3>Sources</h3>${sourceTable(p.sources)}</section>
+    `);
+  }
+
+  function openWeaponModal(id){
+    const w = byId(D.weapons, id);
+    if (!w) { openItemModal(id); return; }
+    const multRows = Object.entries(w.multipliers || {}).map(([k,v]) => [k, `<span class="num">${mult(v)}</span>`]);
+    const scalingRows = (w.scaling || []).map(s => [s.attribute, `<span class="badge gold">${esc(s.grade)}</span>`]);
+    const passiveHtml = w.passives.length ? w.passives.map(p => `<div class="passive">
+      <div><span class="p-name">${esc(p.name)}</span><span class="p-meta">Lv ${esc(p.level)}</span><span class="sub">${esc(p.id)}</span></div>
+      ${p.description ? `<div class="p-desc">${esc(p.description)}</div>` : ''}
+    </div>`).join('') : '<p class="muted">No Level*Lumina passives found in the definition row.</p>';
+    openModal(`
+      <div class="modal-head">
+        <div>
+          <div class="kicker">Weapon · ${esc(w.owner || 'Unknown owner')}</div>
+          <h2>${esc(w.name)}</h2>
+          <div class="badge-row">${w.tier ? `<span class="badge tier">T${esc(w.tier)}</span>` : '<span class="badge">Untiered</span>'}<span class="badge">${esc(w.damage)}</span><span class="badge">Free aim: ${esc(w.freeAim)}</span>${w.cut ? '<span class="badge cut">Cut</span>' : ''}${w.dlc ? '<span class="badge mod">DLC</span>' : ''}<span class="badge">${esc(w.id)}</span></div>
+        </div>
+        <button class="btn ghost tiny" data-copy="${escAttr(w.id)}">Copy ID</button>
+      </div>
+      ${w.description ? `<p class="source-line">${esc(w.description)}</p>` : ''}
+      <div class="modal-grid">
+        <section class="panel"><h3>Base multipliers</h3>${multRows.length ? kv(multRows) : '<p class="muted">No base multiplier row.</p>'}</section>
+        <section class="panel"><h3>Details</h3>${kv([
+          ['Owner', esc(w.owner || '—')],
+          ['Damage type', esc(w.damage)],
+          ['Free aim type', esc(w.freeAim)],
+          ['Chroma ×', w.chromaMultiplier != null ? `<span class="num">${mult(w.chromaMultiplier)}</span>` : '—'],
+        ])}</section>
+      </div>
+      <div class="modal-grid">
+        <section class="panel"><h3>Attribute scaling</h3>${scalingRows.length ? kv(scalingRows) : '<p class="muted">No attribute scaling entries.</p>'}</section>
+        <section class="panel"><h3>Sources</h3>${sourceTable(w.sources)}</section>
+      </div>
+      <section class="panel" style="margin-top:16px"><h3>Passives</h3>${passiveHtml}</section>
+    `);
+  }
+
+  function openItemModal(id){
+    const i = D.items[id];
+    if (!i) return;
+    const isWeapon = D.weapons.some(w => w.id === id);
+    const isPictos = D.pictos.some(p => p.id === id);
+    const stats = i.stats || {};
+    openModal(`
+      <div class="modal-head">
+        <div>
+          <div class="kicker">${esc(i.category || i.type || 'Item')}</div>
+          <h2>${esc(i.name)}</h2>
+          <div class="badge-row">
+            <span class="badge gold">${esc(i.type || 'Item')}</span>
+            ${i.category ? `<span class="badge">${esc(i.category)}</span>` : ''}
+            ${i.tier ? `<span class="badge tier">T${esc(i.tier)}</span>` : ''}
+            ${i.cut ? '<span class="badge cut">Cut</span>' : ''}
+            ${i.dlc ? '<span class="badge mod">DLC</span>' : ''}
+            <span class="badge">${esc(i.id)}</span>
+          </div>
+        </div>
+        <div class="tag-list">
+          ${isWeapon ? `<button class="btn ghost tiny" data-open="weapon" data-id="${escAttr(i.id)}">Weapon sheet</button>` : ''}
+          ${isPictos ? `<button class="btn ghost tiny" data-open="pictos" data-id="${escAttr(i.id)}">Pictos sheet</button>` : ''}
+          <button class="btn ghost tiny" data-copy="${escAttr(i.id)}">Copy ID</button>
+        </div>
+      </div>
+      <p class="source-line">${esc(i.description || 'No description in the local string tables.')}</p>
+      <div class="modal-grid">
+        <section class="panel"><h3>Item data</h3>${kv([
+          ['Type', esc(i.type || '—')],
+          ['Subtype', esc(i.subtype || '—')],
+          ['Category', esc(i.category || '—')],
+          ['Rarity', esc(i.rarity || '—')],
+          ['Buy value', i.buy != null ? `<span class="num">${esc(i.buy)}</span>` : '—'],
+          ['Sell value', i.sell != null ? `<span class="num">${esc(i.sell)}</span>` : '—'],
+        ])}</section>
+        <section class="panel"><h3>Sources</h3>${sourceTable(i.sources)}</section>
+      </div>
+    `);
+  }
+
+  function kv(rows){
+    return `<table class="kv">${rows.map(([k,v]) => `<tr><th>${esc(k)}</th><td>${v}</td></tr>`).join('')}</table>`;
+  }
+
+  // ── go ─────────────────────────────────────────────────────────────────
+  boot();
+})();
+</script>
+</body>
+</html>

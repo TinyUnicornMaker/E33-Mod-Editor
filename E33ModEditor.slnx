@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CUE4Parse/CUE4Parse.csproj" />
+    <Project Path="src/E33ModEditor.App/E33ModEditor.App.csproj" />
+    <Project Path="src/E33Packer.App/E33Packer.App.csproj" />
+    <Project Path="src/E33Packer.Tests/E33Packer.Tests.csproj" />
+    <Project Path="src/E33ModEditor.Cli/E33ModEditor.Cli.csproj" />
+    <Project Path="src/E33ModEditor.Core/E33ModEditor.Core.csproj" />
+  </Folder>
+  <Folder Name="/src/UAssetAPI/">
+    <Project Path="src/UAssetAPI/UAssetAPI/UAssetAPI.csproj" />
+  </Folder>
+</Solution>

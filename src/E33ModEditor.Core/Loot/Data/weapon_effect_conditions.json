@@ -1,0 +1,2159 @@
+{
+  "version": 1,
+  "generatedBy": "Planning/archetypes/build_conditions.py",
+  "conditionTags": [
+    "ally",
+    "consume-powerless",
+    "consume-stain",
+    "crit-alternate",
+    "crit-always",
+    "first-life",
+    "heal",
+    "hp-full",
+    "hp-low",
+    "keep-powerless",
+    "no-heal",
+    "no-hit",
+    "on-death",
+    "self-damage",
+    "self-status",
+    "solo",
+    "stain-scale"
+  ],
+  "informationalTags": [
+    "almighty",
+    "ap-cost",
+    "ap-gain",
+    "base-attack",
+    "break-dmg",
+    "break-payoff",
+    "buff-apply",
+    "buff-conditional",
+    "burn-apply",
+    "burn-consume",
+    "burn-scale",
+    "charge-consume",
+    "charge-gen",
+    "consume-defenseless",
+    "consume-slow",
+    "counter",
+    "crit-chance",
+    "crit-damage",
+    "crit-scaling",
+    "death-trigger",
+    "extra-action",
+    "foretell-apply",
+    "foretell-consume",
+    "free-aim",
+    "gradient-gen",
+    "gradient-payoff",
+    "heavy",
+    "keep-mark",
+    "mark-apply",
+    "mark-payoff",
+    "mask-switch",
+    "moon-payoff",
+    "multi-hit",
+    "on-crit",
+    "overcharge",
+    "perfection-gain",
+    "perfection-payoff",
+    "perfection-protect",
+    "powerless-apply",
+    "reckless",
+    "revive",
+    "shell-gen",
+    "shell-need",
+    "shield-break",
+    "shield-gen",
+    "shield-payoff",
+    "shield-spend",
+    "skill-attack",
+    "stain-convert",
+    "stain-diversity",
+    "stain-echo",
+    "stain-fullcrit",
+    "stain-gen-any",
+    "stain-gen-dark",
+    "stain-gen-earth",
+    "stain-gen-fire",
+    "stain-gen-ice",
+    "stain-gen-light",
+    "stain-gen-lightdark",
+    "stain-gen-lightning",
+    "stun",
+    "sun-payoff",
+    "twilight-enter",
+    "twilight-payoff",
+    "wheel"
+  ],
+  "conflicts": [
+    [
+      "hp-full",
+      "hp-low"
+    ],
+    [
+      "hp-full",
+      "self-damage"
+    ],
+    [
+      "hp-full",
+      "on-death"
+    ],
+    [
+      "no-hit",
+      "hp-low"
+    ],
+    [
+      "no-hit",
+      "self-damage"
+    ],
+    [
+      "no-hit",
+      "on-death"
+    ],
+    [
+      "heal",
+      "no-heal"
+    ],
+    [
+      "keep-powerless",
+      "consume-powerless"
+    ],
+    [
+      "stain-scale",
+      "consume-stain"
+    ],
+    [
+      "crit-always",
+      "crit-alternate"
+    ],
+    [
+      "solo",
+      "ally"
+    ],
+    [
+      "first-life",
+      "self-damage"
+    ],
+    [
+      "first-life",
+      "self-status"
+    ],
+    [
+      "first-life",
+      "on-death"
+    ]
+  ],
+  "synergies": [
+    {
+      "when": "shield-spend",
+      "prefer": [
+        "shield-gen",
+        "shell-gen"
+      ],
+      "weight": 5
+    },
+    {
+      "when": "shell-need",
+      "prefer": [
+        "shell-gen",
+        "shield-gen"
+      ],
+      "weight": 4
+    },
+    {
+      "when": "shield-gen",
+      "prefer": [
+        "shield-payoff"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "shield-payoff",
+      "prefer": [
+        "shield-gen"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "counter",
+      "prefer": [
+        "shield-payoff",
+        "shield-gen"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "shield-gen",
+      "prefer": [
+        "counter"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "shield-break",
+      "prefer": [
+        "shield-gen"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "shield-gen",
+      "prefer": [
+        "shield-break"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "shell-gen",
+      "prefer": [
+        "shell-need",
+        "shield-gen"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "hp-full",
+      "prefer": [
+        "shell-gen"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "burn-apply",
+      "prefer": [
+        "burn-scale"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "burn-scale",
+      "prefer": [
+        "burn-apply"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "burn-apply",
+      "prefer": [
+        "burn-consume"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "burn-consume",
+      "prefer": [
+        "burn-apply"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "burn-apply",
+      "prefer": [
+        "crit-chance",
+        "on-crit"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "burn-scale",
+      "prefer": [
+        "crit-chance"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "burn-apply",
+      "prefer": [
+        "mark-apply"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "burn-apply",
+      "prefer": [
+        "sun-payoff"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "self-status",
+      "prefer": [
+        "burn-scale",
+        "buff-conditional",
+        "heal"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "self-damage",
+      "prefer": [
+        "heal",
+        "hp-low"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "buff-apply",
+      "prefer": [
+        "buff-conditional"
+      ],
+      "weight": 4
+    },
+    {
+      "when": "buff-conditional",
+      "prefer": [
+        "buff-apply"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "crit-chance",
+      "prefer": [
+        "on-crit"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "on-crit",
+      "prefer": [
+        "crit-chance",
+        "crit-damage",
+        "crit-always"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "crit-always",
+      "prefer": [
+        "on-crit"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "crit-alternate",
+      "prefer": [
+        "crit-chance"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "crit-scaling",
+      "prefer": [
+        "crit-chance",
+        "multi-hit"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "crit-chance",
+      "prefer": [
+        "crit-scaling",
+        "on-crit"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "mark-apply",
+      "prefer": [
+        "mark-payoff"
+      ],
+      "weight": 4
+    },
+    {
+      "when": "mark-payoff",
+      "prefer": [
+        "mark-apply"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "mark-apply",
+      "prefer": [
+        "keep-mark"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "powerless-apply",
+      "prefer": [
+        "consume-powerless"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "slow-apply",
+      "prefer": [
+        "consume-slow"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "defenceless-apply",
+      "prefer": [
+        "consume-defenseless"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "buff-apply",
+      "prefer": [
+        "ap-gain"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "base-attack",
+      "prefer": [
+        "shield-spend",
+        "mark-apply",
+        "burn-apply"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "free-aim",
+      "prefer": [
+        "shield-break",
+        "stain-gen-any"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "ap-gain",
+      "prefer": [
+        "extra-action",
+        "ap-cost"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "ap-cost",
+      "prefer": [
+        "ap-gain",
+        "extra-action"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "stain-gen-any",
+      "prefer": [
+        "stain-scale",
+        "stain-echo"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "stain-gen-fire",
+      "prefer": [
+        "stain-echo",
+        "stain-scale",
+        "burn-scale"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "stain-gen-ice",
+      "prefer": [
+        "stain-echo",
+        "stain-scale"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "stain-gen-lightning",
+      "prefer": [
+        "stain-echo",
+        "stain-scale"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "stain-gen-earth",
+      "prefer": [
+        "stain-echo",
+        "stain-scale",
+        "break-dmg"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "stain-gen-light",
+      "prefer": [
+        "stain-echo",
+        "stain-scale"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "stain-gen-dark",
+      "prefer": [
+        "stain-echo",
+        "stain-scale"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "consume-stain",
+      "prefer": [
+        "stain-gen-any",
+        "stain-gen-lightdark"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "stain-echo",
+      "prefer": [
+        "stain-gen-any"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "stain-gen-any",
+      "prefer": [
+        "gradient-gen"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "stain-fullcrit",
+      "prefer": [
+        "stain-gen-any",
+        "stain-gen-fire",
+        "stain-gen-ice",
+        "stain-gen-lightning",
+        "stain-gen-earth"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "stain-diversity",
+      "prefer": [
+        "stain-gen-any"
+      ],
+      "weight": 4,
+      "avoid": [
+        "stain-gen-lightdark",
+        "stain-convert"
+      ]
+    },
+    {
+      "when": "gradient-gen",
+      "prefer": [
+        "gradient-payoff"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "gradient-payoff",
+      "prefer": [
+        "gradient-gen"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "shield-gen",
+      "prefer": [
+        "counter",
+        "break-payoff"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "perfection-gain",
+      "prefer": [
+        "perfection-payoff",
+        "perfection-protect"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "perfection-payoff",
+      "prefer": [
+        "perfection-gain"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "perfection-protect",
+      "prefer": [
+        "perfection-gain"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "overcharge",
+      "prefer": [
+        "skill-attack"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "wheel",
+      "prefer": [
+        "mask-switch"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "mask-switch",
+      "prefer": [
+        "wheel"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "foretell-apply",
+      "prefer": [
+        "foretell-consume"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "foretell-consume",
+      "prefer": [
+        "foretell-apply",
+        "charge-gen"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "charge-gen",
+      "prefer": [
+        "charge-consume",
+        "sun-payoff",
+        "moon-payoff"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "charge-consume",
+      "prefer": [
+        "charge-gen"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "sun-payoff",
+      "prefer": [
+        "charge-gen"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "moon-payoff",
+      "prefer": [
+        "charge-gen"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "twilight-enter",
+      "prefer": [
+        "twilight-payoff",
+        "charge-gen"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "twilight-payoff",
+      "prefer": [
+        "twilight-enter",
+        "charge-gen"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "break-dmg",
+      "prefer": [
+        "break-payoff",
+        "stun"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "break-payoff",
+      "prefer": [
+        "break-dmg"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "stun",
+      "prefer": [
+        "break-dmg"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "reckless",
+      "prefer": [
+        "heal"
+      ],
+      "weight": 3
+    },
+    {
+      "when": "revive",
+      "prefer": [
+        "death-trigger"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "death-trigger",
+      "prefer": [
+        "revive",
+        "ally"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "first-life",
+      "prefer": [
+        "heal"
+      ],
+      "weight": 4
+    },
+    {
+      "when": "heal",
+      "prefer": [
+        "first-life"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "hp-low",
+      "prefer": [
+        "self-damage"
+      ],
+      "weight": 2
+    },
+    {
+      "when": "no-hit",
+      "prefer": [
+        "shell-gen",
+        "heal"
+      ],
+      "weight": 1
+    },
+    {
+      "when": "hp-full",
+      "prefer": [
+        "heal",
+        "shell-gen"
+      ],
+      "weight": 1
+    }
+  ],
+  "elementGate": {
+    "enabled": true,
+    "elements": {
+      "EarthAPCost-": "Earth",
+      "FireAPCost-": "Fire",
+      "IceAPCost-": "Ice",
+      "LightDMGBurnOnCrit": "Light",
+      "LightDamageBurn": "Light",
+      "LightningAPCost-": "Lightning",
+      "PhysicalAPCost-": "Physical",
+      "SkillsDarkDMG+": "Dark",
+      "SkillsEarthDMG+": "Earth",
+      "SkillsFireDMG+": "Fire",
+      "SkillsIceDMG+": "Ice",
+      "SkillsLightDMG+": "Light",
+      "SkillsLightningDMG+": "Lightning",
+      "SkillsPhysicalDMG+": "Physical"
+    }
+  },
+  "tags": {
+    "APOnCounter": [
+      "ap-gain",
+      "counter"
+    ],
+    "APOnCrit": [
+      "ap-gain",
+      "on-crit"
+    ],
+    "APOnShield": [
+      "ap-gain",
+      "shield-payoff"
+    ],
+    "APonBreak": [
+      "ap-gain",
+      "break-payoff"
+    ],
+    "AlmightyConsumeBurn": [
+      "almighty",
+      "burn-consume"
+    ],
+    "AlmightyDoubleBurn": [
+      "almighty",
+      "burn-apply"
+    ],
+    "AlwaysCritOnCounterDamage": [
+      "counter"
+    ],
+    "AttackBurn": [
+      "base-attack",
+      "burn-apply"
+    ],
+    "AttackBurnWhilePowerful": [
+      "base-attack",
+      "burn-apply"
+    ],
+    "AttackConsumeShieldForExtraDMG": [
+      "base-attack",
+      "shield-spend"
+    ],
+    "AttackLifesteal_Weapon": [
+      "base-attack",
+      "heal"
+    ],
+    "AttackPlayAgain": [
+      "base-attack",
+      "extra-action",
+      "multi-hit"
+    ],
+    "AttackSunItemMoon": [
+      "base-attack",
+      "charge-gen"
+    ],
+    "AugmentedAim_Weapon": [
+      "free-aim"
+    ],
+    "AugmentedAttack_Weapon": [
+      "base-attack"
+    ],
+    "AutoDeath": [
+      "on-death"
+    ],
+    "BaseAttackToDarkStain": [
+      "base-attack",
+      "stain-convert",
+      "stain-gen-dark"
+    ],
+    "BaseAttackToHeavy": [
+      "base-attack",
+      "heavy",
+      "wheel"
+    ],
+    "BreakDMG+": [
+      "break-dmg"
+    ],
+    "BreakEarthBurst": [
+      "break-dmg"
+    ],
+    "BurnDamage": [
+      "burn-scale"
+    ],
+    "BurnInVirtuose": [
+      "burn-apply"
+    ],
+    "BurnOnCrit": [
+      "burn-apply",
+      "on-crit"
+    ],
+    "CanStealShield": [
+      "shield-gen"
+    ],
+    "ChargesBalance": [
+      "charge-consume"
+    ],
+    "CounterBurn": [
+      "burn-apply",
+      "counter"
+    ],
+    "CounterDamagePerShield": [
+      "counter",
+      "shield-payoff"
+    ],
+    "CounterDefenseless": [
+      "counter"
+    ],
+    "CritAppliesBurn": [
+      "burn-apply",
+      "on-crit"
+    ],
+    "CritPerBurn": [
+      "crit-chance"
+    ],
+    "DMG+WhenNoDMGTaken": [
+      "no-hit"
+    ],
+    "DamageBonusOnRevive": [
+      "revive"
+    ],
+    "DamageBonusPerHit": [
+      "multi-hit",
+      "skill-attack"
+    ],
+    "DamageOnPerfectionRank": [
+      "perfection-payoff"
+    ],
+    "DamagePerMaskChange": [
+      "mask-switch",
+      "multi-hit",
+      "wheel"
+    ],
+    "DamagePerSunCharge": [
+      "charge-consume",
+      "sun-payoff"
+    ],
+    "DoubleFreeAimDamageAlmighty": [
+      "almighty",
+      "free-aim"
+    ],
+    "DoubleHit": [
+      "multi-hit",
+      "skill-attack"
+    ],
+    "EarthAPCost-": [
+      "ap-cost"
+    ],
+    "FireAPCost-": [
+      "ap-cost"
+    ],
+    "Foretell_ApplyBurnEveryXForetell": [
+      "burn-apply"
+    ],
+    "Foretell_ApplyBurnOnHitTakenOnSun": [
+      "burn-apply",
+      "sun-payoff"
+    ],
+    "Foretell_ApplyBurnPerSunChargeOnConsume": [
+      "burn-apply",
+      "sun-payoff"
+    ],
+    "Foretell_ApplyBurnPerSunChargeOnCounterAttack": [
+      "burn-apply",
+      "counter",
+      "sun-payoff"
+    ],
+    "Foretell_ApplyForetellOnApplyMark": [
+      "foretell-apply",
+      "mark-payoff"
+    ],
+    "Foretell_ApplyForetellOnCrit": [
+      "foretell-apply",
+      "on-crit"
+    ],
+    "Foretell_ApplyForetellOnShieldBreakPerSunCharge": [
+      "break-payoff",
+      "foretell-apply",
+      "shield-break"
+    ],
+    "Foretell_ApplyForetellPerChargeOnTwilightSwitch": [
+      "foretell-apply",
+      "twilight-enter",
+      "twilight-payoff"
+    ],
+    "Foretell_ApplyMaxForetellOnSunSkills": [
+      "foretell-apply",
+      "sun-payoff"
+    ],
+    "Foretell_ApplyOnAttack": [
+      "foretell-apply"
+    ],
+    "Foretell_ApplyOnCounter": [
+      "counter",
+      "foretell-apply"
+    ],
+    "Foretell_AttackConsumeBurnToApplyForetell": [
+      "foretell-consume"
+    ],
+    "Foretell_AttackConsumeSunCharge": [
+      "charge-consume"
+    ],
+    "Foretell_AttackConsumeToApplyBurnMoonCharge": [
+      "burn-apply",
+      "charge-consume",
+      "foretell-consume"
+    ],
+    "Foretell_AttackGainMoonCharge": [
+      "charge-gen",
+      "moon-payoff"
+    ],
+    "Foretell_BuffsOnStates": [
+      "buff-apply"
+    ],
+    "Foretell_ChangeTwilightAlwaysCrit": [
+      "crit-always"
+    ],
+    "Foretell_ConsumeChargesOnFreeAim": [
+      "charge-consume",
+      "foretell-consume",
+      "free-aim"
+    ],
+    "Foretell_CurseSelfButDMG+": [
+      "reckless",
+      "self-status"
+    ],
+    "Foretell_DMG+PerMoonCharge": [
+      "charge-consume",
+      "moon-payoff"
+    ],
+    "Foretell_DarkConversionOnTwilight": [
+      "twilight-enter",
+      "twilight-payoff"
+    ],
+    "Foretell_DealAOEDamagePerChargeOnTwilightSwitch": [
+      "twilight-enter",
+      "twilight-payoff"
+    ],
+    "Foretell_DontRemoveMarkOnTwilight": [
+      "keep-mark",
+      "mark-payoff",
+      "twilight-payoff"
+    ],
+    "Foretell_DoubleChargeGain": [
+      "charge-gen",
+      "multi-hit"
+    ],
+    "Foretell_ExtendOrIncreaseTwilight": [
+      "twilight-enter",
+      "twilight-payoff"
+    ],
+    "Foretell_ExtendTwilight": [
+      "twilight-enter"
+    ],
+    "Foretell_FreeAimShotsConsumeForDMG+": [
+      "foretell-consume",
+      "free-aim"
+    ],
+    "Foretell_GainAPPerMoonChargeOnTurnStart": [
+      "ap-gain",
+      "charge-consume",
+      "moon-payoff"
+    ],
+    "Foretell_GivesAPOnConsumingCharge": [
+      "ap-gain",
+      "charge-consume",
+      "foretell-consume"
+    ],
+    "Foretell_GivesSunChargesOnCounterAttack": [
+      "charge-gen",
+      "counter"
+    ],
+    "Foretell_HealEfficiencyPerMoonCharge": [
+      "heal",
+      "moon-payoff"
+    ],
+    "Foretell_HealOnApply": [
+      "heal"
+    ],
+    "Foretell_HealOnTurnStartConsumeMoonCharge": [
+      "charge-consume",
+      "heal",
+      "moon-payoff"
+    ],
+    "Foretell_InstantReplayOnTwilight": [
+      "extra-action",
+      "twilight-enter"
+    ],
+    "Foretell_MarkOnConsume": [
+      "mark-apply"
+    ],
+    "Foretell_MoonSkillsAlwaysCritOnMoon": [
+      "crit-always",
+      "moon-payoff"
+    ],
+    "Foretell_MoonSkillsCharge+": [
+      "charge-gen",
+      "moon-payoff",
+      "skill-attack"
+    ],
+    "Foretell_OnTwilightBurnDMG+": [
+      "burn-scale",
+      "twilight-payoff"
+    ],
+    "Foretell_OnTwilightSwitchApplyMarkAOE": [
+      "mark-apply",
+      "twilight-enter"
+    ],
+    "Foretell_PropagateForetellOnApplication": [
+      "foretell-apply"
+    ],
+    "Foretell_ResetCurseOnTwilight": [
+      "twilight-enter"
+    ],
+    "Foretell_ShieldOnTurnStartWhenSunCharge": [
+      "shield-gen",
+      "sun-payoff"
+    ],
+    "Foretell_SunAPIncrease": [
+      "ap-gain",
+      "charge-consume",
+      "sun-payoff"
+    ],
+    "Foretell_SunSkillsCharge+": [
+      "charge-gen",
+      "skill-attack",
+      "sun-payoff"
+    ],
+    "Foretell_SunSkillsDMG+PerForetell": [
+      "foretell-consume",
+      "skill-attack",
+      "sun-payoff"
+    ],
+    "Foretell_TwilightFreeAimDMG+": [
+      "free-aim",
+      "twilight-payoff"
+    ],
+    "FourthHitForetell": [
+      "charge-gen",
+      "foretell-apply"
+    ],
+    "FreeAimBreaksMoreShields": [
+      "free-aim",
+      "shield-break"
+    ],
+    "FreeAimDoubleShot": [
+      "free-aim",
+      "multi-hit"
+    ],
+    "FreeAimForwardWheel": [
+      "free-aim",
+      "wheel"
+    ],
+    "FrenzyAttack": [
+      "multi-hit"
+    ],
+    "GainAPOnApplyBuffsDebuffs": [
+      "ap-gain"
+    ],
+    "GradientAttackAndCounterDMG+": [
+      "counter",
+      "gradient-payoff"
+    ],
+    "GradientChargesOnParry": [
+      "gradient-gen"
+    ],
+    "GradientPointOnCrit": [
+      "gradient-gen",
+      "on-crit"
+    ],
+    "HealAPCost-": [
+      "ap-cost"
+    ],
+    "HealOnCrit": [
+      "heal",
+      "on-crit"
+    ],
+    "IceAPCost-": [
+      "ap-cost"
+    ],
+    "IncreaseCounterDamage": [
+      "counter"
+    ],
+    "InflictMarkIfSkillLess4Ap": [
+      "mark-apply"
+    ],
+    "InstantReplayOnOverchargedHealSkills": [
+      "extra-action",
+      "skill-attack"
+    ],
+    "LightDMGBurnOnCrit": [
+      "burn-apply",
+      "on-crit"
+    ],
+    "LightDamageBurn": [
+      "burn-apply"
+    ],
+    "LightSkillsRegenHP": [
+      "heal",
+      "skill-attack"
+    ],
+    "LightningAPCost-": [
+      "ap-cost"
+    ],
+    "LuneDoubleHit": [
+      "multi-hit",
+      "skill-attack"
+    ],
+    "MarkBreakShields": [
+      "break-payoff",
+      "mark-payoff",
+      "shield-break"
+    ],
+    "MarkIsBurn": [
+      "burn-apply",
+      "mark-payoff"
+    ],
+    "MarkOnBaseAttack": [
+      "base-attack",
+      "mark-apply"
+    ],
+    "Mask_APCost-1OnCaster": [
+      "ap-cost"
+    ],
+    "Masks_APOnAlmighty": [
+      "almighty",
+      "ap-gain"
+    ],
+    "Masks_AlwaysCritOnAlmighty": [
+      "almighty",
+      "crit-always"
+    ],
+    "Masks_BestialMeter+OnParrybutResetOnDMG": [
+      "no-hit",
+      "wheel"
+    ],
+    "Masks_CritChanceOnAgile": [
+      "crit-chance"
+    ],
+    "Masks_CritDMG+OnBalanced": [
+      "crit-damage"
+    ],
+    "Masks_DMG+BonusStackOnOverchargedSkillsChain": [
+      "overcharge",
+      "skill-attack"
+    ],
+    "Masks_DMG+FreeAimIfNotAlmighty": [
+      "free-aim"
+    ],
+    "Masks_DMG+OverchargedSkills": [
+      "overcharge",
+      "skill-attack"
+    ],
+    "Masks_DoubleBreakDMGOnAlmighty": [
+      "almighty",
+      "break-dmg"
+    ],
+    "Masks_GainAPAllAlliesOnAlmightySwitch": [
+      "ally",
+      "almighty",
+      "ap-gain"
+    ],
+    "Masks_GainAPOnDMGTakenOnHeavy": [
+      "ap-gain",
+      "heavy"
+    ],
+    "Masks_GainAPOnMaskSwitch": [
+      "ap-gain",
+      "mask-switch"
+    ],
+    "Masks_InstantReplayOnAlmighty": [
+      "almighty",
+      "extra-action"
+    ],
+    "Masks_InstantReviveOnDeathOnAlmighty": [
+      "almighty",
+      "revive"
+    ],
+    "Masks_Overcharge+APOnAllies": [
+      "ally",
+      "ap-gain",
+      "overcharge"
+    ],
+    "Masks_PowerfulOnBalanced": [
+      "buff-apply"
+    ],
+    "Masks_RegenOnCaster": [
+      "buff-apply",
+      "heal"
+    ],
+    "Masks_ReverseBestialMeter": [
+      "wheel"
+    ],
+    "Masks_RushOnAgile": [
+      "buff-apply"
+    ],
+    "Masks_ShellOnHeavy": [
+      "buff-apply",
+      "heavy",
+      "shell-gen"
+    ],
+    "Masks_StartAgile": [
+      "mask-switch"
+    ],
+    "Masks_StartAlmighty": [
+      "almighty",
+      "mask-switch"
+    ],
+    "Masks_StartBalanced": [
+      "mask-switch"
+    ],
+    "Masks_StartCaster": [
+      "mask-switch"
+    ],
+    "Masks_StartHeavy": [
+      "heavy",
+      "mask-switch"
+    ],
+    "Masks_SwitchToAlmightyOnBreak": [
+      "almighty",
+      "break-payoff",
+      "mask-switch"
+    ],
+    "Masks_WheelSpinOnAttack": [
+      "multi-hit",
+      "wheel"
+    ],
+    "Masks_WheelSpinOnFreeAimShot": [
+      "free-aim",
+      "wheel"
+    ],
+    "More4ApDamageBonus": [
+      "skill-attack"
+    ],
+    "MoreGradientDamageLessCharge": [
+      "gradient-payoff"
+    ],
+    "NoOverchargeSkillBuff": [
+      "skill-attack"
+    ],
+    "PerfectDefense": [
+      "perfection-protect"
+    ],
+    "PerfectDefenseB": [
+      "perfection-protect"
+    ],
+    "Perfection_AlwaysCritOnRankS": [
+      "crit-always",
+      "perfection-payoff"
+    ],
+    "Perfection_AttackLifestealOnD": [
+      "heal"
+    ],
+    "Perfection_Attackx2": [
+      "multi-hit",
+      "perfection-gain"
+    ],
+    "Perfection_BurnDamagePerRank": [
+      "burn-scale",
+      "perfection-payoff"
+    ],
+    "Perfection_BurnOnBaseAtkPerRank": [
+      "base-attack",
+      "burn-apply"
+    ],
+    "Perfection_DoubleOnFreeAimShots": [
+      "free-aim",
+      "perfection-gain"
+    ],
+    "Perfection_DoublePerfectionVSBurn": [
+      "base-attack",
+      "perfection-gain"
+    ],
+    "Perfection_GainAPOnRankUp": [
+      "ap-gain",
+      "perfection-gain"
+    ],
+    "Perfection_IncreasedDamageOnRankD": [
+      "perfection-payoff"
+    ],
+    "Perfection_MinC": [
+      "heal",
+      "perfection-protect"
+    ],
+    "Perfection_NoPerfectionLossButNoDamageIncrease": [
+      "perfection-protect"
+    ],
+    "Perfection_NoPerfectionLossOnPowerlessEnemy": [
+      "keep-powerless",
+      "perfection-protect"
+    ],
+    "Perfection_OnTurnStart": [
+      "perfection-gain"
+    ],
+    "Perfection_Parryx2": [
+      "multi-hit",
+      "perfection-gain"
+    ],
+    "Perfection_Perfection+1OnCrit": [
+      "on-crit",
+      "perfection-gain"
+    ],
+    "Perfection_Perfection+1OnPowerful": [
+      "perfection-gain"
+    ],
+    "Perfection_Perfection+1OnPowerlessEnemy": [
+      "keep-powerless",
+      "perfection-gain"
+    ],
+    "Perfection_Perfection+butDMG+": [
+      "perfection-gain"
+    ],
+    "Perfection_PerfectionBonusDamageShare": [
+      "perfection-payoff"
+    ],
+    "Perfection_PerfectionLostOnHeal": [
+      "no-heal"
+    ],
+    "Perfection_PowerfulOnB": [
+      "buff-apply"
+    ],
+    "Perfection_RankLossOneByOne": [
+      "perfection-protect"
+    ],
+    "Perfection_RankUpOnCounter": [
+      "counter",
+      "perfection-gain"
+    ],
+    "Perfection_RankUpOnMark": [
+      "mark-payoff",
+      "perfection-gain"
+    ],
+    "Perfection_RushOnS": [
+      "buff-apply"
+    ],
+    "Perfection_StartRankSButNoHeal": [
+      "no-heal"
+    ],
+    "Perfection_SurvivorRankA": [
+      "perfection-payoff"
+    ],
+    "Perfection_SwitchRankSOnBreak": [
+      "break-payoff"
+    ],
+    "PhysicalAPCost-": [
+      "ap-cost"
+    ],
+    "PowerlessMark": [
+      "mark-apply",
+      "powerless-apply"
+    ],
+    "PowerlessOnCounter": [
+      "counter",
+      "powerless-apply"
+    ],
+    "PowerlessOnMarking": [
+      "powerless-apply"
+    ],
+    "RandomChargeTurnStart": [
+      "charge-gen"
+    ],
+    "ReducedDamageOnHeavy": [
+      "heavy"
+    ],
+    "SecondChance": [
+      "revive"
+    ],
+    "SecondHitDontConsumeMark": [
+      "keep-mark",
+      "mark-payoff"
+    ],
+    "SelfBurnButDmg+": [
+      "self-damage",
+      "self-status"
+    ],
+    "ShieldAllHeroesOnHeavy": [
+      "ally",
+      "heavy",
+      "shield-gen"
+    ],
+    "ShieldOnCounter": [
+      "counter",
+      "shield-gen"
+    ],
+    "ShieldOnShell": [
+      "shell-gen",
+      "shell-need"
+    ],
+    "ShotApplyAttackConsumeForetell": [
+      "foretell-consume"
+    ],
+    "SimonimOvercharge": [
+      "stain-diversity"
+    ],
+    "SkillsDarkDMG+": [
+      "skill-attack"
+    ],
+    "SkillsEarthDMG+": [
+      "skill-attack"
+    ],
+    "SkillsFireDMG+": [
+      "skill-attack"
+    ],
+    "SkillsIceDMG+": [
+      "skill-attack"
+    ],
+    "SkillsLightDMG+": [
+      "skill-attack"
+    ],
+    "SkillsLightToPhysical": [
+      "skill-attack"
+    ],
+    "SkillsLightningDMG+": [
+      "skill-attack"
+    ],
+    "SkillsPhysicalDMG+": [
+      "skill-attack"
+    ],
+    "Stains_+RandomStainOnHeal": [
+      "stain-gen-light",
+      "stain-gen-lightdark"
+    ],
+    "Stains_APOnConsumption": [
+      "ap-gain",
+      "consume-stain"
+    ],
+    "Stains_ApplyBurnStackPerFireStainOnAttack": [
+      "base-attack",
+      "burn-apply",
+      "stain-gen-fire"
+    ],
+    "Stains_AttackEarth+": [
+      "stain-gen-earth"
+    ],
+    "Stains_AttackLight+": [
+      "stain-gen-light"
+    ],
+    "Stains_ConsumeDarkStainsOnAttackDMG+": [
+      "base-attack",
+      "consume-stain"
+    ],
+    "Stains_ConsumeFourDarkStainsDMG+OnSkills": [
+      "consume-stain",
+      "skill-attack"
+    ],
+    "Stains_EarthAppliesShield": [
+      "shield-gen"
+    ],
+    "Stains_EarthStainOnTurnStart": [
+      "stain-gen-earth"
+    ],
+    "Stains_EarthStart": [
+      "stain-gen-earth"
+    ],
+    "Stains_ElementalCyclingDMG+": [
+      "skill-attack"
+    ],
+    "Stains_FireStainOnTurnStart": [
+      "stain-gen-fire"
+    ],
+    "Stains_FireStart": [
+      "stain-gen-fire"
+    ],
+    "Stains_FullCritIfFullStain": [
+      "crit-always",
+      "stain-fullcrit",
+      "stain-scale"
+    ],
+    "Stains_GainAPOnLightStainConsumption": [
+      "ap-gain",
+      "consume-stain"
+    ],
+    "Stains_GenerateDarkStainRandom": [
+      "stain-gen-dark",
+      "stain-gen-lightdark"
+    ],
+    "Stains_GenerateLightOrDarkStainRandom": [
+      "stain-gen-any",
+      "stain-gen-dark",
+      "stain-gen-light",
+      "stain-gen-lightdark"
+    ],
+    "Stains_GenerateLightStainRandom": [
+      "stain-gen-light",
+      "stain-gen-lightdark"
+    ],
+    "Stains_GenerateStainsOnGradientAttack": [
+      "gradient-payoff",
+      "stain-gen-light"
+    ],
+    "Stains_Ice+IfSelfFrozen": [
+      "stain-gen-ice"
+    ],
+    "Stains_IceStainOnTurnStart": [
+      "stain-gen-ice"
+    ],
+    "Stains_IceStart": [
+      "stain-gen-ice"
+    ],
+    "Stains_IncreaseBreakDMGPerEarthStain": [
+      "break-dmg",
+      "stain-scale"
+    ],
+    "Stains_IncreaseBurnDMGPerFireStain": [
+      "burn-scale",
+      "stain-scale"
+    ],
+    "Stains_IncreaseCritChancePerFireStain": [
+      "crit-chance",
+      "stain-scale"
+    ],
+    "Stains_IncreaseDMGPerLightStain": [
+      "stain-scale"
+    ],
+    "Stains_LightningOnFire": [
+      "stain-echo",
+      "stain-gen-fire"
+    ],
+    "Stains_LightningStart": [
+      "stain-gen-lightning"
+    ],
+    "Stains_OverchargeDMG+": [
+      "skill-attack"
+    ],
+    "Stains_RandomGeneration": [
+      "free-aim",
+      "stain-gen-any"
+    ],
+    "Stains_RandomGenerationOnAttack": [
+      "stain-gen-any"
+    ],
+    "Stains_TurnStart+StainsIfNoStain": [
+      "stain-gen-any"
+    ],
+    "Stance_APOnSwitch": [
+      "ap-gain"
+    ],
+    "Stance_BurnHealOnDStance": [
+      "heal"
+    ],
+    "Stance_CounterSwitchToVStance": [
+      "counter"
+    ],
+    "Stance_CritChanceDefensive": [
+      "crit-chance"
+    ],
+    "Stance_CritChanceOffensive": [
+      "crit-chance"
+    ],
+    "Stance_DefensiveBreakDamage": [
+      "break-dmg"
+    ],
+    "Stance_DefensiveGradientCharges": [
+      "gradient-gen"
+    ],
+    "Stance_DefensiveSharedAP": [
+      "ap-gain"
+    ],
+    "Stance_FullCritIfStanceless": [
+      "crit-always"
+    ],
+    "Stance_HealOnSwitch": [
+      "heal"
+    ],
+    "Stance_OffensiveBurnStacks": [
+      "burn-apply"
+    ],
+    "Stance_ShellOnHighHP": [
+      "buff-apply",
+      "hp-full",
+      "shell-gen"
+    ],
+    "Stance_ShellOutVStance": [
+      "buff-apply",
+      "shell-gen"
+    ],
+    "Stance_ShieldOnOSstance": [
+      "shield-gen"
+    ],
+    "Stance_ShieldOnParry": [
+      "shield-gen"
+    ],
+    "Stance_VirtuoseDoubleBurn": [
+      "burn-scale"
+    ],
+    "Stance_VirtuoseDoubleDMG": [
+      "burn-scale"
+    ],
+    "Stance_VirtuoseDoubleShields": [
+      "shield-gen"
+    ],
+    "Stance_VirtuoseHealAllies": [
+      "ally",
+      "heal"
+    ],
+    "Stance_VirtuoseKeepMark": [
+      "keep-mark",
+      "mark-payoff"
+    ],
+    "Stance_VirtuoseOnLowHP": [
+      "hp-low"
+    ],
+    "Stance_VirtuoseOnShieldBreak": [
+      "break-payoff",
+      "shield-break"
+    ],
+    "StartD": [
+      "perfection-gain"
+    ],
+    "SunAPDiscount": [
+      "ap-cost",
+      "sun-payoff"
+    ],
+    "SupportSkillsCostReduced": [
+      "ap-cost"
+    ],
+    "ThunderSkillConsumeBurn": [
+      "burn-consume",
+      "skill-attack"
+    ],
+    "TriggerLightningOnCrit": [
+      "on-crit"
+    ],
+    "TwilightForetellNotConsumed": [
+      "foretell-consume",
+      "twilight-payoff"
+    ],
+    "WepFx_AltCrit1": [
+      "crit-alternate"
+    ],
+    "WepFx_AltCrit2": [
+      "crit-alternate"
+    ],
+    "WepFx_AltCrit3": [
+      "crit-alternate"
+    ],
+    "WepFx_AltCrit4": [
+      "crit-alternate"
+    ],
+    "WepFx_AltCrit5": [
+      "crit-alternate"
+    ],
+    "WepFx_AtkShield2": [
+      "shield-spend"
+    ],
+    "WepFx_AtkShield3": [
+      "shield-spend"
+    ],
+    "WepFx_AugAtk2": [
+      "base-attack"
+    ],
+    "WepFx_AugAtk3": [
+      "base-attack"
+    ],
+    "WepFx_BerserkBlade": [
+      "buff-conditional"
+    ],
+    "WepFx_BlightBlade": [
+      "buff-conditional"
+    ],
+    "WepFx_Break2": [
+      "break-dmg"
+    ],
+    "WepFx_Break3": [
+      "break-dmg"
+    ],
+    "WepFx_BurnConsume1Skills": [
+      "burn-consume"
+    ],
+    "WepFx_BurnConsume2Skills": [
+      "burn-consume"
+    ],
+    "WepFx_BurnConsume3Skills": [
+      "burn-consume"
+    ],
+    "WepFx_BurnConsume4Skills": [
+      "burn-consume"
+    ],
+    "WepFx_BurnConsume5Skills": [
+      "burn-consume"
+    ],
+    "WepFx_BurnDmg2": [
+      "burn-scale"
+    ],
+    "WepFx_BurnDmg3": [
+      "burn-scale"
+    ],
+    "WepFx_BurnDmg4": [
+      "burn-scale"
+    ],
+    "WepFx_BurnDmg5": [
+      "burn-scale"
+    ],
+    "WepFx_CounterBurn10": [
+      "burn-apply",
+      "counter"
+    ],
+    "WepFx_CounterDmg2": [
+      "counter"
+    ],
+    "WepFx_CounterDmg3": [
+      "counter"
+    ],
+    "WepFx_CounterShield2": [
+      "counter",
+      "shield-payoff"
+    ],
+    "WepFx_CounterShield3": [
+      "counter",
+      "shield-payoff"
+    ],
+    "WepFx_CriticalChain1": [
+      "crit-scaling"
+    ],
+    "WepFx_CriticalChain2": [
+      "crit-scaling"
+    ],
+    "WepFx_CriticalChain3": [
+      "crit-scaling"
+    ],
+    "WepFx_CriticalChain4": [
+      "crit-scaling"
+    ],
+    "WepFx_CriticalChain5": [
+      "crit-scaling"
+    ],
+    "WepFx_CursedBlade": [
+      "buff-conditional"
+    ],
+    "WepFx_DarkDmgPerStain100": [
+      "stain-scale"
+    ],
+    "WepFx_DefenselessConsume1": [
+      "consume-defenseless"
+    ],
+    "WepFx_DefenselessConsume1Skills": [
+      "consume-defenseless"
+    ],
+    "WepFx_DefenselessConsume2": [
+      "consume-defenseless"
+    ],
+    "WepFx_DefenselessConsume2Skills": [
+      "consume-defenseless"
+    ],
+    "WepFx_DefenselessConsume3": [
+      "consume-defenseless"
+    ],
+    "WepFx_DefenselessConsume3Skills": [
+      "consume-defenseless"
+    ],
+    "WepFx_EarthStart2": [
+      "stain-gen-earth"
+    ],
+    "WepFx_EarthStart4": [
+      "stain-gen-earth"
+    ],
+    "WepFx_EchoDarkEarth": [
+      "stain-echo"
+    ],
+    "WepFx_EchoDarkFire": [
+      "stain-echo"
+    ],
+    "WepFx_EchoDarkIce": [
+      "stain-echo"
+    ],
+    "WepFx_EchoDarkLight": [
+      "stain-echo"
+    ],
+    "WepFx_EchoDarkLightning": [
+      "stain-echo"
+    ],
+    "WepFx_EchoEarthDark": [
+      "stain-echo"
+    ],
+    "WepFx_EchoEarthFire": [
+      "stain-echo"
+    ],
+    "WepFx_EchoEarthIce": [
+      "stain-echo"
+    ],
+    "WepFx_EchoEarthLight": [
+      "stain-echo"
+    ],
+    "WepFx_EchoEarthLightning": [
+      "stain-echo"
+    ],
+    "WepFx_EchoFireDark": [
+      "stain-echo"
+    ],
+    "WepFx_EchoFireEarth": [
+      "stain-echo"
+    ],
+    "WepFx_EchoFireIce": [
+      "stain-echo"
+    ],
+    "WepFx_EchoFireLight": [
+      "stain-echo"
+    ],
+    "WepFx_EchoFireLightning": [
+      "stain-echo"
+    ],
+    "WepFx_EchoIceDark": [
+      "stain-echo"
+    ],
+    "WepFx_EchoIceEarth": [
+      "stain-echo"
+    ],
+    "WepFx_EchoIceFire": [
+      "stain-echo"
+    ],
+    "WepFx_EchoIceLight": [
+      "stain-echo"
+    ],
+    "WepFx_EchoIceLightning": [
+      "stain-echo"
+    ],
+    "WepFx_EchoLightDark": [
+      "stain-echo"
+    ],
+    "WepFx_EchoLightEarth": [
+      "stain-echo"
+    ],
+    "WepFx_EchoLightFire": [
+      "stain-echo"
+    ],
+    "WepFx_EchoLightIce": [
+      "stain-echo"
+    ],
+    "WepFx_EchoLightLightning": [
+      "stain-echo"
+    ],
+    "WepFx_EchoLightningDark": [
+      "stain-echo"
+    ],
+    "WepFx_EchoLightningEarth": [
+      "stain-echo"
+    ],
+    "WepFx_EchoLightningFire": [
+      "stain-echo"
+    ],
+    "WepFx_EchoLightningIce": [
+      "stain-echo"
+    ],
+    "WepFx_EchoLightningLight": [
+      "stain-echo"
+    ],
+    "WepFx_FireStart2": [
+      "stain-gen-fire"
+    ],
+    "WepFx_FireStart4": [
+      "stain-gen-fire"
+    ],
+    "WepFx_FirstLife1": [
+      "death-trigger",
+      "first-life"
+    ],
+    "WepFx_FirstLife2": [
+      "death-trigger",
+      "first-life"
+    ],
+    "WepFx_FirstLife3": [
+      "death-trigger",
+      "first-life"
+    ],
+    "WepFx_FirstOffensive1": [
+      "reckless"
+    ],
+    "WepFx_FirstOffensive2": [
+      "reckless"
+    ],
+    "WepFx_FirstOffensive3": [
+      "reckless"
+    ],
+    "WepFx_FirstOffensive4": [
+      "reckless"
+    ],
+    "WepFx_FirstOffensive5": [
+      "reckless"
+    ],
+    "WepFx_FullStrength1": [
+      "hp-full"
+    ],
+    "WepFx_FullStrength2": [
+      "hp-full"
+    ],
+    "WepFx_FullStrength3": [
+      "hp-full"
+    ],
+    "WepFx_FullStrength4": [
+      "hp-full"
+    ],
+    "WepFx_FullStrength5": [
+      "hp-full"
+    ],
+    "WepFx_HealParry1": [
+      "heal"
+    ],
+    "WepFx_HealParry2": [
+      "heal"
+    ],
+    "WepFx_HealParry3": [
+      "heal"
+    ],
+    "WepFx_IceStart2": [
+      "stain-gen-ice"
+    ],
+    "WepFx_IceStart4": [
+      "stain-gen-ice"
+    ],
+    "WepFx_Immaculate1": [
+      "no-hit"
+    ],
+    "WepFx_Immaculate2": [
+      "no-hit"
+    ],
+    "WepFx_Immaculate3": [
+      "no-hit"
+    ],
+    "WepFx_Immaculate4": [
+      "no-hit"
+    ],
+    "WepFx_Immaculate5": [
+      "no-hit"
+    ],
+    "WepFx_LightOnConsume100": [
+      "consume-stain",
+      "stain-gen-light",
+      "stain-gen-lightdark"
+    ],
+    "WepFx_LightningCrit2": [
+      "on-crit"
+    ],
+    "WepFx_LightningCrit3": [
+      "on-crit"
+    ],
+    "WepFx_LightningStart2": [
+      "stain-gen-lightning"
+    ],
+    "WepFx_LightningStart4": [
+      "stain-gen-lightning"
+    ],
+    "WepFx_MacabrePower1": [
+      "ally",
+      "death-trigger"
+    ],
+    "WepFx_MacabrePower2": [
+      "ally",
+      "death-trigger"
+    ],
+    "WepFx_MacabrePower3": [
+      "ally",
+      "death-trigger"
+    ],
+    "WepFx_MaskStack50": [
+      "overcharge",
+      "skill-attack"
+    ],
+    "WepFx_PowerfulBlade": [
+      "buff-conditional"
+    ],
+    "WepFx_PowerlessConsume1": [
+      "consume-powerless"
+    ],
+    "WepFx_PowerlessConsume1Skills": [
+      "consume-powerless"
+    ],
+    "WepFx_PowerlessConsume2": [
+      "consume-powerless"
+    ],
+    "WepFx_PowerlessConsume2Skills": [
+      "consume-powerless"
+    ],
+    "WepFx_PowerlessConsume3": [
+      "consume-powerless"
+    ],
+    "WepFx_PowerlessConsume3Skills": [
+      "consume-powerless"
+    ],
+    "WepFx_RegenBlade": [
+      "buff-conditional",
+      "heal"
+    ],
+    "WepFx_RushBlade": [
+      "buff-conditional"
+    ],
+    "WepFx_SelfBerserk1": [
+      "self-status"
+    ],
+    "WepFx_SelfBerserk2": [
+      "self-status"
+    ],
+    "WepFx_SelfBerserk3": [
+      "self-status"
+    ],
+    "WepFx_SelfBlight1": [
+      "self-damage",
+      "self-status"
+    ],
+    "WepFx_SelfBlight2": [
+      "self-damage",
+      "self-status"
+    ],
+    "WepFx_SelfBlight3": [
+      "self-damage",
+      "self-status"
+    ],
+    "WepFx_SelfBurn2": [
+      "self-damage",
+      "self-status"
+    ],
+    "WepFx_SelfBurn3": [
+      "self-damage",
+      "self-status"
+    ],
+    "WepFx_ShellBlade": [
+      "buff-conditional",
+      "shell-need"
+    ],
+    "WepFx_SlowConsume": [
+      "consume-slow"
+    ],
+    "WepFx_SlowConsume2": [
+      "consume-slow"
+    ],
+    "WepFx_SlowConsume2Skills": [
+      "consume-slow"
+    ],
+    "WepFx_SlowConsume3": [
+      "consume-slow"
+    ],
+    "WepFx_SlowConsume3Skills": [
+      "consume-slow"
+    ],
+    "WepFx_SlowConsumeSkills": [
+      "consume-slow"
+    ],
+    "WepFx_SoloFighter1": [
+      "solo"
+    ],
+    "WepFx_SoloFighter2": [
+      "solo"
+    ],
+    "WepFx_SoloFighter3": [
+      "solo"
+    ],
+    "WepFx_StunBoost1": [
+      "stun"
+    ],
+    "WepFx_StunBoost2": [
+      "stun"
+    ],
+    "WepFx_StunBoost3": [
+      "stun"
+    ],
+    "WepFx_StunBoost4": [
+      "stun"
+    ],
+    "WepFx_StunBoost5": [
+      "stun"
+    ],
+    "WepFx_ThunderBurn250": [
+      "burn-consume",
+      "skill-attack"
+    ],
+    "WepFx_TurnStart3": [
+      "stain-gen-any"
+    ],
+    "WepFx_TurnStart4": [
+      "stain-gen-any"
+    ],
+    "firstHitApplyMark": [
+      "mark-apply",
+      "reckless"
+    ]
+  },
+  "conflictTags": [
+    "ally",
+    "consume-powerless",
+    "consume-stain",
+    "crit-alternate",
+    "crit-always",
+    "first-life",
+    "heal",
+    "hp-full",
+    "hp-low",
+    "keep-powerless",
+    "no-heal",
+    "no-hit",
+    "on-death",
+    "self-damage",
+    "self-status",
+    "solo",
+    "stain-scale"
+  ]
+}

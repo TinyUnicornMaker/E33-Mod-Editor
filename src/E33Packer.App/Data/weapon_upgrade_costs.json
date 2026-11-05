@@ -1,0 +1,1334 @@
+{
+  "1": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "2": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "3": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "4": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "5": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "6": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "7": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "8": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "9": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "10": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "11": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "12": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "13": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "14": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "15": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "16": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "17": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "18": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "19": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "20": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "21": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "22": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "23": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "24": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "25": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "26": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "27": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "28": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "29": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "30": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "31": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "32": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "33": {
+    "Item": "UpgradeMaterial_Level1",
+    "Qty": 1
+  },
+  "34": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "35": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "36": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "37": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "38": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "39": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "40": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "41": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "42": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "43": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "44": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "45": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "46": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "47": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "48": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "49": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "50": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "51": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "52": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "53": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "54": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "55": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "56": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "57": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "58": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "59": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "60": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "61": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "62": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "63": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "64": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "65": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "66": {
+    "Item": "UpgradeMaterial_Level2",
+    "Qty": 1
+  },
+  "67": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "68": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "69": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "70": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "71": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "72": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "73": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "74": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "75": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "76": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "77": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "78": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "79": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "80": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "81": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "82": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "83": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "84": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "85": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "86": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "87": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "88": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "89": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "90": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "91": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "92": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "93": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "94": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "95": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "96": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "97": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "98": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "99": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "100": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "101": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "102": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "103": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "104": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "105": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "106": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "107": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "108": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "109": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "110": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "111": {
+    "Item": "UpgradeMaterial_Level3",
+    "Qty": 1
+  },
+  "112": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "113": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "114": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "115": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "116": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "117": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "118": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "119": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "120": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "121": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "122": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "123": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "124": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "125": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "126": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "127": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "128": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "129": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "130": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "131": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "132": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "133": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "134": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "135": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "136": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "137": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "138": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "139": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "140": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "141": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "142": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "143": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "144": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "145": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "146": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "147": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "148": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "149": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "150": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "151": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "152": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "153": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "154": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "155": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "156": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "157": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "158": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "159": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "160": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "161": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "162": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "163": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "164": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "165": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "166": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "167": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "168": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "169": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "170": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "171": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "172": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "173": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "174": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "175": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "176": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "177": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "178": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "179": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "180": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "181": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "182": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "183": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "184": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "185": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "186": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "187": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "188": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "189": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "190": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "191": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "192": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "193": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "194": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "195": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "196": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "197": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "198": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "199": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "200": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "201": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "202": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "203": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "204": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "205": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "206": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "207": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "208": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "209": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "210": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "211": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "212": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "213": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "214": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "215": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "216": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "217": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "218": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "219": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "220": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "221": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "222": {
+    "Item": "UpgradeMaterial_Level4",
+    "Qty": 1
+  },
+  "223": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "224": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "225": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "226": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "227": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "228": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "229": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "230": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "231": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "232": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "233": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "234": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "235": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "236": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "237": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "238": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "239": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "240": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "241": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "242": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "243": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "244": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "245": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "246": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "247": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "248": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "249": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "250": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "251": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "252": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "253": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "254": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "255": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "256": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "257": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "258": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "259": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "260": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "261": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "262": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "263": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "264": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "265": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "266": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "267": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "268": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "269": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "270": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "271": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "272": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "273": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "274": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "275": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "276": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "277": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "278": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "279": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "280": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "281": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "282": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "283": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "284": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "285": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "286": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "287": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "288": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "289": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "290": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "291": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "292": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "293": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "294": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "295": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "296": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "297": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "298": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "299": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "300": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "301": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "302": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "303": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "304": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "305": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "306": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "307": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "308": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "309": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "310": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "311": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "312": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "313": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "314": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "315": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "316": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "317": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "318": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "319": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "320": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "321": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "322": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "323": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "324": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "325": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "326": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "327": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "328": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "329": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "330": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "331": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "332": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  },
+  "333": {
+    "Item": "UpgradeMaterial_Level5",
+    "Qty": 1
+  }
+}

@@ -1,0 +1,2009 @@
+{
+  "character": "Gustave",
+  "elementPolicy": null,
+  "neutralStainsAlways": false,
+  "archetypes": [
+    {
+      "id": "raw",
+      "name": "Sustained Damage",
+      "group": "generic",
+      "element": null,
+      "description": "Flat damage that builds over the fight: full Health, no-damage streaks, successive hits, revival, affinity bypass.",
+      "count": 19,
+      "links": [
+        "base",
+        "break",
+        "buff",
+        "burn",
+        "crit",
+        "gambit",
+        "skill"
+      ],
+      "effects": [
+        {
+          "id": "SelfBurnButDmg+",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_FirstLife1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_FirstLife2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_FirstLife3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_FirstOffensive1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_FirstOffensive2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_FirstOffensive3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_FullStrength1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_FullStrength2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_FullStrength3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_Immaculate1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_Immaculate2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_Immaculate3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_MacabrePower1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_MacabrePower2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_MacabrePower3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_SoloFighter1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_SoloFighter2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_SoloFighter3",
+          "tier": 3,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "base",
+      "name": "Base Attack",
+      "group": "generic",
+      "element": null,
+      "description": "Everything that improves, repeats or triggers off the basic attack.",
+      "count": 19,
+      "links": [
+        "break",
+        "burn",
+        "counter",
+        "crit",
+        "freeaim",
+        "guard",
+        "raw",
+        "status",
+        "tempo"
+      ],
+      "effects": [
+        {
+          "id": "AttackBurn",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "AttackBurnWhilePowerful",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "AttackConsumeShieldForExtraDMG",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "AttackLifesteal_Weapon",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "AugmentedAim_Weapon",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "AugmentedAttack_Weapon",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "MarkOnBaseAttack",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_AugAtk2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_AugAtk3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsume",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsume2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsume3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "firstHitApplyMark",
+          "tier": 1,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "skill",
+      "name": "Skill Damage",
+      "group": "generic",
+      "element": null,
+      "description": "Skill multipliers, per-hit scaling, element conversions and Stain-consuming skill payoffs.",
+      "count": 22,
+      "links": [
+        "break",
+        "burn",
+        "crit",
+        "freeaim",
+        "raw",
+        "stain",
+        "status",
+        "tempo"
+      ],
+      "effects": [
+        {
+          "id": "LightSkillsRegenHP",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "NoOverchargeSkillBuff",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "SkillsDarkDMG+",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "SkillsEarthDMG+",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "SkillsFireDMG+",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "SkillsIceDMG+",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "SkillsLightDMG+",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "SkillsLightToPhysical",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "SkillsLightningDMG+",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "SkillsPhysicalDMG+",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_BurnConsume1Skills",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_BurnConsume2Skills",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_BurnConsume3Skills",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume1Skills",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume2Skills",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume3Skills",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume1Skills",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume2Skills",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume3Skills",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsume2Skills",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsume3Skills",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsumeSkills",
+          "tier": 1,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "crit",
+      "name": "Critical",
+      "group": "generic",
+      "element": null,
+      "description": "Crit chance, crit damage and everything that triggers on or after a Critical hit.",
+      "count": 13,
+      "links": [
+        "base",
+        "burn",
+        "counter",
+        "freeaim",
+        "gradient",
+        "guard",
+        "raw",
+        "skill",
+        "stain"
+      ],
+      "effects": [
+        {
+          "id": "APOnCrit",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "AlwaysCritOnCounterDamage",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "CritPerBurn",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "GradientPointOnCrit",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "HealOnCrit",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "LightDMGBurnOnCrit",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "TriggerLightningOnCrit",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_AltCrit1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_AltCrit2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_AltCrit3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_CriticalChain1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_CriticalChain2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_CriticalChain3",
+          "tier": 3,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "name": "Break & Stun",
+      "group": "generic",
+      "element": null,
+      "description": "Break damage, AP-on-Break, Shield-break payoffs and Stun burst.",
+      "count": 8,
+      "links": [
+        "base",
+        "guard",
+        "raw",
+        "skill",
+        "stain",
+        "status",
+        "tempo"
+      ],
+      "effects": [
+        {
+          "id": "BreakDMG+",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "BreakEarthBurst",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "FreeAimBreaksMoreShields",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_Break2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_Break3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_StunBoost1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_StunBoost2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_StunBoost3",
+          "tier": 3,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "name": "Burn",
+      "group": "generic",
+      "element": null,
+      "description": "Burn application, Burn damage multipliers and consume-Burn payoffs.",
+      "count": 11,
+      "links": [
+        "base",
+        "buff",
+        "counter",
+        "crit",
+        "gambit",
+        "guard",
+        "raw",
+        "skill",
+        "stain",
+        "status"
+      ],
+      "effects": [
+        {
+          "id": "AttackBurn",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "AttackBurnWhilePowerful",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "BurnDamage",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "CritPerBurn",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "LightDMGBurnOnCrit",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "SelfBurnButDmg+",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_BurnConsume1Skills",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_BurnConsume2Skills",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_BurnConsume3Skills",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_BurnDmg2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_BurnDmg3",
+          "tier": 3,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "counter",
+      "name": "Counter",
+      "group": "generic",
+      "element": null,
+      "description": "Counterattack damage, on-Counter triggers and Counter-tank payoffs.",
+      "count": 7,
+      "links": [
+        "base",
+        "burn",
+        "crit",
+        "gradient",
+        "guard",
+        "status",
+        "tempo"
+      ],
+      "effects": [
+        {
+          "id": "AlwaysCritOnCounterDamage",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "CounterDamagePerShield",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "CounterDefenseless",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "GradientAttackAndCounterDMG+",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "IncreaseCounterDamage",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "PowerlessOnCounter",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_CounterDmg2",
+          "tier": 3,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "status",
+      "name": "Status & Mark",
+      "group": "generic",
+      "element": null,
+      "description": "Slowed / Powerless / Defenceless application and consumption, plus Mark tech.",
+      "count": 25,
+      "links": [
+        "base",
+        "break",
+        "buff",
+        "burn",
+        "counter",
+        "skill",
+        "stain",
+        "tempo"
+      ],
+      "effects": [
+        {
+          "id": "CounterDefenseless",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "GainAPOnApplyBuffsDebuffs",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "MarkOnBaseAttack",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "PowerlessMark",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "PowerlessOnCounter",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "PowerlessOnMarking",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume1Skills",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume2Skills",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_DefenselessConsume3Skills",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume1Skills",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume2Skills",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerlessConsume3Skills",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsume",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsume2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsume2Skills",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsume3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsume3Skills",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_SlowConsumeSkills",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "firstHitApplyMark",
+          "tier": 1,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "guard",
+      "name": "Shield & Sustain",
+      "group": "generic",
+      "element": null,
+      "description": "Shields, healing, damage reduction, revives and defensive triggers.",
+      "count": 13,
+      "links": [
+        "base",
+        "break",
+        "buff",
+        "burn",
+        "counter",
+        "crit",
+        "gambit",
+        "stain",
+        "tempo"
+      ],
+      "effects": [
+        {
+          "id": "AttackConsumeShieldForExtraDMG",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "AttackLifesteal_Weapon",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "HealAPCost-",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "HealOnCrit",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "LightSkillsRegenHP",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_AtkShield2",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_FrancoisShell1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_FrancoisShell2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_FrancoisShell3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_HealParry1",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_HealParry2",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_RegenBlade",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_ShellBlade",
+          "tier": 1,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "tempo",
+      "name": "AP & Tempo",
+      "group": "generic",
+      "element": null,
+      "description": "AP discounts, AP gain and extra-action effects that accelerate any build.",
+      "count": 9,
+      "links": [
+        "base",
+        "break",
+        "counter",
+        "gradient",
+        "guard",
+        "skill",
+        "stain",
+        "status"
+      ],
+      "effects": [
+        {
+          "id": "APOnCrit",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "EarthAPCost-",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "FireAPCost-",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "FirstStrike",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "GainAPOnApplyBuffsDebuffs",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "HealAPCost-",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "IceAPCost-",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "LightningAPCost-",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "SupportSkillsCostReduced",
+          "tier": 2,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "gradient",
+      "name": "Gradient",
+      "group": "generic",
+      "element": null,
+      "description": "Gradient charge generation and Gradient attack/counter payoffs.",
+      "count": 3,
+      "links": [
+        "counter",
+        "crit",
+        "tempo"
+      ],
+      "effects": [
+        {
+          "id": "GradientAttackAndCounterDMG+",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "GradientPointOnCrit",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "MoreGradientDamageLessCharge",
+          "tier": 3,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "freeaim",
+      "name": "Free Aim",
+      "group": "generic",
+      "element": null,
+      "description": "Extra shots, Free Aim multipliers and Free Aim shield-breaking.",
+      "count": 3,
+      "links": [
+        "base",
+        "crit",
+        "skill"
+      ],
+      "effects": [
+        {
+          "id": "AugmentedAim_Weapon",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "FreeAimBreaksMoreShields",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "FreeAimDoubleShot",
+          "tier": 3,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "buff",
+      "name": "Ailment Blades",
+      "group": "generic",
+      "element": null,
+      "description": "Flat damage while a buff/ailment is active, plus the buffs that switch them on.",
+      "count": 7,
+      "links": [
+        "burn",
+        "gambit",
+        "guard",
+        "raw",
+        "status"
+      ],
+      "effects": [
+        {
+          "id": "WepFx_BerserkBlade",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_BlightBlade",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_CursedBlade",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_PowerfulBlade",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_RegenBlade",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_RushBlade",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_ShellBlade",
+          "tier": 1,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "gambit",
+      "name": "Risk & Sacrifice",
+      "group": "generic",
+      "element": null,
+      "description": "Self-inflicted statuses, death payoffs and revives: a high-risk damage plan.",
+      "count": 9,
+      "links": [
+        "buff",
+        "burn",
+        "guard",
+        "raw"
+      ],
+      "effects": [
+        {
+          "id": "SelfBurnButDmg+",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_FirstLife1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_FirstLife2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_FirstLife3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_MacabrePower1",
+          "tier": 1,
+          "element": null
+        },
+        {
+          "id": "WepFx_MacabrePower2",
+          "tier": 2,
+          "element": null
+        },
+        {
+          "id": "WepFx_MacabrePower3",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_SelfBerserk1",
+          "tier": 3,
+          "element": null
+        },
+        {
+          "id": "WepFx_SelfBlight1",
+          "tier": 3,
+          "element": null
+        }
+      ]
+    },
+    {
+      "id": "stain",
+      "name": "Stain Cycling",
+      "group": "lune",
+      "element": null,
+      "description": "Element-neutral Stain generation, consumption and cycling payoffs. Usable by any Lune weapon, including Physical and Void.",
+      "count": 1,
+      "links": [
+        "break",
+        "burn",
+        "crit",
+        "guard",
+        "skill",
+        "status",
+        "tempo"
+      ],
+      "effects": [
+        {
+          "id": "NoOverchargeSkillBuff",
+          "tier": 1,
+          "element": null
+        }
+      ]
+    }
+  ],
+  "effects": {
+    "APOnCrit": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "crit",
+        "tempo"
+      ]
+    },
+    "AlwaysCritOnCounterDamage": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "counter",
+        "crit"
+      ]
+    },
+    "AttackBurn": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "base",
+        "burn"
+      ]
+    },
+    "AttackBurnWhilePowerful": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "base",
+        "burn"
+      ]
+    },
+    "AttackConsumeShieldForExtraDMG": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "base",
+        "guard"
+      ]
+    },
+    "AttackLifesteal_Weapon": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "base",
+        "guard"
+      ]
+    },
+    "AugmentedAim_Weapon": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "base",
+        "freeaim"
+      ]
+    },
+    "AugmentedAttack_Weapon": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "base"
+      ]
+    },
+    "BreakDMG+": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "break"
+      ]
+    },
+    "BreakEarthBurst": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "break"
+      ]
+    },
+    "BurnDamage": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "burn"
+      ]
+    },
+    "CounterDamagePerShield": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "counter"
+      ]
+    },
+    "CounterDefenseless": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "counter",
+        "status"
+      ]
+    },
+    "CritPerBurn": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "burn",
+        "crit"
+      ]
+    },
+    "EarthAPCost-": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "tempo"
+      ]
+    },
+    "FireAPCost-": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "tempo"
+      ]
+    },
+    "FirstStrike": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "tempo"
+      ]
+    },
+    "FreeAimBreaksMoreShields": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "break",
+        "freeaim"
+      ]
+    },
+    "FreeAimDoubleShot": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "freeaim"
+      ]
+    },
+    "GainAPOnApplyBuffsDebuffs": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "status",
+        "tempo"
+      ]
+    },
+    "GradientAttackAndCounterDMG+": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "counter",
+        "gradient"
+      ]
+    },
+    "GradientPointOnCrit": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "crit",
+        "gradient"
+      ]
+    },
+    "HealAPCost-": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "guard",
+        "tempo"
+      ]
+    },
+    "HealOnCrit": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "crit",
+        "guard"
+      ]
+    },
+    "IceAPCost-": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "tempo"
+      ]
+    },
+    "IncreaseCounterDamage": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "counter"
+      ]
+    },
+    "LightDMGBurnOnCrit": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "burn",
+        "crit"
+      ]
+    },
+    "LightSkillsRegenHP": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "guard",
+        "skill"
+      ]
+    },
+    "LightningAPCost-": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "tempo"
+      ]
+    },
+    "MarkOnBaseAttack": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "base",
+        "status"
+      ]
+    },
+    "MoreGradientDamageLessCharge": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "gradient"
+      ]
+    },
+    "NoOverchargeSkillBuff": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "skill",
+        "stain"
+      ]
+    },
+    "PowerlessMark": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "status"
+      ]
+    },
+    "PowerlessOnCounter": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "counter",
+        "status"
+      ]
+    },
+    "PowerlessOnMarking": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "status"
+      ]
+    },
+    "SelfBurnButDmg+": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "burn",
+        "gambit",
+        "raw"
+      ]
+    },
+    "SkillsDarkDMG+": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "skill"
+      ]
+    },
+    "SkillsEarthDMG+": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "skill"
+      ]
+    },
+    "SkillsFireDMG+": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "skill"
+      ]
+    },
+    "SkillsIceDMG+": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "skill"
+      ]
+    },
+    "SkillsLightDMG+": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "skill"
+      ]
+    },
+    "SkillsLightToPhysical": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "skill"
+      ]
+    },
+    "SkillsLightningDMG+": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "skill"
+      ]
+    },
+    "SkillsPhysicalDMG+": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "skill"
+      ]
+    },
+    "SupportSkillsCostReduced": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "tempo"
+      ]
+    },
+    "TriggerLightningOnCrit": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "crit"
+      ]
+    },
+    "WepFx_AltCrit1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "crit"
+      ]
+    },
+    "WepFx_AltCrit2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "crit"
+      ]
+    },
+    "WepFx_AltCrit3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "crit"
+      ]
+    },
+    "WepFx_AtkShield2": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "guard"
+      ]
+    },
+    "WepFx_AugAtk2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "base"
+      ]
+    },
+    "WepFx_AugAtk3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "base"
+      ]
+    },
+    "WepFx_BerserkBlade": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "buff"
+      ]
+    },
+    "WepFx_BlightBlade": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "buff"
+      ]
+    },
+    "WepFx_Break2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "break"
+      ]
+    },
+    "WepFx_Break3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "break"
+      ]
+    },
+    "WepFx_BurnConsume1Skills": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "burn",
+        "skill"
+      ]
+    },
+    "WepFx_BurnConsume2Skills": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "burn",
+        "skill"
+      ]
+    },
+    "WepFx_BurnConsume3Skills": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "burn",
+        "skill"
+      ]
+    },
+    "WepFx_BurnDmg2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "burn"
+      ]
+    },
+    "WepFx_BurnDmg3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "burn"
+      ]
+    },
+    "WepFx_CounterDmg2": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "counter"
+      ]
+    },
+    "WepFx_CriticalChain1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "crit"
+      ]
+    },
+    "WepFx_CriticalChain2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "crit"
+      ]
+    },
+    "WepFx_CriticalChain3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "crit"
+      ]
+    },
+    "WepFx_CursedBlade": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "buff"
+      ]
+    },
+    "WepFx_DefenselessConsume1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "base",
+        "status"
+      ]
+    },
+    "WepFx_DefenselessConsume1Skills": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "skill",
+        "status"
+      ]
+    },
+    "WepFx_DefenselessConsume2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "base",
+        "status"
+      ]
+    },
+    "WepFx_DefenselessConsume2Skills": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "skill",
+        "status"
+      ]
+    },
+    "WepFx_DefenselessConsume3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "base",
+        "status"
+      ]
+    },
+    "WepFx_DefenselessConsume3Skills": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "skill",
+        "status"
+      ]
+    },
+    "WepFx_FirstLife1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "gambit",
+        "raw"
+      ]
+    },
+    "WepFx_FirstLife2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "gambit",
+        "raw"
+      ]
+    },
+    "WepFx_FirstLife3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "gambit",
+        "raw"
+      ]
+    },
+    "WepFx_FirstOffensive1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_FirstOffensive2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_FirstOffensive3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_FrancoisShell1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "guard"
+      ]
+    },
+    "WepFx_FrancoisShell2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "guard"
+      ]
+    },
+    "WepFx_FrancoisShell3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "guard"
+      ]
+    },
+    "WepFx_FullStrength1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_FullStrength2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_FullStrength3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_HealParry1": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "guard"
+      ]
+    },
+    "WepFx_HealParry2": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "guard"
+      ]
+    },
+    "WepFx_Immaculate1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_Immaculate2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_Immaculate3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_MacabrePower1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "gambit",
+        "raw"
+      ]
+    },
+    "WepFx_MacabrePower2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "gambit",
+        "raw"
+      ]
+    },
+    "WepFx_MacabrePower3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "gambit",
+        "raw"
+      ]
+    },
+    "WepFx_PowerfulBlade": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "buff"
+      ]
+    },
+    "WepFx_PowerlessConsume1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "base",
+        "status"
+      ]
+    },
+    "WepFx_PowerlessConsume1Skills": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "skill",
+        "status"
+      ]
+    },
+    "WepFx_PowerlessConsume2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "base",
+        "status"
+      ]
+    },
+    "WepFx_PowerlessConsume2Skills": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "skill",
+        "status"
+      ]
+    },
+    "WepFx_PowerlessConsume3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "base",
+        "status"
+      ]
+    },
+    "WepFx_PowerlessConsume3Skills": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "skill",
+        "status"
+      ]
+    },
+    "WepFx_RegenBlade": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "buff",
+        "guard"
+      ]
+    },
+    "WepFx_RushBlade": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "buff"
+      ]
+    },
+    "WepFx_SelfBerserk1": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "gambit"
+      ]
+    },
+    "WepFx_SelfBlight1": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "gambit"
+      ]
+    },
+    "WepFx_ShellBlade": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "buff",
+        "guard"
+      ]
+    },
+    "WepFx_SlowConsume": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "base",
+        "status"
+      ]
+    },
+    "WepFx_SlowConsume2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "base",
+        "status"
+      ]
+    },
+    "WepFx_SlowConsume2Skills": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "skill",
+        "status"
+      ]
+    },
+    "WepFx_SlowConsume3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "base",
+        "status"
+      ]
+    },
+    "WepFx_SlowConsume3Skills": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "skill",
+        "status"
+      ]
+    },
+    "WepFx_SlowConsumeSkills": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "skill",
+        "status"
+      ]
+    },
+    "WepFx_SoloFighter1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_SoloFighter2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_SoloFighter3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "raw"
+      ]
+    },
+    "WepFx_StunBoost1": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "break"
+      ]
+    },
+    "WepFx_StunBoost2": {
+      "tier": 2,
+      "element": null,
+      "archetypes": [
+        "break"
+      ]
+    },
+    "WepFx_StunBoost3": {
+      "tier": 3,
+      "element": null,
+      "archetypes": [
+        "break"
+      ]
+    },
+    "firstHitApplyMark": {
+      "tier": 1,
+      "element": null,
+      "archetypes": [
+        "base",
+        "status"
+      ]
+    }
+  }
+}

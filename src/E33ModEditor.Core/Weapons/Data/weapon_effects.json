@@ -1,0 +1,2143 @@
+{
+  "effects": [
+    {
+      "id": "WepFx_TurnStart3",
+      "displayName": "Empty Stains +3",
+      "description": "On turn start, if no Stains, 3 random Stains are generated.",
+      "family": "direct",
+      "character": "Lune",
+      "sourceBp": "BP_LU_Stains_TurnStart+StainsIfNoStain",
+      "sourcePassive": "Stains_TurnStart+StainsIfNoStain",
+      "balancing": [
+        {
+          "key": "WepFx_TurnStart3_RandomStainAmount",
+          "cloneFrom": "Stains_TurnStart+StainsIfNoStain_RandomStainAmount",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "WepFx_TurnStart4",
+      "displayName": "Empty Stains +4",
+      "description": "On turn start, if no Stains, 4 random Stains are generated.",
+      "family": "direct",
+      "character": "Lune",
+      "sourceBp": "BP_LU_Stains_TurnStart+StainsIfNoStain",
+      "sourcePassive": "Stains_TurnStart+StainsIfNoStain",
+      "balancing": [
+        {
+          "key": "WepFx_TurnStart4_RandomStainAmount",
+          "cloneFrom": "Stains_TurnStart+StainsIfNoStain_RandomStainAmount",
+          "value": 4
+        }
+      ]
+    },
+    {
+      "id": "WepFx_LightOnConsume100",
+      "displayName": "Light on Consume 100%",
+      "description": "100% chance to generate a Light Stain when consuming Stains.",
+      "family": "direct",
+      "character": "Lune",
+      "sourceBp": "BP_LU_Stains_GenerateLightStainRandom",
+      "sourcePassive": "Stains_GenerateLightStainRandom",
+      "balancing": [
+        {
+          "key": "WepFx_LightOnConsume100_ChancePercent",
+          "cloneFrom": "Stains_GenerateLightStainRandom_ChancePercent",
+          "value": 100
+        }
+      ]
+    },
+    {
+      "id": "WepFx_DarkDmgPerStain100",
+      "displayName": "Dark Stain Damage +100%",
+      "description": "100% increased damage per active Dark Stain. Consuming a Stain may also generate a Dark Stain.",
+      "family": "direct",
+      "character": "Lune",
+      "sourceBp": "BP_LU_Stains_GenerateDarkStainRandom",
+      "sourcePassive": "Stains_GenerateDarkStainRandom",
+      "balancing": [
+        {
+          "key": "WepFx_DarkDmgPerStain100_DamageIncreasePerDarkStain",
+          "cloneFrom": "Stains_GenerateDarkStainRandom_DamageIncreasePerDarkStain",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_ConsumeLightOrDarkDmg",
+      "displayName": "Consume: Light or Dark +100%",
+      "description": "50% chance to generate a Dark or Light Stain when consuming Stains. 100% increased damage per active Dark Stain.",
+      "family": "direct",
+      "character": "Lune",
+      "sourceBp": "BP_LU_Stains_GenerateLightOrDarkStainRandom",
+      "sourcePassive": "Stains_GenerateLightOrDarkStainRandom",
+      "balancing": [
+        {
+          "key": "WepFx_ConsumeLightOrDarkDmg_DarkChancePercent",
+          "cloneFrom": "Stains_GenerateLightOrDarkStainRandom_DarkChancePercent",
+          "value": 50
+        },
+        {
+          "key": "WepFx_ConsumeLightOrDarkDmg_DamageIncreasePerDarkStain",
+          "cloneFrom": "Stains_GenerateDarkStainRandom_DamageIncreasePerDarkStain",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_ThunderBurn250",
+      "displayName": "Thunder Consume Burn II",
+      "description": "Lightning Skills consume up to 250 Burn to deal 2% more damage per Burn consumed.",
+      "family": "direct",
+      "character": "Lune",
+      "sourceBp": "BP_LU_ThunderSkillConsumeBurn",
+      "sourcePassive": "ThunderSkillConsumeBurn",
+      "balancing": [
+        {
+          "key": "WepFx_ThunderBurn250_DamagePerBurnConsume",
+          "cloneFrom": "Stains_ThunderSkillConsumeBurn_DamagePerBurnConsume",
+          "value": 0.02
+        }
+      ],
+      "patchInts": [
+        {
+          "from": 100,
+          "to": 250
+        }
+      ]
+    },
+    {
+      "id": "WepFx_AugAtk2",
+      "displayName": "Augmented Attack II",
+      "description": "100% increased Base Attack damage.",
+      "family": "direct",
+      "character": "Verso",
+      "sourceBp": "BP_LU_BaseAttack+25",
+      "sourcePassive": "AugmentedAttack_Weapon",
+      "balancing": [
+        {
+          "key": "WepFx_AugAtk2_DamageIncrease",
+          "cloneFrom": "AugmentedAttack_DamageIncrease",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_AugAtk3",
+      "displayName": "Augmented Attack III",
+      "description": "200% increased Base Attack damage.",
+      "family": "direct",
+      "character": "Verso",
+      "sourceBp": "BP_LU_BaseAttack+25",
+      "sourcePassive": "AugmentedAttack_Weapon",
+      "balancing": [
+        {
+          "key": "WepFx_AugAtk3_DamageIncrease",
+          "cloneFrom": "AugmentedAttack_DamageIncrease",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_Break2",
+      "displayName": "Break Damage II",
+      "description": "100% increased Break damage.",
+      "family": "direct",
+      "character": "Verso",
+      "sourceBp": "BP_LU_BreakDMG+",
+      "sourcePassive": "BreakDMG+",
+      "balancing": [
+        {
+          "key": "WepFx_Break2_BreakDamageIncrease",
+          "cloneFrom": "BreakDMG+_BreakDamageIncrease",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_Break3",
+      "displayName": "Break Damage III",
+      "description": "200% increased Break damage.",
+      "family": "direct",
+      "character": "Verso",
+      "sourceBp": "BP_LU_BreakDMG+",
+      "sourcePassive": "BreakDMG+",
+      "balancing": [
+        {
+          "key": "WepFx_Break3_BreakDamageIncrease",
+          "cloneFrom": "BreakDMG+_BreakDamageIncrease",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_LightningCrit2",
+      "displayName": "Lightning on Crit II",
+      "description": "Critical hits trigger a 1.00x Lightning strike.",
+      "family": "direct",
+      "character": "Verso",
+      "sourceBp": "BP_LU_TriggerLightningOnCrit",
+      "sourcePassive": "TriggerLightningOnCrit",
+      "balancing": [
+        {
+          "key": "WepFx_LightningCrit2_LightningStrikeBaseDamage",
+          "cloneFrom": "TriggerLightningOnCrit_LightningStrikeBaseDamage",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_LightningCrit3",
+      "displayName": "Lightning on Crit III",
+      "description": "Critical hits trigger a 2.00x Lightning strike.",
+      "family": "direct",
+      "character": "Verso",
+      "sourceBp": "BP_LU_TriggerLightningOnCrit",
+      "sourcePassive": "TriggerLightningOnCrit",
+      "balancing": [
+        {
+          "key": "WepFx_LightningCrit3_LightningStrikeBaseDamage",
+          "cloneFrom": "TriggerLightningOnCrit_LightningStrikeBaseDamage",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_AttackBurn5",
+      "displayName": "Attack Burn II",
+      "description": "Base Attack applies 10 Burn.",
+      "family": "direct",
+      "character": "Verso",
+      "sourceBp": "BP_LU_AttackBurn",
+      "sourcePassive": "AttackBurn",
+      "sourcePathContains": "OnBaseAttack",
+      "balancing": [
+        {
+          "key": "WepFx_AttackBurn5_BurnDamageMultiplier",
+          "cloneFrom": "AttackBurn_BurnDamageMultiplier",
+          "value": 5.0
+        },
+        {
+          "key": "WepFx_AttackBurn5_Duration",
+          "cloneFrom": "AttackBurn_Duration",
+          "value": 3.0
+        }
+      ],
+      "patchInts": [
+        {
+          "from": 2,
+          "to": 10
+        }
+      ]
+    },
+    {
+      "id": "WepFx_AttackBurn10",
+      "displayName": "Attack Burn III",
+      "description": "Base Attack applies 25 Burn.",
+      "family": "direct",
+      "character": "Verso",
+      "sourceBp": "BP_LU_AttackBurn",
+      "sourcePassive": "AttackBurn",
+      "sourcePathContains": "OnBaseAttack",
+      "balancing": [
+        {
+          "key": "WepFx_AttackBurn10_BurnDamageMultiplier",
+          "cloneFrom": "AttackBurn_BurnDamageMultiplier",
+          "value": 10.0
+        },
+        {
+          "key": "WepFx_AttackBurn10_Duration",
+          "cloneFrom": "AttackBurn_Duration",
+          "value": 3.0
+        }
+      ],
+      "patchInts": [
+        {
+          "from": 2,
+          "to": 25
+        }
+      ]
+    },
+    {
+      "id": "WepFx_MaskStack50",
+      "displayName": "Overcharged Skill Stack +50%",
+      "description": "50% increased damage per Upgraded Skill used. Resets on using a non-Upgraded Skill.",
+      "family": "direct",
+      "character": "Monoco",
+      "sourceBp": "BP_LU_Masks_DMG+BonusStackOnOverchargedSkillsChain",
+      "sourcePassive": "Masks_DMG+BonusStackOnOverchargedSkillsChain",
+      "balancing": [
+        {
+          "key": "WepFx_MaskStack50_DamageIncreasePerStack",
+          "cloneFrom": "Masks_DMG+BonusStackOnOverchargedSkillsChain_DamageIncreasePerStack",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "WepFx_CounterShield2",
+      "displayName": "Counter per Shield II",
+      "description": "100% increased Counter damage per Shield.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_CounterDamagePerShield",
+      "sourcePassive": "CounterDamagePerShield",
+      "balancing": [
+        {
+          "key": "WepFx_CounterShield2_CounterDamageIncreasePerShield",
+          "cloneFrom": "CounterDamagePerShield_CounterDamageIncreasePerShield",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_CounterShield3",
+      "displayName": "Counter per Shield III",
+      "description": "200% increased Counter damage per Shield.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_CounterDamagePerShield",
+      "sourcePassive": "CounterDamagePerShield",
+      "balancing": [
+        {
+          "key": "WepFx_CounterShield3_CounterDamageIncreasePerShield",
+          "cloneFrom": "CounterDamagePerShield_CounterDamageIncreasePerShield",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_CounterBurn10",
+      "displayName": "Counter Burn II",
+      "description": "Apply 200 Burn on Counterattack.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_CounterBurn",
+      "sourcePassive": "CounterBurn",
+      "balancing": [
+        {
+          "key": "WepFx_CounterBurn10_BurnDamageMultiplier",
+          "cloneFrom": "CounterBurn_BurnDamageMultiplier",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_CounterBurn10_Duration",
+          "cloneFrom": "CounterBurn_Duration",
+          "value": 3.0
+        }
+      ],
+      "patchInts": [
+        {
+          "from": 5,
+          "to": 200
+        }
+      ]
+    },
+    {
+      "id": "WepFx_CounterDmg2",
+      "displayName": "Increase Counter II",
+      "description": "200% increased Counterattack damage.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_IncreaseCounterDamage",
+      "sourcePassive": "IncreaseCounterDamage",
+      "balancing": [
+        {
+          "key": "WepFx_CounterDmg2_DamageMultiplier",
+          "cloneFrom": "IncreaseCounterDamage_DamageMultiplier",
+          "value": 3.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_CounterDmg3",
+      "displayName": "Increase Counter III",
+      "description": "300% increased Counterattack damage.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_IncreaseCounterDamage",
+      "sourcePassive": "IncreaseCounterDamage",
+      "balancing": [
+        {
+          "key": "WepFx_CounterDmg3_DamageMultiplier",
+          "cloneFrom": "IncreaseCounterDamage_DamageMultiplier",
+          "value": 4.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_BurnDmg2",
+      "displayName": "Burn Damage II",
+      "description": "50% increased Burn damage.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_BurnDamage",
+      "sourcePassive": "BurnDamage",
+      "balancing": [
+        {
+          "key": "WepFx_BurnDmg2_BurnDamage_DamageMultiplier",
+          "cloneFrom": "BurnDamage_BurnDamage_DamageMultiplier",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "WepFx_BurnDmg3",
+      "displayName": "Burn Damage III",
+      "description": "100% increased Burn damage.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_BurnDamage",
+      "sourcePassive": "BurnDamage",
+      "balancing": [
+        {
+          "key": "WepFx_BurnDmg3_BurnDamage_DamageMultiplier",
+          "cloneFrom": "BurnDamage_BurnDamage_DamageMultiplier",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_BurnDmg4",
+      "displayName": "Burn Damage IV",
+      "description": "200% increased Burn damage.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_BurnDamage",
+      "sourcePassive": "BurnDamage",
+      "balancing": [
+        {
+          "key": "WepFx_BurnDmg4_BurnDamage_DamageMultiplier",
+          "cloneFrom": "BurnDamage_BurnDamage_DamageMultiplier",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_BurnDmg5",
+      "displayName": "Burn Damage V",
+      "description": "500% increased Burn damage.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_BurnDamage",
+      "sourcePassive": "BurnDamage",
+      "balancing": [
+        {
+          "key": "WepFx_BurnDmg5_BurnDamage_DamageMultiplier",
+          "cloneFrom": "BurnDamage_BurnDamage_DamageMultiplier",
+          "value": 5.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_AtkShield2",
+      "displayName": "Consuming Shields II",
+      "description": "Base Attack consumes all Shields to deal 200% increased damage per Shield.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_AttackConsumeShieldForExtraDMG",
+      "sourcePassive": "AttackConsumeShieldForExtraDMG",
+      "balancing": [
+        {
+          "key": "WepFx_AtkShield2_DamageIncreasePerShieldPoint",
+          "cloneFrom": "AttackConsumeShieldForExtraDMG_DamageIncreasePerShieldPoint",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_AtkShield3",
+      "displayName": "Consuming Shields III",
+      "description": "Base Attack consumes all Shields to deal 300% increased damage per Shield.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_AttackConsumeShieldForExtraDMG",
+      "sourcePassive": "AttackConsumeShieldForExtraDMG",
+      "balancing": [
+        {
+          "key": "WepFx_AtkShield3_DamageIncreasePerShieldPoint",
+          "cloneFrom": "AttackConsumeShieldForExtraDMG_DamageIncreasePerShieldPoint",
+          "value": 3.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_SelfBurn2",
+      "displayName": "Self Burn II",
+      "description": "Applies 1 Burn to self at turn start. +5% damage per Burn.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_SelfBurnButDmg+",
+      "sourcePassive": "SelfBurnButDmg+",
+      "balancing": [
+        {
+          "key": "WepFx_SelfBurn2_BurnSelfDamageMultiplier",
+          "cloneFrom": "SelfBurnButDmg+_BurnSelfDamageMultiplier",
+          "value": 0.05
+        },
+        {
+          "key": "WepFx_SelfBurn2_DamageIncreasePerBurnStack",
+          "cloneFrom": "SelfBurnButDmg+_DamageIncreasePerBurnStack",
+          "value": 0.05
+        },
+        {
+          "key": "WepFx_SelfBurn2_Duration",
+          "cloneFrom": "SelfBurnButDmg+_Duration",
+          "value": 3.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_SelfBurn3",
+      "displayName": "Self Burn III",
+      "description": "Applies 1 Burn to self at turn start. +10% damage per Burn.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_SelfBurnButDmg+",
+      "sourcePassive": "SelfBurnButDmg+",
+      "balancing": [
+        {
+          "key": "WepFx_SelfBurn3_BurnSelfDamageMultiplier",
+          "cloneFrom": "SelfBurnButDmg+_BurnSelfDamageMultiplier",
+          "value": 0.05
+        },
+        {
+          "key": "WepFx_SelfBurn3_DamageIncreasePerBurnStack",
+          "cloneFrom": "SelfBurnButDmg+_DamageIncreasePerBurnStack",
+          "value": 0.1
+        },
+        {
+          "key": "WepFx_SelfBurn3_Duration",
+          "cloneFrom": "SelfBurnButDmg+_Duration",
+          "value": 3.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_SelfBlight1",
+      "displayName": "Self Blight I",
+      "description": "Apply Blight on self on turn start. 10% increased damage per Blight stack.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_SelfBurnButDmg+",
+      "sourcePassive": "SelfBurnButDmg+",
+      "balancing": [
+        {
+          "key": "WepFx_SelfBlight1_SelfDamageMultiplier",
+          "cloneFrom": "SelfBurnButDmg+_BurnSelfDamageMultiplier",
+          "value": 0.05
+        },
+        {
+          "key": "WepFx_SelfBlight1_DamageIncreasePerBlightStack",
+          "cloneFrom": "SelfBurnButDmg+_DamageIncreasePerBurnStack",
+          "value": 0.1
+        },
+        {
+          "key": "WepFx_SelfBlight1_Duration",
+          "cloneFrom": "SelfBurnButDmg+_Duration",
+          "value": 3.0
+        }
+      ],
+      "replaceNames": {
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Blight",
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Blight"
+      }
+    },
+    {
+      "id": "WepFx_SelfBerserk1",
+      "displayName": "Self Berserk I",
+      "description": "Applies Berserk to self at turn start. +10% damage per Berserk stack.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_SelfBurnButDmg+",
+      "sourcePassive": "SelfBurnButDmg+",
+      "balancing": [
+        {
+          "key": "WepFx_SelfBerserk1_SelfDamageMultiplier",
+          "cloneFrom": "SelfBurnButDmg+_BurnSelfDamageMultiplier",
+          "value": 0.05
+        },
+        {
+          "key": "WepFx_SelfBerserk1_DamageIncreasePerBerserkStack",
+          "cloneFrom": "SelfBurnButDmg+_DamageIncreasePerBurnStack",
+          "value": 0.1
+        },
+        {
+          "key": "WepFx_SelfBerserk1_Duration",
+          "cloneFrom": "SelfBurnButDmg+_Duration",
+          "value": 3.0
+        }
+      ],
+      "replaceNames": {
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Berserk",
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Berserk"
+      }
+    },
+    {
+      "id": "WepFx_SelfBlight2",
+      "displayName": "Self Blight II",
+      "description": "Apply Blight on self on turn start. 20% increased damage per Blight stack.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_SelfBurnButDmg+",
+      "sourcePassive": "SelfBurnButDmg+",
+      "balancing": [
+        {
+          "key": "WepFx_SelfBlight2_SelfDamageMultiplier",
+          "cloneFrom": "SelfBurnButDmg+_BurnSelfDamageMultiplier",
+          "value": 0.05
+        },
+        {
+          "key": "WepFx_SelfBlight2_DamageIncreasePerBlightStack",
+          "cloneFrom": "SelfBurnButDmg+_DamageIncreasePerBurnStack",
+          "value": 0.2
+        },
+        {
+          "key": "WepFx_SelfBlight2_Duration",
+          "cloneFrom": "SelfBurnButDmg+_Duration",
+          "value": 3.0
+        }
+      ],
+      "replaceNames": {
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Blight",
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Blight"
+      }
+    },
+    {
+      "id": "WepFx_SelfBerserk2",
+      "displayName": "Self Berserk II",
+      "description": "Applies Berserk to self at turn start. +20% damage per Berserk stack.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_SelfBurnButDmg+",
+      "sourcePassive": "SelfBurnButDmg+",
+      "balancing": [
+        {
+          "key": "WepFx_SelfBerserk2_SelfDamageMultiplier",
+          "cloneFrom": "SelfBurnButDmg+_BurnSelfDamageMultiplier",
+          "value": 0.05
+        },
+        {
+          "key": "WepFx_SelfBerserk2_DamageIncreasePerBerserkStack",
+          "cloneFrom": "SelfBurnButDmg+_DamageIncreasePerBurnStack",
+          "value": 0.2
+        },
+        {
+          "key": "WepFx_SelfBerserk2_Duration",
+          "cloneFrom": "SelfBurnButDmg+_Duration",
+          "value": 3.0
+        }
+      ],
+      "replaceNames": {
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Berserk",
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Berserk"
+      }
+    },
+    {
+      "id": "WepFx_SelfBlight3",
+      "displayName": "Self Blight III",
+      "description": "Apply Blight on self on turn start. 30% increased damage per Blight stack.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_SelfBurnButDmg+",
+      "sourcePassive": "SelfBurnButDmg+",
+      "balancing": [
+        {
+          "key": "WepFx_SelfBlight3_SelfDamageMultiplier",
+          "cloneFrom": "SelfBurnButDmg+_BurnSelfDamageMultiplier",
+          "value": 0.05
+        },
+        {
+          "key": "WepFx_SelfBlight3_DamageIncreasePerBlightStack",
+          "cloneFrom": "SelfBurnButDmg+_DamageIncreasePerBurnStack",
+          "value": 0.3
+        },
+        {
+          "key": "WepFx_SelfBlight3_Duration",
+          "cloneFrom": "SelfBurnButDmg+_Duration",
+          "value": 3.0
+        }
+      ],
+      "replaceNames": {
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Blight",
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Blight"
+      }
+    },
+    {
+      "id": "WepFx_SelfBerserk3",
+      "displayName": "Self Berserk III",
+      "description": "Applies Berserk to self at turn start. +30% damage per Berserk stack.",
+      "family": "direct",
+      "character": "Maelle",
+      "sourceBp": "BP_LU_SelfBurnButDmg+",
+      "sourcePassive": "SelfBurnButDmg+",
+      "balancing": [
+        {
+          "key": "WepFx_SelfBerserk3_SelfDamageMultiplier",
+          "cloneFrom": "SelfBurnButDmg+_BurnSelfDamageMultiplier",
+          "value": 0.05
+        },
+        {
+          "key": "WepFx_SelfBerserk3_DamageIncreasePerBerserkStack",
+          "cloneFrom": "SelfBurnButDmg+_DamageIncreasePerBurnStack",
+          "value": 0.3
+        },
+        {
+          "key": "WepFx_SelfBerserk3_Duration",
+          "cloneFrom": "SelfBurnButDmg+_Duration",
+          "value": 3.0
+        }
+      ],
+      "replaceNames": {
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Berserk",
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Berserk"
+      }
+    },
+    {
+      "id": "WepFx_CursedBlade",
+      "displayName": "Cursed Blade",
+      "description": "Deal 50% more damage while Cursed.",
+      "family": "direct",
+      "sourceBp": "BP_LU_CursedPower",
+      "sourcePassive": "CursedPower",
+      "balancing": [
+        {
+          "key": "WepFx_CursedBlade_DamageIncrease",
+          "cloneFrom": "CursedPower_DamageIncrease",
+          "value": 0.5
+        }
+      ],
+      "replaceNames": {
+        "CursedPower_DamageIncrease": "WepFx_CursedBlade_DamageIncrease"
+      }
+    },
+    {
+      "id": "WepFx_BlightBlade",
+      "displayName": "Blighted Blade",
+      "description": "Deal 50% more damage while Blighted.",
+      "family": "direct",
+      "sourceBp": "BP_LU_CursedPower",
+      "sourcePassive": "CursedPower",
+      "balancing": [
+        {
+          "key": "WepFx_BlightBlade_DamageIncrease",
+          "cloneFrom": "CursedPower_DamageIncrease",
+          "value": 0.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Cursed": "BP_BattleBuff_Blight",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Cursed": "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Blight",
+        "CursedPower_DamageIncrease": "WepFx_BlightBlade_DamageIncrease"
+      }
+    },
+    {
+      "id": "WepFx_BerserkBlade",
+      "displayName": "Berserk Blade",
+      "description": "Deal 50% more damage while Berserked.",
+      "family": "direct",
+      "sourceBp": "BP_LU_CursedPower",
+      "sourcePassive": "CursedPower",
+      "balancing": [
+        {
+          "key": "WepFx_BerserkBlade_DamageIncrease",
+          "cloneFrom": "CursedPower_DamageIncrease",
+          "value": 0.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Cursed": "BP_BattleBuff_Berserk",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Cursed": "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Berserk",
+        "CursedPower_DamageIncrease": "WepFx_BerserkBlade_DamageIncrease"
+      }
+    },
+    {
+      "id": "WepFx_PowerfulBlade",
+      "displayName": "Powerful Blade",
+      "description": "Deal 20% more damage while Powerful.",
+      "family": "direct",
+      "sourceBp": "BP_LU_CursedPower",
+      "sourcePassive": "CursedPower",
+      "balancing": [
+        {
+          "key": "WepFx_PowerfulBlade_DamageIncrease",
+          "cloneFrom": "CursedPower_DamageIncrease",
+          "value": 0.2
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Cursed": "BP_BattleBuff_Powerful",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Cursed": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Powerful",
+        "CursedPower_DamageIncrease": "WepFx_PowerfulBlade_DamageIncrease"
+      }
+    },
+    {
+      "id": "WepFx_RushBlade",
+      "displayName": "Rush Blade",
+      "description": "Deal 20% more damage while Rushed.",
+      "family": "direct",
+      "sourceBp": "BP_LU_CursedPower",
+      "sourcePassive": "CursedPower",
+      "balancing": [
+        {
+          "key": "WepFx_RushBlade_DamageIncrease",
+          "cloneFrom": "CursedPower_DamageIncrease",
+          "value": 0.2
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Cursed": "BP_BattleBuff_Speed",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Cursed": "/Game/Gameplay/Buffs/ParentClasses/BP_BattleBuff_Speed",
+        "CursedPower_DamageIncrease": "WepFx_RushBlade_DamageIncrease"
+      }
+    },
+    {
+      "id": "WepFx_ShellBlade",
+      "displayName": "Shell Blade",
+      "description": "Deal 20% more damage while Shelled.",
+      "family": "direct",
+      "sourceBp": "BP_LU_CursedPower",
+      "sourcePassive": "CursedPower",
+      "balancing": [
+        {
+          "key": "WepFx_ShellBlade_DamageIncrease",
+          "cloneFrom": "CursedPower_DamageIncrease",
+          "value": 0.2
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Cursed": "BP_BattleBuff_Defense15",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Cursed": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Defense15",
+        "CursedPower_DamageIncrease": "WepFx_ShellBlade_DamageIncrease"
+      }
+    },
+    {
+      "id": "WepFx_RegenBlade",
+      "displayName": "Regen Blade",
+      "description": "Deal 20% more damage while Regenerating.",
+      "family": "direct",
+      "sourceBp": "BP_LU_CursedPower",
+      "sourcePassive": "CursedPower",
+      "balancing": [
+        {
+          "key": "WepFx_RegenBlade_DamageIncrease",
+          "cloneFrom": "CursedPower_DamageIncrease",
+          "value": 0.2
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Cursed": "BP_BattleBuff_Regen",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Cursed": "/Game/Gameplay/Buffs/UniqueBuffs/BP_BattleBuff_Regen",
+        "CursedPower_DamageIncrease": "WepFx_RegenBlade_DamageIncrease"
+      }
+    },
+    {
+      "id": "WepFx_SlowConsume",
+      "displayName": "Slow Consume I",
+      "description": "Deal 50% more damage with base attack to Slowed enemies. Consumes Slow.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_SlowConsume_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_SlowConsume_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 0.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Slow",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/ParentClasses/BP_BattleBuff_Slow",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_SlowConsume_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_SlowConsume_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_PowerlessConsume1",
+      "displayName": "Powerless Consume I",
+      "description": "Deal 50% more damage with base attack to Powerless enemies. Consumes Powerless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_PowerlessConsume1_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_PowerlessConsume1_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 0.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Powerless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Powerless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_PowerlessConsume1_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_PowerlessConsume1_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_PowerlessConsume2",
+      "displayName": "Powerless Consume II",
+      "description": "Deal 100% more damage with base attack to Powerless enemies. Consumes Powerless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_PowerlessConsume2_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_PowerlessConsume2_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.0
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Powerless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Powerless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_PowerlessConsume2_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_PowerlessConsume2_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_PowerlessConsume3",
+      "displayName": "Powerless Consume III",
+      "description": "Deal 150% more damage with base attack to Powerless enemies. Consumes Powerless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_PowerlessConsume3_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_PowerlessConsume3_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Powerless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Powerless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_PowerlessConsume3_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_PowerlessConsume3_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_SlowConsume2",
+      "displayName": "Slow Consume II",
+      "description": "Deal 100% more damage with base attack to Slowed enemies. Consumes Slow.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_SlowConsume2_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_SlowConsume2_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.0
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Slow",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/ParentClasses/BP_BattleBuff_Slow",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_SlowConsume2_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_SlowConsume2_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_SlowConsume3",
+      "displayName": "Slow Consume III",
+      "description": "Deal 150% more damage with base attack to Slowed enemies. Consumes Slow.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_SlowConsume3_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_SlowConsume3_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Slow",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/ParentClasses/BP_BattleBuff_Slow",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_SlowConsume3_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_SlowConsume3_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_DefenselessConsume1",
+      "displayName": "Defenceless Consume I",
+      "description": "Deal 50% more damage with base attack to Defenceless enemies. Consumes Defenceless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_DefenselessConsume1_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_DefenselessConsume1_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 0.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Defenseless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Defenseless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_DefenselessConsume1_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_DefenselessConsume1_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_DefenselessConsume2",
+      "displayName": "Defenceless Consume II",
+      "description": "Deal 100% more damage with base attack to Defenceless enemies. Consumes Defenceless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_DefenselessConsume2_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_DefenselessConsume2_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.0
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Defenseless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Defenseless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_DefenselessConsume2_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_DefenselessConsume2_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_DefenselessConsume3",
+      "displayName": "Defenceless Consume III",
+      "description": "Deal 150% more damage with base attack to Defenceless enemies. Consumes Defenceless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_DefenselessConsume3_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_DefenselessConsume3_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Defenseless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Defenseless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_DefenselessConsume3_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_DefenselessConsume3_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_SlowConsumeSkills",
+      "displayName": "Slow Consume I (Skills)",
+      "description": "Deal 50% more damage with skills to Slowed enemies. Consumes Slow.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_SlowConsumeSkills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_SlowConsumeSkills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 0.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Slow",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/ParentClasses/BP_BattleBuff_Slow",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_SlowConsumeSkills_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_SlowConsumeSkills_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_PowerlessConsume1Skills",
+      "displayName": "Powerless Consume I (Skills)",
+      "description": "Deal 50% more damage with skills to Powerless enemies. Consumes Powerless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_PowerlessConsume1Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_PowerlessConsume1Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 0.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Powerless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Powerless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_PowerlessConsume1Skills_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_PowerlessConsume1Skills_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_PowerlessConsume2Skills",
+      "displayName": "Powerless Consume II (Skills)",
+      "description": "Deal 100% more damage with skills to Powerless enemies. Consumes Powerless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_PowerlessConsume2Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_PowerlessConsume2Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.0
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Powerless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Powerless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_PowerlessConsume2Skills_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_PowerlessConsume2Skills_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_PowerlessConsume3Skills",
+      "displayName": "Powerless Consume III (Skills)",
+      "description": "Deal 150% more damage with skills to Powerless enemies. Consumes Powerless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_PowerlessConsume3Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_PowerlessConsume3Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Powerless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Powerless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_PowerlessConsume3Skills_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_PowerlessConsume3Skills_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_SlowConsume2Skills",
+      "displayName": "Slow Consume II (Skills)",
+      "description": "Deal 100% more damage with skills to Slowed enemies. Consumes Slow.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_SlowConsume2Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_SlowConsume2Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.0
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Slow",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/ParentClasses/BP_BattleBuff_Slow",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_SlowConsume2Skills_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_SlowConsume2Skills_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_SlowConsume3Skills",
+      "displayName": "Slow Consume III (Skills)",
+      "description": "Deal 150% more damage with skills to Slowed enemies. Consumes Slow.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_SlowConsume3Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_SlowConsume3Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Slow",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/ParentClasses/BP_BattleBuff_Slow",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_SlowConsume3Skills_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_SlowConsume3Skills_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_DefenselessConsume1Skills",
+      "displayName": "Defenceless Consume I (Skills)",
+      "description": "Deal 50% more damage with skills to Defenceless enemies. Consumes Defenceless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_DefenselessConsume1Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_DefenselessConsume1Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 0.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Defenseless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Defenseless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_DefenselessConsume1Skills_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_DefenselessConsume1Skills_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_DefenselessConsume2Skills",
+      "displayName": "Defenceless Consume II (Skills)",
+      "description": "Deal 100% more damage with skills to Defenceless enemies. Consumes Defenceless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_DefenselessConsume2Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_DefenselessConsume2Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.0
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Defenseless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Defenseless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_DefenselessConsume2Skills_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_DefenselessConsume2Skills_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_DefenselessConsume3Skills",
+      "displayName": "Defenceless Consume III (Skills)",
+      "description": "Deal 150% more damage with skills to Defenceless enemies. Consumes Defenceless.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_DefenselessConsume3Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_DefenselessConsume3Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 1.5
+        }
+      ],
+      "replaceNames": {
+        "BP_BattleBuff_Burn": "BP_BattleBuff_Defenseless",
+        "/Game/Gameplay/Buffs/GenericBuff/BP_BattleBuff_Burn": "/Game/Gameplay/Buffs/StatsBuffs/BP_BattleBuff_Defenseless",
+        "ConsumingAttack_MaxBurnConsumed": "WepFx_DefenselessConsume3Skills_MaxBurnConsumed",
+        "ConsumingAttack_DamageMultiplierPerBurn": "WepFx_DefenselessConsume3Skills_DamageMultiplierPerBurn"
+      }
+    },
+    {
+      "id": "WepFx_FrancoisShell1",
+      "displayName": "Fran\u00e7ois's Shell I",
+      "description": "Take 10% less damage.",
+      "family": "direct",
+      "sourceBp": "BP_LU_GlassCanon",
+      "sourcePassive": "GlassCanon",
+      "balancing": [
+        {
+          "key": "WepFx_FrancoisShell1_DamageMultiplier",
+          "cloneFrom": "GlassCanon_DamageMultiplier",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_FrancoisShell1_DamageReceivedMultiplier",
+          "cloneFrom": "GlassCanon_DamageReceivedMultiplier",
+          "value": 0.9
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FrancoisShell2",
+      "displayName": "Fran\u00e7ois's Shell II",
+      "description": "Take 20% less damage.",
+      "family": "direct",
+      "sourceBp": "BP_LU_GlassCanon",
+      "sourcePassive": "GlassCanon",
+      "balancing": [
+        {
+          "key": "WepFx_FrancoisShell2_DamageMultiplier",
+          "cloneFrom": "GlassCanon_DamageMultiplier",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_FrancoisShell2_DamageReceivedMultiplier",
+          "cloneFrom": "GlassCanon_DamageReceivedMultiplier",
+          "value": 0.8
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FrancoisShell3",
+      "displayName": "Fran\u00e7ois's Shell III",
+      "description": "Take 30% less damage.",
+      "family": "direct",
+      "sourceBp": "BP_LU_GlassCanon",
+      "sourcePassive": "GlassCanon",
+      "balancing": [
+        {
+          "key": "WepFx_FrancoisShell3_DamageMultiplier",
+          "cloneFrom": "GlassCanon_DamageMultiplier",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_FrancoisShell3_DamageReceivedMultiplier",
+          "cloneFrom": "GlassCanon_DamageReceivedMultiplier",
+          "value": 0.7
+        }
+      ]
+    },
+    {
+      "id": "WepFx_AltCrit1",
+      "displayName": "Alternating Critical I",
+      "description": "On Critical hit, 50% increased damage of the next non-Critical hit.",
+      "family": "direct",
+      "sourceBp": "BP_LU_AlternatingCritical",
+      "sourcePassive": "AlternatingCritical",
+      "balancing": [
+        {
+          "key": "WepFx_AltCrit1_DamageIncrease",
+          "cloneFrom": "AlternatingCritical_DamageIncrease",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "WepFx_AltCrit2",
+      "displayName": "Alternating Critical II",
+      "description": "On Critical hit, 100% increased damage of the next non-Critical hit.",
+      "family": "direct",
+      "sourceBp": "BP_LU_AlternatingCritical",
+      "sourcePassive": "AlternatingCritical",
+      "balancing": [
+        {
+          "key": "WepFx_AltCrit2_DamageIncrease",
+          "cloneFrom": "AlternatingCritical_DamageIncrease",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_AltCrit3",
+      "displayName": "Alternating Critical III",
+      "description": "On Critical hit, 200% increased damage of the next non-Critical hit.",
+      "family": "direct",
+      "sourceBp": "BP_LU_AlternatingCritical",
+      "sourcePassive": "AlternatingCritical",
+      "balancing": [
+        {
+          "key": "WepFx_AltCrit3_DamageIncrease",
+          "cloneFrom": "AlternatingCritical_DamageIncrease",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_AltCrit4",
+      "displayName": "Alternating Critical IV",
+      "description": "On Critical hit, 400% increased damage of the next non-Critical hit.",
+      "family": "direct",
+      "sourceBp": "BP_LU_AlternatingCritical",
+      "sourcePassive": "AlternatingCritical",
+      "balancing": [
+        {
+          "key": "WepFx_AltCrit4_DamageIncrease",
+          "cloneFrom": "AlternatingCritical_DamageIncrease",
+          "value": 4.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_AltCrit5",
+      "displayName": "Alternating Critical V",
+      "description": "On Critical hit, 600% increased damage of the next non-Critical hit.",
+      "family": "direct",
+      "sourceBp": "BP_LU_AlternatingCritical",
+      "sourcePassive": "AlternatingCritical",
+      "balancing": [
+        {
+          "key": "WepFx_AltCrit5_DamageIncrease",
+          "cloneFrom": "AlternatingCritical_DamageIncrease",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_Immaculate1",
+      "displayName": "Immaculate I",
+      "description": "20% increased damage until a hit is received.",
+      "family": "direct",
+      "sourceBp": "BP_LU_Immaculate",
+      "sourcePassive": "Immaculate",
+      "balancing": [
+        {
+          "key": "WepFx_Immaculate1_DamageIncrease",
+          "cloneFrom": "Immaculate_DamageIncrease",
+          "value": 0.2
+        }
+      ]
+    },
+    {
+      "id": "WepFx_Immaculate2",
+      "displayName": "Immaculate II",
+      "description": "40% increased damage until a hit is received.",
+      "family": "direct",
+      "sourceBp": "BP_LU_Immaculate",
+      "sourcePassive": "Immaculate",
+      "balancing": [
+        {
+          "key": "WepFx_Immaculate2_DamageIncrease",
+          "cloneFrom": "Immaculate_DamageIncrease",
+          "value": 0.4
+        }
+      ]
+    },
+    {
+      "id": "WepFx_Immaculate3",
+      "displayName": "Immaculate III",
+      "description": "60% increased damage until a hit is received.",
+      "family": "direct",
+      "sourceBp": "BP_LU_Immaculate",
+      "sourcePassive": "Immaculate",
+      "balancing": [
+        {
+          "key": "WepFx_Immaculate3_DamageIncrease",
+          "cloneFrom": "Immaculate_DamageIncrease",
+          "value": 0.6
+        }
+      ]
+    },
+    {
+      "id": "WepFx_Immaculate4",
+      "displayName": "Immaculate IV",
+      "description": "100% increased damage until a hit is received.",
+      "family": "direct",
+      "sourceBp": "BP_LU_Immaculate",
+      "sourcePassive": "Immaculate",
+      "balancing": [
+        {
+          "key": "WepFx_Immaculate4_DamageIncrease",
+          "cloneFrom": "Immaculate_DamageIncrease",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_Immaculate5",
+      "displayName": "Immaculate V",
+      "description": "200% increased damage until a hit is received.",
+      "family": "direct",
+      "sourceBp": "BP_LU_Immaculate",
+      "sourcePassive": "Immaculate",
+      "balancing": [
+        {
+          "key": "WepFx_Immaculate5_DamageIncrease",
+          "cloneFrom": "Immaculate_DamageIncrease",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_StunBoost1",
+      "displayName": "Stun Boost I",
+      "description": "Deal 20% more damage to Stunned targets.",
+      "family": "direct",
+      "sourceBp": "BP_LU_StunBoost",
+      "sourcePassive": "StunBoost",
+      "balancing": [
+        {
+          "key": "WepFx_StunBoost1_DamageIncrease",
+          "cloneFrom": "StunBoost_DamageIncrease",
+          "value": 0.2
+        }
+      ]
+    },
+    {
+      "id": "WepFx_StunBoost2",
+      "displayName": "Stun Boost II",
+      "description": "Deal 40% more damage to Stunned targets.",
+      "family": "direct",
+      "sourceBp": "BP_LU_StunBoost",
+      "sourcePassive": "StunBoost",
+      "balancing": [
+        {
+          "key": "WepFx_StunBoost2_DamageIncrease",
+          "cloneFrom": "StunBoost_DamageIncrease",
+          "value": 0.4
+        }
+      ]
+    },
+    {
+      "id": "WepFx_StunBoost3",
+      "displayName": "Stun Boost III",
+      "description": "Deal 100% more damage to Stunned targets.",
+      "family": "direct",
+      "sourceBp": "BP_LU_StunBoost",
+      "sourcePassive": "StunBoost",
+      "balancing": [
+        {
+          "key": "WepFx_StunBoost3_DamageIncrease",
+          "cloneFrom": "StunBoost_DamageIncrease",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_StunBoost4",
+      "displayName": "Stun Boost IV",
+      "description": "Deal 200% more damage to Stunned targets.",
+      "family": "direct",
+      "sourceBp": "BP_LU_StunBoost",
+      "sourcePassive": "StunBoost",
+      "balancing": [
+        {
+          "key": "WepFx_StunBoost4_DamageIncrease",
+          "cloneFrom": "StunBoost_DamageIncrease",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_StunBoost5",
+      "displayName": "Stun Boost V",
+      "description": "Deal 300% more damage to Stunned targets.",
+      "family": "direct",
+      "sourceBp": "BP_LU_StunBoost",
+      "sourcePassive": "StunBoost",
+      "balancing": [
+        {
+          "key": "WepFx_StunBoost5_DamageIncrease",
+          "cloneFrom": "StunBoost_DamageIncrease",
+          "value": 3.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_SoloFighter1",
+      "displayName": "Solo Fighter I",
+      "description": "Deal 50% more damage while fighting alone.",
+      "family": "direct",
+      "sourceBp": "BP_LU_SoloFighter",
+      "sourcePassive": "SoloFighter",
+      "balancing": [
+        {
+          "key": "WepFx_SoloFighter1_DamageMultiplier",
+          "cloneFrom": "SoloFighter_DamageMultiplier",
+          "value": 1.5
+        }
+      ]
+    },
+    {
+      "id": "WepFx_SoloFighter2",
+      "displayName": "Solo Fighter II",
+      "description": "Deal 100% more damage while fighting alone.",
+      "family": "direct",
+      "sourceBp": "BP_LU_SoloFighter",
+      "sourcePassive": "SoloFighter",
+      "balancing": [
+        {
+          "key": "WepFx_SoloFighter2_DamageMultiplier",
+          "cloneFrom": "SoloFighter_DamageMultiplier",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_SoloFighter3",
+      "displayName": "Solo Fighter III",
+      "description": "Deal 200% more damage while fighting alone.",
+      "family": "direct",
+      "sourceBp": "BP_LU_SoloFighter",
+      "sourcePassive": "SoloFighter",
+      "balancing": [
+        {
+          "key": "WepFx_SoloFighter3_DamageMultiplier",
+          "cloneFrom": "SoloFighter_DamageMultiplier",
+          "value": 3.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FirstOffensive1",
+      "displayName": "First Offensive I",
+      "description": "First hit dealt and taken deals 20% more damage.",
+      "family": "direct",
+      "sourceBp": "BP_LU_FirstOffensive",
+      "sourcePassive": "FirstOffensive",
+      "balancing": [
+        {
+          "key": "WepFx_FirstOffensive1_DamageMultiplierDealtValue",
+          "cloneFrom": "FirstOffensive_DamageMultiplierDealtValue",
+          "value": 1.2
+        },
+        {
+          "key": "WepFx_FirstOffensive1_DamageMultiplierValue",
+          "cloneFrom": "FirstOffensive_DamageMultiplierValue",
+          "value": 1.2
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FirstOffensive2",
+      "displayName": "First Offensive II",
+      "description": "First hit dealt and taken deals 50% more damage.",
+      "family": "direct",
+      "sourceBp": "BP_LU_FirstOffensive",
+      "sourcePassive": "FirstOffensive",
+      "balancing": [
+        {
+          "key": "WepFx_FirstOffensive2_DamageMultiplierDealtValue",
+          "cloneFrom": "FirstOffensive_DamageMultiplierDealtValue",
+          "value": 1.5
+        },
+        {
+          "key": "WepFx_FirstOffensive2_DamageMultiplierValue",
+          "cloneFrom": "FirstOffensive_DamageMultiplierValue",
+          "value": 1.5
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FirstOffensive3",
+      "displayName": "First Offensive III",
+      "description": "First hit dealt and taken deals 100% more damage.",
+      "family": "direct",
+      "sourceBp": "BP_LU_FirstOffensive",
+      "sourcePassive": "FirstOffensive",
+      "balancing": [
+        {
+          "key": "WepFx_FirstOffensive3_DamageMultiplierDealtValue",
+          "cloneFrom": "FirstOffensive_DamageMultiplierDealtValue",
+          "value": 2.0
+        },
+        {
+          "key": "WepFx_FirstOffensive3_DamageMultiplierValue",
+          "cloneFrom": "FirstOffensive_DamageMultiplierValue",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FirstOffensive4",
+      "displayName": "First Offensive IV",
+      "description": "First hit dealt and taken deals 200% more damage.",
+      "family": "direct",
+      "sourceBp": "BP_LU_FirstOffensive",
+      "sourcePassive": "FirstOffensive",
+      "balancing": [
+        {
+          "key": "WepFx_FirstOffensive4_DamageMultiplierDealtValue",
+          "cloneFrom": "FirstOffensive_DamageMultiplierDealtValue",
+          "value": 3.0
+        },
+        {
+          "key": "WepFx_FirstOffensive4_DamageMultiplierValue",
+          "cloneFrom": "FirstOffensive_DamageMultiplierValue",
+          "value": 3.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FirstOffensive5",
+      "displayName": "First Offensive V",
+      "description": "First hit dealt and taken deals 400% more damage.",
+      "family": "direct",
+      "sourceBp": "BP_LU_FirstOffensive",
+      "sourcePassive": "FirstOffensive",
+      "balancing": [
+        {
+          "key": "WepFx_FirstOffensive5_DamageMultiplierDealtValue",
+          "cloneFrom": "FirstOffensive_DamageMultiplierDealtValue",
+          "value": 5.0
+        },
+        {
+          "key": "WepFx_FirstOffensive5_DamageMultiplierValue",
+          "cloneFrom": "FirstOffensive_DamageMultiplierValue",
+          "value": 5.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_HealParry1",
+      "displayName": "Healing Parry I",
+      "description": "Recover 6% Health on Parry.",
+      "family": "direct",
+      "sourceBp": "BP_LU_HealOnParry",
+      "sourcePassive": "HealingParry",
+      "balancing": [],
+      "patchFloats": [
+        {
+          "from": 0.03,
+          "to": 0.06
+        }
+      ]
+    },
+    {
+      "id": "WepFx_HealParry2",
+      "displayName": "Healing Parry II",
+      "description": "Recover 10% Health on Parry.",
+      "family": "direct",
+      "sourceBp": "BP_LU_HealOnParry",
+      "sourcePassive": "HealingParry",
+      "balancing": [],
+      "patchFloats": [
+        {
+          "from": 0.03,
+          "to": 0.1
+        }
+      ]
+    },
+    {
+      "id": "WepFx_HealParry3",
+      "displayName": "Healing Parry III",
+      "description": "Recover 20% Health on Parry.",
+      "family": "direct",
+      "sourceBp": "BP_LU_HealOnParry",
+      "sourcePassive": "HealingParry",
+      "balancing": [],
+      "patchFloats": [
+        {
+          "from": 0.03,
+          "to": 0.2
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FullStrength1",
+      "displayName": "Full Strength I",
+      "description": "20% increased damage on full Health.",
+      "family": "direct",
+      "sourceBp": "BP_LU_Stand",
+      "sourcePassive": "Stand",
+      "balancing": [],
+      "patchFloats": [
+        {
+          "from": 1.25,
+          "to": 1.2
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FullStrength2",
+      "displayName": "Full Strength II",
+      "description": "50% increased damage on full Health.",
+      "family": "direct",
+      "sourceBp": "BP_LU_Stand",
+      "sourcePassive": "Stand",
+      "balancing": [],
+      "patchFloats": [
+        {
+          "from": 1.25,
+          "to": 1.5
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FullStrength3",
+      "displayName": "Full Strength III",
+      "description": "100% increased damage on full Health.",
+      "family": "direct",
+      "sourceBp": "BP_LU_Stand",
+      "sourcePassive": "Stand",
+      "balancing": [],
+      "patchFloats": [
+        {
+          "from": 1.25,
+          "to": 2.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FullStrength4",
+      "displayName": "Full Strength IV",
+      "description": "200% increased damage on full Health.",
+      "family": "direct",
+      "sourceBp": "BP_LU_Stand",
+      "sourcePassive": "Stand",
+      "balancing": [],
+      "patchFloats": [
+        {
+          "from": 1.25,
+          "to": 3.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FullStrength5",
+      "displayName": "Full Strength V",
+      "description": "400% increased damage on full Health.",
+      "family": "direct",
+      "sourceBp": "BP_LU_Stand",
+      "sourcePassive": "Stand",
+      "balancing": [],
+      "patchFloats": [
+        {
+          "from": 1.25,
+          "to": 5.0
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FirstLife1",
+      "displayName": "First Life I",
+      "description": "100% increased damage until death. 10% decreased damage on death. (Once)",
+      "family": "direct",
+      "sourceBp": "BP_LU_FirstLife",
+      "sourcePassive": "FirstLife",
+      "balancing": [
+        {
+          "key": "WepFx_FirstLife1_DamageIncrease",
+          "cloneFrom": "FirstLife_DamageIncrease",
+          "value": 1.0
+        },
+        {
+          "key": "WepFx_FirstLife1_DamageDecrease",
+          "cloneFrom": "FirstLife_DamageDecrease",
+          "value": -0.1
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FirstLife2",
+      "displayName": "First Life II",
+      "description": "200% increased damage until death. 20% decreased damage on death. (Once)",
+      "family": "direct",
+      "sourceBp": "BP_LU_FirstLife",
+      "sourcePassive": "FirstLife",
+      "balancing": [
+        {
+          "key": "WepFx_FirstLife2_DamageIncrease",
+          "cloneFrom": "FirstLife_DamageIncrease",
+          "value": 2.0
+        },
+        {
+          "key": "WepFx_FirstLife2_DamageDecrease",
+          "cloneFrom": "FirstLife_DamageDecrease",
+          "value": -0.2
+        }
+      ]
+    },
+    {
+      "id": "WepFx_FirstLife3",
+      "displayName": "First Life III",
+      "description": "300% increased damage until death. 50% decreased damage on death. (Once)",
+      "family": "direct",
+      "sourceBp": "BP_LU_FirstLife",
+      "sourcePassive": "FirstLife",
+      "balancing": [
+        {
+          "key": "WepFx_FirstLife3_DamageIncrease",
+          "cloneFrom": "FirstLife_DamageIncrease",
+          "value": 3.0
+        },
+        {
+          "key": "WepFx_FirstLife3_DamageDecrease",
+          "cloneFrom": "FirstLife_DamageDecrease",
+          "value": -0.5
+        }
+      ]
+    },
+    {
+      "id": "WepFx_MacabrePower1",
+      "displayName": "Macabre Power I",
+      "description": "On death, allies gain 50% increased damage until they die.",
+      "family": "direct",
+      "sourceBp": "BP_LU_CleasDeath",
+      "sourcePassive": "CleasDeath",
+      "balancing": [
+        {
+          "key": "WepFx_MacabrePower1_DamageIncrease",
+          "cloneFrom": "CleasDeath_DamageIncrease",
+          "value": 0.5
+        }
+      ],
+      "replaceNames": {
+        "BP_LU_CleasDeath_Buff": "BP_LU_WepFx_MacabrePower1_Buff"
+      }
+    },
+    {
+      "id": "WepFx_MacabrePower2",
+      "displayName": "Macabre Power II",
+      "description": "On death, allies gain 100% increased damage until they die.",
+      "family": "direct",
+      "sourceBp": "BP_LU_CleasDeath",
+      "sourcePassive": "CleasDeath",
+      "balancing": [
+        {
+          "key": "WepFx_MacabrePower2_DamageIncrease",
+          "cloneFrom": "CleasDeath_DamageIncrease",
+          "value": 1.0
+        }
+      ],
+      "replaceNames": {
+        "BP_LU_CleasDeath_Buff": "BP_LU_WepFx_MacabrePower2_Buff"
+      }
+    },
+    {
+      "id": "WepFx_MacabrePower3",
+      "displayName": "Macabre Power III",
+      "description": "On death, allies gain 200% increased damage until they die.",
+      "family": "direct",
+      "sourceBp": "BP_LU_CleasDeath",
+      "sourcePassive": "CleasDeath",
+      "balancing": [
+        {
+          "key": "WepFx_MacabrePower3_DamageIncrease",
+          "cloneFrom": "CleasDeath_DamageIncrease",
+          "value": 2.0
+        }
+      ],
+      "replaceNames": {
+        "BP_LU_CleasDeath_Buff": "BP_LU_WepFx_MacabrePower3_Buff"
+      }
+    },
+    {
+      "id": "WepFx_BurnConsume1Skills",
+      "displayName": "Skill Consume Burn I",
+      "description": "Skills consume up to 25 Burn to deal 1% more damage per Burn consumed.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_BurnConsume1Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 25.0
+        },
+        {
+          "key": "WepFx_BurnConsume1Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 0.01
+        }
+      ]
+    },
+    {
+      "id": "WepFx_BurnConsume2Skills",
+      "displayName": "Skill Consume Burn II",
+      "description": "Skills consume up to 50 Burn to deal 1% more damage per Burn consumed.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_BurnConsume2Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 50.0
+        },
+        {
+          "key": "WepFx_BurnConsume2Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 0.01
+        }
+      ]
+    },
+    {
+      "id": "WepFx_BurnConsume3Skills",
+      "displayName": "Skill Consume Burn III",
+      "description": "Skills consume up to 100 Burn to deal 1% more damage per Burn consumed.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_BurnConsume3Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 100.0
+        },
+        {
+          "key": "WepFx_BurnConsume3Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 0.01
+        }
+      ]
+    },
+    {
+      "id": "WepFx_BurnConsume4Skills",
+      "displayName": "Skill Consume Burn IV",
+      "description": "Skills consume up to 250 Burn to deal 1% more damage per Burn consumed.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_BurnConsume4Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 250.0
+        },
+        {
+          "key": "WepFx_BurnConsume4Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 0.01
+        }
+      ]
+    },
+    {
+      "id": "WepFx_BurnConsume5Skills",
+      "displayName": "Skill Consume Burn V",
+      "description": "Skills consume up to 1000 Burn to deal 1% more damage per Burn consumed.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ConsumingAttack",
+      "sourcePassive": "ConsumingAttack",
+      "balancing": [
+        {
+          "key": "WepFx_BurnConsume5Skills_MaxBurnConsumed",
+          "cloneFrom": "ConsumingAttack_MaxBurnConsumed",
+          "value": 1000.0
+        },
+        {
+          "key": "WepFx_BurnConsume5Skills_DamageMultiplierPerBurn",
+          "cloneFrom": "ConsumingAttack_DamageMultiplierPerBurn",
+          "value": 0.01
+        }
+      ]
+    },
+    {
+      "id": "WepFx_CriticalChain1",
+      "displayName": "Critical Chain I",
+      "description": "Each consecutive Critical Hit increases damage by 2%. Can stack up to 100 times. Resets on non-Critical hit.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ReinforcementParade",
+      "sourcePassive": "ReinforcementParade",
+      "balancing": [
+        {
+          "key": "WepFx_CriticalChain1_DamageIncreasePerCrit",
+          "cloneFrom": "ReinforcementParade_DamageIncreasePerParry",
+          "value": 0.02
+        }
+      ]
+    },
+    {
+      "id": "WepFx_CriticalChain2",
+      "displayName": "Critical Chain II",
+      "description": "Each consecutive Critical Hit increases damage by 4%. Can stack up to 100 times. Resets on non-Critical hit.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ReinforcementParade",
+      "sourcePassive": "ReinforcementParade",
+      "balancing": [
+        {
+          "key": "WepFx_CriticalChain2_DamageIncreasePerCrit",
+          "cloneFrom": "ReinforcementParade_DamageIncreasePerParry",
+          "value": 0.04
+        }
+      ]
+    },
+    {
+      "id": "WepFx_CriticalChain3",
+      "displayName": "Critical Chain III",
+      "description": "Each consecutive Critical Hit increases damage by 6%. Can stack up to 100 times. Resets on non-Critical hit.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ReinforcementParade",
+      "sourcePassive": "ReinforcementParade",
+      "balancing": [
+        {
+          "key": "WepFx_CriticalChain3_DamageIncreasePerCrit",
+          "cloneFrom": "ReinforcementParade_DamageIncreasePerParry",
+          "value": 0.06
+        }
+      ]
+    },
+    {
+      "id": "WepFx_CriticalChain4",
+      "displayName": "Critical Chain IV",
+      "description": "Each consecutive Critical Hit increases damage by 8%. Can stack up to 100 times. Resets on non-Critical hit.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ReinforcementParade",
+      "sourcePassive": "ReinforcementParade",
+      "balancing": [
+        {
+          "key": "WepFx_CriticalChain4_DamageIncreasePerCrit",
+          "cloneFrom": "ReinforcementParade_DamageIncreasePerParry",
+          "value": 0.08
+        }
+      ]
+    },
+    {
+      "id": "WepFx_CriticalChain5",
+      "displayName": "Critical Chain V",
+      "description": "Each consecutive Critical Hit increases damage by 10%. Can stack up to 100 times. Resets on non-Critical hit.",
+      "family": "direct",
+      "sourceBp": "BP_LU_ReinforcementParade",
+      "sourcePassive": "ReinforcementParade",
+      "balancing": [
+        {
+          "key": "WepFx_CriticalChain5_DamageIncreasePerCrit",
+          "cloneFrom": "ReinforcementParade_DamageIncreasePerParry",
+          "value": 0.1
+        }
+      ]
+    }
+  ]
+}

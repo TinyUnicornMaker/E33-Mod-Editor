@@ -1,0 +1,20 @@
+{
+  "name": "Expedition Infinity — E33 print tints (first pass)",
+  "note": "Backing textures are alpha/grunge masks tinted at runtime by MI_ materials. These are print tints sampled from the guide cover (ink) and staged UI masks (charcoal), plus classic E33 bone/gold/red. Refine against screenshots before final print.",
+  "swatches": [
+    { "name": "E33 Ink", "hex": "#100B0B", "use": "page ground / cover (from guide cover R16 G0 B0, warmed)" },
+    { "name": "E33 Charcoal", "hex": "#1B1918", "use": "panels, tooltip grounds (dominant in T_UI_LuminaBackgroundStain)" },
+    { "name": "E33 Panel Deep", "hex": "#101112", "use": "alt panel ground (dominant in T_UI_AttributesBackground)" },
+    { "name": "E33 Bone", "hex": "#E9DDC5", "use": "primary text on dark" },
+    { "name": "E33 Parchment Dim", "hex": "#D1D1D1", "use": "secondary text / mask highlights observed in exports" },
+    { "name": "E33 Gold", "hex": "#C9A86A", "use": "headings, hairlines, art-deco dividers" },
+    { "name": "E33 Blood", "hex": "#8B1E1E", "use": "warnings, danger accents" },
+    { "name": "E33 Stone", "hex": "#8A8A8A", "use": "captions, secondary labels" }
+  ],
+  "fonts": [
+    { "role": "heading", "game": "Trajan Pro Regular/Bold", "guide": "Cinzel (Google Fonts, free Trajan stand-in)", "note": "Commercial exact: Trajan Pro 3" },
+    { "role": "body", "game": "EB Garamond / IM Fell Double Pica", "guide": "EB Garamond + IM Fell Double Pica (Google Fonts, same names)", "note": "Libre Baskerville as fallback" },
+    { "role": "numbers/labels", "game": "Bebas Neue", "guide": "Bebas Neue (Google Fonts)" },
+    { "role": "accent only", "game": "Portmanteau / Sherlock Vintage", "guide": "do not embed; use as raster accents", "note": "No public source; UE .ufont not reusable in print" }
+  ]
+}

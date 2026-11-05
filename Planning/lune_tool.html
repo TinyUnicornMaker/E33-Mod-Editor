@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lune Moves — Interactive Damage Tool</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--muted:#94a3b8;--accent:#38bdf8;--fire:#ef4444;--ice:#3b82f6;--lightning:#facc15;--earth:#a16207;--typeless:#9ca3af;--light:#22c55e;--border:#334155}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:#e2e8f0}
+header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap;background:#0b1224;position:sticky;top:0;z-index:20}
+header h1{margin:0;font-size:18px;letter-spacing:.3px}
+header small{color:var(--muted)}
+#layout{display:grid;grid-template-columns: 460px 1fr;gap:16px;padding:16px;min-height:calc(100vh - 70px)}
+@media(max-width:1100px){#layout{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.card h2{margin:0;padding:12px 14px;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.card h2 button{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:#0f172a;color:#e2e8f0;cursor:pointer}
+.card h2 button:hover{background:#1e293b}
+.controls{padding:12px 14px;display:flex;flex-direction:column;gap:12px;max-height:calc(100vh - 140px);overflow:auto}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row label{font-size:12px;color:var(--muted);min-width:90px}
+.row input,.row select{flex:1;min-width:90px;background:#0f172a;border:1px solid var(--border);color:#e2e8f0;border-radius:8px;padding:7px 8px;font-size:13px}
+.row input[type="checkbox"]{flex:0;min-width:auto;width:16px;height:16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:6px 10px;border-radius:999px;border:1px solid var(--border);font-size:12px;cursor:pointer;display:flex;gap:6px;align-items:center;background:#0f172a;user-select:none}
+.chip.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.chip .dot{width:10px;height:10px;border-radius:50%}
+#graph{height:560px}
+#graphWrap{padding:8px}
+.tableWrap{overflow:auto;max-height:520px;border-top:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{position:sticky;top:0;background:#0f172a;z-index:5;padding:8px 6px;text-align:left;font-size:11px;letter-spacing:.3px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:6px;border-bottom:1px solid #1e293b;vertical-align:top}
+td input, td select{width:100%;background:#0f172a;border:1px solid #334155;color:#e2e8f0;border-radius:6px;padding:5px 6px;font-size:12px}
+td input:focus{outline:1px solid var(--accent)}
+.badge{padding:2px 7px;border-radius:999px;font-size:11px;font-weight:600;color:#0f172a}
+.badge-fire{background:#fecaca;color:#7f1d1d}
+.badge-ice{background:#bfdbfe;color:#1e3a8a}
+.badge-lightning{background:#fef08a;color:#713f12}
+.badge-earth{background:#fde68a;color:#78350f}
+.badge-typeless{background:#e5e7eb;color:#111827}
+.badge-light{background:#bbf7d0;color:#14532d}
+.range{width:100%}
+.small{font-size:11px;color:var(--muted);line-height:1.4}
+.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:#0f172a;border:1px solid var(--border);padding:2px 6px;border-radius:6px;font-size:11px}
+.footer{padding:10px 14px;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap}
+.footer button{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:#0f172a;color:#e2e8f0;cursor:pointer;font-size:12px}
+.footer button.primary{background:var(--accent);color:#0f172a;border-color:var(--accent);font-weight:700}
+.sep{height:1px;background:var(--border);margin:4px 0}
+.phase{border:1px solid var(--border);border-radius:10px;padding:10px;background:#0f172a}
+.phase h3{margin:0 0 8px 0;font-size:12px;letter-spacing:.3px;text-transform:uppercase;color:var(--muted)}
+.hint{font-size:11px;color:var(--muted);padding:0 14px 10px 14px;line-height:1.5}
+</style>
+</head>
+<body>
+<header>
+  <h1>Lune — Damage vs AP <span style="font-weight:400;color:var(--muted)">hit-adjusted • ★ Gradient</span></h1>
+  <small>Drag to zoom • Double-click to reset • Hover for name & spreads • Toggle elements • Two-phase curve below</small>
+  <div style="margin-left:auto;display:flex;gap:8px">
+    <button id="btnReset" class="kbd">Reset to vanilla</button>
+    <button id="btnExport" class="kbd">Export CSV</button>
+    <input type="file" id="fileImport" accept=".csv" style="display:none">
+    <button id="btnImport" class="kbd">Import CSV</button>
+  </div>
+</header>
+
+<div id="layout">
+  <div class="card" style="display:flex;flex-direction:column">
+    <h2>Moves — editable <span class="small" style="font-weight:400">Edits auto-update graph • Min/Max hit-adjusted</span></h2>
+    <div class="controls">
+      <div class="chips" id="elementChips"></div>
+      <div class="row"><label>Y max</label><input type="range" id="yMax" min="10" max="85" step="5" value="50" class="range"><span id="yMaxVal" class="kbd">50</span></div>
+      <div class="row"><label><input type="checkbox" id="showHeals" checked> Show heals</label><label><input type="checkbox" id="showGradients" checked> Show ★ gradients</label></div>
+      <div class="row"><label>Search</label><input id="search" placeholder="Filter by name…"></div>
+    </div>
+    <div class="tableWrap"><table id="movesTable"><thead><tr id="thead"></tr></thead><tbody id="tbody"></tbody></table></div>
+    <div class="footer">
+      <button id="btnAdd" class="primary">+ New move</button>
+      <button id="btnDup">Duplicate selected</button>
+      <button id="btnDel">Delete selected</button>
+    </div>
+    <div class="hint">Tip: Click a row to select (for duplicate/delete). All numeric cells are live — change <b>Base Damage Mult</b>, <b>AP</b>, <b>Hits</b> and watch the graph + spreads move. <b>Max Total</b> auto-scales as <code>Min × factor</code> (factor = original Max/Base); overwrite it to set a custom ceiling.</div>
+    <h2>Two-phase curve — test shapes</h2>
+    <div class="controls" style="max-height:none">
+      <div class="row"><label><input type="checkbox" id="enablePhase" checked> Enable custom curve</label></div>
+      <div class="phase" id="phase1">
+        <h3>Phase 1 — Linear <span class="small">y = m·x + b</span></h3>
+        <div class="row"><label>Start AP</label><input type="number" id="p1x0" step="0.5" value="0"><label>End AP</label><input type="number" id="p1x1" step="0.5" value="6"></div>
+        <div class="row"><label>Start Y</label><input type="number" id="p1y0" step="0.5" value="0"><label>End Y</label><input type="number" id="p1y1" step="0.5" value="4"></div>
+        <div class="small" id="p1eq">y = 0.67·x + 0.00</div>
+      </div>
+      <div class="phase" id="phase2">
+        <h3>Phase 2 — Exponential <span class="small">y = a·exp(k·(x−x0)) + c</span></h3>
+        <div class="row"><label>Start AP</label><span class="kbd" id="p2x0Display">6</span><input type="hidden" id="p2x0" value="6"><label>End AP</label><input type="number" id="p2x1" step="0.5" value="21"></div>
+        <div class="row"><label>a (scale)</label><input type="number" id="p2a" step="0.5" value="4"><label>k (growth)</label><input type="number" id="p2k" step="0.05" value="0.18"></div>
+        <div class="row"><label>c (offset)</label><input type="number" id="p2c" step="0.5" value="0"><label>Clamp Y max</label><input type="number" id="p2clamp" step="1" value="50"></div>
+        <div class="small" id="p2eq">y = 4·exp(0.18·(x−6)) + 0</div>
+      </div>
+      <div class="small">Curve auto-clamps to Y max.</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Graph -->
+  <div class="card">
+    <h2>Graph — Damage (hit-adjusted avg) vs AP <span class="small" id="graphStats"></span></h2>
+    <div id="graphWrap"><div id="graph"></div></div>
+    <div class="hint">X = AP Cost (0-21) • Y = Avg Total Damage (hit-adjusted) • Vertical bar = Min→Max spread (plus/minus) • Colour by element • ★ gradients consume Gradient Charges. Use mouse wheel + drag to zoom, double-click to reset. Toggle elements above to filter.</div>
+  </div>
+</div>
+
+<script>
+const ELEMENTS = ["Fire","Ice","Lightning","Earth","Typeless","Light"];
+const ELEM_COLOR = {Fire:"#ef4444", Ice:"#3b82f6", Lightning:"#facc15", Earth:"#a16207", Typeless:"#9ca3af", Light:"#22c55e"};
+const ELEM_BG = {Fire:"#fecaca", Ice:"#bfdbfe", Lightning:"#fef08a", Earth:"#fde68a", Typeless:"#e5e7eb", Light:"#bbf7d0"};
+
+const VANILLA = [
+  ["Electrify",1,"Lightning",0.2,0.5,"Overcharge x2.0",1,1,"SingleEnemyAlive","-","1","Yes","Stain generator","Original"],
+  ["Immolation",1,"Fire",0.7,1.0,"Burn 500 base; Overcharge Burn 5; Dmg x1.5; SelfDmg x1.0",1,1,"SingleEnemyAlive","Burn 500/5","1","Yes","Low AP Burn applier","Original"],
+  ["Tremor ★",1,"Earth",5.0,1.0,"GradientAttack",1,1,"AllEnemiesAlive","-","1","Yes","GRADIENT - x1 hit gradient","Original"],
+  ["Thermal Transfer",2,"Ice",0.5,0.7,"+4 AP Gain",1,1,"SingleEnemyAlive","-","1","Yes","Battery: +4 AP on Ice","Original"],
+  ["Tree of Life ★",2,"Light",null,null,"GradientAttack; Heal 50% AllAllies",1,1,"AllAllies","Heal 50% All","1","Yes","GRADIENT - heal Gradient","Original"],
+  ["Earthquake",3,"Earth",1.2,1.0,"Overcharge x1.5",2,2,"AllEnemiesAlive","-","1","Yes","x2 hits (SEQ_EarthRising) AoE","Original"],
+  ["Elemental Trick",3,"Typeless",0.3,0.4,"Fixed",1,1,"SingleEnemyAlive","Random Stain","1","Yes","Utility / Prismatic","Original"],
+  ["Healing Light",3,"Light",0.3,null,"Heal +0.05/QTE; OverchargeAPCost 0",1,1,"SingleAllyAlive","Heal 30%","1","Yes","Single heal; no element in DA","Original"],
+  ["Mayhem",3,"Typeless",0.6,0.4,"Stains: 0x1.0 1x1.15 2x1.5 3x2.0 4x3.0; Break",1,1,"SingleEnemyAlive","-","1","Yes","Scales with stain count","Original"],
+  ["Sky Break ★",3,"Typeless",40.0,0.1,"GradientAttack; Break (PerformBreakStun)",2,2,"AllEnemiesAlive","Break/Stun","1","Yes","GRADIENT - consumes Gradient Charges not AP; x2 hits","Original"],
+  ["Elemental Genesis",4,"Typeless",3.0,0.1,"Fixed (4-element)",1,1,"AllEnemiesAlive","Stains x4","1","Yes","Random stains; 9 anim keys 1 dmg hit","Original"],
+  ["Ice Gust",4,"Ice",1.4,1.0,"Overcharge x1.5",1,1,"SingleEnemyAlive","-","1","Yes","Single Ice","Original"],
+  ["Wildfire",4,"Fire",1.25,1.0,"BurnOnHit 3; Overcharge x2.0; SelfDmg x1.0",1,1,"AllEnemiesAlive","Burn 3/hit","1","Yes","AoE Fire + burn","Original"],
+  ["Crippling Tsunami",5,"Ice",2.5,1.0,"Overcharge x5.0; Slow",1,1,"AllEnemiesAlive","Slow 3s","1 (+Slow 3s)","Yes","AoE Ice + Slow; Overcharge burst","Original"],
+  ["Earth Spike (Rock Slide)",5,"Earth",1.25,0.7,"Overcharge x5.0; PerformBreakStun",1,1,"SingleEnemyAlive","Stun","1","Yes","Break/Stun single","Original"],
+  ["Fire Rage",5,"Fire",2.5,1.0,"Overcharge x2.0; +1.5/turn decel 0.85 cap 99",1,1,"AllEnemiesAlive","Burn","2 +DoT 2 turns","Yes","DoT stacking; 2-turn burn","Original"],
+  ["Rebirth",5,"Light",null,null,"+2 AP; Heal 30%+0.1/QTE; OverchargeAPCost 0",1,1,"SingleAllyDead","Revive Heal 30%","1","Yes","Revive","Original"],
+  ["Revitalization",5,"Light",null,null,"Heal 40%+0.1/QTE; Overcharge x2.0 heal",1,1,"SingleAllyAlive","Heal 40%","1","Yes","Single+heal","Original"],
+  ["Terraquake",5,"Earth",1.5,1.0,"Initial 0.8; Duration 3->5; Break% 10%; BreakBarDmg x1.5",1,1,"AllEnemiesAlive","-","3->5 Zone","Yes","Zone DoT; duration scales","Original"],
+  ["Thunderfall",5,"Lightning",0.3,0.2,"Overcharge x1.5",1,1,"AllEnemiesAlive","-","1","Yes","AoE Lightning","Original"],
+  ["Storm Caller",6,"Lightning",0.6,0.2,"Hits 1->2 Overcharge; DmgOnHit 0.2; Duration 3s",1,1,"AllEnemiesAlive","-","1 + Storm 3s","Yes","Hits scale with Overcharge","Original"],
+  ["Crustal Crush",7,"Earth",0.9,2.0,"Overcharge x3.0; BreakBarBase x2.0",1,1,"SingleEnemyAlive","-","1","Yes","High break; single-target Earth","Original"],
+  ["Lightning Dance",7,"Lightning",0.6,0.2,"Overcharge x5.0",1,1,"SingleEnemyAlive","-","1","Yes","7 anim keys 1 dmg hit; high ceiling","Original"],
+  ["Typhoon",8,"Ice",2.5,1.0,"Initial 1.2; Duration 3->5; Heal 20%",1,1,"AllEnemiesAlive","Heal 20%","3->5 Zone + heal","Yes","Zone Ice + heal; duration scales","Original"],
+  ["Hell",9,"Fire",5.0,0.7,"Overcharge x3.0; Burn 5/hit; SelfDmg x1.0",1,1,"AllEnemiesAlive","Burn 5/hit","1","Yes","Top Fire; self-damage","Original"],
+];
+const MAX_RAW = {"Crippling Tsunami":12.5,"Crustal Crush":2.7,"Earthquake":1.8,"Earth Spike (Rock Slide)":6.25,"Electrify":0.4,"Elemental Genesis":3.0,"Elemental Trick":0.3,"Fire Rage":5.0,"Healing Light":0.3,"Hell":15.0,"Ice Gust":2.1,"Immolation":1.05,"Lightning Dance":3.0,"Mayhem":1.8,"Sky Break ★":40.0,"Storm Caller":1.2,"Terraquake":1.5,"Thermal Transfer":0.5,"Thunderfall":0.45,"Tremor ★":5.0,"Typhoon":2.5,"Wildfire":2.5,"Rebirth":0.3,"Revitalization":0.4,"Tree of Life ★":0.5};
+
+let moves = JSON.parse(localStorage.getItem("lune_moves") || "null") || structuredClone(VANILLA);
+let selectedIdx = -1;
+
+const thead = document.getElementById("thead");
+const tbody = document.getElementById("tbody");
+const chipsEl = document.getElementById("elementChips");
+const yMax = document.getElementById("yMax");
+const yMaxVal = document.getElementById("yMaxVal");
+const showHeals = document.getElementById("showHeals");
+const showGradients = document.getElementById("showGradients");
+const search = document.getElementById("search");
+
+const headers = ["Move Name","AP Cost","Base element","Base Damage Mult","Break Damage Mult","Element Consumption and Damage Modifiers","Min Hits","Max Hits","Targets","Status Inflicted","Turns","CanMakeAnotherMove","Special Effects","Original or New move"];
+
+function hitAdjusted(m){
+  const base = m[3];
+  if(base===null || base==="") return {min:null,max:null,avg:null};
+  const hmin=+m[6]||1, hmax=+m[7]||1;
+  const rawMax = MAX_RAW[m[0]] ?? base;
+  // special x2
+  if(m[0]==="Earthquake"){ return {min:1.2*2, max:1.8*2, avg:(2.4+3.6)/2} }
+  if(m[0]==="Sky Break ★"){ return {min:80, max:80, avg:80} }
+  const min = base*hmin;
+  const max = rawMax*hmax;
+  return {min, max, avg:(min+max)/2};
+}
+
+function save(){ localStorage.setItem("lune_moves", JSON.stringify(moves)); }
+
+function buildChips(){
+  chipsEl.innerHTML="";
+  ELEMENTS.forEach(el=>{
+    const chip=document.createElement("div");
+    chip.className="chip active";
+    chip.dataset.el=el;
+    chip.innerHTML=`<span class="dot" style="background:${ELEM_COLOR[el]}"></span>${el}`;
+    chip.onclick=()=>{ chip.classList.toggle("active"); drawGraph(); renderTable(); };
+    chipsEl.appendChild(chip);
+  });
+}
+
+function activeElements(){
+  return [...chipsEl.querySelectorAll(".chip.active")].map(c=>c.dataset.el);
+}
+
+function buildHead(){
+  thead.innerHTML="";
+  headers.forEach(h=>{
+    const th=document.createElement("th");
+    th.textContent=h;
+    thead.appendChild(th);
+  });
+}
+
+function renderTable(){
+  const filter = search.value.toLowerCase();
+  const active = new Set(activeElements());
+  tbody.innerHTML="";
+  moves.forEach((m,idx)=>{
+    if(!active.has(m[2])) return;
+    if(filter && !m[0].toLowerCase().includes(filter)) return;
+    if(!showHeals.checked && m[3]===null) return;
+    if(!showGradients.checked && m[0].includes("★")) return;
+    const tr=document.createElement("tr");
+    tr.style.background = m[0].includes("★") ? "#fdebd0" : (ELEM_BG[m[2]] ? ELEM_BG[m[2]]+"55" : "");
+    tr.style.cursor="pointer";
+    if(idx===selectedIdx) tr.style.outline="2px solid #38bdf8";
+    tr.onclick=()=>{ selectedIdx=idx; renderTable(); };
+    headers.forEach((h, col)=>{
+      const td=document.createElement("td");
+      const val = m[col];
+      if(col===2){ // element badge
+        td.innerHTML=`<span class="badge badge-${val.toLowerCase().replace('★','').trim()}" style="background:${ELEM_BG[val]||'#e5e7eb'}">${val}</span>`;
+      } else if([1,3,4,6,7].includes(col)){
+        const inp=document.createElement("input");
+        inp.type="number"; inp.step="0.1"; inp.value= val ?? "";
+        inp.oninput=e=>{ const v=e.target.value; m[col]= v===""? null : (col===1||col===6||col===7? parseInt(v)||0 : parseFloat(v)); save(); drawGraph(); };
+        inp.onclick=e=>e.stopPropagation();
+        td.appendChild(inp);
+      } else if(col===5||col===12){
+        const inp=document.createElement("input");
+        inp.value=val||""; inp.oninput=e=>{ m[col]=e.target.value; save(); };
+        inp.onclick=e=>e.stopPropagation();
+        td.appendChild(inp);
+      } else if(col===11){
+        const sel=document.createElement("select");
+        ["Yes","No"].forEach(o=>{ const opt=document.createElement("option"); opt.value=o; opt.textContent=o; if(o===val) opt.selected=true; sel.appendChild(opt); });
+        sel.onchange=e=>{ m[col]=e.target.value; save(); };
+        sel.onclick=e=>e.stopPropagation();
+        td.appendChild(sel);
+      } else {
+        const inp=document.createElement("input");
+        inp.value=val??""; inp.oninput=e=>{ m[col]=e.target.value; save(); drawGraph(); };
+        inp.onclick=e=>e.stopPropagation();
+        td.appendChild(inp);
+      }
+      tr.appendChild(td);
+    });
+    // Add computed totals as tooltip title
+    const ha=hitAdjusted(m);
+    tr.title = `Min ${ha.min ?? "-"} | Max ${ha.max ?? "-"} | Avg ${ha.avg ?? "-"} | Hits x${m[6]}`;
+    tbody.appendChild(tr);
+  });
+  document.getElementById("graphStats").textContent = `${tbody.children.length} moves • drag to zoom • double-click reset`;
+}
+
+function drawGraph(){
+  const yMaxV = +yMax.value;
+  yMaxVal.textContent = yMaxV;
+  const active = new Set(activeElements());
+  const traces=[];
+  // per-move traces for hover + spreads
+  moves.forEach(m=>{
+    const ha=hitAdjusted(m);
+    if(ha.avg===null) return;
+    if(!active.has(m[2])) return;
+    if(!showHeals.checked && m[3]===null) return;
+    if(!showGradients.checked && m[0].includes("★")) return;
+    const ap=+m[1];
+    const color=ELEM_COLOR[m[2]]||"#9ca3af";
+    const isGrad=m[0].includes("★");
+    traces.push({
+      x:[ap], y:[ha.avg],
+      error_y:{type:"data", symmetric:false, array:[ha.max-ha.avg], arrayminus:[ha.avg-ha.min], color:color, thickness:2.5, width:4},
+      mode:"markers",
+      type:"scatter",
+      name:m[0],
+      marker:{size: isGrad?14:10, color:color, line:{color:"black", width:1}, symbol: isGrad?"star":"circle"},
+      hovertemplate:`<b>${m[0]}</b><br>AP: ${ap} • ${m[2]}<br>Min ${ha.min} → Max ${ha.max} (avg ${ha.avg.toFixed(2)})<br>Hits x${m[6]}${m[6]!==m[7]?` - x${m[7]}`:""}<br>Targets: ${m[8]}<br>Status: ${m[9]}<extra></extra>`,
+      showlegend:false,
+    });
+  });
+
+  // Two-phase curve — Phase 2 always starts at Phase 1 end
+  const enable=document.getElementById("enablePhase").checked;
+  if(enable){
+    const p1x0=+document.getElementById("p1x0").value, p1x1=+document.getElementById("p1x1").value, p1y0=+document.getElementById("p1y0").value, p1y1=+document.getElementById("p1y1").value;
+    // Link Phase 2 start to Phase 1 end
+    const p2x0 = p1x1;
+    document.getElementById("p2x0").value = p2x0;
+    document.getElementById("p2x0Display").textContent = `${p2x0}`;
+    const p2x1=+document.getElementById("p2x1").value, p2a=+document.getElementById("p2a").value, p2k=+document.getElementById("p2k").value, p2c=+document.getElementById("p2c").value, p2clamp=+document.getElementById("p2clamp").value;
+    // Phase 1 linear
+    const m1 = (p1y1-p1y0)/((p1x1-p1x0)||1);
+    const b1 = p1y0 - m1*p1x0;
+    document.getElementById("p1eq").textContent = `y = ${m1.toFixed(2)}·x ${b1>=0?"+":""} ${b1.toFixed(2)}  [${p1x0}→${p1x1}]`;
+    const xs1=[], ys1=[];
+    for(let x=p1x0; x<=p1x1+1e-9; x+=0.2){ let y=m1*x+b1; if(y>p2clamp) y=p2clamp; if(y<0) y=0; xs1.push(x); ys1.push(y); }
+    traces.push({x:xs1, y:ys1, mode:"lines", type:"scatter", name:"Phase 1 — Linear", line:{color:"#38bdf8", width:3, dash:"dash"}, hovertemplate:"Phase 1 Linear<br>AP %{x:.1f} → %{y:.2f}<extra></extra>"});
+
+    // Phase 2 exponential y = a*exp(k*(x - x0)) + c  — x0 is p1x1, and at x0 y should be near p1y1 (continuity) but allow offset via c
+    document.getElementById("p2eq").textContent = `y = ${p2a}·exp(${p2k}·(x−${p2x0})) + ${p2c}  [${p2x0}→${p2x1}]`;
+    const xs2=[], ys2=[];
+    for(let x=p2x0; x<=p2x1+1e-9; x+=0.2){ let y=p2a*Math.exp(p2k*(x-p2x0))+p2c; if(y>p2clamp) y=p2clamp; if(y<0) y=0; ys2.push(y); xs2.push(x); }
+    traces.push({x:xs2, y:ys2, mode:"lines", type:"scatter", name:"Phase 2 — Exponential", line:{color:"#f97316", width:3}, hovertemplate:"Phase 2 Exp<br>AP %{x:.1f} → %{y:.2f}<extra></extra>"});
+  }
+
+  const layout={
+    paper_bgcolor:"#1e293b", plot_bgcolor:"#0f172a",
+    font:{color:"#e2e8f0", size:11},
+    margin:{l:60,r:20,t:30,b:50},
+    xaxis:{title:{text:"AP Cost", font:{size:13, color:"#e2e8f0"}}, range:[0,21], dtick:1, gridcolor:"#334155", zerolinecolor:"#475569", automargin:true},
+    yaxis:{title:{text:"Total Damage Multiplier (hit-adjusted avg)", font:{size:12, color:"#e2e8f0"}}, range:[0,yMaxV], dtick:10, gridcolor:"#334155", zerolinecolor:"#475569"},
+    hovermode:"closest",
+    showlegend:false,
+  };
+  const config={responsive:true, displayModeBar:true, modeBarButtonsToAdd:["drawline","eraseshape"], scrollZoom:true};
+  Plotly.newPlot("graph", traces, layout, config);
+}
+
+// Controls
+document.getElementById("yMax").oninput=drawGraph;
+document.getElementById("showHeals").onchange=()=>{renderTable(); drawGraph();};
+document.getElementById("showGradients").onchange=()=>{renderTable(); drawGraph();};
+search.oninput=()=>renderTable();
+["p1x0","p1x1","p1y0","p1y1","p2x1","p2a","p2k","p2c","p2clamp","enablePhase"].forEach(id=> document.getElementById(id).oninput=drawGraph);
+
+document.getElementById("btnAdd").onclick=()=>{
+  moves.push(["New Move",4,"Fire",1.0,1.0,"Overcharge x1.5",1,1,"SingleEnemyAlive","-","1","Yes","Custom","New"]);
+  save(); renderTable(); drawGraph();
+};
+document.getElementById("btnDup").onclick=()=>{
+  if(selectedIdx<0) return alert("Select a row first");
+  moves.splice(selectedIdx+1,0, structuredClone(moves[selectedIdx]));
+  moves[selectedIdx+1][0] += " Copy";
+  moves[selectedIdx+1][13]="New";
+  save(); renderTable(); drawGraph();
+};
+document.getElementById("btnDel").onclick=()=>{
+  if(selectedIdx<0) return alert("Select a row first");
+  if(!confirm(`Delete "${moves[selectedIdx][0]}"?`)) return;
+  moves.splice(selectedIdx,1); selectedIdx=-1; save(); renderTable(); drawGraph();
+};
+document.getElementById("btnReset").onclick=()=>{
+  if(!confirm("Reset to vanilla 25 moves? This discards edits.")) return;
+  localStorage.removeItem("lune_moves"); moves=structuredClone(VANILLA); save(); renderTable(); drawGraph();
+};
+document.getElementById("btnExport").onclick=()=>{
+  const headers=["Move Name","AP Cost","Base element","Base Damage Mult","Break Damage Mult","Element Consumption and Damage Modifiers","Min Hits","Max Hits","Targets","Status Inflicted","Turns","CanMakeAnotherMove","Special Effects","Original or New move"];
+  let csv=headers.join(",")+"\n";
+  moves.forEach(m=> csv+= m.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")+"\n");
+  const blob=new Blob([csv],{type:"text/csv"}); const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="Lune_Moves.csv"; a.click();
+};
+document.getElementById("btnImport").onclick=()=> document.getElementById("fileImport").click();
+document.getElementById("fileImport").onchange=e=>{
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader(); reader.onload=()=>{
+    const text=reader.result; const lines=text.split(/\r?\n/).filter(l=>l.trim());
+    const hdr=lines[0].split(","); // ignore
+    const parsed=[];
+    for(let i=1;i<lines.length;i++){
+      // simple CSV split handling quotes
+      const row=[]; let cur="", inQ=false;
+      for(let c=0;c<lines[i].length;c++){ const ch=lines[i][c]; if(ch=='"'){ if(inQ && lines[i][c+1]=='"'){cur+='"';c++;} else inQ=!inQ; } else if(ch=="," && !inQ){row.push(cur);cur="";} else cur+=ch; }
+      row.push(cur);
+      if(row.length<14) continue;
+      // coerce numbers
+      row[1]=parseInt(row[1])||0; row[3]=row[3]===""?null:parseFloat(row[3]); row[4]=row[4]===""?null:parseFloat(row[4]); row[6]=parseInt(row[6])||1; row[7]=parseInt(row[7])||1;
+      parsed.push(row);
+    }
+    if(parsed.length){ moves=parsed; save(); renderTable(); drawGraph(); }
+  }; reader.readAsText(file);
+};
+
+// Init
+buildChips(); buildHead(); renderTable(); drawGraph();
+window.addEventListener("resize", drawGraph);
+</script>
+</body>
+</html>

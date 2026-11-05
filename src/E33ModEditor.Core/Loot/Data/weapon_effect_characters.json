@@ -1,0 +1,2106 @@
+{
+  "AlmightyConsumeBurn": [
+    "Monoco"
+  ],
+  "AlmightyDoubleBurn": [
+    "Monoco"
+  ],
+  "AlwaysCritOnCounterDamage": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "APonBreak": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "APOnCounter": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "APOnCrit": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "APOnShield": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "AttackBurn": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "AttackBurnWhilePowerful": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "AttackConsumeShieldForExtraDMG": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "AttackLifesteal_Weapon": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "AttackPlayAgain": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "AttackPropagatesBurn": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "AttackSunItemMoon": [
+    "Sciel"
+  ],
+  "AugmentedAim_Weapon": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "AugmentedAttack_Weapon": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "AureoleRankSToD": [
+    "Verso"
+  ],
+  "AutoDeath": [
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "BaseAttackToDarkStain": [
+    "Lune"
+  ],
+  "BaseAttackToHeavy": [
+    "Monoco"
+  ],
+  "BreakDMG+": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "BreakEarthBurst": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "BurnDamage": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "BurnInVirtuose": [
+    "Maelle"
+  ],
+  "BurnOnCrit": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "BypassAffinities": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "CanStealShield": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "ChargesBalance": [
+    "Sciel"
+  ],
+  "CounterBurn": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "CounterDamagePerShield": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "CounterDefenseless": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "CritAppliesBurn": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "CritPerBurn": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "DamageBonusOnRevive": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "DamageBonusPerHit": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "DamageOnPerfectionRank": [
+    "Verso"
+  ],
+  "DamagePerMaskChange": [
+    "Monoco"
+  ],
+  "DamagePerSunCharge": [
+    "Sciel"
+  ],
+  "DefreezeAndHealOnTurnStart": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "DMG+OnAlternatingPhysicalLight": [
+    "Verso"
+  ],
+  "DMG+WhenNoDMGTaken": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "DoubleFreeAimDamageAlmighty": [
+    "Monoco"
+  ],
+  "DoubleHit": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "EarthAPCost-": [
+    "Gustave",
+    "Lune"
+  ],
+  "FireAPCost-": [
+    "Gustave",
+    "Lune",
+    "Maelle"
+  ],
+  "firstHitApplyMark": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "FirstStrike": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "Foretell_ApplyBurnEveryXForetell": [
+    "Sciel"
+  ],
+  "Foretell_ApplyBurnOnHitTakenOnSun": [
+    "Sciel"
+  ],
+  "Foretell_ApplyBurnPerSunChargeOnConsume": [
+    "Sciel"
+  ],
+  "Foretell_ApplyBurnPerSunChargeOnCounterAttack": [
+    "Sciel"
+  ],
+  "Foretell_ApplyForetellOnApplyMark": [
+    "Sciel"
+  ],
+  "Foretell_ApplyForetellOnCrit": [
+    "Sciel"
+  ],
+  "Foretell_ApplyForetellOnShieldBreakPerSunCharge": [
+    "Sciel"
+  ],
+  "Foretell_ApplyForetellPerChargeOnTwilightSwitch": [
+    "Sciel"
+  ],
+  "Foretell_ApplyGreaterRushSlowOnSunMoon": [
+    "Sciel"
+  ],
+  "Foretell_ApplyGreaterRushSlowOnTwilight": [
+    "Sciel"
+  ],
+  "Foretell_ApplyMaxForetellOnSunSkills": [
+    "Sciel"
+  ],
+  "Foretell_ApplyOnAttack": [
+    "Sciel"
+  ],
+  "Foretell_AttackConsumeBurnToApplyForetell": [
+    "Sciel"
+  ],
+  "Foretell_AttackConsumeSunCharge": [
+    "Sciel"
+  ],
+  "Foretell_AttackConsumeToApplyBurnMoonCharge": [
+    "Sciel"
+  ],
+  "Foretell_AttackGainMoonCharge": [
+    "Sciel"
+  ],
+  "Foretell_BaseAttackConsumeAllAPOnTwilight": [
+    "Sciel"
+  ],
+  "Foretell_BuffsOnStates": [
+    "Sciel"
+  ],
+  "Foretell_ChangeTwilightAlwaysCrit": [
+    "Sciel"
+  ],
+  "Foretell_ConsumeChargesOnFreeAim": [
+    "Sciel"
+  ],
+  "Foretell_CurseSelfButDMG+": [
+    "Sciel"
+  ],
+  "Foretell_DarkConversionOnTwilight": [
+    "Sciel"
+  ],
+  "Foretell_DealAOEDamagePerChargeOnTwilightSwitch": [
+    "Sciel"
+  ],
+  "Foretell_DMG+PerMoonCharge": [
+    "Sciel"
+  ],
+  "Foretell_DontRemoveMarkOnTwilight": [
+    "Sciel"
+  ],
+  "Foretell_DoubleChargeGain": [
+    "Sciel"
+  ],
+  "Foretell_ExtendOrIncreaseTwilight": [
+    "Sciel"
+  ],
+  "Foretell_ExtendTwilight": [
+    "Sciel"
+  ],
+  "Foretell_FreeAimShotsConsumeForDMG+": [
+    "Sciel"
+  ],
+  "Foretell_GainAPPerMoonChargeOnTurnStart": [
+    "Sciel"
+  ],
+  "Foretell_GivesAPOnConsumingCharge": [
+    "Sciel"
+  ],
+  "Foretell_GivesSunChargesOnCounterAttack": [
+    "Sciel"
+  ],
+  "Foretell_HealEfficiencyPerMoonCharge": [
+    "Sciel"
+  ],
+  "Foretell_HealOnApply": [
+    "Sciel"
+  ],
+  "Foretell_HealOnTurnStartConsumeMoonCharge": [
+    "Sciel"
+  ],
+  "Foretell_InstantReplayOnTwilight": [
+    "Sciel"
+  ],
+  "Foretell_MarkOnConsume": [
+    "Sciel"
+  ],
+  "Foretell_MoonSkillsAlwaysCritOnMoon": [
+    "Sciel"
+  ],
+  "Foretell_MoonSkillsCharge+": [
+    "Sciel"
+  ],
+  "Foretell_OnTwilightBurnDMG+": [
+    "Sciel"
+  ],
+  "Foretell_OnTwilightSwitchApplyMarkAOE": [
+    "Sciel"
+  ],
+  "Foretell_PropagateForetellOnApplication": [
+    "Sciel"
+  ],
+  "Foretell_PropagationOnKill": [
+    "Sciel"
+  ],
+  "Foretell_ResetCurseOnTwilight": [
+    "Sciel"
+  ],
+  "Foretell_ShieldOnTurnStartWhenSunCharge": [
+    "Sciel"
+  ],
+  "Foretell_SunAPIncrease": [
+    "Sciel"
+  ],
+  "Foretell_SunSkillsCharge+": [
+    "Sciel"
+  ],
+  "Foretell_SunSkillsDMG+PerForetell": [
+    "Sciel"
+  ],
+  "Foretell_TwilightFreeAimDMG+": [
+    "Sciel"
+  ],
+  "FourthHitForetell": [
+    "Sciel"
+  ],
+  "FreeAimBreaksMoreShields": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "FreeAimDoubleShot": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "FreeAimForwardWheel": [
+    "Monoco"
+  ],
+  "FreezeSelfOnLowHP2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "FrenzyAttack": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "GainAPOnApplyBuffsDebuffs": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "GradientAttackAndCounterDMG+": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "GradientChargesOnParry": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "GradientPointOnCrit": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "HealAPCost-": [
+    "Gustave",
+    "Lune",
+    "Sciel"
+  ],
+  "HealOnCrit": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "IceAPCost-": [
+    "Gustave",
+    "Lune"
+  ],
+  "IncreaseCounterDamage": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "InflictMarkIfSkillLess4Ap": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "InstantReplayOnOverchargedHealSkills": [
+    "Lune"
+  ],
+  "LightDamageBurn": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "LightDMGBurnOnCrit": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "LightningAPCost-": [
+    "Gustave",
+    "Lune",
+    "Maelle"
+  ],
+  "LightSkillsRegenHP": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "LuneDoubleHit": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "MarkBreakShields": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "MarkIsBurn": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "MarkOnBaseAttack": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "Masks_AlwaysCritOnAlmighty": [
+    "Monoco"
+  ],
+  "Masks_APOnAlmighty": [
+    "Monoco"
+  ],
+  "Masks_BestialMeter+OnParrybutResetOnDMG": [
+    "Monoco"
+  ],
+  "Masks_CritChanceOnAgile": [
+    "Monoco"
+  ],
+  "Masks_CritDMG+OnBalanced": [
+    "Monoco"
+  ],
+  "Masks_DMG+BonusStackOnOverchargedSkillsChain": [
+    "Monoco"
+  ],
+  "Masks_DMG+FreeAimIfNotAlmighty": [
+    "Monoco"
+  ],
+  "Masks_DMG+OverchargedSkills": [
+    "Monoco"
+  ],
+  "Masks_DoubleBreakDMGOnAlmighty": [
+    "Monoco"
+  ],
+  "Masks_GainAPAllAlliesOnAlmightySwitch": [
+    "Monoco"
+  ],
+  "Masks_GainAPOnDMGTakenOnHeavy": [
+    "Monoco"
+  ],
+  "Masks_GainAPOnMaskSwitch": [
+    "Monoco"
+  ],
+  "Masks_InstantReplayOnAlmighty": [
+    "Monoco"
+  ],
+  "Masks_InstantReviveOnDeathOnAlmighty": [
+    "Monoco"
+  ],
+  "Masks_Overcharge+APOnAllies": [
+    "Monoco"
+  ],
+  "Masks_PowerfulOnBalanced": [
+    "Monoco"
+  ],
+  "Masks_RegenOnCaster": [
+    "Monoco"
+  ],
+  "Masks_ReverseBestialMeter": [
+    "Monoco"
+  ],
+  "Masks_RushOnAgile": [
+    "Monoco"
+  ],
+  "Masks_ShellOnHeavy": [
+    "Monoco"
+  ],
+  "Masks_StartAgile": [
+    "Monoco"
+  ],
+  "Masks_StartAlmighty": [
+    "Monoco"
+  ],
+  "Masks_StartBalanced": [
+    "Monoco"
+  ],
+  "Masks_StartCaster": [
+    "Monoco"
+  ],
+  "Masks_StartHeavy": [
+    "Monoco"
+  ],
+  "Masks_SwitchToAlmightyOnBreak": [
+    "Monoco"
+  ],
+  "Masks_WheelSpinOnAttack": [
+    "Monoco"
+  ],
+  "Masks_WheelSpinOnFreeAimShot": [
+    "Monoco"
+  ],
+  "Mask_APCost-1OnCaster": [
+    "Monoco"
+  ],
+  "More4ApDamageBonus": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "MoreGradientDamageLessCharge": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "NoOverchargeSkillBuff": [
+    "Lune"
+  ],
+  "PerfectDefense": [
+    "Verso"
+  ],
+  "PerfectDefenseB": [
+    "Verso"
+  ],
+  "PerfectionOnDamage": [
+    "Verso"
+  ],
+  "Perfection_AlwaysCritOnRankS": [
+    "Verso"
+  ],
+  "Perfection_AttackLifestealOnD": [
+    "Verso"
+  ],
+  "Perfection_Attackx2": [
+    "Verso"
+  ],
+  "Perfection_BurnDamagePerRank": [
+    "Verso"
+  ],
+  "Perfection_BurnOnBaseAtkPerRank": [
+    "Verso"
+  ],
+  "Perfection_DoubleOnFreeAimShots": [
+    "Verso"
+  ],
+  "Perfection_DoublePerfectionVSBurn": [
+    "Verso"
+  ],
+  "Perfection_GainAPOnRankUp": [
+    "Verso"
+  ],
+  "Perfection_IncreasedDamageOnRankD": [
+    "Verso"
+  ],
+  "Perfection_MinC": [
+    "Verso"
+  ],
+  "Perfection_NoPerfectionLossButNoDamageIncrease": [
+    "Verso"
+  ],
+  "Perfection_NoPerfectionLossOnPowerlessEnemy": [
+    "Verso"
+  ],
+  "Perfection_OnTurnStart": [
+    "Verso"
+  ],
+  "Perfection_Parryx2": [
+    "Verso"
+  ],
+  "Perfection_Perfection+1OnCrit": [
+    "Verso"
+  ],
+  "Perfection_Perfection+1OnPowerful": [
+    "Verso"
+  ],
+  "Perfection_Perfection+1OnPowerlessEnemy": [
+    "Verso"
+  ],
+  "Perfection_Perfection+butDMG+": [
+    "Verso"
+  ],
+  "Perfection_PerfectionBaseOnCurrentHP": [
+    "Verso"
+  ],
+  "Perfection_PerfectionBonusDamageShare": [
+    "Verso"
+  ],
+  "Perfection_PerfectionLostOnHeal": [
+    "Verso"
+  ],
+  "Perfection_PowerfulOnB": [
+    "Verso"
+  ],
+  "Perfection_RankLossOneByOne": [
+    "Verso"
+  ],
+  "Perfection_RankUpOnCounter": [
+    "Verso"
+  ],
+  "Perfection_RankUpOnMark": [
+    "Verso"
+  ],
+  "Perfection_RushOnS": [
+    "Verso"
+  ],
+  "Perfection_StartRankBButLessHP": [
+    "Verso"
+  ],
+  "Perfection_StartRankSButNoHeal": [
+    "Verso"
+  ],
+  "Perfection_SurvivorRankA": [
+    "Verso"
+  ],
+  "Perfection_SwitchRankSOnBreak": [
+    "Verso"
+  ],
+  "PhysicalAPCost-": [
+    "Verso"
+  ],
+  "PowerlessMark": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "PowerlessOnCounter": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "PowerlessOnMarking": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "RandomChargeTurnStart": [
+    "Sciel"
+  ],
+  "ReducedDamageOnHeavy": [
+    "Monoco"
+  ],
+  "SecondChance": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "SecondHitDontConsumeMark": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "SelfBurnButDmg+": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "ShieldAllHeroesOnHeavy": [
+    "Monoco"
+  ],
+  "ShieldOnCounter": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "ShieldOnShell": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "ShotApplyAttackConsumeForetell": [
+    "Sciel"
+  ],
+  "SimonimOvercharge": [
+    "Lune"
+  ],
+  "SkillsDarkDMG+": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "SkillsEarthDMG+": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "SkillsFireDMG+": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "SkillsIceDMG+": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "SkillsLightDMG+": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "SkillsLightningDMG+": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "SkillsLightToPhysical": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "SkillsPhysicalDMG+": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "Stains_+RandomStainOnHeal": [
+    "Lune"
+  ],
+  "Stains_APOnConsumption": [
+    "Lune"
+  ],
+  "Stains_ApplyBurnStackPerFireStainOnAttack": [
+    "Lune"
+  ],
+  "Stains_AttackEarth+": [
+    "Lune"
+  ],
+  "Stains_AttackLight+": [
+    "Lune"
+  ],
+  "Stains_ConsumeDarkStainsOnAttackDMG+": [
+    "Lune"
+  ],
+  "Stains_ConsumeFourDarkStainsDMG+OnSkills": [
+    "Lune"
+  ],
+  "Stains_EarthAppliesShield": [
+    "Lune"
+  ],
+  "Stains_EarthStainOnTurnStart": [
+    "Lune"
+  ],
+  "Stains_EarthStart": [
+    "Lune"
+  ],
+  "Stains_ElementalCyclingDMG+": [
+    "Lune"
+  ],
+  "Stains_FireStainOnTurnStart": [
+    "Lune"
+  ],
+  "Stains_FireStart": [
+    "Lune"
+  ],
+  "Stains_FullCritIfFullStain": [
+    "Lune"
+  ],
+  "Stains_GainAPOnLightStainConsumption": [
+    "Lune"
+  ],
+  "Stains_GenerateDarkStainRandom": [
+    "Lune"
+  ],
+  "Stains_GenerateLightOrDarkStainRandom": [
+    "Lune"
+  ],
+  "Stains_GenerateLightStainRandom": [
+    "Lune"
+  ],
+  "Stains_GenerateStainsOnGradientAttack": [
+    "Lune"
+  ],
+  "Stains_Ice+IfSelfFrozen": [
+    "Lune"
+  ],
+  "Stains_IceAppliesSlow": [
+    "Lune"
+  ],
+  "Stains_IceStainOnTurnStart": [
+    "Lune"
+  ],
+  "Stains_IceStart": [
+    "Lune"
+  ],
+  "Stains_IncreaseBreakDMGPerEarthStain": [
+    "Lune"
+  ],
+  "Stains_IncreaseBurnDMGPerFireStain": [
+    "Lune"
+  ],
+  "Stains_IncreaseCritChancePerFireStain": [
+    "Lune"
+  ],
+  "Stains_IncreaseDMGPerLightStain": [
+    "Lune"
+  ],
+  "Stains_LightningOnFire": [
+    "Lune"
+  ],
+  "Stains_LightningStart": [
+    "Lune"
+  ],
+  "Stains_OverchargeDMG+": [
+    "Lune"
+  ],
+  "Stains_RandomGeneration": [
+    "Lune"
+  ],
+  "Stains_RandomGenerationOnAttack": [
+    "Lune"
+  ],
+  "Stains_TurnStart+StainsIfNoStain": [
+    "Lune"
+  ],
+  "Stance_APOnSwitch": [
+    "Maelle"
+  ],
+  "Stance_AttackDefensive": [
+    "Maelle"
+  ],
+  "Stance_AttackOffensive": [
+    "Maelle"
+  ],
+  "Stance_BurnHealOnDStance": [
+    "Maelle"
+  ],
+  "Stance_CleanseVirtuose": [
+    "Maelle"
+  ],
+  "Stance_CounterSwitchToVStance": [
+    "Maelle"
+  ],
+  "Stance_CritChanceDefensive": [
+    "Maelle"
+  ],
+  "Stance_CritChanceOffensive": [
+    "Maelle"
+  ],
+  "Stance_DefensiveBreakDamage": [
+    "Maelle"
+  ],
+  "Stance_DefensiveGradientCharges": [
+    "Maelle"
+  ],
+  "Stance_DefensiveSharedAP": [
+    "Maelle"
+  ],
+  "Stance_FullCritIfStanceless": [
+    "Maelle"
+  ],
+  "Stance_HealOnSwitch": [
+    "Maelle"
+  ],
+  "Stance_OffensiveBurnStacks": [
+    "Maelle"
+  ],
+  "Stance_PierceOnVStance": [
+    "Maelle"
+  ],
+  "Stance_ShellOnHighHP": [
+    "Maelle"
+  ],
+  "Stance_ShellOutVStance": [
+    "Maelle"
+  ],
+  "Stance_ShieldOnOSstance": [
+    "Maelle"
+  ],
+  "Stance_ShieldOnParry": [
+    "Maelle"
+  ],
+  "Stance_StancelessSwitchToDStance": [
+    "Maelle"
+  ],
+  "Stance_StancelessSwitchToOStance": [
+    "Maelle"
+  ],
+  "Stance_StartOnVStance": [
+    "Maelle"
+  ],
+  "Stance_VirtuoseDoubleBurn": [
+    "Maelle"
+  ],
+  "Stance_VirtuoseDoubleDMG": [
+    "Maelle"
+  ],
+  "Stance_VirtuoseDoubleShields": [
+    "Maelle"
+  ],
+  "Stance_VirtuoseHealAllies": [
+    "Maelle"
+  ],
+  "Stance_VirtuoseKeepMark": [
+    "Maelle"
+  ],
+  "Stance_VirtuoseOnLowHP": [
+    "Maelle"
+  ],
+  "Stance_VirtuoseOnShieldBreak": [
+    "Maelle"
+  ],
+  "StartD": [
+    "Verso"
+  ],
+  "SunAPDiscount": [
+    "Sciel"
+  ],
+  "SupportSkillsCostReduced": [
+    "Gustave",
+    "Maelle",
+    "Verso"
+  ],
+  "ThunderSkillConsumeBurn": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "TriggerLightningOnCrit": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "TwilightForetellNotConsumed": [
+    "Sciel"
+  ],
+  "WepFx_AltCrit1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_AltCrit2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_AltCrit3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_AltCrit4": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_AltCrit5": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_AtkShield2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_AtkShield3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_AttackBurn10": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_AttackBurn5": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_AugAtk2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_AugAtk3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_BerserkBlade": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_BlightBlade": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_Break2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_Break3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_BurnDmg2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_BurnDmg3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_BurnDmg4": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_BurnDmg5": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_ConsumeLightOrDarkDmg": [
+    "Lune"
+  ],
+  "WepFx_CounterBurn10": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_CounterDmg2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_CounterDmg3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_CounterShield2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_CounterShield3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_CursedBlade": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_DarkDmgPerStain100": [
+    "Lune"
+  ],
+  "WepFx_DefenselessConsume1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_DefenselessConsume1Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_DefenselessConsume2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_DefenselessConsume2Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_DefenselessConsume3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_DefenselessConsume3Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_EarthStart2": [
+    "Lune"
+  ],
+  "WepFx_EarthStart4": [
+    "Lune"
+  ],
+  "WepFx_EchoDarkEarth": [
+    "Lune"
+  ],
+  "WepFx_EchoDarkFire": [
+    "Lune"
+  ],
+  "WepFx_EchoDarkIce": [
+    "Lune"
+  ],
+  "WepFx_EchoDarkLight": [
+    "Lune"
+  ],
+  "WepFx_EchoDarkLightning": [
+    "Lune"
+  ],
+  "WepFx_EchoEarthDark": [
+    "Lune"
+  ],
+  "WepFx_EchoEarthFire": [
+    "Lune"
+  ],
+  "WepFx_EchoEarthIce": [
+    "Lune"
+  ],
+  "WepFx_EchoEarthLight": [
+    "Lune"
+  ],
+  "WepFx_EchoEarthLightning": [
+    "Lune"
+  ],
+  "WepFx_EchoFireDark": [
+    "Lune"
+  ],
+  "WepFx_EchoFireEarth": [
+    "Lune"
+  ],
+  "WepFx_EchoFireIce": [
+    "Lune"
+  ],
+  "WepFx_EchoFireLight": [
+    "Lune"
+  ],
+  "WepFx_EchoFireLightning": [
+    "Lune"
+  ],
+  "WepFx_EchoIceDark": [
+    "Lune"
+  ],
+  "WepFx_EchoIceEarth": [
+    "Lune"
+  ],
+  "WepFx_EchoIceFire": [
+    "Lune"
+  ],
+  "WepFx_EchoIceLight": [
+    "Lune"
+  ],
+  "WepFx_EchoIceLightning": [
+    "Lune"
+  ],
+  "WepFx_EchoLightDark": [
+    "Lune"
+  ],
+  "WepFx_EchoLightEarth": [
+    "Lune"
+  ],
+  "WepFx_EchoLightFire": [
+    "Lune"
+  ],
+  "WepFx_EchoLightIce": [
+    "Lune"
+  ],
+  "WepFx_EchoLightLightning": [
+    "Lune"
+  ],
+  "WepFx_EchoLightningDark": [
+    "Lune"
+  ],
+  "WepFx_EchoLightningEarth": [
+    "Lune"
+  ],
+  "WepFx_EchoLightningFire": [
+    "Lune"
+  ],
+  "WepFx_EchoLightningIce": [
+    "Lune"
+  ],
+  "WepFx_EchoLightningLight": [
+    "Lune"
+  ],
+  "WepFx_FireStart2": [
+    "Lune"
+  ],
+  "WepFx_FireStart4": [
+    "Lune"
+  ],
+  "WepFx_FirstLife1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FirstLife2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FirstLife3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FirstOffensive1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FirstOffensive2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FirstOffensive3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FirstOffensive4": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FirstOffensive5": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FrancoisShell1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FrancoisShell2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FrancoisShell3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FullStrength1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FullStrength2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FullStrength3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FullStrength4": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_FullStrength5": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_HealParry1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_HealParry2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_HealParry3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_IceStart2": [
+    "Lune"
+  ],
+  "WepFx_IceStart4": [
+    "Lune"
+  ],
+  "WepFx_Immaculate1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_Immaculate2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_Immaculate3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_Immaculate4": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_Immaculate5": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_LightningCrit2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_LightningCrit3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_LightningStart2": [
+    "Lune"
+  ],
+  "WepFx_LightningStart4": [
+    "Lune"
+  ],
+  "WepFx_LightOnConsume100": [
+    "Lune"
+  ],
+  "WepFx_MacabrePower1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_MacabrePower2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_MacabrePower3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_MaskStack50": [
+    "Monoco"
+  ],
+  "WepFx_PowerfulBlade": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_PowerlessConsume1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_PowerlessConsume1Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_PowerlessConsume2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_PowerlessConsume2Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_PowerlessConsume3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_PowerlessConsume3Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_RegenBlade": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_RushBlade": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SelfBerserk1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SelfBerserk2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SelfBerserk3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SelfBlight": [],
+  "WepFx_SelfBlight1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SelfBlight2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SelfBlight3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SelfBurn2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SelfBurn3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_ShellBlade": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SlowConsume": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SlowConsume2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SlowConsume2Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SlowConsume3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SlowConsume3Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SlowConsumeSkills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SoloFighter1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SoloFighter2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_SoloFighter3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_StunBoost1": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_StunBoost2": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_StunBoost3": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_StunBoost4": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_StunBoost5": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_ThunderBurn250": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_TurnStart3": [
+    "Lune"
+  ],
+  "WepFx_TurnStart4": [
+    "Lune"
+  ],
+  "WepFx_BurnConsume1Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_BurnConsume2Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_BurnConsume3Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_BurnConsume4Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "WepFx_BurnConsume5Skills": [
+    "Gustave",
+    "Lune",
+    "Maelle",
+    "Sciel",
+    "Verso",
+    "Monoco"
+  ],
+  "Foretell_ApplyOnCounter": [
+    "Sciel"
+  ]
+}

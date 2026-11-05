@@ -1,0 +1,205 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="E33ModEditor.App.App"
+             RequestedThemeVariant="Dark">
+    <Application.Resources>
+        <!-- Expedition 33 palette: warm ink, candlelight gold, aged parchment -->
+        <SolidColorBrush x:Key="InkBrush" Color="#FF161411" />
+        <SolidColorBrush x:Key="PanelBrush" Color="#FF211D17" />
+        <SolidColorBrush x:Key="PanelAltBrush" Color="#FF2B261D" />
+        <SolidColorBrush x:Key="GoldBrush" Color="#FFC9A961" />
+        <SolidColorBrush x:Key="GoldDimBrush" Color="#FF7E6A3F" />
+        <SolidColorBrush x:Key="CreamBrush" Color="#FFEFE3C8" />
+        <SolidColorBrush x:Key="MutedBrush" Color="#FF9C9280" />
+        <SolidColorBrush x:Key="LineBrush" Color="#FF3B3529" />
+
+        <Color x:Key="SystemAccentColor">#FFC9A961</Color>
+        <Color x:Key="SystemAccentColorDark1">#FFA8853F</Color>
+        <Color x:Key="SystemAccentColorLight1">#FFD8BE84</Color>
+        <FontFamily x:Key="SerifDisplay">Georgia, Liberation Serif, Times New Roman</FontFamily>
+        <FontFamily x:Key="BodyFont">Inter, Segoe UI, DejaVu Sans</FontFamily>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
+
+        <!-- Windows -->
+        <Style Selector="Window">
+            <Setter Property="Background" Value="{StaticResource InkBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource BodyFont}" />
+        </Style>
+
+        <!-- Title / headers -->
+        <Style Selector="TextBlock.title">
+            <Setter Property="FontFamily" Value="{StaticResource SerifDisplay}" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Foreground" Value="{StaticResource GoldBrush}" />
+        </Style>
+        <Style Selector="TextBlock.section">
+            <Setter Property="FontFamily" Value="{StaticResource SerifDisplay}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="{StaticResource GoldBrush}" />
+        </Style>
+
+        <!-- Buttons -->
+        <Style Selector="Button">
+            <Setter Property="Background" Value="{StaticResource PanelAltBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource GoldDimBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="Padding" Value="12,6" />
+        </Style>
+        <Style Selector="Button:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#FF2A2A38" />
+            <Setter Property="BorderBrush" Value="{StaticResource GoldBrush}" />
+        </Style>
+
+        <!-- Inputs -->
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="{StaticResource PanelBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource LineBrush}" />
+            <Setter Property="CornerRadius" Value="3" />
+        </Style>
+        <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="{StaticResource GoldBrush}" />
+        </Style>
+        <Style Selector="NumericUpDown">
+            <Setter Property="Background" Value="{StaticResource PanelBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource LineBrush}" />
+            <Setter Property="MinWidth" Value="150" />
+            <Setter Property="Padding" Value="10,2,16,2" />
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="ShowButtonSpinner" Value="True" />
+            <Setter Property="ButtonSpinnerLocation" Value="Right" />
+        </Style>
+        <Style Selector="NumericUpDown /template/ TextBox#PART_TextBox">
+            <Setter Property="Padding" Value="10,2,18,2" />
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="MinWidth" Value="88" />
+        </Style>
+
+        <!-- DataGrids -->
+        <Style Selector="DataGrid">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="RowBackground" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="HeadersVisibility" Value="Column" />
+        </Style>
+        <Style Selector="DataGridColumnHeader">
+            <Setter Property="Background" Value="{StaticResource PanelBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource GoldBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource SerifDisplay}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Padding" Value="8,6" />
+            <Setter Property="SeparatorBrush" Value="{StaticResource LineBrush}" />
+        </Style>
+        <Style Selector="DataGridRow">
+            <Setter Property="MinHeight" Value="28" />
+        </Style>
+        <Style Selector="DataGridCell">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+            <Setter Property="Padding" Value="8,3" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="MinHeight" Value="26" />
+        </Style>
+        <Style Selector="DataGridRow:pointerover /template/ Rectangle#BackgroundRectangle">
+            <Setter Property="Fill" Value="#33C9A961" />
+        </Style>
+        <Style Selector="DataGridRow:selected /template/ Rectangle#BackgroundRectangle">
+            <Setter Property="Fill" Value="#55C9A961" />
+        </Style>
+
+        <!-- Tabs -->
+        <Style Selector="TabControl">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="TabItem">
+            <Setter Property="Foreground" Value="{StaticResource MutedBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource SerifDisplay}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Padding" Value="16,9" />
+        </Style>
+        <Style Selector="TabItem:selected">
+            <Setter Property="Foreground" Value="{StaticResource GoldBrush}" />
+        </Style>
+
+        <!-- ListBox (category picker) -->
+        <Style Selector="ListBox">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style Selector="ListBoxItem">
+            <Setter Property="Padding" Value="10,6" />
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+        </Style>
+        <Style Selector="ListBoxItem:selected">
+            <Setter Property="Foreground" Value="{StaticResource GoldBrush}" />
+            <Setter Property="Background" Value="#22C9A961" />
+        </Style>
+
+        <!-- Misc -->
+        <Style Selector="Border.panel">
+            <Setter Property="Background" Value="{StaticResource PanelBrush}" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="BorderBrush" Value="{StaticResource LineBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="TextBlock.hint">
+            <Setter Property="Foreground" Value="{StaticResource MutedBrush}" />
+            <Setter Property="FontSize" Value="11" />
+        </Style>
+
+        <!-- Launcher tiles -->
+        <Style Selector="Button.tile">
+            <Setter Property="Background" Value="{StaticResource PanelBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource LineBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Button.tile:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource PanelAltBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource GoldBrush}" />
+        </Style>
+        <Style Selector="Button.tile:disabled">
+            <Setter Property="Opacity" Value="0.4" />
+        </Style>
+
+        <Style Selector="Button.navitem">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="FontSize" Value="12.5" />
+        </Style>
+        <Style Selector="Button.navitem:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource PanelAltBrush}" />
+        </Style>
+
+        <Style Selector="ComboBox">
+            <Setter Property="Background" Value="{StaticResource PanelBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource LineBrush}" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+        <Style Selector="ComboBoxItem">
+            <Setter Property="Foreground" Value="{StaticResource CreamBrush}" />
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+        <Style Selector="Slider">
+            <Setter Property="Foreground" Value="{StaticResource GoldBrush}" />
+        </Style>
+    </Application.Styles>
+</Application>

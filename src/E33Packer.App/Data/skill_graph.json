@@ -1,0 +1,1533 @@
+{
+  "Gustave": {
+    "shape": "custom",
+    "active": "custom",
+    "custom": {
+      "positions": [
+        {
+          "s": "Gustave_Powerful",
+          "x": 600.0,
+          "y": 425.0
+        },
+        {
+          "s": "Gustave_Combo1",
+          "x": 600.0,
+          "y": 325.0
+        },
+        {
+          "s": "Gustave_FromFire",
+          "x": 725.0,
+          "y": 525.0
+        },
+        {
+          "s": "Gustave_PerfectRecovery",
+          "x": 600.0,
+          "y": 525.0
+        },
+        {
+          "s": "Gustave_MarkingShot",
+          "x": 475.00000000000006,
+          "y": 425.0
+        },
+        {
+          "s": "Gustave_PerfectBreak",
+          "x": 725.0,
+          "y": 625.0
+        },
+        {
+          "s": "Gustave_Strikestorm",
+          "x": 600.0,
+          "y": 625.0
+        },
+        {
+          "s": "Gustave_UnleashCharge",
+          "x": 725.0,
+          "y": 325.0
+        },
+        {
+          "s": "Gustave_ZoomZoom",
+          "x": 725.0,
+          "y": 425.0
+        },
+        {
+          "s": "Gustave_HellStorm",
+          "x": 850.0,
+          "y": 625.0
+        },
+        {
+          "s": "Gustave_CinderSwarm",
+          "x": 475.0,
+          "y": 325.0
+        },
+        {
+          "s": "Gustave_ExplodingShot",
+          "x": 850.0,
+          "y": 425.0
+        }
+      ],
+      "links": [
+        {
+          "f": "Gustave_PerfectRecovery",
+          "t": "Gustave_FromFire"
+        },
+        {
+          "f": "Gustave_Combo1",
+          "t": "Gustave_CinderSwarm"
+        },
+        {
+          "f": "Gustave_PerfectRecovery",
+          "t": "Gustave_Strikestorm"
+        },
+        {
+          "f": "Gustave_FromFire",
+          "t": "Gustave_PerfectBreak"
+        },
+        {
+          "f": "Gustave_PerfectBreak",
+          "t": "Gustave_HellStorm"
+        },
+        {
+          "f": "Gustave_UnleashCharge",
+          "t": "Gustave_ZoomZoom"
+        },
+        {
+          "f": "Gustave_Combo1",
+          "t": "Gustave_Powerful"
+        },
+        {
+          "f": "Gustave_MarkingShot",
+          "t": "Gustave_Powerful"
+        },
+        {
+          "f": "Gustave_ZoomZoom",
+          "t": "Gustave_ExplodingShot"
+        },
+        {
+          "f": "Gustave_FromFire",
+          "t": "Gustave_ZoomZoom"
+        },
+        {
+          "f": "Gustave_Powerful",
+          "t": "Gustave_PerfectRecovery"
+        },
+        {
+          "f": "Gustave_FromFire",
+          "t": "Gustave_HellStorm"
+        }
+      ]
+    },
+    "presets": {}
+  },
+  "Julie": {
+    "shape": "vanilla",
+    "active": "vanilla",
+    "custom": {
+      "positions": [],
+      "links": []
+    },
+    "presets": {}
+  },
+  "Lune": {
+    "shape": "custom",
+    "active": "custom",
+    "custom": {
+      "positions": [
+        {
+          "s": "Lune_Wildfire",
+          "x": 475.0,
+          "y": 225.0
+        },
+        {
+          "s": "Lune_EarthQuake",
+          "x": 725.0,
+          "y": 525.0
+        },
+        {
+          "s": "Lune_EarthSpike",
+          "x": 850.0,
+          "y": 525.0
+        },
+        {
+          "s": "Lune_IceGust",
+          "x": 725.0,
+          "y": 325.0
+        },
+        {
+          "s": "Lune_Revitalization",
+          "x": 600.0,
+          "y": 125.0
+        },
+        {
+          "s": "Lune_Thunderfall",
+          "x": 350.0,
+          "y": 625.0
+        },
+        {
+          "s": "Lune_Mayhem",
+          "x": 475.0,
+          "y": 675.0
+        },
+        {
+          "s": "Lune_Immolation",
+          "x": 475.0,
+          "y": 325.0
+        },
+        {
+          "s": "Lune_TreeOfLife",
+          "x": 1225.0,
+          "y": 425.0
+        },
+        {
+          "s": "Lune_StormCaller",
+          "x": 350.0,
+          "y": 525.0
+        },
+        {
+          "s": "Lune_ThermalTransfer",
+          "x": 725.0,
+          "y": 425.0
+        },
+        {
+          "s": "Lune_SkyBreak",
+          "x": 1225.0,
+          "y": 575.0
+        },
+        {
+          "s": "Lune_LightningDance",
+          "x": 225.0,
+          "y": 525.0
+        },
+        {
+          "s": "Lune_Tremor",
+          "x": 1225.0,
+          "y": 275.0
+        },
+        {
+          "s": "Lune_CripplingTsunami",
+          "x": 850.0,
+          "y": 325.0
+        },
+        {
+          "s": "Lune_HealingLight",
+          "x": 600.0,
+          "y": 425.0
+        },
+        {
+          "s": "Lune_Hell",
+          "x": 100.0,
+          "y": 325.0
+        },
+        {
+          "s": "Lune_Rebirth",
+          "x": 725.0,
+          "y": 125.0
+        },
+        {
+          "s": "Lune_Electrify",
+          "x": 475.0,
+          "y": 525.0
+        },
+        {
+          "s": "Lune_FireRage",
+          "x": 350.0,
+          "y": 325.0
+        },
+        {
+          "s": "Lune_Typhoon",
+          "x": 975.0,
+          "y": 425.0
+        },
+        {
+          "s": "Lune_CrustalCrush",
+          "x": 975.0,
+          "y": 525.0
+        },
+        {
+          "s": "Lune_Terraquake",
+          "x": 850.0,
+          "y": 625.0
+        },
+        {
+          "s": "Lune_ElementalTrick",
+          "x": 600.0,
+          "y": 575.0
+        },
+        {
+          "s": "Lune_ElementalGenesis",
+          "x": 600.0,
+          "y": 675.0
+        },
+        {
+          "s": "Lune_VivifyingLight",
+          "x": 600.0,
+          "y": 225.0
+        },
+        {
+          "s": "Lune_Restoration",
+          "x": 475.0,
+          "y": 125.0
+        },
+        {
+          "s": "Lune_Chiaroscuro",
+          "x": 725.0,
+          "y": 225.0
+        },
+        {
+          "s": "Lune_LumiereZenithale",
+          "x": 725.0,
+          "y": 25.0
+        },
+        {
+          "s": "Lune_ShockingWave",
+          "x": 350.0,
+          "y": 725.0
+        },
+        {
+          "s": "Lune_InfernalRage",
+          "x": 225.0,
+          "y": 325.0
+        },
+        {
+          "s": "Lune_SanguinaryFlames",
+          "x": 100.0,
+          "y": 125.0
+        },
+        {
+          "s": "Lune_Combustion",
+          "x": 225.0,
+          "y": 125.0
+        },
+        {
+          "s": "Lune_BlitzOvercharge",
+          "x": 225.0,
+          "y": 625.0
+        },
+        {
+          "s": "Lune_ElementalCataclysm",
+          "x": 600.0,
+          "y": 775.0
+        },
+        {
+          "s": "Lune_CursedEarth",
+          "x": 1100.0,
+          "y": 525.0
+        },
+        {
+          "s": "Lune_GravityMill",
+          "x": 1100.0,
+          "y": 625.0
+        },
+        {
+          "s": "Lune_Maelstrom",
+          "x": 100.0,
+          "y": 625.0
+        },
+        {
+          "s": "Lune_LevinDance",
+          "x": 225.0,
+          "y": 725.0
+        },
+        {
+          "s": "Lune_CloudSplitter",
+          "x": 100.0,
+          "y": 725.0
+        },
+        {
+          "s": "Lune_FrostPiercer",
+          "x": 1100.0,
+          "y": 325.0
+        },
+        {
+          "s": "Lune_CrushingTsunami",
+          "x": 975.0,
+          "y": 325.0
+        },
+        {
+          "s": "Lune_SoulEater",
+          "x": 850.0,
+          "y": 425.0
+        },
+        {
+          "s": "Lune_SerpenpharesWrath",
+          "x": 1100.0,
+          "y": 425.0
+        },
+        {
+          "s": "Lune_Brimstone",
+          "x": 350.0,
+          "y": 125.0
+        },
+        {
+          "s": "Lune_DarkPower",
+          "x": 850.0,
+          "y": 225.0
+        },
+        {
+          "s": "Lune_AngelsGift",
+          "x": 600.0,
+          "y": 325.0
+        },
+        {
+          "s": "Lune_Ultima",
+          "x": 850.0,
+          "y": 25.0
+        },
+        {
+          "s": "Lune_UltimaNoir",
+          "x": 975.0,
+          "y": 225.0
+        }
+      ],
+      "links": [
+        {
+          "f": "Lune_CripplingTsunami",
+          "t": "Lune_Typhoon"
+        },
+        {
+          "f": "Lune_Immolation",
+          "t": "Lune_HealingLight"
+        },
+        {
+          "f": "Lune_IceGust",
+          "t": "Lune_HealingLight"
+        },
+        {
+          "f": "Lune_Rebirth",
+          "t": "Lune_Revitalization"
+        },
+        {
+          "f": "Lune_HealingLight",
+          "t": "Lune_AngelsGift"
+        },
+        {
+          "f": "Lune_AngelsGift",
+          "t": "Lune_VivifyingLight"
+        },
+        {
+          "f": "Lune_VivifyingLight",
+          "t": "Lune_Revitalization"
+        },
+        {
+          "f": "Lune_Revitalization",
+          "t": "Lune_Restoration"
+        },
+        {
+          "f": "Lune_Rebirth",
+          "t": "Lune_Chiaroscuro"
+        },
+        {
+          "f": "Lune_Chiaroscuro",
+          "t": "Lune_DarkPower"
+        },
+        {
+          "f": "Lune_DarkPower",
+          "t": "Lune_UltimaNoir"
+        },
+        {
+          "f": "Lune_Rebirth",
+          "t": "Lune_LumiereZenithale"
+        },
+        {
+          "f": "Lune_LumiereZenithale",
+          "t": "Lune_Ultima"
+        },
+        {
+          "f": "Lune_IceGust",
+          "t": "Lune_ThermalTransfer"
+        },
+        {
+          "f": "Lune_ThermalTransfer",
+          "t": "Lune_CripplingTsunami"
+        },
+        {
+          "f": "Lune_ThermalTransfer",
+          "t": "Lune_SoulEater"
+        },
+        {
+          "f": "Lune_Typhoon",
+          "t": "Lune_CrushingTsunami"
+        },
+        {
+          "f": "Lune_CrushingTsunami",
+          "t": "Lune_FrostPiercer"
+        },
+        {
+          "f": "Lune_FrostPiercer",
+          "t": "Lune_SerpenpharesWrath"
+        },
+        {
+          "f": "Lune_HealingLight",
+          "t": "Lune_EarthQuake"
+        },
+        {
+          "f": "Lune_EarthQuake",
+          "t": "Lune_EarthSpike"
+        },
+        {
+          "f": "Lune_EarthSpike",
+          "t": "Lune_CrustalCrush"
+        },
+        {
+          "f": "Lune_CrustalCrush",
+          "t": "Lune_CursedEarth"
+        },
+        {
+          "f": "Lune_CursedEarth",
+          "t": "Lune_GravityMill"
+        },
+        {
+          "f": "Lune_EarthSpike",
+          "t": "Lune_Terraquake"
+        },
+        {
+          "f": "Lune_Terraquake",
+          "t": "Lune_ElementalTrick"
+        },
+        {
+          "f": "Lune_ElementalTrick",
+          "t": "Lune_ElementalGenesis"
+        },
+        {
+          "f": "Lune_ElementalGenesis",
+          "t": "Lune_ElementalCataclysm"
+        },
+        {
+          "f": "Lune_HealingLight",
+          "t": "Lune_Electrify"
+        },
+        {
+          "f": "Lune_StormCaller",
+          "t": "Lune_Electrify"
+        },
+        {
+          "f": "Lune_StormCaller",
+          "t": "Lune_Thunderfall"
+        },
+        {
+          "f": "Lune_Thunderfall",
+          "t": "Lune_ShockingWave"
+        },
+        {
+          "f": "Lune_ShockingWave",
+          "t": "Lune_Mayhem"
+        },
+        {
+          "f": "Lune_Mayhem",
+          "t": "Lune_ElementalGenesis"
+        },
+        {
+          "f": "Lune_Thunderfall",
+          "t": "Lune_LightningDance"
+        },
+        {
+          "f": "Lune_LightningDance",
+          "t": "Lune_BlitzOvercharge"
+        },
+        {
+          "f": "Lune_BlitzOvercharge",
+          "t": "Lune_Maelstrom"
+        },
+        {
+          "f": "Lune_Maelstrom",
+          "t": "Lune_CloudSplitter"
+        },
+        {
+          "f": "Lune_Maelstrom",
+          "t": "Lune_LevinDance"
+        },
+        {
+          "f": "Lune_Immolation",
+          "t": "Lune_Wildfire"
+        },
+        {
+          "f": "Lune_Wildfire",
+          "t": "Lune_FireRage"
+        },
+        {
+          "f": "Lune_FireRage",
+          "t": "Lune_InfernalRage"
+        },
+        {
+          "f": "Lune_InfernalRage",
+          "t": "Lune_Hell"
+        },
+        {
+          "f": "Lune_Hell",
+          "t": "Lune_SanguinaryFlames"
+        },
+        {
+          "f": "Lune_SanguinaryFlames",
+          "t": "Lune_Combustion"
+        },
+        {
+          "f": "Lune_Combustion",
+          "t": "Lune_Brimstone"
+        }
+      ]
+    },
+    "presets": {}
+  },
+  "Maelle": {
+    "shape": "custom",
+    "active": "custom",
+    "custom": {
+      "positions": [
+        {
+          "s": "Maelle_OffensiveSwitch",
+          "x": 662.5,
+          "y": 625.0
+        },
+        {
+          "s": "Maelle_NEW18_Spark",
+          "x": 287.5,
+          "y": 625.0
+        },
+        {
+          "s": "Maelle_FleuretFury",
+          "x": 912.5,
+          "y": 825.0
+        },
+        {
+          "s": "Maelle_BreakingRules",
+          "x": 912.5,
+          "y": 625.0
+        },
+        {
+          "s": "Maelle_NEW4_FireRise",
+          "x": 287.5,
+          "y": 725.0
+        },
+        {
+          "s": "Maelle_NEW7_Egide",
+          "x": 537.5,
+          "y": 425.0
+        },
+        {
+          "s": "Maelle_GuardUp",
+          "x": 787.5,
+          "y": 625.0
+        },
+        {
+          "s": "Maelle_NEW9_RainOfFire",
+          "x": 162.5,
+          "y": 725.0
+        },
+        {
+          "s": "Maelle_LastChance",
+          "x": 537.5,
+          "y": 225.0
+        },
+        {
+          "s": "Maelle_Revenge",
+          "x": 100.0,
+          "y": 825.0
+        },
+        {
+          "s": "Maelle_NEW13_Payback",
+          "x": 912.5,
+          "y": 725.0
+        },
+        {
+          "s": "Maelle_NEW14_Percee",
+          "x": 412.5,
+          "y": 625.0
+        },
+        {
+          "s": "Maelle_GustaveSMemoire",
+          "x": 787.5,
+          "y": 825.0
+        },
+        {
+          "s": "Maelle_NEW19_InvigoratingFire",
+          "x": 787.5,
+          "y": 725.0
+        },
+        {
+          "s": "Maelle_GuardDown",
+          "x": 662.5,
+          "y": 725.0
+        },
+        {
+          "s": "Maelle_SwordBallet",
+          "x": 350.0,
+          "y": 825.0
+        },
+        {
+          "s": "Maelle_MomentumStrike",
+          "x": 100.0,
+          "y": 975.0
+        },
+        {
+          "s": "Maelle_Degagement",
+          "x": 162.5,
+          "y": 625.0
+        },
+        {
+          "s": "Maelle_Pyrolyse",
+          "x": 287.5,
+          "y": 975.0
+        },
+        {
+          "s": "Maelle_PhoenixFlame",
+          "x": 1100.0,
+          "y": 625.0
+        },
+        {
+          "s": "Maelle_PhantomStrike",
+          "x": 350.0,
+          "y": 425.0
+        },
+        {
+          "s": "Maelle_BurningCanvas",
+          "x": 537.5,
+          "y": 325.0
+        },
+        {
+          "s": "Maelle_Stendhal",
+          "x": 725.0,
+          "y": 425.0
+        },
+        {
+          "s": "Maelle_Gommage",
+          "x": 1100.0,
+          "y": 775.0
+        },
+        {
+          "s": "Maelle_VirtuoseStrike",
+          "x": 1100.0,
+          "y": 475.0
+        },
+        {
+          "s": "Maelle_FencersFlurry",
+          "x": 225.0,
+          "y": 825.0
+        },
+        {
+          "s": "Maelle_NEW11_MezzoForte",
+          "x": 537.5,
+          "y": 525.0
+        },
+        {
+          "s": "Maelle_LumiereAbove",
+          "x": 912.5,
+          "y": 925.0
+        },
+        {
+          "s": "Maelle_ReversFatal",
+          "x": 787.5,
+          "y": 925.0
+        },
+        {
+          "s": "Maelle_DeviationAbsolue",
+          "x": 662.5,
+          "y": 875.0
+        },
+        {
+          "s": "Maelle_ForThoseWhoComeAfter",
+          "x": 662.5,
+          "y": 975.0
+        },
+        {
+          "s": "Maelle_VengeanceArdente",
+          "x": 412.5,
+          "y": 925.0
+        },
+        {
+          "s": "Maelle_AliciasNightmare",
+          "x": 475.0,
+          "y": 825.0
+        },
+        {
+          "s": "Maelle_BladeWaltz",
+          "x": 475.0,
+          "y": 725.0
+        },
+        {
+          "s": "Maelle_LActeFinalIncendiaire",
+          "x": 537.5,
+          "y": 975.0
+        }
+      ],
+      "links": [
+        {
+          "f": "Maelle_NEW11_MezzoForte",
+          "t": "Maelle_NEW7_Egide"
+        },
+        {
+          "f": "Maelle_NEW7_Egide",
+          "t": "Maelle_Stendhal"
+        },
+        {
+          "f": "Maelle_NEW7_Egide",
+          "t": "Maelle_PhantomStrike"
+        },
+        {
+          "f": "Maelle_NEW7_Egide",
+          "t": "Maelle_BurningCanvas"
+        },
+        {
+          "f": "Maelle_PhantomStrike",
+          "t": "Maelle_LastChance"
+        },
+        {
+          "f": "Maelle_BurningCanvas",
+          "t": "Maelle_LastChance"
+        },
+        {
+          "f": "Maelle_Stendhal",
+          "t": "Maelle_LastChance"
+        },
+        {
+          "f": "Maelle_NEW11_MezzoForte",
+          "t": "Maelle_OffensiveSwitch"
+        },
+        {
+          "f": "Maelle_NEW11_MezzoForte",
+          "t": "Maelle_NEW14_Percee"
+        },
+        {
+          "f": "Maelle_NEW14_Percee",
+          "t": "Maelle_OffensiveSwitch"
+        },
+        {
+          "f": "Maelle_NEW19_InvigoratingFire",
+          "t": "Maelle_GuardDown"
+        },
+        {
+          "f": "Maelle_NEW19_InvigoratingFire",
+          "t": "Maelle_GuardUp"
+        },
+        {
+          "f": "Maelle_NEW18_Spark",
+          "t": "Maelle_NEW14_Percee"
+        },
+        {
+          "f": "Maelle_OffensiveSwitch",
+          "t": "Maelle_GuardUp"
+        },
+        {
+          "f": "Maelle_GuardDown",
+          "t": "Maelle_OffensiveSwitch"
+        },
+        {
+          "f": "Maelle_NEW19_InvigoratingFire",
+          "t": "Maelle_BreakingRules"
+        },
+        {
+          "f": "Maelle_BreakingRules",
+          "t": "Maelle_NEW13_Payback"
+        },
+        {
+          "f": "Maelle_NEW13_Payback",
+          "t": "Maelle_FleuretFury"
+        },
+        {
+          "f": "Maelle_FleuretFury",
+          "t": "Maelle_GustaveSMemoire"
+        },
+        {
+          "f": "Maelle_NEW18_Spark",
+          "t": "Maelle_Degagement"
+        },
+        {
+          "f": "Maelle_Degagement",
+          "t": "Maelle_NEW9_RainOfFire"
+        },
+        {
+          "f": "Maelle_NEW9_RainOfFire",
+          "t": "Maelle_NEW4_FireRise"
+        },
+        {
+          "f": "Maelle_NEW4_FireRise",
+          "t": "Maelle_FencersFlurry"
+        },
+        {
+          "f": "Maelle_FencersFlurry",
+          "t": "Maelle_Revenge"
+        },
+        {
+          "f": "Maelle_Revenge",
+          "t": "Maelle_MomentumStrike"
+        },
+        {
+          "f": "Maelle_MomentumStrike",
+          "t": "Maelle_SwordBallet"
+        },
+        {
+          "f": "Maelle_MomentumStrike",
+          "t": "Maelle_Pyrolyse"
+        },
+        {
+          "f": "Maelle_ForThoseWhoComeAfter",
+          "t": "Maelle_DeviationAbsolue"
+        },
+        {
+          "f": "Maelle_DeviationAbsolue",
+          "t": "Maelle_ReversFatal"
+        },
+        {
+          "f": "Maelle_ReversFatal",
+          "t": "Maelle_LumiereAbove"
+        },
+        {
+          "f": "Maelle_GustaveSMemoire",
+          "t": "Maelle_LumiereAbove"
+        },
+        {
+          "f": "Maelle_LActeFinalIncendiaire",
+          "t": "Maelle_VengeanceArdente"
+        },
+        {
+          "f": "Maelle_BladeWaltz",
+          "t": "Maelle_AliciasNightmare"
+        },
+        {
+          "f": "Maelle_Pyrolyse",
+          "t": "Maelle_VengeanceArdente"
+        },
+        {
+          "f": "Maelle_SwordBallet",
+          "t": "Maelle_BladeWaltz"
+        }
+      ]
+    },
+    "presets": {}
+  },
+  "Monoco": {
+    "shape": "vanilla",
+    "active": "vanilla",
+    "custom": {
+      "positions": [],
+      "links": []
+    },
+    "presets": {}
+  },
+  "Sciel": {
+    "shape": "custom",
+    "active": "custom",
+    "custom": {
+      "positions": [
+        {
+          "s": "Sciel_new3_GrimPrediction",
+          "x": 475.0,
+          "y": 625.0
+        },
+        {
+          "s": "Sciel_SpeedUp",
+          "x": 350.0,
+          "y": 475.0
+        },
+        {
+          "s": "Sciel_SealedFate",
+          "x": 475.0,
+          "y": 775.0
+        },
+        {
+          "s": "Sciel_OurSacrifice",
+          "x": 475.0,
+          "y": 875.0
+        },
+        {
+          "s": "Sciel_FinalPath",
+          "x": 162.5,
+          "y": 425.0
+        },
+        {
+          "s": "Sciel_PlentifulHarvest",
+          "x": 412.5,
+          "y": 425.0
+        },
+        {
+          "s": "Sciel_SpectralSweep",
+          "x": 225.0,
+          "y": 375.0
+        },
+        {
+          "s": "Sciel_SearingBond",
+          "x": 350.0,
+          "y": 325.0
+        },
+        {
+          "s": "Sciel_Harvest",
+          "x": 662.5,
+          "y": 475.0
+        },
+        {
+          "s": "Sciel_CardWeaver",
+          "x": 287.5,
+          "y": 575.0
+        },
+        {
+          "s": "Sciel_new7_DarkAbsorption",
+          "x": 600.0,
+          "y": 725.0
+        },
+        {
+          "s": "Sciel_new2_Foretelling2",
+          "x": 412.5,
+          "y": 525.0
+        },
+        {
+          "s": "Sciel_new14_ShadowTargeting",
+          "x": 537.5,
+          "y": 525.0
+        },
+        {
+          "s": "Sciel_new4_ShadowDrop",
+          "x": 287.5,
+          "y": 675.0
+        },
+        {
+          "s": "Sciel_new18_Postponed",
+          "x": 475.0,
+          "y": 325.0
+        },
+        {
+          "s": "Sciel_BadOmen",
+          "x": 600.0,
+          "y": 375.0
+        },
+        {
+          "s": "Sciel_ShadowBringer",
+          "x": 850.0,
+          "y": 175.0
+        },
+        {
+          "s": "Sciel_EndSlice",
+          "x": 850.0,
+          "y": 925.0
+        },
+        {
+          "s": "Sciel_DarkWave",
+          "x": 350.0,
+          "y": 775.0
+        },
+        {
+          "s": "Sciel_FiringShadow",
+          "x": 412.5,
+          "y": 675.0
+        },
+        {
+          "s": "Sciel_Intervention",
+          "x": 225.0,
+          "y": 525.0
+        },
+        {
+          "s": "Sciel_Doom",
+          "x": 850.0,
+          "y": 525.0
+        },
+        {
+          "s": "Sciel_DarkCleansing",
+          "x": 537.5,
+          "y": 675.0
+        },
+        {
+          "s": "Sciel_AllSet",
+          "x": 350.0,
+          "y": 625.0
+        },
+        {
+          "s": "Sciel_FortunesFury",
+          "x": 600.0,
+          "y": 275.0
+        },
+        {
+          "s": "Sciel_TwilightDance",
+          "x": 600.0,
+          "y": 825.0
+        },
+        {
+          "s": "Sciel_BlackDeath",
+          "x": 100.0,
+          "y": 725.0
+        },
+        {
+          "s": "Sciel_LastChance",
+          "x": 225.0,
+          "y": 775.0
+        },
+        {
+          "s": "Sciel_FalseStart",
+          "x": 100.0,
+          "y": 625.0
+        },
+        {
+          "s": "Sciel_SpectersEdge",
+          "x": 100.0,
+          "y": 525.0
+        },
+        {
+          "s": "Sciel_TripleHex",
+          "x": 725.0,
+          "y": 275.0
+        },
+        {
+          "s": "Sciel_CursedFrenzy",
+          "x": 475.0,
+          "y": 225.0
+        },
+        {
+          "s": "Sciel_SoulTransplant",
+          "x": 662.5,
+          "y": 575.0
+        },
+        {
+          "s": "Sciel_UltimaPath",
+          "x": -25.0,
+          "y": 475.0
+        },
+        {
+          "s": "Sciel_UltimasBargain",
+          "x": 225.0,
+          "y": 875.0
+        },
+        {
+          "s": "Sciel_SecondLife",
+          "x": 37.5,
+          "y": 375.0
+        },
+        {
+          "s": "Sciel_PhantomSever",
+          "x": 350.0,
+          "y": 875.0
+        },
+        {
+          "s": "Sciel_Corruption",
+          "x": 100.0,
+          "y": 825.0
+        }
+      ],
+      "links": [
+        {
+          "f": "Sciel_new3_GrimPrediction",
+          "t": "Sciel_DarkCleansing"
+        },
+        {
+          "f": "Sciel_DarkCleansing",
+          "t": "Sciel_FiringShadow"
+        },
+        {
+          "f": "Sciel_FiringShadow",
+          "t": "Sciel_AllSet"
+        },
+        {
+          "f": "Sciel_new2_Foretelling2",
+          "t": "Sciel_SpeedUp"
+        },
+        {
+          "f": "Sciel_SpeedUp",
+          "t": "Sciel_PlentifulHarvest"
+        },
+        {
+          "f": "Sciel_PlentifulHarvest",
+          "t": "Sciel_new14_ShadowTargeting"
+        },
+        {
+          "f": "Sciel_new14_ShadowTargeting",
+          "t": "Sciel_AllSet"
+        },
+        {
+          "f": "Sciel_new14_ShadowTargeting",
+          "t": "Sciel_BadOmen"
+        },
+        {
+          "f": "Sciel_BadOmen",
+          "t": "Sciel_Harvest"
+        },
+        {
+          "f": "Sciel_AllSet",
+          "t": "Sciel_new4_ShadowDrop"
+        },
+        {
+          "f": "Sciel_CardWeaver",
+          "t": "Sciel_new4_ShadowDrop"
+        },
+        {
+          "f": "Sciel_BadOmen",
+          "t": "Sciel_new18_Postponed"
+        },
+        {
+          "f": "Sciel_new4_ShadowDrop",
+          "t": "Sciel_DarkWave"
+        },
+        {
+          "f": "Sciel_SealedFate",
+          "t": "Sciel_new7_DarkAbsorption"
+        },
+        {
+          "f": "Sciel_SearingBond",
+          "t": "Sciel_SpectralSweep"
+        },
+        {
+          "f": "Sciel_SpectralSweep",
+          "t": "Sciel_FinalPath"
+        },
+        {
+          "f": "Sciel_new7_DarkAbsorption",
+          "t": "Sciel_TwilightDance"
+        },
+        {
+          "f": "Sciel_TwilightDance",
+          "t": "Sciel_OurSacrifice"
+        },
+        {
+          "f": "Sciel_new18_Postponed",
+          "t": "Sciel_FortunesFury"
+        },
+        {
+          "f": "Sciel_SearingBond",
+          "t": "Sciel_new18_Postponed"
+        },
+        {
+          "f": "Sciel_CardWeaver",
+          "t": "Sciel_Intervention"
+        },
+        {
+          "f": "Sciel_DarkWave",
+          "t": "Sciel_SealedFate"
+        },
+        {
+          "f": "Sciel_Harvest",
+          "t": "Sciel_SoulTransplant"
+        },
+        {
+          "f": "Sciel_FortunesFury",
+          "t": "Sciel_TripleHex"
+        },
+        {
+          "f": "Sciel_LastChance",
+          "t": "Sciel_DarkWave"
+        },
+        {
+          "f": "Sciel_BlackDeath",
+          "t": "Sciel_LastChance"
+        },
+        {
+          "f": "Sciel_FalseStart",
+          "t": "Sciel_BlackDeath"
+        },
+        {
+          "f": "Sciel_SpectersEdge",
+          "t": "Sciel_FalseStart"
+        },
+        {
+          "f": "Sciel_SpectersEdge",
+          "t": "Sciel_FinalPath"
+        },
+        {
+          "f": "Sciel_SearingBond",
+          "t": "Sciel_CursedFrenzy"
+        },
+        {
+          "f": "Sciel_OurSacrifice",
+          "t": "Sciel_PhantomSever"
+        },
+        {
+          "f": "Sciel_FinalPath",
+          "t": "Sciel_SecondLife"
+        },
+        {
+          "f": "Sciel_SecondLife",
+          "t": "Sciel_UltimaPath"
+        },
+        {
+          "f": "Sciel_PhantomSever",
+          "t": "Sciel_UltimasBargain"
+        },
+        {
+          "f": "Sciel_UltimasBargain",
+          "t": "Sciel_Corruption"
+        }
+      ]
+    },
+    "presets": {}
+  },
+  "Verso": {
+    "shape": "custom",
+    "active": "custom",
+    "custom": {
+      "positions": [
+        {
+          "s": "Verso_AssaultZero",
+          "x": 912.5,
+          "y": 725.0
+        },
+        {
+          "s": "Verso_NEW_QuickStrike",
+          "x": 787.5,
+          "y": 625.0
+        },
+        {
+          "s": "Verso_NEW_Sabotage",
+          "x": 1037.5,
+          "y": 425.0
+        },
+        {
+          "s": "Verso_NEW_ParadigmShift",
+          "x": 787.5,
+          "y": 725.0
+        },
+        {
+          "s": "Blitz",
+          "x": 412.5,
+          "y": 425.0
+        },
+        {
+          "s": "Verso_NEW_Overcharge",
+          "x": 100.0,
+          "y": 725.0
+        },
+        {
+          "s": "PerfectRecovery",
+          "x": 225.0,
+          "y": 475.0
+        },
+        {
+          "s": "Verso_NEW_FromFire",
+          "x": 100.0,
+          "y": 375.0
+        },
+        {
+          "s": "Verso_NEW_Speedburst",
+          "x": 662.5,
+          "y": 425.0
+        },
+        {
+          "s": "Verso_NEW_Leadership",
+          "x": 662.5,
+          "y": 725.0
+        },
+        {
+          "s": "Verso_NEW_Purification",
+          "x": 287.5,
+          "y": 425.0
+        },
+        {
+          "s": "Verso_NEW_Followup",
+          "x": 662.5,
+          "y": 625.0
+        },
+        {
+          "s": "Verso_NEW_AngelsEyes",
+          "x": 1037.5,
+          "y": 725.0
+        },
+        {
+          "s": "Powerful",
+          "x": 850.0,
+          "y": 675.0
+        },
+        {
+          "s": "NEW_4",
+          "x": 350.0,
+          "y": 725.0
+        },
+        {
+          "s": "Verso_NEW_PhantomStars",
+          "x": 225.0,
+          "y": 625.0
+        },
+        {
+          "s": "MarkingShot",
+          "x": 162.5,
+          "y": 425.0
+        },
+        {
+          "s": "Verso_AscendingAssault",
+          "x": 537.5,
+          "y": 675.0
+        },
+        {
+          "s": "Verso_PerfectBreak",
+          "x": 225.0,
+          "y": 725.0
+        },
+        {
+          "s": "Verso_Strikestorm",
+          "x": 537.5,
+          "y": 425.0
+        },
+        {
+          "s": "Verso_BerserkSlash",
+          "x": 100.0,
+          "y": 625.0
+        },
+        {
+          "s": "Verso_SteeledStrike",
+          "x": 850.0,
+          "y": 525.0
+        },
+        {
+          "s": "Verso_RadiantSlash",
+          "x": 475.0,
+          "y": 725.0
+        },
+        {
+          "s": "Verso_Striker",
+          "x": 1037.5,
+          "y": 575.0
+        },
+        {
+          "s": "Verso_Endbringer",
+          "x": 912.5,
+          "y": 425.0
+        },
+        {
+          "s": "Verso_DefiantStrike",
+          "x": 787.5,
+          "y": 425.0
+        },
+        {
+          "s": "Verso_Burden",
+          "x": 225.0,
+          "y": 375.0
+        },
+        {
+          "s": "Verso_Zanmoto",
+          "x": 475.0,
+          "y": 525.0
+        },
+        {
+          "s": "Verso_Repainted",
+          "x": 350.0,
+          "y": 625.0
+        },
+        {
+          "s": "Verso_RedBushido",
+          "x": 350.0,
+          "y": 525.0
+        },
+        {
+          "s": "Verso_VoidedStars",
+          "x": 725.0,
+          "y": 525.0
+        },
+        {
+          "s": "Verso_Blitzer",
+          "x": 600.0,
+          "y": 525.0
+        }
+      ],
+      "links": [
+        {
+          "f": "Verso_NEW_FromFire",
+          "t": "MarkingShot"
+        },
+        {
+          "f": "MarkingShot",
+          "t": "Verso_Burden"
+        },
+        {
+          "f": "Verso_NEW_ParadigmShift",
+          "t": "Powerful"
+        },
+        {
+          "f": "Verso_NEW_ParadigmShift",
+          "t": "Verso_NEW_Leadership"
+        },
+        {
+          "f": "Powerful",
+          "t": "Verso_NEW_QuickStrike"
+        },
+        {
+          "f": "PerfectRecovery",
+          "t": "MarkingShot"
+        },
+        {
+          "f": "Verso_NEW_Purification",
+          "t": "Verso_Burden"
+        },
+        {
+          "f": "PerfectRecovery",
+          "t": "Verso_NEW_Purification"
+        },
+        {
+          "f": "Verso_NEW_QuickStrike",
+          "t": "Verso_NEW_Followup"
+        },
+        {
+          "f": "Verso_NEW_Purification",
+          "t": "Blitz"
+        },
+        {
+          "f": "Verso_AscendingAssault",
+          "t": "Verso_NEW_Followup"
+        },
+        {
+          "f": "Verso_RadiantSlash",
+          "t": "Verso_AscendingAssault"
+        },
+        {
+          "f": "NEW_4",
+          "t": "Verso_RadiantSlash"
+        },
+        {
+          "f": "NEW_4",
+          "t": "Verso_PerfectBreak"
+        },
+        {
+          "f": "Blitz",
+          "t": "Verso_Strikestorm"
+        },
+        {
+          "f": "Verso_Strikestorm",
+          "t": "Verso_NEW_Speedburst"
+        },
+        {
+          "f": "Verso_NEW_Speedburst",
+          "t": "Verso_DefiantStrike"
+        },
+        {
+          "f": "Verso_BerserkSlash",
+          "t": "Verso_PerfectBreak"
+        },
+        {
+          "f": "Verso_NEW_Overcharge",
+          "t": "Verso_BerserkSlash"
+        },
+        {
+          "f": "Verso_BerserkSlash",
+          "t": "Verso_NEW_PhantomStars"
+        },
+        {
+          "f": "Verso_DefiantStrike",
+          "t": "Verso_Endbringer"
+        },
+        {
+          "f": "Verso_Endbringer",
+          "t": "Verso_SteeledStrike"
+        },
+        {
+          "f": "Verso_AssaultZero",
+          "t": "Powerful"
+        },
+        {
+          "f": "Verso_NEW_PhantomStars",
+          "t": "Verso_Repainted"
+        },
+        {
+          "f": "Verso_Repainted",
+          "t": "Verso_RedBushido"
+        },
+        {
+          "f": "Verso_VoidedStars",
+          "t": "Verso_SteeledStrike"
+        },
+        {
+          "f": "Verso_VoidedStars",
+          "t": "Verso_Blitzer"
+        },
+        {
+          "f": "Verso_RedBushido",
+          "t": "Verso_Zanmoto"
+        },
+        {
+          "f": "Verso_Zanmoto",
+          "t": "Verso_Blitzer"
+        }
+      ]
+    },
+    "presets": {}
+  }
+}
