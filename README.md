@@ -1,7 +1,7 @@
-# E33 Mod Editor
+# E33 Expedition Infinity Seed Generator
 
-Standalone editor for Clair Obscur: Expedition 33 game data, starting with
-monster DataTable editing. Built for Linux and Windows.
+Standalone seed generator for the Clair Obscur: Expedition 33 game. Extracts ~1 GB of game assets on first launch. Builds a pak mod based on the user's settings.
+
 
 ## Build
 
