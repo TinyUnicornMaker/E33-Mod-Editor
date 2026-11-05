@@ -5,12 +5,7 @@ monster DataTable editing. Built for Linux and Windows.
 
 ## Build
 
-Requires the **.NET 10 SDK**. The GitHub Actions release job fetches
-[`retoc` v0.1.5](https://github.com/trumank/retoc/releases/tag/v0.1.5) at build
-time. The published executable currently bundles retoc/repak; end users do not
-download them. For a local publish, place `retoc`/`retoc.exe` and its runtime
-libraries in `src/E33Packer.App/tools/`. `repak` for both platforms is already
-under `tools/repak/`. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+Requires the **.NET 10 SDK**.
 
 ```bash
 # Linux x64
