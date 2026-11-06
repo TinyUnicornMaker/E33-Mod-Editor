@@ -111,7 +111,7 @@ retuned to the ladder value) — see `PictosMagnitudeKit.BaseTierRenames`,
   vanilla base and on both clones)
 - Full Strength I–V (+5/10/20/30/50% on full Health; 5/10/20/30/50 lumina;
   I const-patched)
-- Charging Critical I (vanilla once/turn 20%) / II (20% every crit)
+- Charging Critical I–II (20% once per turn; II keeps the same latch)
 - Infinite (The One donor; max Health 3,333,333). **Only drops from Act 3
   Lumière Renoir** (`L_Boss_Curator`); never chests, shops, or other enemies.
 - Death's Dividend (clone of weapon `DamageBonusOnRevive`: +10% damage per

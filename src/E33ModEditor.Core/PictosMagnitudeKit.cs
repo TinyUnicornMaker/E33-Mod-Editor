@@ -319,7 +319,7 @@ public static class PictosMagnitudeKit
         SameEffect("LuckyAim2", "Lucky Aim II", LuckyDesc, "LuckyAim", "BP_LU_APFreeAim_50Recover", "DA_GearPictos_LuckyAim"),
         SameEffect("LuckyAim3", "Lucky Aim III", LuckyDesc, "LuckyAim", "BP_LU_APFreeAim_50Recover", "DA_GearPictos_LuckyAim"),
         FullStrength(2, 1.10f), FullStrength(3, 1.20f), FullStrength(4, 1.30f), FullStrength(5, 1.50f),
-        new("GradientOnCrit2", "Charging Critical II", "20% of a Gradient Charge on Critical hit.",
+        new("GradientOnCrit2", "Charging Critical II", "20% of a Gradient Charge on Critical hit. Once per turn.",
             "GradientOnCrit", "BP_LU_GradientOnCrit", "DA_GearPictos_GradientOnCrit",
             new[] { ("GradientOnCrit2_GradientChargeOnCrit", "GradientOnCrit_GradientChargeOnCrit", 0.2f) }),
         new("Infinite", "Infinite", "Max Health is set to 3,333,333.",
@@ -704,8 +704,6 @@ public static class PictosMagnitudeKit
                 PatchRandomDefenseBranch(bpDest);
             if (spec.Id is "HealingParry2" or "HealingParry3")
                 PatchConstValue(bpDest, null, 0.03, spec.Id == "HealingParry2" ? 0.05 : 0.10);
-            if (spec.Id == "GradientOnCrit2")
-                PatchChargingUnlimited(bpDest);
             // Gradient Overcharge II/III: the vanilla graph hard-codes the charge
             // count (gate + ConsumeCharge) and never reads the balancing row, so
             // the clone must patch those two IntConsts directly. The proc banner
@@ -2038,73 +2036,6 @@ public static class PictosMagnitudeKit
         ValidateJumpTargets(asset, uber, "GradientOvercharge / ExecuteUbergraph");
         asset.Write(destUasset);
         Console.WriteLine($"[GradientOvercharge] tooltip pattern -> \"{text}\" ({oldSize} -> {newSize} bytes)");
-    }
-
-    /// <summary>
-    /// Charging Critical II: keep granting 20% gradient on every crit by never
-    /// clearing <c>CanGainGradientCharges</c> after a proc. Vanilla I still
-    /// latches until turn start.
-    /// </summary>
-    private static void PatchChargingUnlimited(string destUasset)
-    {
-        var map = DataTableEditor.Mappings;
-        var asset = map != null ? new UAsset(destUasset, EngineVersion.VER_UE5_4, map) : new UAsset(destUasset, EngineVersion.VER_UE5_4);
-        bool patched = false;
-        foreach (var exp in asset.Exports.OfType<FunctionExport>())
-        {
-            if (exp.ObjectName.Value.Value != "ProcessDealtRawDamages") continue;
-            foreach (var bc in exp.ScriptBytecode)
-                patched |= PatchLatchFalseToTrue(bc);
-        }
-        if (patched) asset.Write(destUasset);
-    }
-
-    private static bool PatchLatchFalseToTrue(UAssetAPI.Kismet.Bytecode.KismetExpression expr)
-    {
-        bool did = false;
-        if (expr is UAssetAPI.Kismet.Bytecode.Expressions.EX_LetBase let
-            && let.VariableExpression is UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable iv
-            && PtrName(iv.Variable).Contains("CanGainGradientCharges", StringComparison.Ordinal)
-            && let.AssignmentExpression is UAssetAPI.Kismet.Bytecode.Expressions.EX_False)
-        {
-            let.AssignmentExpression = new UAssetAPI.Kismet.Bytecode.Expressions.EX_True();
-            did = true;
-        }
-        var t = expr.GetType();
-        foreach (var pr in t.GetProperties())
-        {
-            if (pr.PropertyType == typeof(UAssetAPI.Kismet.Bytecode.KismetExpression))
-            {
-                var val = pr.GetValue(expr) as UAssetAPI.Kismet.Bytecode.KismetExpression;
-                if (val != null && val != expr) did |= PatchLatchFalseToTrue(val);
-            }
-            else if (pr.PropertyType == typeof(UAssetAPI.Kismet.Bytecode.KismetExpression[]))
-            {
-                var arr = pr.GetValue(expr) as UAssetAPI.Kismet.Bytecode.KismetExpression[];
-                if (arr != null) foreach (var child in arr) if (child != null) did |= PatchLatchFalseToTrue(child);
-            }
-        }
-        foreach (var f in t.GetFields())
-        {
-            if (f.FieldType == typeof(UAssetAPI.Kismet.Bytecode.KismetExpression))
-            {
-                var val = f.GetValue(expr) as UAssetAPI.Kismet.Bytecode.KismetExpression;
-                if (val != null) did |= PatchLatchFalseToTrue(val);
-            }
-            else if (f.FieldType == typeof(UAssetAPI.Kismet.Bytecode.KismetExpression[]))
-            {
-                var arr = f.GetValue(expr) as UAssetAPI.Kismet.Bytecode.KismetExpression[];
-                if (arr != null) foreach (var child in arr) if (child != null) did |= PatchLatchFalseToTrue(child);
-            }
-        }
-        return did;
-    }
-
-    private static string PtrName(UAssetAPI.Kismet.Bytecode.KismetPropertyPointer? p)
-    {
-        if (p?.New?.Path is { Length: > 0 } path)
-            return string.Join(".", path.Select(n => n.ToString()));
-        return p?.Old?.Index.ToString() ?? "";
     }
 
     /// <summary>

@@ -659,12 +659,34 @@ static int CmdRandoSmoke(string[] args)
     // Full catalog (tiers + areas), mirroring the real rebuild: the chest
     // staging below must exercise the same area-share machinery that ships,
     // not tier-1 area-less rows.
+    int randoFails = 0;
+    void Chk(bool ok, string what)
+    {
+        Console.WriteLine((ok ? "ok:   " : "FAIL: ") + what);
+        if (!ok) randoFails++;
+    }
+
     var catalog = NewLootCatalogWithExtras();
     catalog.Rebuild(
         Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(Path.Combine(EditorPaths.RepoRoot, "work", "chests.json"))),
         Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(Path.Combine(EditorPaths.RepoRoot, "work", "enemies.json"))),
         Array.Empty<(string, Newtonsoft.Json.Linq.JObject)>());
     Console.WriteLine("protected " + catalog.ProtectedItems.Count);
+    // Star Simon's six haircuts are both DLC Items and Cosmetic. TypeOf()
+    // reports the first category (DLC Items), so they must be in the protected
+    // set by id or the drop randomizer replaces them with gear.
+    var simonFaces = new[]
+    {
+        "FaceGustave_Simon", "FaceVerso_Simon", "FaceMaelle_Simon",
+        "FaceLune_Simon", "FaceSciel_Simon", "FaceMonoco_Simon",
+    };
+    var unprotectedFaces = simonFaces.Where(id => !catalog.IsProtected(id)).ToList();
+    if (unprotectedFaces.Count > 0)
+    {
+        Console.Error.WriteLine(
+            "rando-smoke FAILED: Simon cosmetics not protected: " + string.Join(",", unprotectedFaces));
+        return 1;
+    }
     // The Mask Keeper phase 2 is the second half of the Visages island Axon
     // fight, not cut content: its catalog display name is what the spoiler
     // parses for the area tag, so it must say (Visages), not (Cut Content).
@@ -700,6 +722,24 @@ static int CmdRandoSmoke(string[] args)
     };
     var n = E33ModEditor.Core.Loot.RandomizerKit.Apply(dir, s, catalog, null);
     Console.WriteLine("changed " + n);
+    {
+        var smokeEne = FileCopy.FindUnder(dir, "DT_jRPG_Enemies.uasset")
+            ?? throw new FileNotFoundException("mod smoke enemies");
+        var smokeEd = new DataTableEditor(smokeEne);
+        double Xp(string id)
+        {
+            if (!smokeEd.TryGetRow(id, out var row)) return 0;
+            return smokeEd.DumpRow(row)["EnemyScaling"]?["Experience"]?.ToObject<double>() ?? 0;
+        }
+        var cloneXp = Xp("MM_Danseuse_CloneAlpha");
+        var mainXp = Xp("MM_Danseuse_Alpha");
+        Chk(mainXp > 0 && cloneXp > 0 && cloneXp <= mainXp * 0.15 + 1,
+            $"Danseuse clone pays 10% XP (clone {cloneXp:0} vs main {mainXp:0})");
+        var abbestVenueXp = Xp("BV_SM_Abbest_Alpha_69");
+        var abbestNativeXp = Xp("SM_Abbest_Alpha");
+        Chk(abbestVenueXp > 0 && abbestNativeXp > 0 && abbestVenueXp < abbestNativeXp * 0.5,
+            $"Abbest Tower venue no longer pays native XP (venue {abbestVenueXp:0} vs native {abbestNativeXp:0})");
+    }
     if (!E33ModEditor.Core.TutorialDisableKit.VerifyActorSwaps(dir))
     {
         Console.Error.WriteLine(
@@ -783,13 +823,6 @@ static int CmdRandoSmoke(string[] args)
         Console.Error.WriteLine(
             "rando-smoke FAILED: chests must be single-entry sections (one drop each) and include multi-drop chests");
         return 1;
-    }
-
-    int randoFails = 0;
-    void Chk(bool ok, string what)
-    {
-        Console.WriteLine((ok ? "ok:   " : "FAIL: ") + what);
-        if (!ok) randoFails++;
     }
 
     // Paint Cages are their own randomizer group and must always contain one
@@ -1716,6 +1749,20 @@ static int CmdRandoSmoke(string[] args)
         Chk(LootOf("Quest_GestralSumo9999").Count == 0,
             "Ono Puncho carries no battle drops (undefeatable quest fight)");
 
+        // Star Simon's haircuts are vanilla cosmetics; the randomizer must
+        // preserve them and add its package on top rather than replace them.
+        var simonLoot = LootOf("Boss_Simon_ALPHA");
+        foreach (var face in simonFaces)
+            Chk(simonLoot.Any(e => e["Item"]?["RowName"]?.ToString() == face),
+                $"Star Simon keeps cosmetic {face}");
+
+        // Respawned Danseuse clones must not pay catalysts or lumina.
+        var respawningCloneLoot = LootOf("MM_Danseuse_CloneAlpha");
+        Chk(!respawningCloneLoot.Any(e =>
+                (e["Item"]?["RowName"]?.ToString() ?? "").StartsWith("UpgradeMaterial_", StringComparison.Ordinal)
+                || e["Item"]?["RowName"]?.ToString() == "Consumable_LuminaPoint"),
+            "respawned Danseuse clone pays no catalyst or lumina");
+
         // T5 areas cap regulars at L4, so they pay that L4 catalyst at double the
         // rate (60% / 2–6) versus T4 (30% / 1–3).
         {
@@ -1854,17 +1901,14 @@ static int CmdRandoSmoke(string[] args)
         }
 
         // Respawning farm guard: the Chromatic Danseuse clone re-summons mid-fight,
-        // so its package must never contain Level5 — extra Level4 instead. The
-        // main alpha keeps the normal boss recipe (5×L5 + 3–5×L4).
+        // so its package must never contain catalysts or lumina. The main alpha
+        // keeps the normal boss recipe (5×L5 + 3–5×L4).
         {
             var cloneLoot = LootOf("MM_Danseuse_CloneAlpha");
-            Chk(!cloneLoot.Any(e => (e["Item"]?["RowName"]?.ToString() ?? "")
-                    == "UpgradeMaterial_Level5"),
-                "Danseuse clone drops no Level5 catalyst (respawn farm guard)");
-            var cloneL4 = cloneLoot.FirstOrDefault(e =>
-                (e["Item"]?["RowName"]?.ToString() ?? "") == "UpgradeMaterial_Level4");
-            Chk(cloneL4 is not null && cloneL4["Quantity"]?.ToObject<int>() is >= 6 and <= 10,
-                "Danseuse clone pays extra L4 instead (6-10)");
+            Chk(!cloneLoot.Any(e =>
+                    (e["Item"]?["RowName"]?.ToString() ?? "").StartsWith("UpgradeMaterial_", StringComparison.Ordinal)
+                    || e["Item"]?["RowName"]?.ToString() == "Consumable_LuminaPoint"),
+                "Danseuse clone drops no catalyst or lumina (respawn farm guard)");
             var mainLoot = LootOf("MM_Danseuse_Alpha");
             Chk(mainLoot.Any(e => (e["Item"]?["RowName"]?.ToString() ?? "")
                     == "UpgradeMaterial_Level5"),
@@ -4192,6 +4236,8 @@ static int CmdFxRoll(string[] args)
     var neverRolledWeapons = 0;
     var elementMismatch = 0;
     var conditionConflicts = 0;
+    var floorMissing = 0;
+    var earlyNeedsUnsatisfied = 0;
     var statusConsumeStacks = 0;
     var cond = catalog.EffectConditions;
     var synShieldPay = 0;
@@ -4247,6 +4293,9 @@ static int CmdFxRoll(string[] args)
                 if (cond.Conflicts(tagSet, id)) { conditionConflicts++; runConflicts++; }
                 tagSet.UnionWith(cond.TagsOf(id));
             }
+            if (w.WeaponTier >= 3 && !filled.Any(cond.IsUnconditional)) floorMissing++;
+            if (w.WeaponTier <= 3 && filled.Any(id => !cond.EnablerSatisfied(id, tagSet)))
+                earlyNeedsUnsatisfied++;
             if (tagSet.Contains("shield-gen") && tagSet.Contains("shield-payoff")) synShieldPay++;
             if (tagSet.Contains("shield-gen") && tagSet.Contains("shield-spend")) synShieldSpend++;
             if (tagSet.Contains("shield-spend"))
@@ -4398,6 +4447,8 @@ static int CmdFxRoll(string[] args)
     Console.WriteLine(MixShare(t5Tier, 1, 5, "T5 weapon effect tiers (target T5 60 / T4 30 / T3 10):"));
     Console.WriteLine($"element mismatches (must be 0): {elementMismatch}");
     Console.WriteLine($"condition conflicts on one weapon (must be 0): {conditionConflicts}");
+    Console.WriteLine($"T3+ weapons missing an unconditional floor (must be 0): {floorMissing}");
+    Console.WriteLine($"T1-T3 payoffs without an enabler (must be 0): {earlyNeedsUnsatisfied}");
     Console.WriteLine($"status-consume stacks (must be 0): {statusConsumeStacks}");
     Console.WriteLine($"synergy weapons — shield gen+payoff {synShieldPay}, shield gen+spend {synShieldSpend}, "
                       + $"shell gen+payoff {synShell}, counter+shield-payoff {synCounterShield}");
@@ -5894,7 +5945,7 @@ static int CmdPictosSmoke(string[] args)
             }
             foreach (var bc in fn.ScriptBytecode) Walk(bc);
         }
-        Check(sawLatchTrue && !sawLatchFalse, "Charging Critical II CanGainGradientCharges stays true");
+        Check(sawLatchFalse && !sawLatchTrue, "Charging Critical II CanGainGradientCharges latches until turn start");
     }
 
     // Re-pin now that every exclusive picto asset (including Super Sonic) is

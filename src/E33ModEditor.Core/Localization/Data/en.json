@@ -747,7 +747,7 @@
       "PASSIVE_GlassCanon3_Description": "Deal 25% more damage, but take 100% more damage.",
       "PASSIVE_GlassCanon3_Name": "Glass Cannon III",
       "PASSIVE_GlassCanon_Name": "Glass Cannon I",
-      "PASSIVE_GradientOnCrit2_Description": "20% of a Gradient Charge on Critical hit.",
+      "PASSIVE_GradientOnCrit2_Description": "20% of a Gradient Charge on Critical hit. Once per turn.",
       "PASSIVE_GradientOnCrit2_Name": "Charging Critical II",
       "PASSIVE_GradientOnCrit_Description": "+20% of a Gradient Charge on Critical hit. Once per turn.",
       "PASSIVE_GradientOnCrit_Name": "Charging Critical I",

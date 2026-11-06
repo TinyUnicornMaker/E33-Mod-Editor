@@ -37,6 +37,64 @@ public sealed class WeaponEffectConditions
     /// Informational tags (multi-hit, first-hit) do not count.</summary>
     public bool IsNeutral(string? id) => !TagsOf(id).Any(_conflictTags.Contains);
 
+    private static readonly string[] StainGenerators =
+    {
+        "stain-gen-any", "stain-gen-fire", "stain-gen-ice", "stain-gen-lightning",
+        "stain-gen-earth", "stain-gen-dark", "stain-gen-light", "stain-gen-lightdark",
+        "stain-echo", "stain-convert",
+    };
+
+    /// <summary>
+    /// Tags that make an effect a payoff rather than a standalone passive, and
+    /// the tags that can enable it on the same weapon. Used only for the early
+    /// T1–T3 roll restriction; a payoff is still legal later when a picto or
+    /// another party member supplies the status.
+    /// </summary>
+    private static readonly Dictionary<string, string[]> RequiresEnabler =
+        new(StringComparer.Ordinal)
+        {
+            ["shell-need"] = new[] { "shell-gen" },
+            ["buff-conditional"] = new[] { "buff-apply" },
+            ["burn-scale"] = new[] { "burn-apply" },
+            ["burn-consume"] = new[] { "burn-apply" },
+            ["shield-payoff"] = new[] { "shield-gen" },
+            ["shield-spend"] = new[] { "shield-gen" },
+            ["charge-consume"] = new[] { "charge-gen" },
+            ["mark-payoff"] = new[] { "mark-apply" },
+            ["perfection-payoff"] = new[] { "perfection-gain" },
+            ["foretell-consume"] = new[] { "foretell-apply" },
+            ["twilight-payoff"] = new[] { "twilight-enter" },
+            ["sun-payoff"] = new[] { "charge-gen" },
+            ["moon-payoff"] = new[] { "charge-gen" },
+            ["consume-stain"] = StainGenerators,
+            ["stain-scale"] = StainGenerators,
+        };
+
+    /// <summary>
+    /// A standalone effect: no conflicting condition and no build payoff that
+    /// needs a status/stain/shield engine. This is what the T3+ bad-luck floor
+    /// puts on every guaranteed weapon.
+    /// </summary>
+    public bool IsUnconditional(string? id) =>
+        IsNeutral(id) && !TagsOf(id).Any(t => RequiresEnabler.ContainsKey(t));
+
+    /// <summary>
+    /// True when every payoff tag on <paramref name="id"/> has its enabler
+    /// either on the same effect or already committed to the weapon. Effects
+    /// with no payoff tags always pass.
+    /// </summary>
+    public bool EnablerSatisfied(string? id, IReadOnlySet<string> pickedTags)
+    {
+        var tags = TagsOf(id);
+        foreach (var t in tags)
+        {
+            if (!RequiresEnabler.TryGetValue(t, out var enablers)) continue;
+            if (!enablers.Any(e => tags.Contains(e) || pickedTags.Contains(e)))
+                return false;
+        }
+        return true;
+    }
+
     /// <summary>Stain/melee element for gated effects, else null.</summary>
     public string? ElementOf(string? id) =>
         !string.IsNullOrEmpty(id) && _element.TryGetValue(id, out var e) ? e : null;

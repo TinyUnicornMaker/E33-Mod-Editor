@@ -71,6 +71,17 @@ out of the pools, exactly as today.
    needs. A separate condition table tags each effect with the build condition
    it needs and forbids mutually exclusive conditions on one weapon (Full
    Strength "on full Health" next to Self Burn, …). See below.
+10. **T3+ bad-luck floor.** Every T3–T5 weapon carries at least one
+    *unconditional* effect (raw damage, AP, crit, …): a T3+ weapon whose five
+    picks are all payoffs has its wildcard replaced with a standalone effect.
+    This keeps a guaranteed boss weapon from feeling worse than a random drop.
+11. **Early payoffs need an enabler.** T1–T3 weapons may not roll a payoff
+    whose status/stain/shield/charge engine is absent from the weapon. The
+    roll tracks the enabler tags already picked (`shell-need` ← `shell-gen`,
+    `buff-conditional` ← `buff-apply`, `burn-scale`/`burn-consume` ←
+    `burn-apply`, `shield-payoff`/`shield-spend` ← `shield-gen`, stain
+    payoffs ← any stain generator, …). T4/T5 still allow condition-first kits,
+    because by then pictos and party support exist.
 
 ## Condition layer
 
@@ -277,6 +288,8 @@ when adding effects or links, then re-run it.
 | Status-consume stacks (Slow/Powerless/Defenceless) | 0 |
 | **Condition conflicts on one weapon** | **0** |
 | **Element mismatches (stain + element skill/AP families)** | **0** |
+| **T3+ weapons missing an unconditional floor** | **0** |
+| **T1–T3 payoffs without an enabler** | **0** |
 | Synergy satisfaction on T4/T5 weapons (trigger also holds a partner) | `base-attack` 85%, `break-dmg` 86%, `shell-need` 91%, `overcharge` 88%, `burn-consume` 83%, `charge-gen` 85%, `perfection-payoff` 80%, `twilight-payoff` 80%, `shell-gen` 73%, `self-status` 73%, `counter` 55%, `shield-gen` 54%, `crit-chance` 56% |
 | Archetype cohesion (slots in primary + siblings) | 99.2% |
 | Archetype slots taken from the primary | 52.1% |

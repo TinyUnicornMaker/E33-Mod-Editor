@@ -727,6 +727,8 @@ public static class SpoilerCodexKit
             {
                 if (enemy["drops"] is not JArray drops) continue;
                 var enemyCut = enemy.Value<bool?>("cut") == true;
+                var enemyId = enemy.Value<string>("id") ?? "";
+                var sourceArea = SourceArea(enemyId, enemy.Value<string>("area") ?? "", enemy["encounters"]);
                 foreach (var drop in drops.OfType<JObject>())
                 {
                     var id = drop.Value<string>("id") ?? "";
@@ -735,7 +737,7 @@ public static class SpoilerCodexKit
                     {
                         ["kind"] = "Enemy",
                         ["name"] = enemy.Value<string>("name") ?? "",
-                        ["area"] = enemy.Value<string>("area") ?? "",
+                        ["area"] = sourceArea,
                         ["level"] = enemy.Value<int?>("level") ?? 0,
                         ["chance"] = drop.Value<double?>("chance") ?? 100.0,
                         ["qty"] = drop.Value<int?>("qty") ?? 1,
@@ -743,6 +745,30 @@ public static class SpoilerCodexKit
                     });
                 }
             }
+        }
+
+        /// <summary>
+        /// Venue clones (<c>BV_</c>) are staged from a native enemy row, so their
+        /// own area is the donor's geography ("Many Faces", "Sirene"), not the
+        /// fight the player actually enters. Resolve the encounter that borrows
+        /// the clone instead: Endless Tower floors are the common case
+        /// (<c>TowerBattle_23</c>), and world-map venues are the other.
+        /// </summary>
+        private static string SourceArea(string id, string area, JToken? encounters)
+        {
+            if (!id.StartsWith(BossVenueKit.VariantPrefix, StringComparison.OrdinalIgnoreCase))
+                return area;
+
+            var encounter = (encounters as JArray)?.OfType<JValue>()
+                .Select(v => v.Value<string>() ?? "")
+                .FirstOrDefault(v => v.Length > 0);
+            if (encounter is null) return area;
+
+            if (encounter.StartsWith("TowerBattle_", StringComparison.OrdinalIgnoreCase))
+                return $"Endless Tower — {encounter}";
+            if (encounter.StartsWith("WM_", StringComparison.OrdinalIgnoreCase))
+                return $"World Map — {encounter}";
+            return area;
         }
 
         private void AddSource(string itemId, JObject source)

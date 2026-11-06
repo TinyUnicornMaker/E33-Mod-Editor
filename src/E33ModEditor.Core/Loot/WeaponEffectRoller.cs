@@ -60,7 +60,11 @@ public static class WeaponEffectRoller
 
         bool Allowed(string id) =>
             ElementOk(id) && tiers.Allows(chars, character, id)
-            && !conditions.Conflicts(pickedTags, id);
+            && !conditions.Conflicts(pickedTags, id)
+            // Early weapons should not be pure payoffs for a status/stain
+            // engine the player has no access to yet. T4/T5 may still roll a
+            // conditional kit; by then the picto/party tools exist.
+            && (weaponTier > 3 || conditions.EnablerSatisfied(id, pickedTags));
 
         // Eligible archetypes: at least one member this character may roll and
         // (for Lune) the weapon's melee element allows.
@@ -130,6 +134,18 @@ public static class WeaponEffectRoller
         {
             used.Add(wildcard);
             pickedTags.UnionWith(conditions.TagsOf(wildcard));
+        }
+
+        // Bad-luck floor: a T3+ weapon always carries at least one standalone
+        // effect (raw damage, AP, crit, …). Without this, a guaranteed boss
+        // weapon could roll five payoffs and feel worse than a random drop.
+        var picked = picks.Where(p => p.Length > 0).ToList();
+        if (!string.IsNullOrEmpty(wildcard)) picked.Add(wildcard);
+        if (weaponTier >= 3 && !picked.Any(conditions.IsUnconditional))
+        {
+            var floor = tiers.PickEffect(weaponTier, character, used, chars, rng,
+                id => Allowed(id) && conditions.IsUnconditional(id));
+            if (!string.IsNullOrEmpty(floor)) wildcard = floor;
         }
 
         // Rank archetype picks strongest-first into the higher slots; the

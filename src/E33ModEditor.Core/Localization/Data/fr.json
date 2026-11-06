@@ -747,7 +747,7 @@
       "PASSIVE_GlassCanon3_Description": "Inflige 25 % de dégâts en plus, mais subit 100 % de dégâts en plus.",
       "PASSIVE_GlassCanon3_Name": "Canon de verre III",
       "PASSIVE_GlassCanon_Name": "Canon de verre I",
-      "PASSIVE_GradientOnCrit2_Description": "20 % de charge de dégradé en cas de coup critique.",
+      "PASSIVE_GradientOnCrit2_Description": "20 % de charge de dégradé en cas de coup critique. Une fois par tour.",
       "PASSIVE_GradientOnCrit2_Name": "Charges sur critiques II",
       "PASSIVE_GradientOnCrit_Description": "+20 % de charge de dégradé en cas de coup critique. Une fois par tour.",
       "PASSIVE_GradientOnCrit_Name": "Charges sur critiques I",

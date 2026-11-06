@@ -1291,6 +1291,14 @@ public static class RandomizerKit
         ["QUEST_Danseuse_DanceClass_Clone"] = "QUEST_Danseuse_DanceClass_Kill",
     };
 
+    /// <summary>
+    /// A re-summoned clone is 10% HP / 50% offences, so it also pays 10% XP and
+    /// chroma. Leaving the clone on the main body's reward rate turned one
+    /// overworld Danseuse into a ~16M-XP-per-summon farm (200 kills ≈ 3.2B,
+    /// nearly 100 levels). Deterministic: no RNG draws.
+    /// </summary>
+    private const double CloneRewardFactor = 0.1;
+
     /// <summary>Fight level used for the curve and the archetype lookup: an
     /// explicit encounter override wins, then the curated enemy level, then the
     /// row's table level.</summary>
@@ -1562,12 +1570,12 @@ public static class RandomizerKit
     };
 
     /// <summary>
-    /// Boss rows that respawn mid-fight: their catalyst package never includes
-    /// Level5 (it would be an infinite farm), paying extra Level4 instead.
-    /// The Chromatic Danseuse clone (re-summoned by the main alpha) and the
-    /// Danseuse teacher clone.
+    /// Boss rows that respawn mid-fight. A fixed catalyst/lumina payout is an
+    /// infinite farm, so these rows pay neither; their XP/chroma are also 10%
+    /// (see <see cref="CloneRewardFactor"/>). The Chromatic Danseuse clone
+    /// (re-summoned by the main alpha) and the Danseuse teacher clone.
     /// </summary>
-    private static readonly HashSet<string> RespawningNoL5 = new(StringComparer.OrdinalIgnoreCase)
+    private static readonly HashSet<string> RespawningNoRewards = new(StringComparer.OrdinalIgnoreCase)
     {
         "MM_Danseuse_CloneAlpha",
         "QUEST_Danseuse_DanceClass_Clone",
@@ -2305,31 +2313,36 @@ public static class RandomizerKit
                 //   T5 low  (L 80–89) : 15×L5 + 6–10×L4
                 //   T5 high (L 90–99) : 21×L5 + 11–25×L4
                 //   T1–T3             : 3–5 of their own tier (unchanged)
-                // Farmable adds (respawning rows) never pay Level5: the clone
-                // would be an infinite L5 farm, so it pays extra L4 instead.
-                if (tier >= 4)
+                // Farmable adds (respawning rows) pay no catalysts or lumina:
+                // the clone can be re-summoned, so any fixed payout is an
+                // infinite farm. Its weapon/pictos remain, but XP/chroma are
+                // 10% (see CloneRewardFactor).
+                var respawningClone = RespawningNoRewards.Contains(rowId);
+                if (!respawningClone)
                 {
-                    var bossLevel = EnemyRowLevel(row, enemy);
-                    int l5, l4Lo, l4Hi;
-                    if (tier >= 5 && bossLevel >= 90) { l5 = 21; l4Lo = 11; l4Hi = 25; }
-                    else if (tier >= 5)               { l5 = 15; l4Lo = 6;  l4Hi = 10; }
-                    else if (bossLevel >= 70)         { l5 = 10; l4Lo = 3;  l4Hi = 5;  }
-                    else                              { l5 = 5;  l4Lo = 3;  l4Hi = 5;  }
-                    if (RespawningNoL5.Contains(rowId)) { l5 = 0; l4Lo = 6; l4Hi = 10; }
-                    // Grosse Tete can be killed by dodging his attacks without
-                    // ever hitting him, so the surviving variants cap the
-                    // Perfect Catalyst payload at 3 (vanilla recipe: 5/15).
-                    // The WM variant is T3 and never reaches this branch.
-                    if (IsGrosseTete(rowId)) l5 = Math.Min(l5, GrosseTetePerfectCatalystQty);
-                    if (l5 > 0)
-                        gear.Add(("UpgradeMaterial_Level5", l5, 100));
-                    gear.Add(("UpgradeMaterial_Level4", rng.Next(l4Lo, l4Hi + 1), 100));
+                    if (tier >= 4)
+                    {
+                        var bossLevel = EnemyRowLevel(row, enemy);
+                        int l5, l4Lo, l4Hi;
+                        if (tier >= 5 && bossLevel >= 90) { l5 = 21; l4Lo = 11; l4Hi = 25; }
+                        else if (tier >= 5)               { l5 = 15; l4Lo = 6;  l4Hi = 10; }
+                        else if (bossLevel >= 70)         { l5 = 10; l4Lo = 3;  l4Hi = 5;  }
+                        else                              { l5 = 5;  l4Lo = 3;  l4Hi = 5;  }
+                        // Grosse Tete can be killed by dodging his attacks without
+                        // ever hitting him, so the surviving variants cap the
+                        // Perfect Catalyst payload at 3 (vanilla recipe: 5/15).
+                        // The WM variant is T3 and never reaches this branch.
+                        if (IsGrosseTete(rowId)) l5 = Math.Min(l5, GrosseTetePerfectCatalystQty);
+                        if (l5 > 0)
+                            gear.Add(("UpgradeMaterial_Level5", l5, 100));
+                        gear.Add(("UpgradeMaterial_Level4", rng.Next(l4Lo, l4Hi + 1), 100));
+                    }
+                    else
+                    {
+                        gear.Add((CatalystForTier(tier), rng.Next(3, 6), 100));
+                    }
+                    gear.Add(("Consumable_LuminaPoint", 5, 100));
                 }
-                else
-                {
-                    gear.Add((CatalystForTier(tier), rng.Next(3, 6), 100));
-                }
-                gear.Add(("Consumable_LuminaPoint", 5, 100));
             }
 
             if (over is not null)
@@ -3262,6 +3275,10 @@ public static class RandomizerKit
                     if (archXp > 0 && cur > 0)
                         factor = RewardLevels(lvl) * RewardXpPerLevel / archXp / cur;
                 }
+                // Re-summoned clones pay 10% XP/chroma (see CloneRewardFactor)
+                // regardless of which reward branch above selected the rate.
+                if (BossCloneOf.ContainsKey(id) && name is "Experience" or "Chroma")
+                    factor *= CloneRewardFactor;
                 ScaleNumber(field, factor);
             }
             changed++;

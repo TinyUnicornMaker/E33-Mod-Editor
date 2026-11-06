@@ -747,7 +747,7 @@
       "PASSIVE_GlassCanon3_Description": "Наносит на 25% больше урона, но получает на 100% больше урона.",
       "PASSIVE_GlassCanon3_Name": "Стеклянная пушка III",
       "PASSIVE_GlassCanon_Name": "Стеклянная пушка I",
-      "PASSIVE_GradientOnCrit2_Description": "20% заряда градиента при критическом ударе.",
+      "PASSIVE_GradientOnCrit2_Description": "20% заряда градиента при критическом ударе. Один раз за ход.",
       "PASSIVE_GradientOnCrit2_Name": "Заряжающий крит. удар II",
       "PASSIVE_GradientOnCrit_Description": "+20% заряда градиента при критическом ударе. Один раз за ход.",
       "PASSIVE_GradientOnCrit_Name": "Заряжающий крит. удар I",

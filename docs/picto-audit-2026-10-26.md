@@ -406,7 +406,7 @@ Format: **Id (tier/cost)**. “Built text” is the resolved `DT_PassiveEffects`
 | **Empowering Parry** — `ReinforcementParade` T3/5, `2` T4/10, `3` T5/15 | +5/10/15% per parry | type 3 additive 0.05/0.1/0.15 | OK |
 | **Lucky Aim** — `LuckyAim` T1/1, `2` T2/7, `3` T3/21 | 15% chance +1 AP on Free Aim | const 15% all | DESIGN (identical) |
 | **Full Strength** — `Stand` T1/5, `2` T2/10, `3` T3/20, `4` T4/30, `5` T5/50 | +5/10/20/30/50% full HP | const ×1.05/1.1/1.2/1.3/1.5 | OK (hidden stack) |
-| **Charging Critical** — `GradientOnCrit` T3/10, `2` T5/20 | 20% charge; I once/turn, II every crit | `GradientChargeOnCrit` 0.2 | OK |
+| **Charging Critical** — `GradientOnCrit` T3/10, `2` T5/20 | 20% charge; I–II once/turn | `GradientChargeOnCrit` 0.2 | OK |
 | **Critical Chain** — `CriticalChain` T3/10, `2` T4/20, `3` T5/40 | +1/2/3% per crit, max 100 | type 3 additive 0.01/0.02/0.03, clamp 100 | OK |
 | **Cursed Power** — `CursedPower` T2/5, `2` T3/10, `3` T4/15 | +5/10/20% while Cursed | type 3 additive 0.05/0.1/0.2 | OK (ST missing) |
 | **Berserk Power** — `BerserkPower1` T2/5, `2` T4/10, `3` T5/15 | +5/10/20% while Berserked | type 3 additive 0.05/0.1/0.2 | **COST (tier)** |

@@ -734,7 +734,7 @@ public sealed class LootCatalog
     private HashSet<string> BuildProtected()
     {
         var set = new HashSet<string>(StringComparer.Ordinal);
-        foreach (var cat in new[] { "Key Item", "Music Record", "Journal", "Skill Unlock", "Merchant Unlock" })
+        foreach (var cat in new[] { "Key Item", "Music Record", "Journal", "Skill Unlock", "Merchant Unlock", "Cosmetic" })
         {
             if (Categories.TryGetValue(cat, out var ids))
                 foreach (var id in ids) set.Add(id);

@@ -41,6 +41,9 @@ public static class StoryLevelKit
             // scaling is derived for the level-99 story target, so pin the
             // Tower encounter to 99 as well instead of leaving 0.89x HP there.
             ["TowerBattle_32"] = 99,
+            // Chromatic Abbest's Tower floor is designed at L69; the native
+            // Abbest Cave row is L30 and cannot share one scaling with it.
+            ["TowerBattle_9"] = 69,
             ["L_Boss_Curator_P1"] = 99,
             // Echassier's 900M HP pin is derived at its level-48 spawn level.
             // Pin the encounter so a later level change cannot turn the same

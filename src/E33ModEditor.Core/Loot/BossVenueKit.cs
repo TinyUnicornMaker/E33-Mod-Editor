@@ -29,6 +29,20 @@ public static class BossVenueKit
     private static readonly HashSet<string> BossArchetypes =
         new(StringComparer.OrdinalIgnoreCase) { "Boss", "Alpha", "SuperBoss" };
 
+    /// <summary>
+    /// Rows whose native and venue L5 quantity match but whose reward/stat
+    /// scale does not. <c>SM_Abbest_Alpha</c> is the Easter egg alpha used by
+    /// <c>TowerBattle_9</c> at L69; one native scaling cannot serve both the
+    /// L30 Abbest Cave fight and the L69 Tower fight, and the Tower copy
+    /// currently pays a ~1B XP outlier. Force the clone even though both
+    /// venues are T4.
+    /// </summary>
+    private static readonly Dictionary<string, int> AlwaysCloneAtLevel =
+        new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["SM_Abbest_Alpha"] = 69,
+        };
+
     public static string VariantOf(string row, int level) => $"{VariantPrefix}{row}_{level}";
 
     /// <summary>
@@ -80,7 +94,9 @@ public static class BossVenueKit
 
                     var native = NativeQty(rowName, enemies, catalog);
                     var venue = VenueQty(over);
-                    if (native == venue) continue;
+                    var forced = AlwaysCloneAtLevel.TryGetValue(rowName, out var forcedLevel)
+                                 && forcedLevel == over;
+                    if (!forced && native == venue) continue;
 
                     var vkey = (rowName, over);
                     if (!variants.TryGetValue(vkey, out var variant))
