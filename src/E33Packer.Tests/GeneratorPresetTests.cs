@@ -132,6 +132,7 @@ public sealed class GeneratorPresetTests
         original.QoL.LightStainWildcard = true;
         original.QoL.PictoPopupCap = 7;
         original.Randomizer.MaxEnemiesPerBattle = 8;
+        original.Randomizer.ExtremeBossDefense = true;
 
         var json = JsonSerializer.Serialize(original);
         var loaded = JsonSerializer.Deserialize<GeneratorProfile>(json);
@@ -144,6 +145,7 @@ public sealed class GeneratorPresetTests
         Assert.AreEqual(original.QoL.PictoPopupCap, loaded.QoL.PictoPopupCap);
         Assert.IsTrue(loaded.QoL.LightStainWildcard);
         Assert.AreEqual(8, loaded.Randomizer.MaxEnemiesPerBattle);
+        Assert.IsTrue(loaded.Randomizer.ExtremeBossDefense);
     }
 }
 
