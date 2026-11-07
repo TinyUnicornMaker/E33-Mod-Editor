@@ -958,6 +958,11 @@ public static class RandomizerKit
     /// spawn level 48). HP stays absolutely pinned (see StoryAbsoluteHp).
     private const double FinaleSpecialistShare = 1.2;
     private const double FinaleSupportShare = 0.66;
+    /// <summary>Scripted T5 story rows that follow the extreme defense toggle.</summary>
+    private static readonly HashSet<string> ExtremeDefensePinIds = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "LU_EchassierAlpha", "L_Creation", "L_Boss_Curator",
+    };
     private static readonly Dictionary<string, Dictionary<string, double>> AbsoluteStatPins =
         new(StringComparer.OrdinalIgnoreCase)
         {
@@ -3203,7 +3208,10 @@ public static class RandomizerKit
                 {
                     if (name is "PhysicalDefense" or "MagicalDefense")
                     {
-                        SetNumber(field, pinTarget / EnemyDefenseKit.StagedDefenseBase);
+                        var defenseTarget = s.ExtremeBossDefense && ExtremeDefensePinIds.Contains(id)
+                            ? pinTarget * EnemyDefenseKit.ExtremeDefenseScale(99)
+                            : pinTarget;
+                        SetNumber(field, defenseTarget / EnemyDefenseKit.StagedDefenseBase);
                         continue;
                     }
                     var pinLevel = AbsolutePinLevels.TryGetValue(id, out var forcedPinLevel)
