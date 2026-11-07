@@ -233,6 +233,25 @@ public sealed class GeneratorOptionMappingTests
     }
 
     [TestMethod]
+    public void ExtremeBossDefense_RefitsTheT4T5Curve()
+    {
+        var regularFloor = EnemyDefenseKit.MaxDefense(EnemyDefenseKit.CurveStartLevel);
+        var regularTop = EnemyDefenseKit.MaxDefense(EnemyDefenseKit.CurveTopLevel);
+
+        Assert.AreEqual(1.0, EnemyDefenseKit.ExtremeDefenseScale(60), 1e-9);
+        Assert.AreEqual(30.0, EnemyDefenseKit.ExtremeDefenseScale(99), 1e-9);
+        Assert.AreEqual(regularFloor,
+            EnemyDefenseKit.MaxDefense(EnemyDefenseKit.CurveStartLevel, extreme: true), 0.001);
+        Assert.AreEqual(regularTop * 30.0,
+            EnemyDefenseKit.MaxDefense(EnemyDefenseKit.CurveTopLevel, extreme: true), 0.1);
+
+        var mid = EnemyDefenseKit.ExtremeDefenseScale(75);
+        Assert.IsTrue(mid > 1.0 && mid < 30.0);
+        Assert.IsTrue(mid < EnemyDefenseKit.ExtremeDefenseScale(90));
+        Assert.IsFalse(new RandomizerKit.Settings().ExtremeBossDefense);
+    }
+
+    [TestMethod]
     public void GameLocator_AcceptsRootAndPaksPaths()
     {
         var root = Path.Combine(AppContext.BaseDirectory,

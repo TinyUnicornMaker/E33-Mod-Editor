@@ -124,6 +124,11 @@ public static class RandomizerKit
         /// Default 2.0 => a T3 boss averages ~2.36x vanilla speed.
         /// </summary>
         public double BossSpeed { get; set; } = DefaultBossSpeed;
+        /// <summary>
+        /// Alternate T4–T5 defense curve: 1× at the T4 floor, ramping to 30×
+        /// the regular curve at the top of T5. Off keeps the regular curve.
+        /// </summary>
+        public bool ExtremeBossDefense { get; set; }
         public double RegularPictosChance { get; set; } = 10;
         public double ElitePictosChance { get; set; } = 66;
         /// <summary>
@@ -1314,7 +1319,7 @@ public static class RandomizerKit
     /// resolved from the pool (see <see cref="ResolveShares"/>).</summary>
     private static bool TryCurveTarget(
         string id, LootCatalog.EnemyInfo? enemy, int tableLevel, LootCatalog catalog,
-        double atkShare, double spdShare, double defShare,
+        double atkShare, double spdShare, double defShare, bool extremeDefense,
         out double hp, out double atk, out double spd, out double def)
     {
         hp = atk = spd = def = 0;
@@ -1329,14 +1334,14 @@ public static class RandomizerKit
             hp = CurveHp(mlvl) * 0.1;
             atk = mshare * CurveAtkMax(mlvl) * 0.5;
             spd = sMain * CurveSpdMax(mlvl) * 0.5;
-            def = dMain * EnemyDefenseKit.MaxDefense(mlvl) * 0.5;
+            def = dMain * EnemyDefenseKit.MaxDefense(mlvl, extremeDefense) * 0.5;
             return true;
         }
         int level = CurveLevel(id, tableLevel, enemy);
         hp = CurveHp(level);
         atk = atkShare * CurveAtkMax(level);
         spd = spdShare * CurveSpdMax(level);
-        def = defShare * EnemyDefenseKit.MaxDefense(level);
+        def = defShare * EnemyDefenseKit.MaxDefense(level, extremeDefense);
         return true;
     }
 
@@ -3013,6 +3018,7 @@ public static class RandomizerKit
             double curveHp = 0, curveAtk = 0, curveSpd = 0, curveDef = 0;
             bool curve = isBoss && tier >= 4
                 && TryCurveTarget(id, enemy, tableLevel, catalog, aShare, sShare, dShare,
+                    s.ExtremeBossDefense,
                     out curveHp, out curveAtk, out curveSpd, out curveDef);
             // Flying curve rows dodge most base attacks, so a full curve pool
             // lasts far longer than its number suggests: stage a third of the

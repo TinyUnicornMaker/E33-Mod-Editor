@@ -216,6 +216,9 @@ public sealed partial class MainWindow
         var bossSpeedRow = DoubleRow(T("Boss speed boost"), (r.BossSpeed - 1) * 100,
             -99, 10000, v => r.BossSpeed = 1 + v / 100, "%",
             T("Percentage boost to boss speed. 0% = vanilla."));
+        var extremeDefenseToggle = Toggle(T("Extreme T4–T5 boss defense"),
+            r.ExtremeBossDefense, v => r.ExtremeBossDefense = v,
+            T("Off uses the regular T4–T5 boss defense curve. On ramps defense from 1× at the T4 floor to 30× the regular curve at the top of T5."));
 
         var bossReset = new Button { Content = T("Reset boss boosts") };
         ToolTip.SetTip(bossReset, T("Restore the default boss boosts."));
@@ -223,6 +226,7 @@ public sealed partial class MainWindow
         {
             r.BossHp = (double[])RandomizerKit.DefaultBossHp.Clone();
             r.BossSpeed = RandomizerKit.DefaultBossSpeed;
+            r.ExtremeBossDefense = false;
             MarkCustom();
             RebuildTabs();
         };
@@ -238,6 +242,7 @@ public sealed partial class MainWindow
             regularReset.IsEnabled = regularBoosts;
             bossHpRow.IsEnabled = stats;
             bossSpeedRow.IsEnabled = stats;
+            extremeDefenseToggle.IsEnabled = stats;
             bossReset.IsEnabled = stats;
         }
         statsToggle.IsCheckedChanged += (_, _) => SyncEnabled();
@@ -263,6 +268,7 @@ public sealed partial class MainWindow
             bossHpRow,
             Note(T("T4–T5 boss HP uses the hidden endgame curve and has no exposed control.")),
             bossSpeedRow,
+            extremeDefenseToggle,
             bossReset);
     }
 }

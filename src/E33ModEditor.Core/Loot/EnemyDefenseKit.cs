@@ -146,15 +146,37 @@ public static class EnemyDefenseKit
         return anchors[^1].W;
     }
 
+    /// <summary>Extreme endgame defense multiplier at the top of T5.</summary>
+    public const double ExtremeTopMultiplier = 30.0;
+
+    /// <summary>
+    /// Additional defense multiplier for the alternate T4–T5 boss curve.
+    /// It is 1× at the T4 floor and ramps smoothly to 30× at the top of T5.
+    /// </summary>
+    public static double ExtremeDefenseScale(int fightLevel)
+    {
+        if (fightLevel <= CurveStartLevel) return 1.0;
+        if (fightLevel >= CurveTopLevel) return ExtremeTopMultiplier;
+        var t = (fightLevel - CurveStartLevel) / (double)(CurveTopLevel - CurveStartLevel);
+        return Mix(1.0, ExtremeTopMultiplier, SmoothStep(t));
+    }
+
     /// <summary>
     /// Defense-max curve. Below <see cref="CurveStartLevel"/> it keeps the old
     /// flat floor (10× × 66% × reference weapon power). From L60 to the L99
     /// top pin the reshape is S-shaped, smoothstepped between three waypoints:
     /// a fast rise to <see cref="CurveMidShare"/> (50%) of the pin at L70, a
     /// gradual climb to <see cref="CurvePlateauShare"/> (60%) at L80, then a
-    /// rapid run to the pin at L99.
+    /// rapid run to the pin at L99. The extreme variant refits this curve on
+    /// top of the same T4/T5 anchors.
     /// </summary>
-    public static double MaxDefense(int fightLevel)
+    public static double MaxDefense(int fightLevel, bool extreme = false)
+    {
+        var regular = MaxDefenseRegular(fightLevel);
+        return extreme ? regular * ExtremeDefenseScale(fightLevel) : regular;
+    }
+
+    private static double MaxDefenseRegular(int fightLevel)
     {
         if (fightLevel <= CurveStartLevel) return FloorDefense(fightLevel);
         if (fightLevel >= CurveTopLevel) return TopDefensePin;

@@ -1,3 +1,36 @@
+# Build output
+**/bin/
+**/obj/
+dist/
+artifacts/
+*.user
+*.suo
 
-# Non-redistributable Oodle 2.9.16 runtime; CUE4Parse may fetch a user-supplied copy at runtime.
-tools/liboodle-data-shared.so
+# Local game data, donor cache, exports and generated packs
+work/
+Export/
+backups/
+tmp*/
+scratch/
+extracted/
+Mods for Testing/
+
+# Local app state
+settings.json
+profiles/
+seed-history.json
+logs/
+*.eiseed.json
+*.sav
+
+# Generated mod containers
+*.pak
+*.utoc
+*.ucas
+
+# IDE / OS noise
+.vs/
+.idea/
+.DS_Store
+Thumbs.db
+__pycache__/

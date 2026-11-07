@@ -593,6 +593,9 @@ internal static class AppLocalization
                 ["Boss speed boost"] = "Boost de vitesse des boss",
                 ["Percentage boost to boss speed. 0% = vanilla."] =
                     "Boost en pourcentage de la vitesse des boss. 0 % = origine.",
+                ["Extreme T4–T5 boss defense"] = "Défense extrême des boss T4–T5",
+                ["Off uses the regular T4–T5 boss defense curve. On ramps defense from 1× at the T4 floor to 30× the regular curve at the top of T5."] =
+                    "Désactivé utilise la courbe normale de défense des boss T4–T5. Activé fait passer la défense de 1× au début des T4 à 30× la courbe normale au sommet des T5.",
                 ["Expedition Infinity is already running."] = "Expedition Infinity est déjà en cours d'exécution.",
                 ["Close the other generator window before starting another build. Two instances would race over the donor cache and the installed seed."] =
                     "Fermez l'autre fenêtre du générateur avant de lancer une autre création. Deux instances se disputeraient le cache et la graine installée.",
@@ -1092,6 +1095,9 @@ internal static class AppLocalization
                 ["Boss speed boost"] = "Bonus szybkości bossów",
                 ["Percentage boost to boss speed. 0% = vanilla."] =
                     "Procentowy bonus do szybkości bossów. 0% = bazowo.",
+                ["Extreme T4–T5 boss defense"] = "Ekstremalna obrona bossów T4–T5",
+                ["Off uses the regular T4–T5 boss defense curve. On ramps defense from 1× at the T4 floor to 30× the regular curve at the top of T5."] =
+                    "Wyłączone używa zwykłej krzywej obrony bossów T4–T5. Włączone zwiększa obronę od 1× na początku T4 do 30× zwykłej krzywej na szczycie T5.",
                 ["Expedition Infinity is already running."] = "Expedition Infinity już działa.",
                 ["Close the other generator window before starting another build. Two instances would race over the donor cache and the installed seed."] =
                     "Zamknij drugie okno generatora przed rozpoczęciem kolejnego budowania. Dwie instancje kolidowałyby z pamięcią podręczną i zainstalowanym ziarnem.",
@@ -1567,6 +1573,9 @@ internal static class AppLocalization
                 ["Boss speed boost"] = "Бонус скорости боссов",
                 ["Percentage boost to boss speed. 0% = vanilla."] =
                     "Процентный бонус к скорости боссов. 0% = базово.",
+                ["Extreme T4–T5 boss defense"] = "Экстремальная защита боссов T4–T5",
+                ["Off uses the regular T4–T5 boss defense curve. On ramps defense from 1× at the T4 floor to 30× the regular curve at the top of T5."] =
+                    "Выключено — обычная кривая защиты боссов T4–T5. Включено — защита растёт от 1× на начале T4 до 30× обычной кривой на вершине T5.",
                 ["Expedition Infinity is already running."] = "Expedition Infinity уже запущена.",
                 ["Close the other generator window before starting another build. Two instances would race over the donor cache and the installed seed."] =
                     "Закройте другое окно генератора перед новой сборкой. Два экземпляра будут конфликтовать из-за кеша и установленного зерна.",
