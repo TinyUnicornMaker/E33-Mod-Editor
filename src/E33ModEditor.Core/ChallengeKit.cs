@@ -19,10 +19,13 @@ namespace E33ModEditor.Core;
 ///     pipeline the vanilla health challenge uses.
 ///
 /// The health challenge is data-only (the modifier BP calls
-/// <c>Challenge_SetEnemyHealthMutliplier</c>). Defense and speed need two extra
-/// multipliers on <c>AC_jRPG_BattleManager</c> and two extra apply blocks in
-/// <c>Challenge_ApplyEnemyStatChanges</c>; this kit clones the health setter and
-/// the health apply block rather than recompiling Blueprint bytecode.
+/// <c>Challenge_SetEnemyHealthMutliplier</c>). Defense and speed are read from
+/// the difficulty manager <b>inside the existing</b>
+/// <c>Challenge_ApplyEnemyStatChanges</c> function, which already owns the
+/// enemy stat map. That function's locals and bytecode are extended; the
+/// BattleManager class/CDO is deliberately left untouched because UAssetAPI
+/// cannot fully parse it (missing <c>S_BattleInitialState</c> schema) and
+/// re-serializing its CDO with new class properties crashes the game on load.
 /// </summary>
 public static class ChallengeKit
 {
@@ -88,16 +91,16 @@ public static class ChallengeKit
 
         log?.Invoke("[challenges] creating Enemy Defense / Speed challenges…");
         var defenseBuff = StageClone(root, modDir, HealthBuffStem + ".uasset", DefenseBuffStem,
-            "Challenge_SetEnemyDefenseMultiplier");
+            noOpLoadNumeric: true);
         var speedBuff = StageClone(root, modDir, HealthBuffStem + ".uasset", SpeedBuffStem,
-            "Challenge_SetEnemySpeedMultiplier");
-        var defenseDa = StageClone(root, modDir, HealthDaStem + ".uasset", DefenseDaStem, null,
-            da =>
+            noOpLoadNumeric: true);
+        var defenseDa = StageClone(root, modDir, HealthDaStem + ".uasset", DefenseDaStem,
+            edit: da =>
             {
                 SetChallenge(da, DefenseChallengeId, DefenseNameKey, defenseBuff, DefenseMultipliers);
             });
-        var speedDa = StageClone(root, modDir, HealthDaStem + ".uasset", SpeedDaStem, null,
-            da =>
+        var speedDa = StageClone(root, modDir, HealthDaStem + ".uasset", SpeedDaStem,
+            edit: da =>
             {
                 SetChallenge(da, SpeedChallengeId, SpeedNameKey, speedBuff, SpeedMultipliers);
             });
@@ -167,15 +170,20 @@ public static class ChallengeKit
         try
         {
             var battle = new UAsset(battlePath!, EngineVersion.VER_UE5_4, DataTableEditor.Mappings);
-            var cls = battle.Exports.OfType<ClassExport>().First();
-            if (!cls.LoadedProperties.Any(p => Clean(p.Name) == "Challenge_EnemyDefenseMultiplier"))
-                errors.Add("battle manager: defense multiplier variable missing");
-            if (!battle.Exports.OfType<FunctionExport>().Any(f => f.ObjectName.ToString() == "Challenge_SetEnemySpeedMultiplier"))
-                errors.Add("battle manager: speed setter missing");
             var apply = battle.Exports.OfType<FunctionExport>()
                 .FirstOrDefault(f => f.ObjectName.ToString() == "Challenge_ApplyEnemyStatChanges");
             if (apply is null || apply.ScriptBytecodeSize < 1000)
                 errors.Add("battle manager: stat apply blocks missing");
+            else
+            {
+                var names = new HashSet<string>(StringComparer.Ordinal);
+                var bytes = new HashSet<byte>();
+                CollectNamesAndBytes(apply.ScriptBytecode, names, bytes);
+                if (!names.Contains(DefenseChallengeId)) errors.Add("battle manager: defense challenge lookup missing");
+                if (!names.Contains(SpeedChallengeId)) errors.Add("battle manager: speed challenge lookup missing");
+                if (!bytes.Contains(6)) errors.Add("battle manager: defense stat key missing");
+                if (!bytes.Contains(8)) errors.Add("battle manager: speed stat key missing");
+            }
         }
         catch (Exception ex) { errors.Add("battle manager: " + ex.Message); }
 
@@ -198,46 +206,15 @@ public static class ChallengeKit
         }
         catch (Exception ex) { errors.Add("string table: " + ex.Message); }
 
-        foreach (var (stem, setter) in new[]
-                 {
-                     (DefenseBuffStem, "Challenge_SetEnemyDefenseMultiplier"),
-                     (SpeedBuffStem, "Challenge_SetEnemySpeedMultiplier"),
-                 })
+        foreach (var stem in new[] { DefenseBuffStem, SpeedBuffStem })
         {
-            try
-            {
-                var buff = new UAsset(Path.Combine(content, stem + ".uasset"),
-                    EngineVersion.VER_UE5_4, DataTableEditor.Mappings);
-                var fn = buff.Exports.OfType<FunctionExport>()
-                    .FirstOrDefault(f => f.ObjectName.ToString() == "LoadNumericValue");
-                var calls = new HashSet<string>(StringComparer.Ordinal);
-                if (fn is not null) CollectCalls(fn.ScriptBytecode, calls);
-                if (!calls.Contains("GetBattleManager")) errors.Add($"{stem}: GetBattleManager call missing");
-                if (!calls.Contains(setter)) errors.Add($"{stem}: {setter} call missing");
-            }
-            catch (Exception ex) { errors.Add($"{stem}: {ex.Message}"); }
+            if (!File.Exists(Path.Combine(content, stem + ".uasset")))
+                errors.Add($"{stem}: missing");
         }
 
         if (errors.Count > 0)
             throw new InvalidDataException("challenge verification failed: " + string.Join(" | ", errors));
     }
-
-    private static void CollectCalls(KismetExpression[]? bytecode, HashSet<string> calls)
-    {
-        void Visit(KismetExpression e)
-        {
-            switch (e)
-            {
-                case EX_LocalVirtualFunction vf: calls.Add(vf.VirtualFunctionName.ToString()); break;
-                case EX_VirtualFunction v: calls.Add(v.VirtualFunctionName.ToString()); break;
-            }
-            foreach (var child in ExpressionsOf(e))
-                if (child is not null) Visit(child);
-        }
-        foreach (var e in bytecode ?? Array.Empty<KismetExpression>()) Visit(e);
-    }
-
-    // ─────────────────────────────── assets ───────────────────────────────
 
     private static string StageChallengesAsset(string root, string modDir, string fileName, string relativeDir)
     {
@@ -249,7 +226,7 @@ public static class ChallengeKit
     }
 
     private static string StageClone(string root, string modDir, string srcName, string newStem,
-        string? setterName, Action<UAsset>? edit = null)
+        bool noOpLoadNumeric = false, Action<UAsset>? edit = null)
     {
         var src = FileCopy.FindUnder(root, srcName)
             ?? throw new FileNotFoundException("challenge donor missing: " + srcName);
@@ -261,17 +238,32 @@ public static class ChallengeKit
         var oldStem = Path.GetFileNameWithoutExtension(srcName);
         PictosCreateKit.RetargetPackage(asset, dest, oldStem, newStem);
 
-        if (setterName is not null)
-        {
-            var fn = asset.Exports.OfType<FunctionExport>()
-                          .FirstOrDefault(f => f.ObjectName.ToString() == "LoadNumericValue")
-                      ?? throw new InvalidDataException(newStem + ": LoadNumericValue missing");
-            RewriteVirtualCalls(fn.ScriptBytecode, "Challenge_SetEnemyHealthMutliplier", setterName, asset);
-        }
+        if (noOpLoadNumeric)
+            MakeLoadNumericNoOp(asset, newStem);
 
         edit?.Invoke(asset);
         asset.Write(dest);
         return newStem;
+    }
+
+    /// <summary>
+    /// Defense/Speed stat changes are applied directly in
+    /// <c>Challenge_ApplyEnemyStatChanges</c>; the modifier BP only has to exist
+    /// so <c>AddChallengeModifiers</c> can spawn it. Emptying LoadNumericValue
+    /// avoids adding setters to the BattleManager class (which corrupts its
+    /// cooked CDO because UAssetAPI cannot fully parse that class).
+    /// </summary>
+    private static void MakeLoadNumericNoOp(UAsset asset, string stem)
+    {
+        var fn = asset.Exports.OfType<FunctionExport>()
+                      .FirstOrDefault(f => f.ObjectName.ToString() == "LoadNumericValue")
+                  ?? throw new InvalidDataException(stem + ": LoadNumericValue missing");
+        fn.ScriptBytecode = new KismetExpression[]
+        {
+            new EX_Return { ReturnExpression = new EX_Nothing() },
+            new EX_EndOfScript(),
+        };
+        fn.ScriptBytecodeSize = Size(fn.ScriptBytecode, asset);
     }
 
     private static void RegisterDataAssetSchemas(string root)
@@ -373,128 +365,232 @@ public static class ChallengeKit
 
         var map = DataTableEditor.Mappings;
         var asset = new UAsset(path, EngineVersion.VER_UE5_4, map);
-        var cls = asset.Exports.OfType<ClassExport>().FirstOrDefault()
-            ?? throw new InvalidDataException("BattleManager: class export missing");
-
-        var healthVar = cls.LoadedProperties.FirstOrDefault(p => Clean(p.Name) == "Challenge_EnemyHealthMultiplier");
-        if (healthVar is null) return 0;
-        if (cls.LoadedProperties.Any(p => Clean(p.Name) == "Challenge_EnemyDefenseMultiplier"))
-            return 0; // already patched
-
-        int classRef = asset.Exports.IndexOf(cls) + 1;
         var applyFn = asset.Exports.OfType<FunctionExport>()
             .FirstOrDefault(f => f.ObjectName.ToString() == "Challenge_ApplyEnemyStatChanges")
             ?? throw new InvalidDataException("BattleManager: Challenge_ApplyEnemyStatChanges missing");
-        var setterFn = asset.Exports.OfType<FunctionExport>()
-            .FirstOrDefault(f => f.ObjectName.ToString() == "Challenge_SetEnemyHealthMutliplier")
-            ?? throw new InvalidDataException("BattleManager: Challenge_SetEnemyHealthMutliplier missing");
 
-        // 1. Two new class-scope doubles, cloned from the health multiplier.
-        var defenseVar = CloneProperty(healthVar, asset, "Challenge_EnemyDefenseMultiplier");
-        var speedVar = CloneProperty(healthVar, asset, "Challenge_EnemySpeedMultiplier");
-        cls.LoadedProperties = cls.LoadedProperties.Concat(new[] { defenseVar, speedVar }).ToArray();
+        if (ContainsName(applyFn.ScriptBytecode, DefenseChallengeId))
+            return 0; // already patched
 
-        // 2. One setter per stat, cloned from the health setter. The new
-        //    functions only assign the variable; the vanilla setter's logging
-        //    boilerplate is intentionally not copied.
-        CloneSetter(asset, cls, setterFn, classRef,
-            "Challenge_SetEnemyDefenseMultiplier", "Challenge_EnemyDefenseMultiplier");
-        CloneSetter(asset, cls, setterFn, classRef,
-            "Challenge_SetEnemySpeedMultiplier", "Challenge_EnemySpeedMultiplier");
+        // Read the selected options straight from the difficulty manager inside
+        // the existing apply function. This avoids adding class variables or
+        // function exports to AC_jRPG_BattleManager: that class cannot be fully
+        // parsed by UAssetAPI (missing S_BattleInitialState schema), and
+        // re-serializing its CDO corrupts the cooked package.
+        var helperImport = EnsureObjectImport(asset,
+            "/Game/Gameplay/Difficulty/BP_FL_GameDifficultyHelpers",
+            "Default__BP_FL_GameDifficultyHelpers_C",
+            "BP_FL_GameDifficultyHelpers_C",
+            "/Game/Gameplay/Difficulty/BP_FL_GameDifficultyHelpers");
 
-        // 3. Duplicate the health apply block for Defense (stat 6) and
-        //    Speed (stat 8). The vanilla block's trailing "OutStats = InStats;
-        //    return" is dropped so an active health challenge falls through to
-        //    the Defense/Speed blocks instead of returning early. Offsets are
-        //    absolute byte offsets in the function.
+        var fnRef = asset.Exports.IndexOf(applyFn) + 1;
+        var objectTpl = asset.Exports.OfType<FunctionExport>()
+            .First(f => f.ObjectName.ToString() == "TryNotifyChallenges")
+            .LoadedProperties.First(p => Clean(p.Name) == "CallFunc_GetDifficultyManager_ReturnValue");
+        var challengeTpl = asset.Exports.OfType<FunctionExport>()
+            .First(f => f.ObjectName.ToString() == "TryNotifyChallenges")
+            .LoadedProperties.First(p => Clean(p.Name) == "CallFunc_Map_Find_Value");
+        var boolTpl = applyFn.LoadedProperties.First(p => Clean(p.Name) == "CallFunc_Map_Find_ReturnValue");
+        var nameTpl = asset.Exports.OfType<FunctionExport>()
+            .First(f => f.ObjectName.ToString() == "TryNotifyChallenges")
+            .LoadedProperties.First(p => Clean(p.Name) == "CallFunc_GetSelectedChallengeOption_OptionID");
+        var doubleTpl = applyFn.LoadedProperties.First(p => Clean(p.Name) == "CallFunc_Multiply_DoubleDouble_ReturnValue");
+
+        var locals = new[]
+        {
+            CloneLocal(objectTpl, asset, "ChallengeKit_Manager"),
+            CloneLocal(boolTpl, asset, "ChallengeKit_Found"),
+            CloneLocal(nameTpl, asset, "ChallengeKit_Option"),
+            CloneLocal(challengeTpl, asset, "ChallengeKit_Challenge"),
+            CloneLocal(boolTpl, asset, "ChallengeKit_FoundValue"),
+            CloneLocal(doubleTpl, asset, "ChallengeKit_Value"),
+        };
+        applyFn.LoadedProperties = applyFn.LoadedProperties.Concat(locals).ToArray();
+
         var bc = applyFn.ScriptBytecode.ToList();
-        var healthBlock = bc.Take(9).ToList(); // condition + health modifications
+        var healthBody = bc.Take(9).ToList(); // condition + health modifications
         var tail = bc.Skip(11).ToList();       // OutStats = InStats; return; end
 
-        var defenseBlock = CloneApplyBlock(healthBlock, asset, classRef,
-            "Challenge_EnemyDefenseMultiplier", 6); // E_jRPG_StatType::NewEnumerator4
-        var speedBlock = CloneApplyBlock(healthBlock, asset, classRef,
-            "Challenge_EnemySpeedMultiplier", 8);   // E_jRPG_StatType::NewEnumerator7
+        var defenseBlock = BuildChallengeApplyBlock(asset, applyFn, fnRef, helperImport,
+            DefenseChallengeId, 6); // E_jRPG_StatType::NewEnumerator4
+        var speedBlock = BuildChallengeApplyBlock(asset, applyFn, fnRef, helperImport,
+            SpeedChallengeId, 8);   // E_jRPG_StatType::NewEnumerator7
+
+        int defenseStart = Size(healthBody, asset);
+        int defenseEnd = defenseStart + Size(defenseBlock, asset);
+        int speedEnd = defenseEnd + Size(speedBlock, asset);
+
+        // Health inactive -> skip its block, continue with Defense.
+        healthBody.OfType<EX_JumpIfNot>().First().CodeOffset = (uint)defenseStart;
+        // Defense gates -> its block end (Speed start); Speed gates -> tail.
+        foreach (var gate in defenseBlock.OfType<EX_JumpIfNot>())
+            gate.CodeOffset = (uint)defenseEnd;
+        foreach (var gate in speedBlock.OfType<EX_JumpIfNot>())
+            gate.CodeOffset = (uint)speedEnd;
 
         var newBc = new List<KismetExpression>();
-        newBc.AddRange(healthBlock);
+        newBc.AddRange(healthBody);
         newBc.AddRange(defenseBlock);
         newBc.AddRange(speedBlock);
         newBc.AddRange(tail.Select(CloneExpression));
-
-        int defenseStart = Size(healthBlock, asset);
-        int speedStart = defenseStart + Size(defenseBlock, asset);
-        int finalStart = speedStart + Size(speedBlock, asset);
-
-        FixJumpTargets(healthBlock, defenseStart);
-        FixJumpTargets(defenseBlock, speedStart);
-        FixJumpTargets(speedBlock, finalStart);
-
         applyFn.ScriptBytecode = newBc.ToArray();
         applyFn.ScriptBytecodeSize = Size(newBc, asset);
         asset.Write(path);
-        return 2 + 2 + 1; // variables + functions + apply blocks (informational)
+        return 1;
     }
 
-    private static void CloneSetter(UAsset asset, ClassExport cls, FunctionExport source,
-        int classRef, string name, string variable)
+    private static List<KismetExpression> BuildChallengeApplyBlock(UAsset asset, FunctionExport fn,
+        int fnRef, FPackageIndex helperImport, string challengeId, byte statKey)
     {
-        var fn = (FunctionExport)source.Clone();
-        fn.ObjectName = FName.FromString(asset, name);
-        fn.LoadedProperties = source.LoadedProperties
-            .Select(p => (FProperty)CloneMember(p))
-            .ToArray();
+        var block = new List<KismetExpression>();
 
-        int exportIndex = asset.Exports.Count + 1;
-        var pointer = VarPointer(asset, variable, classRef);
-        var body = new EX_Let
+        // Manager = GetDifficultyManager(Self)
+        block.Add(new EX_LetObj
         {
-            Value = VarPointer(asset, variable, classRef),
-            Variable = new EX_InstanceVariable { Variable = pointer },
-            Expression = new EX_LocalVariable { Variable = VarPointer(asset, "Value", exportIndex) },
-        };
-        fn.ScriptBytecode = new KismetExpression[]
-        {
-            body,
-            new EX_Return { ReturnExpression = new EX_Nothing() },
-            new EX_EndOfScript(),
-        };
-        fn.ScriptBytecodeSize = Size(fn.ScriptBytecode, asset);
-        asset.Exports.Add(fn);
+            VariableExpression = Local(asset, "ChallengeKit_Manager", fnRef),
+            AssignmentExpression = Context(
+                new EX_ObjectConst { Value = helperImport },
+                new EX_LocalVirtualFunction
+                {
+                    VirtualFunctionName = FName.FromString(asset, "GetDifficultyManager"),
+                    Parameters = new KismetExpression[] { new EX_Self() },
+                }),
+        });
 
-        var refIndex = new FPackageIndex(exportIndex);
-        cls.FuncMap[fn.ObjectName] = refIndex;
-        cls.Children = (cls.Children ?? Array.Empty<FPackageIndex>()).Concat(new[] { refIndex }).ToArray();
-    }
+        // Manager.GetSelectedChallengeOption(ChallengeID, out Found, out OptionID)
+        block.Add(CallOnLocal(asset, "ChallengeKit_Manager", fnRef,
+            "GetSelectedChallengeOption",
+            new EX_NameConst { Value = FName.FromString(asset, challengeId) },
+            Local(asset, "ChallengeKit_Found", fnRef),
+            Local(asset, "ChallengeKit_Option", fnRef)));
 
-    private static List<KismetExpression> CloneApplyBlock(List<KismetExpression> source,
-        UAsset asset, int classRef, string variable, byte statKey)
-    {
-        var block = source.Select(CloneExpression).ToList();
-        void Fix(KismetExpression e)
+        block.Add(new EX_JumpIfNot
         {
-            switch (e)
-            {
-                case EX_InstanceVariable iv
-                    when iv.Variable?.New?.Path is { Length: > 0 }
-                         && Clean(iv.Variable.New.Path[0].ToString()) == "Challenge_EnemyHealthMultiplier":
-                    iv.Variable = VarPointer(asset, variable, classRef);
-                    break;
-                case EX_ByteConst b:
-                    b.Value = statKey;
-                    break;
-            }
-            foreach (var f in ExpressionsOf(e))
-                if (f is not null) Fix(f);
-        }
-        foreach (var e in block) Fix(e);
+            BooleanExpression = Local(asset, "ChallengeKit_Found", fnRef),
+            CodeOffset = 0,
+        });
+
+        // Challenge = Manager.FindChallengeDefinition(ChallengeID)
+        block.Add(new EX_LetObj
+        {
+            VariableExpression = Local(asset, "ChallengeKit_Challenge", fnRef),
+            AssignmentExpression = CallOnLocal(asset, "ChallengeKit_Manager", fnRef,
+                "FindChallengeDefinition",
+                new EX_NameConst { Value = FName.FromString(asset, challengeId) }),
+        });
+
+        // Challenge.GetOptionNumericValue(OptionID, out FoundValue, out Value)
+        block.Add(CallOnLocal(asset, "ChallengeKit_Challenge", fnRef,
+            "GetOptionNumericValue",
+            Local(asset, "ChallengeKit_Option", fnRef),
+            Local(asset, "ChallengeKit_FoundValue", fnRef),
+            Local(asset, "ChallengeKit_Value", fnRef)));
+
+        block.Add(new EX_JumpIfNot
+        {
+            BooleanExpression = Local(asset, "ChallengeKit_FoundValue", fnRef),
+            CodeOffset = 0,
+        });
+
+        // Re-use the vanilla health multiply block (Map_Find -> multiply ->
+        // Round64 -> Conv -> Map_Add), swapping the multiplier source for the
+        // selected challenge value and the stat key for Defense/Speed.
+        var mapBlock = fn.ScriptBytecode.Skip(2).Take(7).Select(CloneExpression).ToList();
+        foreach (var expression in mapBlock)
+            ReplaceHealthStat(expression, asset, fnRef, statKey);
+        block.AddRange(mapBlock);
         return block;
     }
 
-    private static void FixJumpTargets(List<KismetExpression> block, int falseTarget)
+    private static KismetExpression CallOnLocal(UAsset asset, string objectLocal, int fnRef,
+        string function, params KismetExpression[] parameters) =>
+        Context(Local(asset, objectLocal, fnRef),
+            new EX_LocalVirtualFunction
+            {
+                VirtualFunctionName = FName.FromString(asset, function),
+                Parameters = parameters,
+            });
+
+    /// <summary>EX_Context carries an RValuePointer that the writer dereferences
+    /// unconditionally; hand-built contexts need an empty field path.</summary>
+    private static EX_Context Context(KismetExpression obj, KismetExpression context) =>
+        new()
+        {
+            ObjectExpression = obj,
+            ContextExpression = context,
+            RValuePointer = new KismetPropertyPointer(
+                new FFieldPath(Array.Empty<FName>(), FPackageIndex.FromRawIndex(0))),
+        };
+
+    private static EX_LocalVariable Local(UAsset asset, string name, int fnRef) =>
+        new() { Variable = VarPointer(asset, name, fnRef) };
+
+    private static void ReplaceHealthStat(KismetExpression expression, UAsset asset,
+        int fnRef, byte statKey)
     {
-        var jumpIfNot = block.OfType<EX_JumpIfNot>().FirstOrDefault();
-        if (jumpIfNot is not null) jumpIfNot.CodeOffset = (uint)falseTarget;
+        if (expression is EX_ByteConst b) b.Value = statKey;
+        if (expression is EX_InstanceVariable iv
+            && iv.Variable?.New?.Path is { Length: > 0 }
+            && Clean(iv.Variable.New.Path[0].ToString()) == "Challenge_EnemyHealthMultiplier")
+        {
+            iv.Variable = VarPointer(asset, "ChallengeKit_Value", fnRef);
+        }
+
+        for (var t = expression.GetType(); t is not null && t != typeof(object); t = t.BaseType)
+            foreach (var f in t.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+            {
+                var value = f.GetValue(expression);
+                if (value is KismetExpression child)
+                    f.SetValue(expression, ReplaceChild(child, asset, fnRef, statKey));
+                else if (value is KismetExpression[] array)
+                    f.SetValue(expression, array.Select(x => x is null ? null : ReplaceChild(x, asset, fnRef, statKey)).ToArray());
+            }
+    }
+
+    private static KismetExpression ReplaceChild(KismetExpression child, UAsset asset,
+        int fnRef, byte statKey)
+    {
+        if (child is EX_InstanceVariable iv
+            && iv.Variable?.New?.Path is { Length: > 0 }
+            && Clean(iv.Variable.New.Path[0].ToString()) == "Challenge_EnemyHealthMultiplier")
+            return Local(asset, "ChallengeKit_Value", fnRef);
+        ReplaceHealthStat(child, asset, fnRef, statKey);
+        return child;
+    }
+
+    private static bool ContainsName(KismetExpression[]? bytecode, string name)
+    {
+        var found = false;
+        void Visit(KismetExpression e)
+        {
+            if (e is EX_NameConst n && n.Value.ToString() == name) found = true;
+            foreach (var child in ExpressionsOf(e))
+                if (child is not null) Visit(child);
+        }
+        foreach (var e in bytecode ?? Array.Empty<KismetExpression>()) Visit(e);
+        return found;
+    }
+
+    private static void CollectNamesAndBytes(KismetExpression[]? bytecode,
+        HashSet<string> names, HashSet<byte> bytes)
+    {
+        void Visit(KismetExpression e)
+        {
+            if (e is EX_NameConst n) names.Add(n.Value.ToString());
+            if (e is EX_ByteConst b) bytes.Add(b.Value);
+            foreach (var child in ExpressionsOf(e))
+                if (child is not null) Visit(child);
+        }
+        foreach (var e in bytecode ?? Array.Empty<KismetExpression>()) Visit(e);
+    }
+
+    private static FProperty CloneLocal(FProperty source, UAsset asset, string name)
+    {
+        var clone = (FProperty)CloneMember(source);
+        var field = clone.GetType().GetField("Name", BindingFlags.Public | BindingFlags.Instance)
+                    ?? clone.GetType().BaseType?.GetField("Name", BindingFlags.Public | BindingFlags.Instance);
+        field?.SetValue(clone, FName.FromString(asset, name));
+        return clone;
     }
 
     private static int Size(IEnumerable<KismetExpression> expressions, UAsset asset) =>
@@ -530,35 +626,9 @@ public static class ChallengeKit
             }
     }
 
-    private static FProperty CloneProperty(FProperty source, UAsset asset, string name)
-    {
-        var clone = (FProperty)CloneMember(source);
-        var field = clone.GetType().GetField("Name", BindingFlags.Public | BindingFlags.Instance)
-                    ?? clone.GetType().BaseType?.GetField("Name", BindingFlags.Public | BindingFlags.Instance);
-        field?.SetValue(clone, FName.FromString(asset, name));
-        return clone;
-    }
-
     private static object CloneMember(object source) =>
         source.GetType().GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance)!
               .Invoke(source, null)!;
-
-    private static void RewriteVirtualCalls(KismetExpression[]? bytecode,
-        string oldName, string newName, UAsset asset)
-    {
-        void Visit(KismetExpression e)
-        {
-            if (e is EX_LocalVirtualFunction vf
-                && string.Equals(vf.VirtualFunctionName.ToString(), oldName, StringComparison.Ordinal))
-                vf.VirtualFunctionName = FName.FromString(asset, newName);
-            else if (e is EX_VirtualFunction v
-                     && string.Equals(v.VirtualFunctionName.ToString(), oldName, StringComparison.Ordinal))
-                v.VirtualFunctionName = FName.FromString(asset, newName);
-            foreach (var child in ExpressionsOf(e))
-                if (child is not null) Visit(child);
-        }
-        foreach (var e in bytecode ?? Array.Empty<KismetExpression>()) Visit(e);
-    }
 
     // ─────────────────────── difficulty manager ───────────────────────
 

@@ -25,7 +25,7 @@ manager's `ChallengeAssets` array, spawns each active modifier and calls
 - New `DA_BattleChallenge_EnemySpeedMultiplier`
   - `2 / 3 / 5 / 10`
 
-The new DAs use cloned modifier BPs
+The new DAs use cloned, **no-op** modifier BPs
 (`BP_BattleModifierBuff_EnemiesDefenseMultiplier` /
 `...EnemiesSpeedMultiplier`) and are added to
 `BP_GameDifficultyManager.ChallengeAssets` and to the
@@ -33,27 +33,36 @@ The new DAs use cloned modifier BPs
 
 ## BattleManager patch
 
-The vanilla manager only has `Challenge_EnemyHealthMultiplier`. The kit adds:
+The vanilla manager only applies `Challenge_EnemyHealthMultiplier`. Defense
+and Speed are read **inside the existing**
+`Challenge_ApplyEnemyStatChanges` function, which already has the enemy stat
+map and the health block:
 
-- class doubles `Challenge_EnemyDefenseMultiplier` and
-  `Challenge_EnemySpeedMultiplier`
-- setters `Challenge_SetEnemyDefenseMultiplier` and
-  `Challenge_SetEnemySpeedMultiplier` (clones of the health setter; they only
-  assign the variable)
-- two extra conditional blocks in `Challenge_ApplyEnemyStatChanges`, cloned
-  from the health block, which multiply the stat map entries:
+- for each of `BATTLECHALLENGE_ENEMYDEFENSEMULT` and
+  `BATTLECHALLENGE_ENEMYSPEEDMULT`, call
+  `GetDifficultyManager().GetSelectedChallengeOption(...)`
+- resolve the challenge DA with `FindChallengeDefinition(...)`
+- read the selected value with `GetOptionNumericValue(...)`
+- multiply the stat map entries:
   - `E_jRPG_StatType` **6** = `NewEnumerator4` (Defense)
   - `E_jRPG_StatType` **8** = `NewEnumerator7` (Speed)
 
 The enum values come from the usmap (`EnumMap`), not the `NewEnumeratorN`
 suffix. The health block uses **1** (`NewEnumerator1`).
 
+**Do not add class variables or function exports to
+`AC_jRPG_BattleManager`.** UAssetAPI cannot fully parse that class because its
+`S_BattleInitialState` schema is missing; re-serializing its
+`Default__AC_jRPG_BattleManager_C` CDO with extra class properties produces a
+`Bad export index` fatal error at load. Patch only the existing function's
+locals and bytecode.
+
 ## Build hook
 
 `ChallengeKit.Apply(modDir, log)` runs from `FullPackKit` after Party of Five /
 Gameplay Tweaks so it patches the already-merged `AC_jRPG_BattleManager` copy.
 It is idempotent and ends with `Verify`, which re-opens the staged assets and
-throws if a DA option count, manager entry, BattleManager block, menu row or
+throws if a DA option count, manager entry, BattleManager lookup, menu row or
 string-table key is missing.
 
 ## Verification
@@ -63,8 +72,8 @@ DataAsset class schemas are registered when the kit runs). For a quick manual
 check the CLI equivalents are:
 
 ```text
-dump   <DA>.uasset
-st     <ST_UI_GameMenu>.uasset CHALLENGE
+dump    <DA>.uasset
+st      <ST_UI_GameMenu>.uasset CHALLENGE
 exports <WBP_ChallengesListWidget>.uasset
 fn-list <AC_jRPG_BattleManager>.uasset
 ```
