@@ -42,9 +42,9 @@ public static class ChallengeKit
     private const string HealthDaStem = "DA_BattleChallenge_EnemyLifeMultiplier";
     private const string HealthBuffStem = "BP_BattleModifierBuff_EnemiesHPMultiplier";
     private const string DefenseDaStem = "DA_BattleChallenge_EnemyDefenseMultiplier";
-    private const string DefenseBuffStem = "BP_BattleModifierBuff_EnemiesDefenseMultiplier";
     private const string SpeedDaStem = "DA_BattleChallenge_EnemySpeedMultiplier";
-    private const string SpeedBuffStem = "BP_BattleModifierBuff_EnemiesSpeedMultiplier";
+    private const string BaseBuffPackage = "/Game/Gameplay/Battle/Challenges/BP_BattleModifierBuff_Challenge_Base";
+    private const string BaseBuffClass = "BP_BattleModifierBuff_Challenge_Base_C";
 
     private const string HealthChallengeId = "BATTLECHALLENGE_ENEMYLIFEMULT";
     private const string DefenseChallengeId = "BATTLECHALLENGE_ENEMYDEFENSEMULT";
@@ -90,19 +90,20 @@ public static class ChallengeKit
         edits += ExtendHealth(healthDa);
 
         log?.Invoke("[challenges] creating Enemy Defense / Speed challenges…");
-        var defenseBuff = StageClone(root, modDir, HealthBuffStem + ".uasset", DefenseBuffStem,
-            noOpLoadNumeric: true);
-        var speedBuff = StageClone(root, modDir, HealthBuffStem + ".uasset", SpeedBuffStem,
-            noOpLoadNumeric: true);
+        // The base modifier BP is a valid, existing class whose LoadNumericValue
+        // is already empty. Pointing the new DAs at it avoids adding/cloning
+        // modifier assets; the stat application lives in Challenge_ApplyEnemyStatChanges.
         var defenseDa = StageClone(root, modDir, HealthDaStem + ".uasset", DefenseDaStem,
             edit: da =>
             {
-                SetChallenge(da, DefenseChallengeId, DefenseNameKey, defenseBuff, DefenseMultipliers);
+                SetChallenge(da, DefenseChallengeId, DefenseNameKey,
+                    BaseBuffPackage, BaseBuffClass, DefenseMultipliers);
             });
         var speedDa = StageClone(root, modDir, HealthDaStem + ".uasset", SpeedDaStem,
             edit: da =>
             {
-                SetChallenge(da, SpeedChallengeId, SpeedNameKey, speedBuff, SpeedMultipliers);
+                SetChallenge(da, SpeedChallengeId, SpeedNameKey,
+                    BaseBuffPackage, BaseBuffClass, SpeedMultipliers);
             });
 
         log?.Invoke("[challenges] patching BattleManager stat application…");
@@ -150,6 +151,13 @@ public static class ChallengeKit
                 if (id != challengeId) errors.Add($"{stem}: ChallengeID={id ?? "<null>"}");
                 if (map is null || map.Value.Count != expected)
                     errors.Add($"{stem}: {map?.Value.Count ?? 0} options (expected {expected})");
+                if (stem != HealthDaStem)
+                {
+                    var buff = export.Data.OfType<SoftObjectPropertyData>()
+                        .FirstOrDefault(p => Clean(p.Name) == "BattleModifierClass");
+                    if (buff is null || buff.Value.AssetPath.PackageName.ToString() != BaseBuffPackage)
+                        errors.Add($"{stem}: BattleModifierClass not the challenge base");
+                }
             }
             catch (Exception ex) { errors.Add($"{stem}: {ex.Message}"); }
         }
@@ -206,12 +214,6 @@ public static class ChallengeKit
         }
         catch (Exception ex) { errors.Add("string table: " + ex.Message); }
 
-        foreach (var stem in new[] { DefenseBuffStem, SpeedBuffStem })
-        {
-            if (!File.Exists(Path.Combine(content, stem + ".uasset")))
-                errors.Add($"{stem}: missing");
-        }
-
         if (errors.Count > 0)
             throw new InvalidDataException("challenge verification failed: " + string.Join(" | ", errors));
     }
@@ -226,7 +228,7 @@ public static class ChallengeKit
     }
 
     private static string StageClone(string root, string modDir, string srcName, string newStem,
-        bool noOpLoadNumeric = false, Action<UAsset>? edit = null)
+        Action<UAsset>? edit = null)
     {
         var src = FileCopy.FindUnder(root, srcName)
             ?? throw new FileNotFoundException("challenge donor missing: " + srcName);
@@ -238,32 +240,9 @@ public static class ChallengeKit
         var oldStem = Path.GetFileNameWithoutExtension(srcName);
         PictosCreateKit.RetargetPackage(asset, dest, oldStem, newStem);
 
-        if (noOpLoadNumeric)
-            MakeLoadNumericNoOp(asset, newStem);
-
         edit?.Invoke(asset);
         asset.Write(dest);
         return newStem;
-    }
-
-    /// <summary>
-    /// Defense/Speed stat changes are applied directly in
-    /// <c>Challenge_ApplyEnemyStatChanges</c>; the modifier BP only has to exist
-    /// so <c>AddChallengeModifiers</c> can spawn it. Emptying LoadNumericValue
-    /// avoids adding setters to the BattleManager class (which corrupts its
-    /// cooked CDO because UAssetAPI cannot fully parse that class).
-    /// </summary>
-    private static void MakeLoadNumericNoOp(UAsset asset, string stem)
-    {
-        var fn = asset.Exports.OfType<FunctionExport>()
-                      .FirstOrDefault(f => f.ObjectName.ToString() == "LoadNumericValue")
-                  ?? throw new InvalidDataException(stem + ": LoadNumericValue missing");
-        fn.ScriptBytecode = new KismetExpression[]
-        {
-            new EX_Return { ReturnExpression = new EX_Nothing() },
-            new EX_EndOfScript(),
-        };
-        fn.ScriptBytecodeSize = Size(fn.ScriptBytecode, asset);
     }
 
     private static void RegisterDataAssetSchemas(string root)
@@ -308,7 +287,7 @@ public static class ChallengeKit
     }
 
     private static void SetChallenge(UAsset da, string challengeId, string nameKey,
-        string buffStem, double[] values)
+        string buffPackage, string buffClass, double[] values)
     {
         var export = DataAssetExport(da);
         foreach (var p in export.Data)
@@ -321,8 +300,8 @@ public static class ChallengeKit
             else if (n == "BattleModifierClass" && p is SoftObjectPropertyData cls)
             {
                 cls.Value = new FSoftObjectPath(
-                    FName.FromString(da, "/Game/Gameplay/Battle/Challenges/Content/" + buffStem),
-                    FName.FromString(da, buffStem + "_C"),
+                    FName.FromString(da, buffPackage),
+                    FName.FromString(da, buffClass),
                     null);
             }
             else if (n == "AvailableValues" && p is MapPropertyData map)
@@ -382,6 +361,10 @@ public static class ChallengeKit
             "Default__BP_FL_GameDifficultyHelpers_C",
             "BP_FL_GameDifficultyHelpers_C",
             "/Game/Gameplay/Difficulty/BP_FL_GameDifficultyHelpers");
+        int isValidImport = Enumerable.Range(0, asset.Imports.Count)
+            .First(i => asset.Imports[i].ObjectName.ToString() == "IsValid"
+                        && asset.Imports[i].ClassName.ToString() == "Object");
+        var isValidFn = FPackageIndex.FromImport(isValidImport);
 
         var fnRef = asset.Exports.IndexOf(applyFn) + 1;
         var objectTpl = asset.Exports.OfType<FunctionExport>()
@@ -411,9 +394,9 @@ public static class ChallengeKit
         var healthBody = bc.Take(9).ToList(); // condition + health modifications
         var tail = bc.Skip(11).ToList();       // OutStats = InStats; return; end
 
-        var defenseBlock = BuildChallengeApplyBlock(asset, applyFn, fnRef, helperImport,
+        var defenseBlock = BuildChallengeApplyBlock(asset, applyFn, fnRef, helperImport, isValidFn,
             DefenseChallengeId, 6); // E_jRPG_StatType::NewEnumerator4
-        var speedBlock = BuildChallengeApplyBlock(asset, applyFn, fnRef, helperImport,
+        var speedBlock = BuildChallengeApplyBlock(asset, applyFn, fnRef, helperImport, isValidFn,
             SpeedChallengeId, 8);   // E_jRPG_StatType::NewEnumerator7
 
         int defenseStart = Size(healthBody, asset);
@@ -440,7 +423,7 @@ public static class ChallengeKit
     }
 
     private static List<KismetExpression> BuildChallengeApplyBlock(UAsset asset, FunctionExport fn,
-        int fnRef, FPackageIndex helperImport, string challengeId, byte statKey)
+        int fnRef, FPackageIndex helperImport, FPackageIndex isValidFn, string challengeId, byte statKey)
     {
         var block = new List<KismetExpression>();
 
@@ -455,6 +438,19 @@ public static class ChallengeKit
                     VirtualFunctionName = FName.FromString(asset, "GetDifficultyManager"),
                     Parameters = new KismetExpression[] { new EX_Self() },
                 }),
+        });
+
+        // if (!IsValid(Manager)) skip this challenge
+        block.Add(LetBool(asset, "ChallengeKit_Found", fnRef,
+            new EX_CallMath
+            {
+                StackNode = isValidFn,
+                Parameters = new KismetExpression[] { Local(asset, "ChallengeKit_Manager", fnRef) },
+            }));
+        block.Add(new EX_JumpIfNot
+        {
+            BooleanExpression = Local(asset, "ChallengeKit_Found", fnRef),
+            CodeOffset = 0,
         });
 
         // Manager.GetSelectedChallengeOption(ChallengeID, out Found, out OptionID)
@@ -477,6 +473,19 @@ public static class ChallengeKit
             AssignmentExpression = CallOnLocal(asset, "ChallengeKit_Manager", fnRef,
                 "FindChallengeDefinition",
                 new EX_NameConst { Value = FName.FromString(asset, challengeId) }),
+        });
+
+        // if (!IsValid(Challenge)) skip this challenge
+        block.Add(LetBool(asset, "ChallengeKit_FoundValue", fnRef,
+            new EX_CallMath
+            {
+                StackNode = isValidFn,
+                Parameters = new KismetExpression[] { Local(asset, "ChallengeKit_Challenge", fnRef) },
+            }));
+        block.Add(new EX_JumpIfNot
+        {
+            BooleanExpression = Local(asset, "ChallengeKit_FoundValue", fnRef),
+            CodeOffset = 0,
         });
 
         // Challenge.GetOptionNumericValue(OptionID, out FoundValue, out Value)
@@ -520,6 +529,14 @@ public static class ChallengeKit
             ContextExpression = context,
             RValuePointer = new KismetPropertyPointer(
                 new FFieldPath(Array.Empty<FName>(), FPackageIndex.FromRawIndex(0))),
+        };
+
+    private static EX_LetBool LetBool(UAsset asset, string name, int fnRef,
+        KismetExpression expression) =>
+        new()
+        {
+            VariableExpression = Local(asset, name, fnRef),
+            AssignmentExpression = expression,
         };
 
     private static EX_LocalVariable Local(UAsset asset, string name, int fnRef) =>

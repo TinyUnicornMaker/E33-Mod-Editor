@@ -44,11 +44,13 @@ namespace E33ModEditor.Core;
 /// refreshBurnCounterWidget()
 /// </code>
 ///
-/// <para>The reductions write <c>StackCount</c> directly with
-/// <c>KismetSystemLibrary.SetIntPropertyByName</c> instead of calling
-/// <c>ChangeStackCount</c>. That avoids re-entering the stack-changed event while
-/// still leaving the real instance value, damage, consumption and HUD in sync;
-/// the event explicitly refreshes the Burn counter after the writes.</para>
+/// <para>On child addition the new child's stack-change delegate is not bound yet,
+/// so the reduction uses the reliable <c>ChangeStackCount</c> path. On later
+/// stack changes it writes <c>StackCount</c> directly with
+/// <c>KismetSystemLibrary.SetIntPropertyByName</c> to avoid re-entering the
+/// event. Both paths refresh the Burn counter afterwards. The custom Burn
+/// counter's <c>UpdateCount</c> argument is also wrapped in
+/// <c>Min(ComputeAggregatorStackCount(), cap)</c> as a display safety net.</para>
 /// </summary>
 public static class BurnStackCapKit
 {
@@ -57,6 +59,7 @@ public static class BurnStackCapKit
 
     private const string StackChangedFunction = "OnChildBuffInstanceStackChanged";
     private const string AddedFunction = "OnChildBuffInstanceAdded";
+    private const string DisplayFunction = "RefreshBurnCounterWidget";
     private const string IndexLocal = "E33_BurnCap_Index";
     private const string CountLocal = "E33_BurnCap_Count";
     private const string TeamLocal = "E33_BurnCap_Team";
@@ -75,13 +78,17 @@ public static class BurnStackCapKit
         var asset = Open(path);
         var stackChanged = FindFunction(asset, StackChangedFunction);
         var added = FindFunction(asset, AddedFunction);
+        var display = FindFunction(asset, DisplayFunction);
 
         BuildStackChanged(asset, stackChanged, cap);
         BuildAdded(asset, added, cap);
+        ClampBurnCounterDisplay(asset, display, cap);
         MayhemFixKit.RecalcContextSkips(asset, stackChanged);
         MayhemFixKit.RecalcContextSkips(asset, added);
+        MayhemFixKit.RecalcContextSkips(asset, display);
         PartyFiveKit.VerifyJumps(asset, stackChanged);
         PartyFiveKit.VerifyJumps(asset, added);
+        PartyFiveKit.VerifyJumps(asset, display);
         asset.Write(path);
         if (!Verify(path, cap))
             throw new InvalidDataException($"[burncap] verification failed for {Path.GetFileName(path)}");
@@ -109,7 +116,7 @@ public static class BurnStackCapKit
 
     private static void BuildStackChanged(UAsset asset, FunctionExport fn, int cap)
     {
-        var block = BuildClampBlock(asset, fn, cap);
+        var block = BuildClampBlock(asset, fn, cap, useChangeStackCount: false);
         var body = new List<KismetExpression>(block.Statements)
         {
             new EX_LocalVirtualFunction
@@ -133,7 +140,9 @@ public static class BurnStackCapKit
     /// </summary>
     private static void BuildAdded(UAsset asset, FunctionExport fn, int cap)
     {
-        var block = BuildClampBlock(asset, fn, cap);
+        // The new child has not had its BuffStackCountChange delegate bound yet,
+        // so ChangeStackCount is safe here and is the most reliable real write.
+        var block = BuildClampBlock(asset, fn, cap, useChangeStackCount: true);
         var stmts = (fn.ScriptBytecode ?? Array.Empty<KismetExpression>()).ToList();
 
         // Idempotent re-apply: remove the previous clamp block before inserting
@@ -204,7 +213,8 @@ public static class BurnStackCapKit
             throw new InvalidDataException("[burncap] unresolved jump target");
     }
 
-    private static ClampBlock BuildClampBlock(UAsset asset, FunctionExport fn, int cap)
+    private static ClampBlock BuildClampBlock(
+        UAsset asset, FunctionExport fn, int cap, bool useChangeStackCount)
     {
         var indexPtr = AddLocal(asset, fn, IndexLocal, IntProp(asset));
         var countPtr = AddLocal(asset, fn, CountLocal, IntProp(asset));
@@ -254,16 +264,27 @@ public static class BurnStackCapKit
                 Parameters = new KismetExpression[] { L(stacksPtr) },
             },
         };
-        EX_FinalFunction SetStacks(KismetExpression value) => new()
-        {
-            StackNode = setIntByName,
-            Parameters = new KismetExpression[]
+        KismetExpression SetStacks(KismetExpression value) => useChangeStackCount
+            ? new EX_Context
             {
-                L(childPtr),
-                new EX_NameConst { Value = FName.FromString(asset, "StackCount") },
-                value,
-            },
-        };
+                ObjectExpression = L(childPtr),
+                RValuePointer = new KismetPropertyPointer(new FFieldPath()),
+                ContextExpression = new EX_LocalVirtualFunction
+                {
+                    VirtualFunctionName = FName.FromString(asset, "ChangeStackCount"),
+                    Parameters = new KismetExpression[] { value },
+                },
+            }
+            : new EX_FinalFunction
+            {
+                StackNode = setIntByName,
+                Parameters = new KismetExpression[]
+                {
+                    L(childPtr),
+                    new EX_NameConst { Value = FName.FromString(asset, "StackCount") },
+                    value,
+                },
+            };
         EX_CallMath Math(FPackageIndex fnIndex, params KismetExpression[] args) => new()
         {
             StackNode = fnIndex,
@@ -434,6 +455,71 @@ public static class BurnStackCapKit
         };
     }
 
+    /// <summary>
+    /// Belt-and-suspenders display clamp: the Burn counter widget receives
+    /// <c>ComputeAggregatorStackCount()</c> directly. Wrap that argument in
+    /// <c>Min(count, cap)</c> so the visible number can never exceed the cap
+    /// even if another system writes a child stack count behind our back.
+    /// </summary>
+    private static void ClampBurnCounterDisplay(UAsset asset, FunctionExport fn, int cap)
+    {
+        var stmts = fn.ScriptBytecode
+            ?? throw new InvalidDataException("[burncap] RefreshBurnCounterWidget has no bytecode");
+        var minInt = GameplayTweaksKit.EnsureEngineFunction(asset, "KismetMathLibrary", "Min_IntInt");
+
+        for (var i = 0; i < stmts.Length; i++)
+        {
+            if (stmts[i] is not EX_Context ctx
+                || ctx.ContextExpression is not EX_LocalVirtualFunction vf
+                || vf.VirtualFunctionName.ToString() != "UpdateCount"
+                || vf.Parameters.Length != 1)
+                continue;
+
+            if (vf.Parameters[0] is EX_CallMath existing
+                && existing.StackNode is { } sn && sn.IsImport()
+                && asset.Imports[Math.Abs(sn.Index) - 1].ObjectName.ToString() == "Min_IntInt")
+            {
+                if (existing.Parameters.Length == 2
+                    && existing.Parameters[1] is EX_IntConst oldCap)
+                    oldCap.Value = cap;
+                else
+                    existing.Parameters = new KismetExpression[]
+                    {
+                        existing.Parameters.Length > 0 ? existing.Parameters[0] : new EX_IntConst { Value = cap },
+                        new EX_IntConst { Value = cap },
+                    };
+                return;
+            }
+
+            uint start = 0;
+            for (var j = 0; j < i; j++)
+                start += (uint)stmts[j].GetSize(asset);
+            uint oldSize = (uint)stmts[i].GetSize(asset);
+
+            vf.Parameters = new KismetExpression[]
+            {
+                new EX_CallMath
+                {
+                    StackNode = minInt,
+                    Parameters = new KismetExpression[]
+                    {
+                        vf.Parameters[0],
+                        new EX_IntConst { Value = cap },
+                    },
+                },
+            };
+
+            uint newSize = (uint)stmts[i].GetSize(asset);
+            if (newSize > oldSize)
+                ShiftOffsetsAtOrAfter(asset, fn, start + oldSize, newSize - oldSize);
+            else if (newSize < oldSize)
+                LuneSkillsKit.ShiftAbsoluteSigned(asset, fn, start + newSize, oldSize - newSize);
+            return;
+        }
+
+        throw new InvalidDataException("[burncap] RefreshBurnCounterWidget.UpdateCount call not found");
+    }
+
     public static bool Verify(string path, int cap)
     {
         try
@@ -441,12 +527,15 @@ public static class BurnStackCapKit
             var asset = Open(path);
             var stackChanged = FindFunction(asset, StackChangedFunction);
             var added = FindFunction(asset, AddedFunction);
-            bool stackChangedOk = VerifyFunction(asset, stackChanged, cap);
-            bool addedOk = VerifyFunction(asset, added, cap);
+            var display = FindFunction(asset, DisplayFunction);
+            bool stackChangedOk = VerifyFunction(asset, stackChanged, cap, useChangeStackCount: false);
+            bool addedOk = VerifyFunction(asset, added, cap, useChangeStackCount: true);
+            bool displayOk = VerifyDisplay(asset, display, cap);
             PartyFiveKit.VerifyJumps(asset, stackChanged);
             PartyFiveKit.VerifyJumps(asset, added);
-            Console.WriteLine($"[burncap] verify: changed={stackChangedOk} added={addedOk}");
-            return stackChangedOk && addedOk;
+            PartyFiveKit.VerifyJumps(asset, display);
+            Console.WriteLine($"[burncap] verify: changed={stackChangedOk} added={addedOk} display={displayOk}");
+            return stackChangedOk && addedOk && displayOk;
         }
         catch (Exception ex)
         {
@@ -455,7 +544,8 @@ public static class BurnStackCapKit
         }
     }
 
-    private static bool VerifyFunction(UAsset asset, FunctionExport fn, int cap)
+    private static bool VerifyFunction(
+        UAsset asset, FunctionExport fn, int cap, bool useChangeStackCount)
     {
         if (fn.ScriptBytecode is null) return false;
         var locals = (fn.LoadedProperties ?? Array.Empty<FProperty>())
@@ -467,7 +557,8 @@ public static class BurnStackCapKit
             && locals.Contains(WithoutLocal);
 
         bool hasCap = false, hasGetTeam = false, hasGetStacks = false;
-        bool hasSetStacks = false, readsStackCount = false, hasRefresh = false;
+        bool hasSetStacks = false, hasChangeStacks = false;
+        bool readsStackCount = false, hasRefresh = false;
         foreach (var st in fn.ScriptBytecode)
             MayhemFixKit.Walk(new[] { st }, e =>
             {
@@ -484,6 +575,7 @@ public static class BurnStackCapKit
                         if (n == "GetTeam") hasGetTeam = true;
                         if (n == "GetStackCount") hasGetStacks = true;
                         if (n == "RefreshBurnCounterWidget") hasRefresh = true;
+                        if (n == "ChangeStackCount") hasChangeStacks = true;
                         break;
                     case EX_FinalFunction ff when ff.StackNode is { } sn && sn.IsImport():
                         if (asset.Imports[Math.Abs(sn.Index) - 1].ObjectName.ToString()
@@ -512,8 +604,34 @@ public static class BurnStackCapKit
             && stmts[20] is EX_Jump j20 && j20.CodeOffset == starts[23]
             && stmts[24] is EX_Jump j24 && j24.CodeOffset == starts[12];
 
+        var writeOk = useChangeStackCount
+            ? hasChangeStacks
+            : hasSetStacks && readsStackCount;
         return hasLocals && hasCap && hasGetTeam && hasGetStacks
-            && hasSetStacks && readsStackCount && hasRefresh && layout;
+            && writeOk && hasRefresh && layout;
+    }
+
+    private static bool VerifyDisplay(UAsset asset, FunctionExport fn, int cap)
+    {
+        if (fn.ScriptBytecode is null) return false;
+        bool hasMin = false, hasCap = false, updates = false;
+        foreach (var st in fn.ScriptBytecode)
+            MayhemFixKit.Walk(new[] { st }, e =>
+            {
+                switch (e)
+                {
+                    case EX_CallMath cm when cm.StackNode is { } sn && sn.IsImport()
+                        && asset.Imports[Math.Abs(sn.Index) - 1].ObjectName.ToString() == "Min_IntInt":
+                        hasMin = true;
+                        if (cm.Parameters.Length == 2 && cm.Parameters[1] is EX_IntConst ic && ic.Value == cap)
+                            hasCap = true;
+                        break;
+                    case EX_LocalVirtualFunction vf when vf.VirtualFunctionName.ToString() == "UpdateCount":
+                        updates = true;
+                        break;
+                }
+            });
+        return hasMin && hasCap && updates;
     }
 
     /// <summary>Insert fixup with at-or-after semantics. An insertion exactly

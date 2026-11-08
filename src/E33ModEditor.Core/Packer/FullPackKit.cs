@@ -80,9 +80,9 @@ public static class FullPackKit
 
         public bool ForceRandomizerOn { get; set; }
 
-        /// <summary>Enable the save-point Challenges extension. Off by default
-        /// while the menu/battle integration is still being fixed.</summary>
-        public bool EnableChallenges { get; set; }
+        /// <summary>Enable the save-point Challenges extension. On by default
+        /// for the current test cycle.</summary>
+        public bool EnableChallenges { get; set; } = true;
 
         /// <summary>Enemy Burn stack cap applied by <see cref="BurnStackCapKit"/>.
         /// 0 disables the module.</summary>
