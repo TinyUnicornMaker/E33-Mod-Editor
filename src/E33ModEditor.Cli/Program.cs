@@ -8743,6 +8743,8 @@ static int CmdRebuildMod(string[] args)
 {
     var language = E33ModEditor.Core.Localization.LocalizationKit.LoadLanguage();
     string? revision = null;
+    var enableChallenges = false;
+    var burnCap = 33;
     for (var i = 1; i < args.Length; i++)
     {
         if (args[i] is "--language" or "-l")
@@ -8768,6 +8770,26 @@ static int CmdRebuildMod(string[] args)
                 return 2;
             }
             revision = args[++i];
+        }
+        else if (args[i] is "--challenges" or "--challenge")
+        {
+            if (i + 1 >= args.Length)
+            {
+                Console.Error.WriteLine("--challenges needs on/off");
+                return 2;
+            }
+            var value = args[++i];
+            enableChallenges = value.Equals("on", StringComparison.OrdinalIgnoreCase)
+                || value.Equals("true", StringComparison.OrdinalIgnoreCase)
+                || value.Equals("1", StringComparison.OrdinalIgnoreCase);
+        }
+        else if (args[i] is "--burn-cap" or "--burncap")
+        {
+            if (i + 1 >= args.Length || !int.TryParse(args[++i], out burnCap))
+            {
+                Console.Error.WriteLine("--burn-cap needs an integer (0 disables)");
+                return 2;
+            }
         }
     }
     E33ModEditor.Core.Localization.LocalizationKit.SaveLanguage(language);
@@ -8800,6 +8822,8 @@ static int CmdRebuildMod(string[] args)
         Randomizer = rando,
         Compatibility = compat,
         Language = language,
+        EnableChallenges = enableChallenges,
+        BurnStackCap = burnCap,
         PackRevisionOverride = revision,
         Log = msg => Console.WriteLine("[rebuild-mod] " + msg),
     });

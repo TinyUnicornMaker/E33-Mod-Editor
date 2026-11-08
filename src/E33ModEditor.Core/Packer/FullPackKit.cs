@@ -79,6 +79,15 @@ public static class FullPackKit
         public bool VerifyPack { get; set; } = true;
 
         public bool ForceRandomizerOn { get; set; }
+
+        /// <summary>Enable the save-point Challenges extension. Off by default
+        /// while the menu implementation is being stabilised.</summary>
+        public bool EnableChallenges { get; set; }
+
+        /// <summary>Enemy Burn stack cap applied by <see cref="BurnStackCapKit"/>.
+        /// 0 disables the module.</summary>
+        public int BurnStackCap { get; set; } = 33;
+
         public Action<string>? Log { get; set; }
         /// <summary>Donor retoc progress: done, total, current filter name.</summary>
         public Action<int, int, string>? OnExtractProgress { get; set; }
@@ -420,8 +429,17 @@ public static class FullPackKit
 
         StripUnroundtrippable(modDir, luneOn, log);
 
-        log("Challenges: Enemy Max Health, Defense and Speed options…");
-        total += ChallengeKit.Apply(modDir, log).Edits;
+        if (opt.EnableChallenges)
+        {
+            log("Challenges: Enemy Max Health, Defense and Speed options…");
+            total += ChallengeKit.Apply(modDir, log).Edits;
+        }
+
+        if (opt.BurnStackCap > 0)
+        {
+            log($"Burn cap: enemy Burn stacks capped at {opt.BurnStackCap}…");
+            total += BurnStackCapKit.Apply(modDir, opt.BurnStackCap);
+        }
 
         string? locCulture = null;
         if (language.Code != ModLocalization.English.Code)
