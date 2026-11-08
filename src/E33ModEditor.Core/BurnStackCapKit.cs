@@ -8,39 +8,47 @@ using UAssetAPI.UnrealTypes;
 namespace E33ModEditor.Core;
 
 /// <summary>
-/// Enforces a real maximum on enemy Burn stacks, not just a clamp in the damage
-/// readout. Vanilla has no max-stack field: <c>BP_BattleBuff_Burn</c> only
-/// carries <c>BurnMultiplier</c> / <c>TurnDuration</c>, and
-/// <c>BP_BattleBuffInstance.ChangeStackCount</c> stores the integer directly.
-/// The Burn-specific choke points are the aggregator's child-added and
-/// child-stack-changed events:
+/// Enforces a real maximum on the total enemy Burn stack count.
 ///
+/// <para>Burn is an aggregator buff: every application creates a new
+/// <c>BP_BattleBuff_Burn</c> child instance, and
+/// <c>BP_BattleBuffInstance_AggregatorBase.ComputeAggregatorStackCount</c> sums
+/// every child's <c>StackCount</c> for the HUD, damage and consumption paths.
+/// Capping each child individually therefore is not enough — several children
+/// can still add up to more than the cap. This kit caps the combined total.</para>
+///
+/// <para>Both Burn-specific events run the same total-cap block:</para>
 /// <list type="bullet">
 /// <item><c>OnChildBuffInstanceAdded</c> catches the common skill pattern
-/// <c>SpawnObject → ChangeStackCount(N) → ActivateBuff</c>, where the new child
-/// arrives with N stacks already set and the stack-change delegate is not bound
-/// yet.</item>
-/// <item><c>OnChildBuffInstanceStackChanged</c> catches every later stack
-/// update. This is the delegate each child Burn instance invokes from
-/// <c>BP_BattleBuffInstance.ChangeStackCount</c>.</item>
+/// <c>SpawnObject → ChangeStackCount(N) → ActivateBuff</c>, where a new child
+/// arrives already stacked and the stack-change delegate is not bound yet.</item>
+/// <item><c>OnChildBuffInstanceStackChanged</c> catches later changes.</item>
 /// </list>
 ///
-/// <para>Each event is rebuilt to:</para>
 /// <code>
 /// team = TargetCharacterStats.GetTeam()
 /// if team == player then continue with vanilla refresh
-/// i = 0
-/// while i &lt; ChildBuffInstances.Length:
+/// total = sum(child.GetStackCount() for child in ChildBuffInstances)
+/// i = ChildBuffInstances.Length - 1
+/// while i &gt;= 0 and total &gt; cap:
 ///     child = ChildBuffInstances[i]
 ///     stacks = child.GetStackCount()
-///     if cap &lt; stacks: child.ChangeStackCount(cap)
-///     i++
+///     without = total - stacks
+///     if without &gt;= cap:
+///         child.StackCount = 0
+///         total = without
+///     else:
+///         child.StackCount = cap - without
+///         total = cap
+///     i--
+/// refreshBurnCounterWidget()
 /// </code>
 ///
-/// <para>The re-entrant <c>ChangeStackCount</c> call fires the stack-changed
-/// event again; the second pass sees <c>stacks == cap</c>, so it only refreshes
-/// the HUD. This keeps the cap on the actual child instance seen by damage,
-/// consumption and UI code.</para>
+/// <para>The reductions write <c>StackCount</c> directly with
+/// <c>KismetSystemLibrary.SetIntPropertyByName</c> instead of calling
+/// <c>ChangeStackCount</c>. That avoids re-entering the stack-changed event while
+/// still leaving the real instance value, damage, consumption and HUD in sync;
+/// the event explicitly refreshes the Burn counter after the writes.</para>
 /// </summary>
 public static class BurnStackCapKit
 {
@@ -54,7 +62,10 @@ public static class BurnStackCapKit
     private const string TeamLocal = "E33_BurnCap_Team";
     private const string ChildLocal = "E33_BurnCap_Child";
     private const string StacksLocal = "E33_BurnCap_Stacks";
-    private const int ClampBlockCount = 11;
+    private const string TotalLocal = "E33_BurnCap_Total";
+    private const string WithoutLocal = "E33_BurnCap_Without";
+    private const int ClampBlockCount = 25;
+    private const int LegacyClampBlockCount = 11;
 
     public static int Apply(string modDir, int cap)
     {
@@ -74,7 +85,7 @@ public static class BurnStackCapKit
         asset.Write(path);
         if (!Verify(path, cap))
             throw new InvalidDataException($"[burncap] verification failed for {Path.GetFileName(path)}");
-        Console.WriteLine($"[burncap] {Path.GetFileName(path)}: enemy Burn stacks capped at {cap}");
+        Console.WriteLine($"[burncap] {Path.GetFileName(path)}: total enemy Burn stacks capped at {cap}");
         return 1;
     }
 
@@ -87,9 +98,13 @@ public static class BurnStackCapKit
     {
         public required List<KismetExpression> Statements { get; init; }
         public required EX_JumpIfNot PlayerGate { get; init; }
-        public required EX_JumpIfNot LoopGate { get; init; }
-        public required EX_JumpIfNot StackGate { get; init; }
-        public required EX_Jump LoopJump { get; init; }
+        public required EX_JumpIfNot SumGate { get; init; }
+        public required EX_JumpIfNot ReduceLoopGate { get; init; }
+        public required EX_JumpIfNot TotalGate { get; init; }
+        public required EX_JumpIfNot FullRemoveGate { get; init; }
+        public required EX_Jump SumJump { get; init; }
+        public required EX_Jump JumpToDecrement { get; init; }
+        public required EX_Jump ReduceJump { get; init; }
     }
 
     private static void BuildStackChanged(UAsset asset, FunctionExport fn, int cap)
@@ -108,13 +123,13 @@ public static class BurnStackCapKit
         fn.ScriptBytecode = body.ToArray();
 
         var starts = PartyFiveKit.StatementStarts(asset, body);
-        PointGates(block, starts, refreshIndex: block.Statements.Count);
+        PointGates(block, starts, doneIndex: block.Statements.Count);
     }
 
     /// <summary>
-    /// Inserts the same clamp loop in front of the vanilla "child added" body
-    /// (refresh + feedback). This catches stacks that were assigned before
-    /// <c>ActivateBuff</c> bound the child's stack-change delegate.
+    /// Inserts the total-cap block in front of the vanilla "child added" body
+    /// (refresh + feedback). This catches stacks assigned before
+    /// <c>ActivateBuff</c> binds the child's stack-change delegate.
     /// </summary>
     private static void BuildAdded(UAsset asset, FunctionExport fn, int cap)
     {
@@ -124,16 +139,24 @@ public static class BurnStackCapKit
         // Idempotent re-apply: remove the previous clamp block before inserting
         // the new cap. Vanilla's added-event tail has no jumps, but shift any
         // absolute targets anyway so this stays safe if the graph changes.
-        if (stmts.Count >= ClampBlockCount
+        if (stmts.Count >= 2
             && stmts[0] is EX_Let first
             && PartyFiveKit.FieldName(first.Value) == IndexLocal)
         {
+            // Current blocks start with index=0, total=0. The first version of
+            // this kit used index=0, count=length and had 11 statements.
+            var oldCount = stmts[1] is EX_Let second
+                && PartyFiveKit.FieldName(second.Value) == TotalLocal
+                ? ClampBlockCount
+                : LegacyClampBlockCount;
+            if (stmts.Count < oldCount)
+                throw new InvalidDataException("[burncap] malformed existing clamp block");
             uint oldSize = 0;
-            for (var i = 0; i < ClampBlockCount; i++)
+            for (var i = 0; i < oldCount; i++)
                 oldSize += (uint)stmts[i].GetSize(asset);
             fn.ScriptBytecode = stmts.ToArray();
             LuneSkillsKit.ShiftAbsoluteSigned(asset, fn, 0, oldSize);
-            stmts.RemoveRange(0, ClampBlockCount);
+            stmts.RemoveRange(0, oldCount);
         }
 
         uint blockSize = 0;
@@ -146,23 +169,38 @@ public static class BurnStackCapKit
         fn.ScriptBytecode = stmts.ToArray();
 
         var starts = PartyFiveKit.StatementStarts(asset, stmts);
-        PointGates(block, starts, refreshIndex: block.Statements.Count);
+        PointGates(block, starts, doneIndex: block.Statements.Count);
     }
 
-    private static void PointGates(ClampBlock block, List<uint> starts, int refreshIndex)
+    private static void PointGates(ClampBlock block, List<uint> starts, int doneIndex)
     {
         // Block layout:
-        // 0 index=0, 1 count, 2 team, 3 player gate, 4 loop gate,
-        // 5 get child, 6 get stacks, 7 stack gate, 8 set stacks,
-        // 9 increment, 10 loop jump. Then the caller's refresh/return tail.
-        var refreshOffset = starts[refreshIndex];
-        block.PlayerGate.CodeOffset = refreshOffset;
-        block.LoopGate.CodeOffset = refreshOffset;
-        block.StackGate.CodeOffset = starts[9];
-        block.LoopJump.CodeOffset = starts[4];
+        // 0 index=0, 1 total=0, 2 count, 3 team, 4 player gate,
+        // 5 sum gate, 6 get child, 7 get stacks, 8 total+=stacks,
+        // 9 index++, 10 sum jump, 11 index=count-1,
+        // 12 reduce gate, 13 total gate, 14 get child, 15 get stacks,
+        // 16 without=total-stacks, 17 full-remove gate,
+        // 18 StackCount=0, 19 total=without, 20 jump to decrement,
+        // 21 keep path, 22 total=cap, 23 index--, 24 reduce jump,
+        // then the caller's tail.
+        var doneOffset = starts[doneIndex];
+        block.PlayerGate.CodeOffset = doneOffset;
+        block.ReduceLoopGate.CodeOffset = doneOffset;
+        block.TotalGate.CodeOffset = doneOffset;
+        block.SumGate.CodeOffset = starts[11];
+        block.SumJump.CodeOffset = starts[5];
+        block.FullRemoveGate.CodeOffset = starts[21];
+        block.JumpToDecrement.CodeOffset = starts[23];
+        block.ReduceJump.CodeOffset = starts[12];
 
-        if (block.PlayerGate.CodeOffset == 0xFFFFFFFE || block.LoopGate.CodeOffset == 0xFFFFFFFE
-            || block.StackGate.CodeOffset == 0xFFFFFFFE || block.LoopJump.CodeOffset == 0xFFFFFFFE)
+        if (block.PlayerGate.CodeOffset == 0xFFFFFFFE
+            || block.SumGate.CodeOffset == 0xFFFFFFFE
+            || block.SumJump.CodeOffset == 0xFFFFFFFE
+            || block.ReduceLoopGate.CodeOffset == 0xFFFFFFFE
+            || block.TotalGate.CodeOffset == 0xFFFFFFFE
+            || block.FullRemoveGate.CodeOffset == 0xFFFFFFFE
+            || block.JumpToDecrement.CodeOffset == 0xFFFFFFFE
+            || block.ReduceJump.CodeOffset == 0xFFFFFFFE)
             throw new InvalidDataException("[burncap] unresolved jump target");
     }
 
@@ -172,6 +210,8 @@ public static class BurnStackCapKit
         var countPtr = AddLocal(asset, fn, CountLocal, IntProp(asset));
         var teamPtr = AddLocal(asset, fn, TeamLocal, ByteProp(asset));
         var stacksPtr = AddLocal(asset, fn, StacksLocal, IntProp(asset));
+        var totalPtr = AddLocal(asset, fn, TotalLocal, IntProp(asset));
+        var withoutPtr = AddLocal(asset, fn, WithoutLocal, IntProp(asset));
         var childPtr = AddLocal(asset, fn, ChildLocal, ChildProp(asset));
 
         var childInstancesPtr = FindInstancePtr(asset, "ChildBuffInstances");
@@ -180,16 +220,66 @@ public static class BurnStackCapKit
         var arrayGet = GameplayTweaksKit.EnsureEngineFunction(asset, "KismetArrayLibrary", "Array_Get");
         var arrayLength = GameplayTweaksKit.EnsureEngineFunction(asset, "KismetArrayLibrary", "Array_Length");
         var less = GameplayTweaksKit.EnsureEngineFunction(asset, "KismetMathLibrary", "Less_IntInt");
+        var greater = GameplayTweaksKit.EnsureEngineFunction(asset, "KismetMathLibrary", "Greater_IntInt");
+        var greaterEqual = GameplayTweaksKit.EnsureEngineFunction(asset, "KismetMathLibrary", "GreaterEqual_IntInt");
         var add = GameplayTweaksKit.EnsureEngineFunction(asset, "KismetMathLibrary", "Add_IntInt");
+        var subtract = GameplayTweaksKit.EnsureEngineFunction(asset, "KismetMathLibrary", "Subtract_IntInt");
         var notEqualByte = GameplayTweaksKit.EnsureEngineFunction(asset, "KismetMathLibrary", "NotEqual_ByteByte");
+        var setIntByName = GameplayTweaksKit.EnsureEngineFunction(asset, "KismetSystemLibrary", "SetIntPropertyByName");
 
         EX_LocalVariable L(KismetPropertyPointer p) => new() { Variable = p };
         EX_InstanceVariable Inst(KismetPropertyPointer p) => new() { Variable = ClonePtr(asset, p) };
+        EX_Context ChildAt() => new()
+        {
+            ObjectExpression = new EX_ObjectConst { Value = arrayLibCdo },
+            RValuePointer = new KismetPropertyPointer(new FFieldPath()),
+            ContextExpression = new EX_FinalFunction
+            {
+                StackNode = arrayGet,
+                Parameters = new KismetExpression[]
+                {
+                    Inst(childInstancesPtr),
+                    L(indexPtr),
+                    L(childPtr),
+                },
+            },
+        };
+        EX_Context ReadStacks() => new()
+        {
+            ObjectExpression = L(childPtr),
+            RValuePointer = new KismetPropertyPointer(new FFieldPath()),
+            ContextExpression = new EX_LocalVirtualFunction
+            {
+                VirtualFunctionName = FName.FromString(asset, "GetStackCount"),
+                Parameters = new KismetExpression[] { L(stacksPtr) },
+            },
+        };
+        EX_FinalFunction SetStacks(KismetExpression value) => new()
+        {
+            StackNode = setIntByName,
+            Parameters = new KismetExpression[]
+            {
+                L(childPtr),
+                new EX_NameConst { Value = FName.FromString(asset, "StackCount") },
+                value,
+            },
+        };
+        EX_CallMath Math(FPackageIndex fnIndex, params KismetExpression[] args) => new()
+        {
+            StackNode = fnIndex,
+            Parameters = args,
+        };
 
         var indexZero = new EX_Let
         {
             Value = indexPtr,
             Variable = L(indexPtr),
+            Expression = new EX_IntConst { Value = 0 },
+        };
+        var totalZero = new EX_Let
+        {
+            Value = totalPtr,
+            Variable = L(totalPtr),
             Expression = new EX_IntConst { Value = 0 },
         };
 
@@ -229,113 +319,118 @@ public static class BurnStackCapKit
         var playerGate = new EX_JumpIfNot
         {
             CodeOffset = 0,
-            BooleanExpression = new EX_CallMath
-            {
-                StackNode = notEqualByte,
-                Parameters = new KismetExpression[]
-                {
-                    L(teamPtr),
-                    new EX_ByteConst { Value = 1 }, // team 1 is the player side
-                },
-            },
+            BooleanExpression = Math(notEqualByte, L(teamPtr), new EX_ByteConst { Value = 1 }),
         };
 
-        var loopGate = new EX_JumpIfNot
+        var sumGate = new EX_JumpIfNot
         {
             CodeOffset = 0,
-            BooleanExpression = new EX_CallMath
-            {
-                StackNode = less,
-                Parameters = new KismetExpression[] { L(indexPtr), L(countPtr) },
-            },
+            BooleanExpression = Math(less, L(indexPtr), L(countPtr)),
         };
-
-        var getChild = new EX_Context
+        var addTotal = new EX_Let
         {
-            ObjectExpression = new EX_ObjectConst { Value = arrayLibCdo },
-            RValuePointer = new KismetPropertyPointer(new FFieldPath()),
-            ContextExpression = new EX_FinalFunction
-            {
-                StackNode = arrayGet,
-                Parameters = new KismetExpression[]
-                {
-                    Inst(childInstancesPtr),
-                    L(indexPtr),
-                    L(childPtr),
-                },
-            },
+            Value = totalPtr,
+            Variable = L(totalPtr),
+            Expression = Math(add, L(totalPtr), L(stacksPtr)),
         };
-
-        var getStacks = new EX_Context
-        {
-            ObjectExpression = L(childPtr),
-            RValuePointer = new KismetPropertyPointer(new FFieldPath()),
-            ContextExpression = new EX_LocalVirtualFunction
-            {
-                VirtualFunctionName = FName.FromString(asset, "GetStackCount"),
-                Parameters = new KismetExpression[] { L(stacksPtr) },
-            },
-        };
-        var stackGate = new EX_JumpIfNot
-        {
-            CodeOffset = 0,
-            BooleanExpression = new EX_CallMath
-            {
-                StackNode = less,
-                Parameters = new KismetExpression[]
-                {
-                    new EX_IntConst { Value = cap },
-                    L(stacksPtr),
-                },
-            },
-        };
-        var setStacks = new EX_Context
-        {
-            ObjectExpression = L(childPtr),
-            RValuePointer = new KismetPropertyPointer(new FFieldPath()),
-            ContextExpression = new EX_LocalVirtualFunction
-            {
-                VirtualFunctionName = FName.FromString(asset, "ChangeStackCount"),
-                Parameters = new KismetExpression[] { new EX_IntConst { Value = cap } },
-            },
-        };
-
-        var increment = new EX_Let
+        var sumIncrement = new EX_Let
         {
             Value = indexPtr,
             Variable = L(indexPtr),
-            Expression = new EX_CallMath
-            {
-                StackNode = add,
-                Parameters = new KismetExpression[]
-                {
-                    L(indexPtr),
-                    new EX_IntConst { Value = 1 },
-                },
-            },
+            Expression = Math(add, L(indexPtr), new EX_IntConst { Value = 1 }),
         };
-        var loopJump = new EX_Jump { CodeOffset = 0 };
+        var sumJump = new EX_Jump { CodeOffset = 0 };
+
+        var reduceStart = new EX_Let
+        {
+            Value = indexPtr,
+            Variable = L(indexPtr),
+            Expression = Math(subtract, L(countPtr), new EX_IntConst { Value = 1 }),
+        };
+        var reduceLoopGate = new EX_JumpIfNot
+        {
+            CodeOffset = 0,
+            BooleanExpression = Math(less, L(indexPtr), new EX_IntConst { Value = 0 }),
+        };
+        var totalGate = new EX_JumpIfNot
+        {
+            CodeOffset = 0,
+            BooleanExpression = Math(greater, L(totalPtr), new EX_IntConst { Value = cap }),
+        };
+        var withoutLet = new EX_Let
+        {
+            Value = withoutPtr,
+            Variable = L(withoutPtr),
+            Expression = Math(subtract, L(totalPtr), L(stacksPtr)),
+        };
+        var fullRemoveGate = new EX_JumpIfNot
+        {
+            CodeOffset = 0,
+            BooleanExpression = Math(greaterEqual, L(withoutPtr), new EX_IntConst { Value = cap }),
+        };
+        var setZero = SetStacks(new EX_IntConst { Value = 0 });
+        var totalSetWithout = new EX_Let
+        {
+            Value = totalPtr,
+            Variable = L(totalPtr),
+            Expression = L(withoutPtr),
+        };
+        var jumpToDecrement = new EX_Jump { CodeOffset = 0 };
+
+        var setKeep = SetStacks(Math(subtract,
+            new EX_IntConst { Value = cap }, L(withoutPtr)));
+        var totalSetCap = new EX_Let
+        {
+            Value = totalPtr,
+            Variable = L(totalPtr),
+            Expression = new EX_IntConst { Value = cap },
+        };
+        var decrement = new EX_Let
+        {
+            Value = indexPtr,
+            Variable = L(indexPtr),
+            Expression = Math(subtract, L(indexPtr), new EX_IntConst { Value = 1 }),
+        };
+        var reduceJump = new EX_Jump { CodeOffset = 0 };
 
         return new ClampBlock
         {
             Statements = new List<KismetExpression>
             {
-                indexZero,   // 0
-                countLet,    // 1
-                teamLet,     // 2
-                playerGate,  // 3 -> refresh
-                loopGate,    // 4 -> refresh
-                getChild,    // 5
-                getStacks,   // 6
-                stackGate,   // 7 -> increment
-                setStacks,   // 8
-                increment,   // 9
-                loopJump,    // 10 -> loopGate
+                indexZero,          // 0
+                totalZero,          // 1
+                countLet,           // 2
+                teamLet,            // 3
+                playerGate,         // 4 -> done
+                sumGate,            // 5 -> reduceStart
+                ChildAt(),          // 6
+                ReadStacks(),       // 7
+                addTotal,           // 8
+                sumIncrement,       // 9
+                sumJump,            // 10 -> sumGate
+                reduceStart,        // 11
+                reduceLoopGate,     // 12 -> done
+                totalGate,          // 13 -> done
+                ChildAt(),          // 14
+                ReadStacks(),       // 15
+                withoutLet,         // 16
+                fullRemoveGate,     // 17 -> setKeep
+                setZero,            // 18
+                totalSetWithout,    // 19
+                jumpToDecrement,    // 20 -> decrement
+                setKeep,            // 21
+                totalSetCap,        // 22
+                decrement,          // 23
+                reduceJump,         // 24 -> reduceLoopGate
             },
             PlayerGate = playerGate,
-            LoopGate = loopGate,
-            StackGate = stackGate,
-            LoopJump = loopJump,
+            SumGate = sumGate,
+            ReduceLoopGate = reduceLoopGate,
+            TotalGate = totalGate,
+            FullRemoveGate = fullRemoveGate,
+            SumJump = sumJump,
+            JumpToDecrement = jumpToDecrement,
+            ReduceJump = reduceJump,
         };
     }
 
@@ -346,8 +441,8 @@ public static class BurnStackCapKit
             var asset = Open(path);
             var stackChanged = FindFunction(asset, StackChangedFunction);
             var added = FindFunction(asset, AddedFunction);
-            bool stackChangedOk = VerifyFunction(asset, stackChanged, cap, requireVanillaTail: true);
-            bool addedOk = VerifyFunction(asset, added, cap, requireVanillaTail: false);
+            bool stackChangedOk = VerifyFunction(asset, stackChanged, cap);
+            bool addedOk = VerifyFunction(asset, added, cap);
             PartyFiveKit.VerifyJumps(asset, stackChanged);
             PartyFiveKit.VerifyJumps(asset, added);
             Console.WriteLine($"[burncap] verify: changed={stackChangedOk} added={addedOk}");
@@ -360,7 +455,7 @@ public static class BurnStackCapKit
         }
     }
 
-    private static bool VerifyFunction(UAsset asset, FunctionExport fn, int cap, bool requireVanillaTail)
+    private static bool VerifyFunction(UAsset asset, FunctionExport fn, int cap)
     {
         if (fn.ScriptBytecode is null) return false;
         var locals = (fn.LoadedProperties ?? Array.Empty<FProperty>())
@@ -368,9 +463,11 @@ public static class BurnStackCapKit
             .ToHashSet(StringComparer.Ordinal);
         bool hasLocals = locals.Contains(IndexLocal) && locals.Contains(CountLocal)
             && locals.Contains(TeamLocal) && locals.Contains(ChildLocal)
-            && locals.Contains(StacksLocal);
+            && locals.Contains(StacksLocal) && locals.Contains(TotalLocal)
+            && locals.Contains(WithoutLocal);
 
-        bool hasCap = false, hasGetTeam = false, hasChange = false, hasGetStacks = false;
+        bool hasCap = false, hasGetTeam = false, hasGetStacks = false;
+        bool hasSetStacks = false, readsStackCount = false, hasRefresh = false;
         foreach (var st in fn.ScriptBytecode)
             MayhemFixKit.Walk(new[] { st }, e =>
             {
@@ -379,19 +476,44 @@ public static class BurnStackCapKit
                     case EX_IntConst ic when ic.Value == cap:
                         hasCap = true;
                         break;
+                    case EX_NameConst nc when nc.Value.ToString() == "StackCount":
+                        readsStackCount = true;
+                        break;
                     case EX_LocalVirtualFunction vf:
                         var n = vf.VirtualFunctionName.ToString();
                         if (n == "GetTeam") hasGetTeam = true;
                         if (n == "GetStackCount") hasGetStacks = true;
-                        if (n == "ChangeStackCount") hasChange = true;
+                        if (n == "RefreshBurnCounterWidget") hasRefresh = true;
+                        break;
+                    case EX_FinalFunction ff when ff.StackNode is { } sn && sn.IsImport():
+                        if (asset.Imports[Math.Abs(sn.Index) - 1].ObjectName.ToString()
+                            == "SetIntPropertyByName")
+                            hasSetStacks = true;
                         break;
                 }
             });
 
-        bool hasTail = !requireVanillaTail
-            || fn.ScriptBytecode.Any(st => st is EX_LocalVirtualFunction vf
-                && vf.VirtualFunctionName.ToString() == "RefreshBurnCounterWidget");
-        return hasLocals && hasCap && hasGetTeam && hasGetStacks && hasChange && hasTail;
+        // Verify the block's internal jump graph explicitly. The generic
+        // "target is a statement start" check cannot catch a jump accidentally
+        // left at offset 0, which is itself a valid statement.
+        var stmts = fn.ScriptBytecode;
+        var starts = PartyFiveKit.StatementStarts(asset, stmts);
+        bool layout = stmts.Length >= ClampBlockCount
+            && stmts[0] is EX_Let first
+            && PartyFiveKit.FieldName(first.Value) == IndexLocal
+            && stmts[1] is EX_Let second
+            && PartyFiveKit.FieldName(second.Value) == TotalLocal
+            && stmts[4] is EX_JumpIfNot g4 && g4.CodeOffset == starts[ClampBlockCount]
+            && stmts[5] is EX_JumpIfNot g5 && g5.CodeOffset == starts[11]
+            && stmts[10] is EX_Jump j10 && j10.CodeOffset == starts[5]
+            && stmts[12] is EX_JumpIfNot g12 && g12.CodeOffset == starts[ClampBlockCount]
+            && stmts[13] is EX_JumpIfNot g13 && g13.CodeOffset == starts[ClampBlockCount]
+            && stmts[17] is EX_JumpIfNot g17 && g17.CodeOffset == starts[21]
+            && stmts[20] is EX_Jump j20 && j20.CodeOffset == starts[23]
+            && stmts[24] is EX_Jump j24 && j24.CodeOffset == starts[12];
+
+        return hasLocals && hasCap && hasGetTeam && hasGetStacks
+            && hasSetStacks && readsStackCount && hasRefresh && layout;
     }
 
     /// <summary>Insert fixup with at-or-after semantics. An insertion exactly

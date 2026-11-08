@@ -80,10 +80,9 @@ public static class FullPackKit
 
         public bool ForceRandomizerOn { get; set; }
 
-        /// <summary>Enable the save-point Challenges extension. On by default;
-        /// the defense/speed path patches the existing battle-manager apply
-        /// function without re-serializing its class/CDO.</summary>
-        public bool EnableChallenges { get; set; } = true;
+        /// <summary>Enable the save-point Challenges extension. Off by default
+        /// while the menu/battle integration is still being fixed.</summary>
+        public bool EnableChallenges { get; set; }
 
         /// <summary>Enemy Burn stack cap applied by <see cref="BurnStackCapKit"/>.
         /// 0 disables the module.</summary>
