@@ -387,6 +387,15 @@ public static class FullPackKit
         log("Sirène: keeping the full Tisseur-synergy moveset…");
         total += SireneKit.Apply(modDir, tweaks.SireneFullMoveset);
 
+        if (partyFive.Enabled)
+        {
+            // Only the five-member formation spreads the party wide enough for
+            // Simon's per-move random target to read as "facing the wrong way".
+            // With the vanilla three-member party his authored targeting is fine.
+            log("Simon: centre-party targeting and extra spacing…");
+            total += SimonFacingKit.Apply(modDir, log);
+        }
+
         Stage(BuildStage.QualityOfLife, 0.72, "Applying quality-of-life changes…");
 
         // Party of Five submodule: last of the asset kits so nothing restages
@@ -410,6 +419,9 @@ public static class FullPackKit
         }
 
         StripUnroundtrippable(modDir, luneOn, log);
+
+        log("Challenges: Enemy Max Health, Defense and Speed options…");
+        total += ChallengeKit.Apply(modDir, log).Edits;
 
         string? locCulture = null;
         if (language.Code != ModLocalization.English.Code)

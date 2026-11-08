@@ -71,6 +71,7 @@ BP_DA_CharacterStatsPerLevelScalingProfile
 # these donors into the pack — must be extracted or those kits silently skip.
 BP_EnemyBattle_MaskKeeper_VisagesPhase2
 BP_EnemyBattle_SireneHeart
+BP_EnemyBattle_Simon
 BP_EpicBattleSequenceActor
 BP_GradientGaugeSystem
 BP_LU_1stAttackBoost

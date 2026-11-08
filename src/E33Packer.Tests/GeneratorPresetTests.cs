@@ -155,19 +155,19 @@ public sealed class GeneratorOptionMappingTests
     [TestMethod]
     public void PackName_MatchesShippedV13Containers()
     {
-        Assert.AreEqual("_v1.3.4", GeneratorInfo.PackRevision);
-        Assert.AreEqual("ExpeditionInfinity_123456_v1.3.4_P", GeneratorInfo.PackName(123456));
-        Assert.AreEqual("ExpeditionInfinity_7539815_v1.3.4_P", GeneratorInfo.PackName(7539815));
+        Assert.AreEqual("_v1.3.5", GeneratorInfo.PackRevision);
+        Assert.AreEqual("ExpeditionInfinity_123456_v1.3.5_P", GeneratorInfo.PackName(123456));
+        Assert.AreEqual("ExpeditionInfinity_7539815_v1.3.5_P", GeneratorInfo.PackName(7539815));
     }
 
     [TestMethod]
     public void SeedLibraryFolder_IsPerSeedAndKeepsLegacyFlatLayout()
     {
         var root = Path.Combine(Path.GetTempPath(), "e33-seed-library-test");
-        Assert.AreEqual(Path.Combine(Path.GetFullPath(root), "ExpeditionInfinity_1_v1.3.4_P"),
-            FullPackKit.SeedLibraryPackDir(root, "ExpeditionInfinity_1_v1.3.4_P"));
+        Assert.AreEqual(Path.Combine(Path.GetFullPath(root), "ExpeditionInfinity_1_v1.3.5_P"),
+            FullPackKit.SeedLibraryPackDir(root, "ExpeditionInfinity_1_v1.3.5_P"));
         Assert.AreEqual(EditorPaths.ExportDir,
-            FullPackKit.SeedLibraryPackDir(null, "ExpeditionInfinity_1_v1.3.4_P"));
+            FullPackKit.SeedLibraryPackDir(null, "ExpeditionInfinity_1_v1.3.5_P"));
     }
 
     [TestMethod]
@@ -356,8 +356,8 @@ public sealed class GeneratorOptionMappingTests
         Directory.CreateDirectory(library);
         try
         {
-            var keep = "ExpeditionInfinity_123_v1.3.4_P";
-            var stale = "ExpeditionInfinity_456_v1.3.4_P";
+            var keep = "ExpeditionInfinity_123_v1.3.5_P";
+            var stale = "ExpeditionInfinity_456_v1.3.5_P";
             foreach (var name in new[] { keep, stale })
             {
                 foreach (var ext in new[] { ".pak", ".utoc", ".ucas" })
@@ -445,12 +445,12 @@ public sealed class GeneratorOptionMappingTests
         try
         {
             foreach (var ext in new[] { ".pak", ".utoc", ".ucas" })
-                File.WriteAllText(Path.Combine(target, "ExpeditionInfinity_111_v1.3.4_P" + ext), "old");
+                File.WriteAllText(Path.Combine(target, "ExpeditionInfinity_111_v1.3.5_P" + ext), "old");
 
             var files = new List<string>();
             foreach (var ext in new[] { ".utoc", ".ucas" })
             {
-                var path = Path.Combine(source, "ExpeditionInfinity_222_v1.3.4_P" + ext);
+                var path = Path.Combine(source, "ExpeditionInfinity_222_v1.3.5_P" + ext);
                 File.WriteAllText(path, "new");
                 files.Add(path);
             }
@@ -458,9 +458,9 @@ public sealed class GeneratorOptionMappingTests
             var installed = new Retoc().InstallPackAtomic(files, target, _ => { });
 
             Assert.AreEqual(2, installed.Count);
-            Assert.IsFalse(File.Exists(Path.Combine(target, "ExpeditionInfinity_111_v1.3.4_P.pak")));
-            Assert.IsTrue(File.Exists(Path.Combine(target, "ExpeditionInfinity_222_v1.3.4_P.utoc")));
-            Assert.IsTrue(File.Exists(Path.Combine(target, "ExpeditionInfinity_222_v1.3.4_P.ucas")));
+            Assert.IsFalse(File.Exists(Path.Combine(target, "ExpeditionInfinity_111_v1.3.5_P.pak")));
+            Assert.IsTrue(File.Exists(Path.Combine(target, "ExpeditionInfinity_222_v1.3.5_P.utoc")));
+            Assert.IsTrue(File.Exists(Path.Combine(target, "ExpeditionInfinity_222_v1.3.5_P.ucas")));
             Assert.AreEqual(0, Directory.EnumerateDirectories(target, ".install-backup-*").Count());
         }
         finally
@@ -481,19 +481,19 @@ public sealed class GeneratorOptionMappingTests
         try
         {
             foreach (var ext in new[] { ".pak", ".utoc", ".ucas" })
-                File.WriteAllText(Path.Combine(target, "ExpeditionInfinity_111_v1.3.4_P" + ext), "old");
+                File.WriteAllText(Path.Combine(target, "ExpeditionInfinity_111_v1.3.5_P" + ext), "old");
 
             var files = new List<string>();
             foreach (var ext in new[] { ".pak", ".utoc", ".ucas" })
             {
-                var path = Path.Combine(source, "ExpeditionInfinity_222_v1.3.4_P" + ext);
+                var path = Path.Combine(source, "ExpeditionInfinity_222_v1.3.5_P" + ext);
                 File.WriteAllText(path, "new");
                 files.Add(path);
             }
 
             // Force the commit to fail after the old trio is moved aside.
             Directory.CreateDirectory(Path.Combine(target,
-                "ExpeditionInfinity_222_v1.3.4_P.utoc"));
+                "ExpeditionInfinity_222_v1.3.5_P.utoc"));
 
             var failed = false;
             try { new Retoc().InstallPackAtomic(files, target, _ => { }); }
@@ -502,7 +502,7 @@ public sealed class GeneratorOptionMappingTests
             Assert.IsTrue(failed);
             foreach (var ext in new[] { ".pak", ".utoc", ".ucas" })
             {
-                var old = Path.Combine(target, "ExpeditionInfinity_111_v1.3.4_P" + ext);
+                var old = Path.Combine(target, "ExpeditionInfinity_111_v1.3.5_P" + ext);
                 Assert.IsTrue(File.Exists(old));
                 Assert.AreEqual("old", File.ReadAllText(old));
             }
@@ -526,7 +526,7 @@ public sealed class GeneratorOptionMappingTests
             var files = new List<string>();
             foreach (var ext in new[] { ".pak", ".utoc", ".ucas" })
             {
-                var path = Path.Combine(source, "ExpeditionInfinity_1_v1.3.4_P" + ext);
+                var path = Path.Combine(source, "ExpeditionInfinity_1_v1.3.5_P" + ext);
                 File.WriteAllText(path, ext);
                 files.Add(path);
             }
