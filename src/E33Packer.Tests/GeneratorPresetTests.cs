@@ -39,6 +39,7 @@ public sealed class GeneratorPresetTests
         Assert.IsTrue(tweaks.CritRateDamageScaling);
         Assert.IsFalse(tweaks.Permadeath);
         Assert.IsFalse(tweaks.InstantPictoMastery);
+        Assert.IsTrue(tweaks.LimitPictoPopups);
         Assert.AreEqual(5, tweaks.PictoPopupCap);
         Assert.AreEqual("none", profile.QoL.PictoMastery);
         Assert.IsTrue(profile.Balance.BuffRegularEnemies);
@@ -155,9 +156,9 @@ public sealed class GeneratorOptionMappingTests
     [TestMethod]
     public void PackName_MatchesShippedV13Containers()
     {
-        Assert.AreEqual("_v1.3.5", GeneratorInfo.PackRevision);
-        Assert.AreEqual("ExpeditionInfinity_123456_v1.3.5_P", GeneratorInfo.PackName(123456));
-        Assert.AreEqual("ExpeditionInfinity_7539815_v1.3.5_P", GeneratorInfo.PackName(7539815));
+        Assert.AreEqual("_v1.3.6", GeneratorInfo.PackRevision);
+        Assert.AreEqual("ExpeditionInfinity_123456_v1.3.6_P", GeneratorInfo.PackName(123456));
+        Assert.AreEqual("ExpeditionInfinity_7539815_v1.3.6_P", GeneratorInfo.PackName(7539815));
     }
 
     [TestMethod]
@@ -193,6 +194,55 @@ public sealed class GeneratorOptionMappingTests
         var on = profile.Balance.ToTweaks(profile.QoL);
         Assert.IsTrue(on.InstantPictoMastery);
         Assert.IsFalse(on.AutoPictoMastery);
+    }
+
+    [TestMethod]
+    [DoNotParallelize]
+    public void ExtractionFolder_LinkMovesCacheBothWays()
+    {
+        var root = Path.Combine(AppContext.BaseDirectory,
+            "e33-extraction-" + Guid.NewGuid().ToString("N"));
+        var previous = Environment.GetEnvironmentVariable("E33_DATA_ROOT");
+        try
+        {
+            Directory.CreateDirectory(root);
+            Environment.SetEnvironmentVariable("E33_DATA_ROOT", root);
+            var app = new AppSettings();
+            app.PrepareExtractionFolder();
+
+            var defaultTables = Path.Combine(root, "work", "tables");
+            File.WriteAllText(Path.Combine(defaultTables, "marker.txt"), "x");
+
+            var custom = Path.Combine(root, "custom-tables");
+            app.ExtractionFolder = custom;
+            app.PrepareExtractionFolder();
+            Assert.IsTrue(File.Exists(Path.Combine(custom, "marker.txt")));
+            Assert.IsTrue(File.Exists(Path.Combine(defaultTables, "marker.txt")));
+
+            app.ClearExtractionFolder();
+            Assert.IsTrue(File.Exists(Path.Combine(defaultTables, "marker.txt")));
+            Assert.IsTrue(app.UsesDefaultExtractionFolder);
+        }
+        finally
+        {
+            Environment.SetEnvironmentVariable("E33_DATA_ROOT", previous);
+            try { Directory.Delete(root, true); } catch { /* best effort */ }
+        }
+    }
+
+    [TestMethod]
+    public void BattleProcCards_ZeroMeansHideAll_AndToggleRestoresVanilla()
+    {
+        var profile = GeneratorPresets.Create(GeneratorPresets.Expedition);
+        profile.QoL.LimitBattleProcCards = true;
+        profile.QoL.PictoPopupCap = 0;
+        var hidden = profile.Balance.ToTweaks(profile.QoL);
+        Assert.IsTrue(hidden.LimitPictoPopups);
+        Assert.AreEqual(0, hidden.PictoPopupCap);
+
+        profile.QoL.LimitBattleProcCards = false;
+        var vanilla = profile.Balance.ToTweaks(profile.QoL);
+        Assert.IsFalse(vanilla.LimitPictoPopups);
     }
 
     [TestMethod]

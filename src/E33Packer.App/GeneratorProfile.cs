@@ -10,7 +10,7 @@ namespace E33Packer.App;
 /// </summary>
 public sealed class GeneratorProfile
 {
-    public const int CurrentFormat = 2;
+    public const int CurrentFormat = 3;
     public int Format { get; set; } = CurrentFormat;
     public string Name { get; set; } = "Expedition Infinity";
     public int Seed { get; set; } = 123456;
@@ -108,7 +108,8 @@ public sealed class BalanceOptions
             SireneFullMoveset = qol.SireneFullMoveset,
             AutoPictoMastery = mastery == "onebattle",
             InstantPictoMastery = mastery == "instant",
-            PictoPopupCap = Math.Clamp(qol.PictoPopupCap, PictoPopupCapKit.VanillaCap,
+            LimitPictoPopups = qol.LimitBattleProcCards,
+            PictoPopupCap = Math.Clamp(qol.PictoPopupCap, PictoPopupCapKit.MinCap,
                 PictoPopupCapKit.MaxCap),
             BuffRegularEnemies = BuffRegularEnemies,
             RegularEnemyHpBonus = ClampBonusArray(RegularEnemyHpBonus, RegularEnemyBuffKit.DefaultHpBonus),
@@ -135,6 +136,8 @@ public sealed class QoLOptions
 {
     /// <summary>"instant" or "none". Off is the Expedition Infinity default.</summary>
     public string PictoMastery { get; set; } = "none";
+    /// <summary>When off the vanilla unlimited battle-proc stack is used.</summary>
+    public bool LimitBattleProcCards { get; set; } = true;
     public int PictoPopupCap { get; set; } = PictoPopupCapKit.DefaultCap;
     /// <summary>Vanilla light-stain substitution is off in the standard 1.3
     /// preset; Easy Mode can opt back in from the Quality of Life tab.</summary>

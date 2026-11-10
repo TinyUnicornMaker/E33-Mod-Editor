@@ -83,7 +83,11 @@ public static class DonorExtract
         }
         try
         {
-            var root = Path.GetPathRoot(Path.GetFullPath(EditorPaths.RepoRoot));
+            var tables = Path.Combine(EditorPaths.RepoRoot, "work", "tables");
+            // Follow the extraction-folder link so the free-space check looks at
+            // the drive that will actually receive the cache.
+            var resolved = Directory.ResolveLinkTarget(tables, true)?.FullName ?? tables;
+            var root = Path.GetPathRoot(Path.GetFullPath(resolved));
             if (!string.IsNullOrEmpty(root))
             {
                 var required = Math.Max(256L * 1024 * 1024,

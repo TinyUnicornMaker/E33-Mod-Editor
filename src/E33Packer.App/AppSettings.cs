@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -7,6 +8,14 @@ public sealed class AppSettings
 {
     public string? GameFolder { get; set; }
     public string? ModsFolder { get; set; }
+
+    /// <summary>
+    /// Optional folder for the one-time donor extraction. Defaults to
+    /// <c>work/tables</c> inside <see cref="DataRoot"/>. The extractor and every
+    /// donor lookup still use <c>work/tables</c>; when a custom folder is chosen
+    /// that path is transparently linked to this one.
+    /// </summary>
+    public string? ExtractionFolder { get; set; }
     public int Seed { get; set; } = 123456;
     public string ProfileName { get; set; } = GeneratorPresets.Expedition;
     public string Language { get; set; } = "en";
@@ -47,6 +56,168 @@ public sealed class AppSettings
                 }
             }
             return Path.GetFullPath(AppContext.BaseDirectory);
+        }
+    }
+
+    /// <summary>The folder that holds the extracted game data (donor cache).</summary>
+    [JsonIgnore]
+    public string ExtractionTablesFolder =>
+        string.IsNullOrWhiteSpace(ExtractionFolder)
+            ? Path.Combine(DataRoot, "work", "tables")
+            : Path.GetFullPath(ExtractionFolder);
+
+    [JsonIgnore]
+    public bool UsesDefaultExtractionFolder =>
+        string.Equals(
+            Path.GetFullPath(ExtractionTablesFolder),
+            Path.GetFullPath(Path.Combine(DataRoot, "work", "tables")),
+            StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>
+    /// Points <c>work/tables</c> at <see cref="ExtractionTablesFolder"/> so the
+    /// existing donor lookups keep working unchanged. Existing cache contents
+    /// follow the user when the folder changes. Throws with an actionable
+    /// message when the link cannot be created (permissions, network drive).
+    /// </summary>
+    public void PrepareExtractionFolder()
+    {
+        var linkPath = Path.GetFullPath(Path.Combine(DataRoot, "work", "tables"));
+        var targetPath = Path.GetFullPath(ExtractionTablesFolder);
+        var parent = Path.GetDirectoryName(linkPath)!;
+        Directory.CreateDirectory(parent);
+
+        if (PathsEqual(linkPath, targetPath))
+        {
+            if (IsDirectoryLink(linkPath))
+            {
+                var oldTarget = ResolveDirectoryLink(linkPath);
+                Directory.Delete(linkPath);
+                Directory.CreateDirectory(linkPath);
+                if (oldTarget is not null && !PathsEqual(oldTarget, linkPath))
+                    MoveContents(oldTarget, linkPath);
+            }
+            else
+            {
+                Directory.CreateDirectory(linkPath);
+            }
+            return;
+        }
+
+        Directory.CreateDirectory(targetPath);
+
+        if (IsDirectoryLink(linkPath))
+        {
+            var oldTarget = ResolveDirectoryLink(linkPath);
+            if (oldTarget is not null && PathsEqual(oldTarget, targetPath)) return;
+            Directory.Delete(linkPath);
+            if (oldTarget is not null && Directory.Exists(oldTarget) &&
+                !PathsEqual(oldTarget, targetPath))
+                MoveContents(oldTarget, targetPath);
+        }
+        else if (Directory.Exists(linkPath))
+        {
+            MoveContents(linkPath, targetPath);
+            Directory.Delete(linkPath);
+        }
+        else if (File.Exists(linkPath))
+        {
+            throw new IOException(linkPath + " is a file, not a folder.");
+        }
+
+        CreateDirectoryLink(linkPath, targetPath);
+    }
+
+    /// <summary>Restores the default extraction folder.</summary>
+    public void ClearExtractionFolder()
+    {
+        ExtractionFolder = null;
+        PrepareExtractionFolder();
+    }
+
+    private static bool PathsEqual(string a, string b) =>
+        string.Equals(
+            Path.GetFullPath(a).TrimEnd(Path.DirectorySeparatorChar),
+            Path.GetFullPath(b).TrimEnd(Path.DirectorySeparatorChar),
+            StringComparison.OrdinalIgnoreCase);
+
+    private static bool IsDirectoryLink(string path)
+    {
+        try
+        {
+            return Directory.Exists(path) &&
+                   (File.GetAttributes(path) & FileAttributes.ReparsePoint) != 0;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static string? ResolveDirectoryLink(string path)
+    {
+        try { return Directory.ResolveLinkTarget(path, true)?.FullName; }
+        catch { return null; }
+    }
+
+    private static void CreateDirectoryLink(string linkPath, string targetPath)
+    {
+        try
+        {
+            if (OperatingSystem.IsWindows())
+            {
+                try
+                {
+                    Directory.CreateSymbolicLink(linkPath, targetPath);
+                    return;
+                }
+                catch
+                {
+                    using var p = Process.Start(new ProcessStartInfo
+                    {
+                        FileName = "cmd.exe",
+                        Arguments = $"/c mklink /J \"{linkPath}\" \"{targetPath}\"",
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                    });
+                    p?.WaitForExit();
+                    if (p is { ExitCode: 0 } && Directory.Exists(linkPath)) return;
+                }
+            }
+            else
+            {
+                Directory.CreateSymbolicLink(linkPath, targetPath);
+                return;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new IOException(
+                $"Could not link {linkPath} to {targetPath}: {ex.Message}", ex);
+        }
+        throw new IOException($"Could not link {linkPath} to {targetPath}.");
+    }
+
+    private static void MoveContents(string source, string target)
+    {
+        Directory.CreateDirectory(target);
+        foreach (var entry in Directory.EnumerateFileSystemEntries(source))
+        {
+            var name = Path.GetFileName(entry);
+            var dest = Path.Combine(target, name);
+            if (Directory.Exists(entry))
+            {
+                if (Directory.Exists(dest))
+                    MoveContents(entry, dest);
+                else
+                    Directory.Move(entry, dest);
+            }
+            else
+            {
+                if (File.Exists(dest)) File.Delete(dest);
+                File.Move(entry, dest);
+            }
         }
     }
 

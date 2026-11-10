@@ -2969,13 +2969,18 @@ static int CmdPopupCapSmoke(string[] args)
     path = FileCopy.FindUnder(dir, PictoPopupCapKit.AssetStem + ".uasset")!;
     Check(PictoPopupCapKit.Verify(path, cap2), $"guard verifies after cap update to {cap2}");
 
-    // 0 = vanilla: the widget must disappear from the pack.
+    // 0 is a real cap: every proc returns before a card is created.
+    PictoPopupCapKit.Apply(dir, 0);
+    path = FileCopy.FindUnder(dir, PictoPopupCapKit.AssetStem + ".uasset")!;
+    Check(PictoPopupCapKit.Verify(path, 0), "guard verifies at cap 0 (hide all cards)");
+
+    // null = vanilla: the widget must disappear from the pack.
     if (args.Contains("--keep")) Console.WriteLine("ok   kept staged widget for inspection");
     else
     {
-        PictoPopupCapKit.Apply(dir, 0);
+        PictoPopupCapKit.Apply(dir, null);
         Check(FileCopy.FindUnder(dir, PictoPopupCapKit.AssetStem + ".uasset") is null,
-            "cap 0 removes the widget");
+            "null cap removes the widget");
     }
 
     Console.WriteLine(fails == 0 ? "popup-cap-smoke OK" : $"popup-cap-smoke FAILED ({fails})");
@@ -3212,7 +3217,8 @@ static int CmdTweaksSmoke(string[] args)
         DisableTutorials = false,
         MaskKeeperFullMoveset = false,
         SireneFullMoveset = false,
-        PictoPopupCap = GameplayTweaksKit.VanillaPictoPopupCap,
+        LimitPictoPopups = false,
+        PictoPopupCap = GameplayTweaksKit.MinPictoPopupCap,
     };
     if (!vanilla.IsVanilla)
     {
@@ -3243,7 +3249,8 @@ static int CmdTweaksSmoke(string[] args)
         DisableTutorials = false,
         MaskKeeperFullMoveset = false,
         SireneFullMoveset = false,
-        PictoPopupCap = GameplayTweaksKit.VanillaPictoPopupCap,
+        LimitPictoPopups = false,
+        PictoPopupCap = GameplayTweaksKit.MinPictoPopupCap,
     };
 
     void CheckCrit(string label, GameplayTweaksKit.Settings settings)

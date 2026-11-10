@@ -91,10 +91,15 @@ internal static class GameplayTweaksPanels
                 "AddPassiveEffectNotification: when the container's live-card map already holds this many cards, " +
                 "the proc is dropped instead of spawning another card (a repeat proc of a visible card is " +
                 "ignored while full, which only skips its counter tick). A dropped passive can appear again once " +
-                "a card expires. 0 is vanilla (no cap, widget not staged). The cap covers every passive/buff " +
-                "popup, not only pictos."),
-            IntNumber("Maximum simultaneous proc cards (0 = vanilla)", s.PictoPopupCap,
-                GameplayTweaksKit.VanillaPictoPopupCap, PictoPopupCapKit.MaxCap, v =>
+                "a card expires. The cap covers every passive/buff popup, not only pictos. Turn the limit off for " +
+                "vanilla's unlimited stack; with it on, 0 hides every proc card."),
+            Toggle("Limit battle proc cards", s.LimitPictoPopups, v =>
+            {
+                s.LimitPictoPopups = v;
+                vm.SaveGameplayTweaks();
+            }),
+            IntNumber("Maximum simultaneous proc cards", s.PictoPopupCap,
+                GameplayTweaksKit.MinPictoPopupCap, PictoPopupCapKit.MaxCap, v =>
                 {
                     s.PictoPopupCap = v;
                     vm.SaveGameplayTweaks();

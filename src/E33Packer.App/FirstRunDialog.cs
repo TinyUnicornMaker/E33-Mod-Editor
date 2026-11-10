@@ -17,7 +17,8 @@ internal static class FirstRunDialog
     private static readonly IBrush Muted = new SolidColorBrush(Color.Parse("#FF9C9280"));
 
     public static async Task<bool> ConfirmExtractionAsync(
-        Window owner, int have, int total, string targetDir)
+        Window owner, int have, int total, string targetDir,
+        Func<Task<string?>>? chooseFolder = null)
     {
         var resuming = have > 0 && have < total;
         var missing = Math.Max(0, total - have);
@@ -53,6 +54,36 @@ internal static class FirstRunDialog
             ? T("Existing game data is reused; nothing is downloaded again.")
             : T("This is a one-time setup step.");
 
+        var targetView = new SelectableTextBlock
+        {
+            Text = targetDir,
+            TextWrapping = TextWrapping.Wrap,
+            Foreground = Cream,
+            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
+            FontSize = 12,
+        };
+        var change = new Button
+        {
+            Content = T("Change…"),
+            Padding = new Thickness(10, 3),
+            HorizontalAlignment = HorizontalAlignment.Left,
+        };
+        ToolTip.SetTip(change, T("Choose a different folder for the extracted game data."));
+        change.Click += async (_, _) =>
+        {
+            if (chooseFolder is null) return;
+            change.IsEnabled = false;
+            try
+            {
+                var chosen = await chooseFolder();
+                if (!string.IsNullOrWhiteSpace(chosen)) targetView.Text = chosen;
+            }
+            finally
+            {
+                change.IsEnabled = true;
+            }
+        };
+
         dialog.Content = new StackPanel
         {
             Margin = new Thickness(24),
@@ -81,12 +112,12 @@ internal static class FirstRunDialog
                     Text = resuming
                         ? T("• Only the missing items are read") + "\n" +
                           T("• Usually quick") + "\n" +
-                          T("• Stored inside this application's folder") + "\n" +
+                          T("• Stored in the folder shown below") + "\n" +
                           T("• Quit Expedition 33 before continuing") + "\n" +
                           T("• No game files are modified")
                         : T("• About 1.2 GB of files") + "\n" +
                           T("• Usually 5–15 minutes, depending on the drive") + "\n" +
-                          T("• Stored inside this application's folder") + "\n" +
+                          T("• Stored in the folder shown below") + "\n" +
                           T("• Quit Expedition 33 before continuing") + "\n" +
                           T("• No game files are modified"),
                     TextWrapping = TextWrapping.Wrap,
@@ -108,14 +139,8 @@ internal static class FirstRunDialog
                     FontSize = 12,
                     Margin = new Thickness(0, 4, 0, 0),
                 },
-                new SelectableTextBlock
-                {
-                    Text = targetDir,
-                    TextWrapping = TextWrapping.Wrap,
-                    Foreground = Cream,
-                    FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
-                    FontSize = 12,
-                },
+                targetView,
+                change,
                 new TextBlock
                 {
                     Text = T("If you cancel, the generator will ask again before the first build or the next launch. You can still choose a seed, profile and language."),

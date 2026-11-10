@@ -34,6 +34,7 @@ public sealed partial class MainWindow : Window
 
     private readonly TextBox _gameBox;
     private readonly TextBox _modsBox;
+    private SelectableTextBlock? _extractionLabel;
     private TextBox _seedBox = null!;
     private readonly TextBox _log;
     private readonly TextBlock _status;
@@ -247,6 +248,7 @@ public sealed partial class MainWindow : Window
     {
         try
         {
+            app.PrepareExtractionFolder();
             var gameRoot = GameLocator.NormalizeGameRoot(app.GameFolder);
             var paks = gameRoot is null
                 ? EditorPaths.PaksDir
@@ -468,6 +470,38 @@ public sealed partial class MainWindow : Window
         Grid.SetColumn(useDefault, 3);
         modsRow.Children.Add(useDefault);
         stack.Children.Add(modsRow);
+
+        var extractionRow = new Grid
+        {
+            ColumnDefinitions = ColumnDefinitions.Parse("170,*,Auto,Auto"),
+            Margin = new Thickness(0, 2),
+        };
+        extractionRow.Children.Add(Label(T("Game data folder"), 170,
+            T("Where the one-time game data extraction (~1.2 GB) is stored.")));
+        _extractionLabel = new SelectableTextBlock
+        {
+            Text = _app.ExtractionTablesFolder,
+            Foreground = Cream,
+            FontSize = 12,
+            TextWrapping = TextWrapping.Wrap,
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+        ToolTip.SetTip(_extractionLabel,
+            T("The extractor reads your game files once and keeps them here. Changing this folder moves the existing cache."));
+        Grid.SetColumn(_extractionLabel, 1);
+        extractionRow.Children.Add(_extractionLabel);
+        var browseExtraction = new Button { Content = T("Change…"), Margin = new Thickness(6, 0, 0, 0) };
+        ToolTip.SetTip(browseExtraction, T("Choose a different folder for the extracted game data."));
+        browseExtraction.Click += async (_, _) => await BrowseExtractionAsync();
+        Grid.SetColumn(browseExtraction, 2);
+        extractionRow.Children.Add(browseExtraction);
+        var defaultExtraction = new Button { Content = T("Use default"), Margin = new Thickness(6, 0, 0, 0) };
+        ToolTip.SetTip(defaultExtraction,
+            T("Store the extracted game data in work/tables inside the application folder."));
+        defaultExtraction.Click += (_, _) => UseDefaultExtraction();
+        Grid.SetColumn(defaultExtraction, 3);
+        extractionRow.Children.Add(defaultExtraction);
+        stack.Children.Add(extractionRow);
 
         var profileRow = new WrapPanel { Orientation = Orientation.Horizontal };
         void AddProfile(Control child)
@@ -826,12 +860,13 @@ public sealed partial class MainWindow : Window
 
         try
         {
+            _app.PrepareExtractionFolder();
             EditorPaths.Configure(AppSettings.DataRoot, paks, AppContext.BaseDirectory, mods);
         }
         catch (Exception ex)
         {
             _status.Text = T("The application folder is not writable.");
-            Append("Cannot create the extraction folders under " + AppSettings.DataRoot);
+            Append("Cannot create the extraction folders under " + _app.ExtractionTablesFolder);
             Append(ex.Message);
             return;
         }
@@ -847,8 +882,9 @@ public sealed partial class MainWindow : Window
         _app.ExtractionWarningShown = true;
         _app.Save();
 
-        var target = Path.Combine(AppSettings.DataRoot, "work", "tables");
-        if (!await FirstRunDialog.ConfirmExtractionAsync(this, have, total, target))
+        var target = _app.ExtractionTablesFolder;
+        if (!await FirstRunDialog.ConfirmExtractionAsync(
+                this, have, total, target, ChangeExtractionFolderAsync))
         {
             _status.Text = T("Game data extraction skipped. The first build will ask again.");
             Append("Extraction cancelled. No game data was copied.");
@@ -866,6 +902,7 @@ public sealed partial class MainWindow : Window
     {
         try
         {
+            _app.PrepareExtractionFolder();
             EditorPaths.Configure(AppSettings.DataRoot, paks, AppContext.BaseDirectory, mods);
         }
         catch (Exception ex)
@@ -879,8 +916,9 @@ public sealed partial class MainWindow : Window
         var (have, total) = DonorExtract.CacheStatus();
         if (total == 0 || have >= total) return true;
 
-        var target = Path.Combine(AppSettings.DataRoot, "work", "tables");
-        if (!await FirstRunDialog.ConfirmExtractionAsync(this, have, total, target))
+        var target = _app.ExtractionTablesFolder;
+        if (!await FirstRunDialog.ConfirmExtractionAsync(
+                this, have, total, target, ChangeExtractionFolderAsync))
         {
             _status.Text = T("Build cancelled before extraction.");
             Append("Game data extraction cancelled; no seed was built.");
@@ -905,7 +943,7 @@ public sealed partial class MainWindow : Window
         _extractDetail.Text = T("Checking which game files are needed…");
         _overlay.IsVisible = true;
         _status.Text = T("Extracting game data. This can take several minutes; keep the app open.");
-        Append("Preparing game data in " + Path.Combine(AppSettings.DataRoot, "work", "tables"));
+        Append("Preparing game data in " + _app.ExtractionTablesFolder);
 
         try
         {
@@ -949,7 +987,11 @@ public sealed partial class MainWindow : Window
 
     private void SetSettingsEnabled(bool enabled)
     {
-        _tabs.IsEnabled = enabled;
+        // Keep the tab headers clickable while a build runs; only the editable
+        // content is locked. Disabling the whole TabControl made it impossible
+        // to switch tabs during a build.
+        foreach (var item in _tabs.Items.OfType<TabItem>())
+            if (item.Content is Control content) content.IsEnabled = enabled;
         _presetBox.IsEnabled = enabled;
         _gameBox.IsEnabled = enabled;
         _modsBox.IsEnabled = enabled;
@@ -1204,6 +1246,81 @@ public sealed partial class MainWindow : Window
         _modsBox.Text = folders[0].Path.LocalPath;
     }
 
+    private async Task BrowseExtractionAsync()
+    {
+        if (_busy) return;
+        var path = await PickExtractionFolderAsync();
+        if (path is not null) ApplyExtractionFolder(path);
+    }
+
+    /// <summary>Folder picker used by the setup row and the first-run dialog.</summary>
+    private async Task<string?> ChangeExtractionFolderAsync()
+    {
+        if (_busy) return null;
+        var path = await PickExtractionFolderAsync();
+        return path is null ? null : ApplyExtractionFolder(path);
+    }
+
+    private async Task<string?> PickExtractionFolderAsync()
+    {
+        var folders = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
+        {
+            Title = T("Choose the game data folder"),
+            AllowMultiple = false,
+        });
+        return folders.Count == 0 ? null : folders[0].Path.LocalPath;
+    }
+
+    /// <summary>Returns the folder now in use, or null when it could not be prepared.</summary>
+    private string? ApplyExtractionFolder(string path)
+    {
+        var previous = _app.ExtractionFolder;
+        try
+        {
+            _app.ExtractionFolder = Path.GetFullPath(path);
+            _app.PrepareExtractionFolder();
+            _app.Save();
+            RefreshExtractionLabel();
+            _status.Text = T("Game data folder changed.");
+            return _app.ExtractionTablesFolder;
+        }
+        catch (Exception ex)
+        {
+            _app.ExtractionFolder = previous;
+            try { _app.PrepareExtractionFolder(); } catch { /* restore best effort */ }
+            Append("Extraction folder error: " + ex.Message);
+            _status.Text = T("Could not use that extraction folder.");
+            return null;
+        }
+    }
+
+    private void UseDefaultExtraction()
+    {
+        if (_busy) return;
+        try
+        {
+            _app.ClearExtractionFolder();
+            _app.Save();
+            RefreshExtractionLabel();
+            _status.Text = T("Game data folder changed.");
+        }
+        catch (Exception ex)
+        {
+            Append("Extraction folder error: " + ex.Message);
+            _status.Text = T("Could not use that extraction folder.");
+        }
+    }
+
+    private void RefreshExtractionLabel()
+    {
+        if (_extractionLabel is null) return;
+        _extractionLabel.Text = _app.ExtractionTablesFolder;
+        ToolTip.SetTip(_extractionLabel,
+            _app.UsesDefaultExtractionFolder
+                ? T("The extractor reads your game files once and keeps them here. This is the default application folder.")
+                : T("The extractor reads your game files once and keeps them here. Changing this folder moves the existing cache."));
+    }
+
     private async Task SaveProfileAsync()
     {
         var file = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
@@ -1409,7 +1526,11 @@ public sealed partial class MainWindow : Window
                 : "none";
         if (p.Name == GeneratorPresets.Expedition) p.QoL.PictoMastery = "none";
         p.QoL.PictoPopupCap = Math.Clamp(p.QoL.PictoPopupCap,
-            PictoPopupCapKit.VanillaCap, PictoPopupCapKit.MaxCap);
+            PictoPopupCapKit.MinCap, PictoPopupCapKit.MaxCap);
+        // Format 2 used 0 to mean "vanilla" because there was no toggle. Keep
+        // those profiles vanilla instead of suddenly hiding every proc card.
+        if (legacyFormat)
+            p.QoL.LimitBattleProcCards = p.QoL.PictoPopupCap > 0;
         p.QoL.BulkUpgradeLevels = Math.Clamp(p.QoL.BulkUpgradeLevels, 1,
             WeaponBulkUpgradeKit.BulkLevels);
         p.QoL.SkipTutorials = true;

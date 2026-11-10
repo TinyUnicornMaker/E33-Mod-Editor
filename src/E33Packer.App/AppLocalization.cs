@@ -121,6 +121,21 @@ internal static class AppLocalization
                 ["Choose a different install folder."] = "Choisir un autre dossier d'installation.",
                 ["Use default"] = "Utiliser par défaut",
                 ["Use the game's standard mod folder (~mods)."] = "Utiliser le dossier de mods standard du jeu (~mods).",
+                ["Game data folder"] = "Dossier des données du jeu",
+                ["Where the one-time game data extraction (~1.2 GB) is stored."] =
+                    "Emplacement de l'extraction unique des données du jeu (~1,2 Go).",
+                ["The extractor reads your game files once and keeps them here. Changing this folder moves the existing cache."] =
+                    "L'extracteur lit une fois les fichiers du jeu et les conserve ici. Changer ce dossier déplace le cache existant.",
+                ["The extractor reads your game files once and keeps them here. This is the default application folder."] =
+                    "L'extracteur lit une fois les fichiers du jeu et les conserve ici. C'est le dossier par défaut de l'application.",
+                ["Choose a different folder for the extracted game data."] =
+                    "Choisir un autre dossier pour les données du jeu extraites.",
+                ["Store the extracted game data in work/tables inside the application folder."] =
+                    "Stocker les données extraites dans work/tables, dans le dossier de l'application.",
+                ["Choose the game data folder"] = "Choisir le dossier des données du jeu",
+                ["Game data folder changed."] = "Dossier des données du jeu modifié.",
+                ["Could not use that extraction folder."] = "Impossible d'utiliser ce dossier d'extraction.",
+                ["Change…"] = "Changer…",
                 ["Profile"] = "Profil",
                 ["Save or load your seed settings."] = "Enregistrer ou charger vos réglages de graine.",
                 ["Save profile…"] = "Enregistrer le profil…",
@@ -359,9 +374,12 @@ internal static class AppLocalization
                 ["A found picto is mastered immediately. It does not grant pictos you have not found."] =
                     "Un picto trouvé est immédiatement maîtrisé. Cela ne donne pas de pictos non trouvés.",
                 ["Battle proc cards"] = "Cartes de proc en combat",
-                ["Max battle proc cards (0 = vanilla)"] = "Cartes de proc en combat max. (0 = origine)",
-                ["Limits how many picto/passive cards can stack on screen during battle. 0 leaves it vanilla."] =
-                    "Limite le nombre de cartes de picto/passif affichées pendant le combat. 0 laisse d'origine.",
+                ["Limit battle proc cards"] = "Limiter les cartes de proc en combat",
+                ["When off, the vanilla unlimited stack is used. When on, the number below is the maximum; 0 hides every proc card."] =
+                    "Désactivé : la pile illimitée d'origine est utilisée. Activé : le nombre ci-dessous est le maximum ; 0 masque toutes les cartes de proc.",
+                ["Max battle proc cards"] = "Cartes de proc en combat max.",
+                ["Limits how many picto/passive cards can stack on screen during battle. Set 0 to hide them completely."] =
+                    "Limite le nombre de cartes de picto/passif affichées pendant le combat. Mettez 0 pour les masquer complètement.",
                 ["Tutorials and stains"] = "Tutoriels et teintes",
                 ["Skip tutorials"] = "Ignorer les tutoriels",
                 ["Tutorial fights are replaced by their normal enemy versions."] =
@@ -414,7 +432,7 @@ internal static class AppLocalization
                     "La plupart des données du jeu sont déjà prêtes. Il reste {0} élément(s) sur {1} à lire.",
                 ["• About 1.2 GB of files"] = "• Environ 1,2 Go de fichiers",
                 ["• Usually 5–15 minutes, depending on the drive"] = "• Généralement 5 à 15 minutes selon le disque",
-                ["• Stored inside this application's folder"] = "• Stocké dans le dossier de cette application",
+                ["• Stored in the folder shown below"] = "• Stocké dans le dossier indiqué ci-dessous",
                 ["• Quit Expedition 33 before continuing"] = "• Quittez Expedition 33 avant de continuer",
                 ["• No game files are modified"] = "• Aucun fichier du jeu n'est modifié",
                 ["• Only the missing items are read"] = "• Seuls les éléments manquants sont lus",
@@ -501,7 +519,7 @@ internal static class AppLocalization
                 ["Regular Nevron picto chance"] = "Chance de picto sur Nevron normal",
                 ["Chance a regular Nevron drops a picto."] = "Chance qu'un Nevron normal donne un picto.",
                 ["Elite Nevron picto chance"] = "Chance de picto sur Nevron élite",
-                ["Chance an elite Nevron drops a picto."] = "Chance qu'un Nevron élite donne un picto.",
+                ["Elites are stronger regular Nevrons."] = "Les élites sont des Nevrons normaux plus puissants.",
                 ["Chests, Nevron drops and shops only. Dialogue rewards are untouched."] =
                     "Coffres, butin des Nevrons et boutiques uniquement. Les récompenses de dialogue sont inchangées.",
                 ["Choose whether Nevron stats are rerolled by the seed."] =
@@ -626,6 +644,21 @@ internal static class AppLocalization
                 ["Choose a different install folder."] = "Wybierz inny folder instalacji.",
                 ["Use default"] = "Użyj domyślnego",
                 ["Use the game's standard mod folder (~mods)."] = "Użyj standardowego folderu modów gry (~mods).",
+                ["Game data folder"] = "Folder danych gry",
+                ["Where the one-time game data extraction (~1.2 GB) is stored."] =
+                    "Miejsce jednorazowego rozpakowania danych gry (~1,2 GB).",
+                ["The extractor reads your game files once and keeps them here. Changing this folder moves the existing cache."] =
+                    "Ekstraktor jednorazowo odczytuje pliki gry i przechowuje je tutaj. Zmiana folderu przenosi istniejący cache.",
+                ["The extractor reads your game files once and keeps them here. This is the default application folder."] =
+                    "Ekstraktor jednorazowo odczytuje pliki gry i przechowuje je tutaj. To domyślny folder aplikacji.",
+                ["Choose a different folder for the extracted game data."] =
+                    "Wybierz inny folder dla rozpakowanych danych gry.",
+                ["Store the extracted game data in work/tables inside the application folder."] =
+                    "Przechowuj rozpakowane dane gry w work/tables w folderze aplikacji.",
+                ["Choose the game data folder"] = "Wybierz folder danych gry",
+                ["Game data folder changed."] = "Folder danych gry został zmieniony.",
+                ["Could not use that extraction folder."] = "Nie można użyć tego folderu rozpakowywania.",
+                ["Change…"] = "Zmień…",
                 ["Profile"] = "Profil",
                 ["Save or load your seed settings."] = "Zapisz lub wczytaj ustawienia ziarna.",
                 ["Save profile…"] = "Zapisz profil…",
@@ -844,9 +877,12 @@ internal static class AppLocalization
                 ["A found picto is mastered immediately. It does not grant pictos you have not found."] =
                     "Znaleziony pictos jest od razu opanowany. Nie daje pictosów, których nie znaleziono.",
                 ["Battle proc cards"] = "Karty proc w walce",
-                ["Max battle proc cards (0 = vanilla)"] = "Maks. kart efektów w walce (0 = bazowo)",
-                ["Limits how many picto/passive cards can stack on screen during battle. 0 leaves it vanilla."] =
-                    "Ogranicza liczbę kart pictosów/pasywów na ekranie. 0 pozostawia wartość bazową.",
+                ["Limit battle proc cards"] = "Ogranicz karty proc w walce",
+                ["When off, the vanilla unlimited stack is used. When on, the number below is the maximum; 0 hides every proc card."] =
+                    "Wyłączone: używany jest bazowy, nieograniczony stos. Włączone: liczba poniżej jest maksimum; 0 ukrywa wszystkie karty proc.",
+                ["Max battle proc cards"] = "Maks. kart efektów w walce",
+                ["Limits how many picto/passive cards can stack on screen during battle. Set 0 to hide them completely."] =
+                    "Ogranicza liczbę kart pictosów/pasywów na ekranie. Ustaw 0, aby je całkowicie ukryć.",
                 ["Tutorials and stains"] = "Samouczki i barwniki",
                 ["Skip tutorials"] = "Pomiń samouczki",
                 ["Tutorial fights are replaced by their normal enemy versions."] =
@@ -896,7 +932,7 @@ internal static class AppLocalization
                     "Większość danych gry jest gotowa. Pozostało {0} z {1} elementów do odczytania.",
                 ["• About 1.2 GB of files"] = "• Około 1,2 GB plików",
                 ["• Usually 5–15 minutes, depending on the drive"] = "• Zwykle 5–15 minut, zależnie od dysku",
-                ["• Stored inside this application's folder"] = "• Zapisywane w folderze tej aplikacji",
+                ["• Stored in the folder shown below"] = "• Zapisywane w folderze pokazanym poniżej",
                 ["• Quit Expedition 33 before continuing"] = "• Zamknij Expedition 33 przed kontynuowaniem",
                 ["• No game files are modified"] = "• Pliki gry nie są modyfikowane",
                 ["• Only the missing items are read"] = "• Odczytywane są tylko brakujące elementy",
@@ -1003,7 +1039,7 @@ internal static class AppLocalization
                 ["Regular Nevron picto chance"] = "Szansa pictosa ze zwykłego Nevrona",
                 ["Chance a regular Nevron drops a picto."] = "Szansa, że zwykły Nevron upuści pictos.",
                 ["Elite Nevron picto chance"] = "Szansa pictosa z elitarnego Nevrona",
-                ["Chance an elite Nevron drops a picto."] = "Szansa, że elitarny Nevron upuści pictos.",
+                ["Elites are stronger regular Nevrons."] = "Elity to silniejsze zwykłe Nevrony.",
                 ["Chests, Nevron drops and shops only. Dialogue rewards are untouched."] =
                     "Tylko skrzynie, łup z Nevronów i sklepy. Nagrody z dialogów pozostają bez zmian.",
                 ["Choose whether Nevron stats are rerolled by the seed."] =
@@ -1128,6 +1164,21 @@ internal static class AppLocalization
                 ["Choose a different install folder."] = "Выбрать другую папку установки.",
                 ["Use default"] = "Использовать по умолчанию",
                 ["Use the game's standard mod folder (~mods)."] = "Использовать стандартную папку модов игры (~mods).",
+                ["Game data folder"] = "Папка данных игры",
+                ["Where the one-time game data extraction (~1.2 GB) is stored."] =
+                    "Где хранится однократно извлечённые данные игры (~1,2 ГБ).",
+                ["The extractor reads your game files once and keeps them here. Changing this folder moves the existing cache."] =
+                    "Экстрактор один раз читает файлы игры и хранит их здесь. При смене папки существующий кэш перемещается.",
+                ["The extractor reads your game files once and keeps them here. This is the default application folder."] =
+                    "Экстрактор один раз читает файлы игры и хранит их здесь. Это папка приложения по умолчанию.",
+                ["Choose a different folder for the extracted game data."] =
+                    "Выбрать другую папку для извлечённых данных игры.",
+                ["Store the extracted game data in work/tables inside the application folder."] =
+                    "Хранить извлечённые данные игры в work/tables внутри папки приложения.",
+                ["Choose the game data folder"] = "Выбрать папку данных игры",
+                ["Game data folder changed."] = "Папка данных игры изменена.",
+                ["Could not use that extraction folder."] = "Не удалось использовать эту папку извлечения.",
+                ["Change…"] = "Изменить…",
                 ["Profile"] = "Профиль",
                 ["Save or load your seed settings."] = "Сохранить или загрузить настройки зерна.",
                 ["Save profile…"] = "Сохранить профиль…",
@@ -1345,9 +1396,12 @@ internal static class AppLocalization
                 ["A found picto is mastered immediately. It does not grant pictos you have not found."] =
                     "Найденный пиктос сразу осваивается. Он не даёт пиктосы, которые вы не находили.",
                 ["Battle proc cards"] = "Карты прока в бою",
-                ["Max battle proc cards (0 = vanilla)"] = "Макс. карт эффектов в бою (0 = обычно)",
-                ["Limits how many picto/passive cards can stack on screen during battle. 0 leaves it vanilla."] =
-                    "Ограничивает число карт пиктосов/пассивов на экране в бою. 0 оставляет как обычно.",
+                ["Limit battle proc cards"] = "Ограничить карты прока в бою",
+                ["When off, the vanilla unlimited stack is used. When on, the number below is the maximum; 0 hides every proc card."] =
+                    "Выключено: используется стандартный неограниченный набор. Включено: число ниже — максимум; 0 скрывает все карты прока.",
+                ["Max battle proc cards"] = "Макс. карт эффектов в бою",
+                ["Limits how many picto/passive cards can stack on screen during battle. Set 0 to hide them completely."] =
+                    "Ограничивает число карт пиктосов/пассивов на экране в бою. Укажите 0, чтобы полностью их скрыть.",
                 ["Tutorials and stains"] = "Обучение и оттенки",
                 ["Skip tutorials"] = "Пропускать обучение",
                 ["Tutorial fights are replaced by their normal enemy versions."] =
@@ -1397,7 +1451,7 @@ internal static class AppLocalization
                     "Большая часть данных игры уже готова. Осталось прочитать {0} из {1} элементов.",
                 ["• About 1.2 GB of files"] = "• Около 1,2 ГБ файлов",
                 ["• Usually 5–15 minutes, depending on the drive"] = "• Обычно 5–15 минут, в зависимости от диска",
-                ["• Stored inside this application's folder"] = "• Хранится в папке этого приложения",
+                ["• Stored in the folder shown below"] = "• Хранится в папке, указанной ниже",
                 ["• Quit Expedition 33 before continuing"] = "• Закройте Expedition 33 перед продолжением",
                 ["• No game files are modified"] = "• Файлы игры не изменяются",
                 ["• Only the missing items are read"] = "• Читаются только недостающие элементы",
@@ -1481,7 +1535,7 @@ internal static class AppLocalization
                 ["Regular Nevron picto chance"] = "Шанс пиктоса с обычного Неврона",
                 ["Chance a regular Nevron drops a picto."] = "Шанс, что обычный Неврон оставит пиктос.",
                 ["Elite Nevron picto chance"] = "Шанс пиктоса с элитного Неврона",
-                ["Chance an elite Nevron drops a picto."] = "Шанс, что элитный Неврон оставит пиктос.",
+                ["Elites are stronger regular Nevrons."] = "Элиты — это более сильные обычные Невроны.",
                 ["Chests, Nevron drops and shops only. Dialogue rewards are untouched."] =
                     "Только сундуки, добыча с Невронов и магазины. Награды из диалогов не меняются.",
                 ["Choose whether Nevron stats are rerolled by the seed."] =

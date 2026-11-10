@@ -40,7 +40,7 @@ public static class GameplayTweaksKit
     public const double VanillaParryWindow = 0.15;
     public const int VanillaAttributeCap = 99;
     public const int MaxAttributeCap = 500;
-    public const int VanillaPictoPopupCap = PictoPopupCapKit.VanillaCap;
+    public const int MinPictoPopupCap = PictoPopupCapKit.MinCap;
     public const int DefaultPictoPopupCap = PictoPopupCapKit.DefaultCap;
 
     public const string StatHp = "E_jRPG_StatType::NewEnumerator1";
@@ -129,12 +129,14 @@ public static class GameplayTweaksKit
         public bool InstantPictoMastery { get; set; }
 
         /// <summary>
-        /// Maximum number of simultaneous passive / picto proc cards on the
-        /// battle HUD. Vanilla is unlimited; <see cref="DefaultPictoPopupCap"/>
+        /// Caps the number of simultaneous passive / picto proc cards on the
+        /// battle HUD. Vanilla is unlimited. When <see cref="LimitPictoPopups"/>
+        /// is on, 0 hides every proc card and <see cref="DefaultPictoPopupCap"/>
         /// (5) keeps the screen readable when a party wears 20–30 pictos whose
-        /// turn-start effects all proc at once. 0 is vanilla. See
+        /// turn-start effects all proc at once. See
         /// <see cref="PictoPopupCapKit"/>.
         /// </summary>
+        public bool LimitPictoPopups { get; set; } = true;
         public int PictoPopupCap { get; set; } = DefaultPictoPopupCap;
 
         /// <summary>
@@ -192,7 +194,7 @@ public static class GameplayTweaksKit
             && !SireneFullMoveset
             && !AutoPictoMastery
             && !InstantPictoMastery
-            && PictoPopupCap == VanillaPictoPopupCap
+            && !LimitPictoPopups
             && !BuffRegularEnemies
             && !ReduceLuminaDrops;
 
@@ -221,7 +223,7 @@ public static class GameplayTweaksKit
         public bool NeedsTutorialDisable => DisableTutorials;
         public bool NeedsAutoPictoMastery => AutoPictoMastery;
         public bool NeedsInstantPictoMastery => InstantPictoMastery;
-        public bool NeedsPictoPopupCap => PictoPopupCap > VanillaPictoPopupCap;
+        public bool NeedsPictoPopupCap => LimitPictoPopups;
         public bool NeedsAttributeCap => AttributeCap > VanillaAttributeCap;
         public Newtonsoft.Json.Linq.JObject ToJson() => new()
         {
@@ -257,6 +259,7 @@ public static class GameplayTweaksKit
             ["SireneFullMoveset"] = SireneFullMoveset,
             ["AutoPictoMastery"] = AutoPictoMastery,
             ["InstantPictoMastery"] = InstantPictoMastery,
+            ["LimitPictoPopups"] = LimitPictoPopups,
             ["PictoPopupCap"] = PictoPopupCap,
             ["BuffRegularEnemies"] = BuffRegularEnemies,
             ["RegularEnemyHpBonus"] = new Newtonsoft.Json.Linq.JArray(RegularEnemyHpBonus),
@@ -313,7 +316,9 @@ public static class GameplayTweaksKit
             InstantPictoMastery = o.Value<bool?>("InstantPictoMastery") ?? false;
             PictoPopupCap = Math.Clamp(
                 o.Value<int?>("PictoPopupCap") ?? DefaultPictoPopupCap,
-                VanillaPictoPopupCap, PictoPopupCapKit.MaxCap);
+                MinPictoPopupCap, PictoPopupCapKit.MaxCap);
+            // Older configs had no toggle; 0 there meant vanilla.
+            LimitPictoPopups = o.Value<bool?>("LimitPictoPopups") ?? (PictoPopupCap > 0);
             BuffRegularEnemies = o.Value<bool?>("BuffRegularEnemies") ?? false;
             RegularEnemyHpBonus = BonusArray(o["RegularEnemyHpBonus"], RegularEnemyBuffKit.DefaultHpBonus);
             RegularEnemySpeedBonus = BonusArray(o["RegularEnemySpeedBonus"], RegularEnemyBuffKit.DefaultSpeedBonus);
@@ -484,7 +489,7 @@ public static class GameplayTweaksKit
 
         // Battle HUD proc cards. 0 is vanilla (widget not staged); the cap is
         // enforced in WBP_PassivePopupContainer.AddPassiveEffectNotification.
-        n += PictoPopupCapKit.Apply(modDir, s.NeedsPictoPopupCap ? s.PictoPopupCap : 0);
+        n += PictoPopupCapKit.Apply(modDir, s.NeedsPictoPopupCap ? s.PictoPopupCap : (int?)null);
 
         // Crit damage — a kismet edit to BP_BattleDamages (base addend + optional crit-rate
         // scaling), not a table change.

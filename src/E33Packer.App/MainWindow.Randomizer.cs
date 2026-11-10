@@ -2,8 +2,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Media;
-using E33ModEditor.Core;
-using E33ModEditor.Core.Loot;
 using static E33Packer.App.AppLocalization;
 
 namespace E33Packer.App;
@@ -18,7 +16,6 @@ public sealed partial class MainWindow
             Card(BuildSeedCard()),
             Card(BuildLootCard()),
             Card(BuildLootOptionsCard()),
-            Card(BuildNevronSectionCard()),
         };
         return Stack(parts.ToArray());
     }
@@ -152,7 +149,8 @@ public sealed partial class MainWindow
             DoubleRow(T("Regular Nevron picto chance"), r.RegularPictosChance, 0, 100,
                 v => r.RegularPictosChance = v, "%", T("Chance a regular Nevron drops a picto.")),
             DoubleRow(T("Elite Nevron picto chance"), r.ElitePictosChance, 0, 100,
-                v => r.ElitePictosChance = v, "%", T("Chance an elite Nevron drops a picto.")),
+                v => r.ElitePictosChance = v, "%",
+                T("Elites are stronger regular Nevrons.")),
             DoubleRow(T("Perfect catalyst chance"), r.T5PerfectCatalystChance, 0, 100,
                 v => r.T5PerfectCatalystChance = v, "%",
                 T("Rare endgame catalyst. 3.125% is about 1 in 32. Set 0 to disable.")),
@@ -168,107 +166,5 @@ public sealed partial class MainWindow
                 tooltip: T("Shapes found in early and mid-game chests.")),
             adjustLumina,
             multiplierRow);
-    }
-
-    private Control BuildNevronSectionCard()
-    {
-        var r = _profile.Randomizer;
-        var b = _profile.Balance;
-
-        var statsToggle = Toggle(T("Nevron stats"), r.MonsterStats,
-            v => r.MonsterStats = v,
-            T("Rolls Nevron HP, attack, speed and defense."));
-
-        var regularReset = new Button { Content = T("Reset regular boosts") };
-        ToolTip.SetTip(regularReset, T("Restore the default regular Nevron boosts."));
-        regularReset.Click += (_, _) =>
-        {
-            b.RegularEnemyHpBonus = (double[])RegularEnemyBuffKit.DefaultHpBonus.Clone();
-            b.RegularEnemySpeedBonus = (double[])RegularEnemyBuffKit.DefaultSpeedBonus.Clone();
-            b.RegularEnemyAttackBonus = (double[])RegularEnemyBuffKit.DefaultAttackBonus.Clone();
-            MarkCustom();
-            RebuildTabs();
-        };
-
-        var hpRow = PercentArrayRow(T("HP boost T1–T5"), b.RegularEnemyHpBonus,
-            (i, v) => b.RegularEnemyHpBonus[i] = v,
-            T("Percentage boost to regular Nevron HP. 0% = no boost."));
-        var speedRow = PercentArrayRow(T("Speed boost T1–T5"), b.RegularEnemySpeedBonus,
-            (i, v) => b.RegularEnemySpeedBonus[i] = v,
-            T("Percentage boost to regular Nevron speed. 0% = no boost."));
-        var attackRow = PercentArrayRow(T("Attack boost T1–T5"), b.RegularEnemyAttackBonus,
-            (i, v) => b.RegularEnemyAttackBonus[i] = v,
-            T("Percentage boost to regular Nevron attack. 0% = no boost."));
-        var boostToggle = Toggle(T("Apply regular Nevron percentage boosts"),
-            b.BuffRegularEnemies, v => b.BuffRegularEnemies = v,
-            T("Positive percentages strengthen regular Nevrons; negative percentages weaken them. Bosses and alphas are not affected."));
-
-        var bossHp = r.BossHp.Select(v => v - 1).ToArray();
-        var bossHpRow = PercentArrayRow(T("Boss HP boost T1–T5"), bossHp,
-            (i, v) =>
-            {
-                bossHp[i] = v;
-                r.BossHp[i] = 1 + v;
-            },
-            T("Percentage boost to boss HP for T1–T3. 0% = vanilla."),
-            editable: 3, lockedText: T("curve"),
-            lockedTooltip: T("T4–T5 boss HP is controlled by the hidden endgame curve."));
-        var bossSpeedRow = DoubleRow(T("Boss speed boost"), (r.BossSpeed - 1) * 100,
-            -99, 10000, v => r.BossSpeed = 1 + v / 100, "%",
-            T("Percentage boost to boss speed. 0% = vanilla."));
-        var extremeDefenseToggle = Toggle(T("Extreme T4–T5 boss defense"),
-            r.ExtremeBossDefense, v => r.ExtremeBossDefense = v,
-            T("Off uses the regular T4–T5 boss defense curve. On ramps defense from 1× at the T4 floor to 30× the regular curve at the top of T5."));
-
-        var bossReset = new Button { Content = T("Reset boss boosts") };
-        ToolTip.SetTip(bossReset, T("Restore the default boss boosts."));
-        bossReset.Click += (_, _) =>
-        {
-            r.BossHp = (double[])RandomizerKit.DefaultBossHp.Clone();
-            r.BossSpeed = RandomizerKit.DefaultBossSpeed;
-            r.ExtremeBossDefense = false;
-            MarkCustom();
-            RebuildTabs();
-        };
-
-        void SyncEnabled()
-        {
-            var stats = statsToggle.IsChecked == true;
-            var regularBoosts = stats && boostToggle.IsChecked == true;
-            boostToggle.IsEnabled = stats;
-            hpRow.IsEnabled = regularBoosts;
-            speedRow.IsEnabled = regularBoosts;
-            attackRow.IsEnabled = regularBoosts;
-            regularReset.IsEnabled = regularBoosts;
-            bossHpRow.IsEnabled = stats;
-            bossSpeedRow.IsEnabled = stats;
-            extremeDefenseToggle.IsEnabled = stats;
-            bossReset.IsEnabled = stats;
-        }
-        statsToggle.IsCheckedChanged += (_, _) => SyncEnabled();
-        boostToggle.IsCheckedChanged += (_, _) => SyncEnabled();
-        SyncEnabled();
-
-        return Stack(
-            Head(T("Nevrons")),
-            Note(T("Choose whether Nevron stats are rerolled by the seed.")),
-            statsToggle,
-            Note(T("Turned off: the seed leaves Nevron stats at their rolled band defaults.")),
-            SubHead(T("Regular Nevrons")),
-            Note(T("Percentage boosts applied after the seed roll. 0% = no boost.")),
-            boostToggle,
-            TierHeader(),
-            hpRow,
-            speedRow,
-            attackRow,
-            regularReset,
-            SubHead(T("Bosses")),
-            Note(T("Percentage boosts over vanilla boss values. Regular Nevron boosts do not affect bosses.")),
-            TierHeader(),
-            bossHpRow,
-            Note(T("T4–T5 boss HP uses the hidden endgame curve and has no exposed control.")),
-            bossSpeedRow,
-            extremeDefenseToggle,
-            bossReset);
     }
 }

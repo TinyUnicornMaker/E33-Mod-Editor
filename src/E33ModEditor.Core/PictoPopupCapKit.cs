@@ -23,7 +23,7 @@ namespace E33ModEditor.Core;
 /// <para>The patch inserts a guard just before the card is created:</para>
 /// <code>
 /// keys = ExistingPassivePopups.Keys()
-/// if (Array_IsValidIndex(keys, Cap - 1)) return;   // map already holds Cap cards
+/// if (keys.Length &gt; Cap - 1) return;   // map already holds Cap cards
 /// </code>
 /// <para>The guard sits between vanilla's two entry pushes: the first saves the
 /// function-exit address, the second saves the duplicate/increment path. That
@@ -33,23 +33,29 @@ namespace E33ModEditor.Core;
 /// a visible card is ignored too — the card stays up until its 3 s timer
 /// expires; below the cap vanilla's duplicate path still increments it. The map
 /// is the exact live-card set (the expiry callback removes the entry), so no
-/// extra counter or teardown patch is needed. <see cref="VanillaCap"/> (0)
-/// means the asset is not staged at all.</para>
+/// extra counter or teardown patch is needed.</para>
+/// <para>A cap of 0 is a real cap: <c>keys.Length &gt; -1</c> is always true, so
+/// every proc returns before a card is created and the HUD shows none. Passing
+/// a null cap removes the asset and restores vanilla's unlimited stack.</para>
 /// </summary>
 public static class PictoPopupCapKit
 {
     public const string AssetStem = "WBP_PassivePopupContainer";
     public const string FunctionName = "AddPassiveEffectNotification";
-    public const int VanillaCap = 0;
+    public const int MinCap = 0;
     public const int DefaultCap = 5;
     public const int MaxCap = 30;
 
     private const string KeysLocal = "E33PopupCapKeys";
     private const string ReachedLocal = "E33PopupCapReached";
 
-    public static int Apply(string modDir, int cap)
+    /// <param name="cap">
+    /// Maximum number of live cards, or null to remove the patch and restore
+    /// vanilla. 0 hides every proc card.
+    /// </param>
+    public static int Apply(string modDir, int? cap)
     {
-        if (cap <= VanillaCap)
+        if (cap is null)
         {
             var stale = FileCopy.FindUnder(modDir, AssetStem + ".uasset");
             if (stale is not null)
@@ -61,25 +67,25 @@ public static class PictoPopupCapKit
             return 0;
         }
 
-        cap = Math.Clamp(cap, 1, MaxCap);
+        var value = Math.Clamp(cap.Value, MinCap, MaxCap);
         var path = CopyIntoMod(modDir);
         var asset = Open(path);
         var fn = FindFunction(asset);
 
-        if (TryUpdateCap(asset, fn, cap))
+        if (TryUpdateCap(asset, fn, value))
         {
             Write(asset, path);
-            if (!Verify(path, cap))
+            if (!Verify(path, value))
                 throw new InvalidDataException($"{AssetStem}: popup cap update did not verify");
-            Console.WriteLine($"[popup-cap] {AssetStem}: cap updated to {cap}");
+            Console.WriteLine($"[popup-cap] {AssetStem}: cap updated to {value}");
             return 1;
         }
 
-        InsertGuard(asset, fn, cap);
+        InsertGuard(asset, fn, value);
         Write(asset, path);
-        if (!Verify(path, cap))
+        if (!Verify(path, value))
             throw new InvalidDataException($"{AssetStem}: popup cap patch did not verify");
-        Console.WriteLine($"[popup-cap] {AssetStem}: cards capped at {cap}");
+        Console.WriteLine($"[popup-cap] {AssetStem}: cards capped at {value}");
         return 1;
     }
 
@@ -125,8 +131,10 @@ public static class PictoPopupCapKit
 
         var mapKeysFn = GameplayTweaksKit.EnsureEngineFunction(
             asset, "BlueprintMapLibrary", "Map_Keys");
-        var isValidIndexFn = GameplayTweaksKit.EnsureEngineFunction(
-            asset, "KismetArrayLibrary", "Array_IsValidIndex");
+        var arrayLengthFn = GameplayTweaksKit.EnsureEngineFunction(
+            asset, "KismetArrayLibrary", "Array_Length");
+        var greaterFn = GameplayTweaksKit.EnsureEngineFunction(
+            asset, "KismetMathLibrary", "Greater_IntInt");
 
         EX_LocalVariable L(KismetPropertyPointer p) => new() { Variable = p };
 
@@ -144,21 +152,28 @@ public static class PictoPopupCapKit
                 },
             },
         };
+        // Length > (cap - 1) is the same test as "map already holds cap cards",
+        // and it also handles cap 0: any length is > -1, so every proc returns.
+        var keysLength = new EX_Context
+        {
+            ObjectExpression = new EX_ObjectConst { Value = arrayLibCdo },
+            RValuePointer = new KismetPropertyPointer(new FFieldPath()),
+            ContextExpression = new EX_FinalFunction
+            {
+                StackNode = arrayLengthFn,
+                Parameters = new KismetExpression[] { L(keysPtr) },
+            },
+        };
         var capReached = new EX_LetBool
         {
             VariableExpression = L(reachedPtr),
-            AssignmentExpression = new EX_Context
+            AssignmentExpression = new EX_CallMath
             {
-                ObjectExpression = new EX_ObjectConst { Value = arrayLibCdo },
-                RValuePointer = reachedPtr,
-                ContextExpression = new EX_FinalFunction
+                StackNode = greaterFn,
+                Parameters = new KismetExpression[]
                 {
-                    StackNode = isValidIndexFn,
-                    Parameters = new KismetExpression[]
-                    {
-                        L(keysPtr),
-                        new EX_IntConst { Value = cap - 1 },
-                    },
+                    keysLength,
+                    new EX_IntConst { Value = cap - 1 },
                 },
             },
         };
@@ -213,33 +228,44 @@ public static class PictoPopupCapKit
     /// <summary>Updates the cap literal on an already-patched asset.</summary>
     private static bool TryUpdateCap(UAsset asset, FunctionExport fn, int cap)
     {
-        EX_IntConst? literal = null;
-        MayhemFixKit.Walk(fn.ScriptBytecode!, e =>
-        {
-            if (literal is not null) return;
-            if (e is EX_FinalFunction ff && ff.StackNode is { } sn && sn.IsImport()
-                && sn.ToImport(asset).ObjectName.ToString() == "Array_IsValidIndex"
-                && ff.Parameters is { Length: 2 }
-                && ff.Parameters[1] is EX_IntConst ic)
-                literal = ic;
-        });
+        var literal = FindCapLiteral(asset, fn);
         if (literal is null) return false;
         literal.Value = cap - 1;
         return true;
     }
 
-    private static bool AlreadyPatched(UAsset asset, FunctionExport fn)
+    private static int FindMapKeysIndex(UAsset asset, FunctionExport fn)
     {
-        bool found = false;
-        MayhemFixKit.Walk(fn.ScriptBytecode!, e =>
+        var stmts = fn.ScriptBytecode ?? Array.Empty<KismetExpression>();
+        for (int i = 0; i < stmts.Length; i++)
         {
-            if (found) return;
-            if (e is EX_FinalFunction ff && ff.StackNode is { } sn && sn.IsImport()
-                && sn.ToImport(asset).ObjectName.ToString() == "Array_IsValidIndex")
-                found = true;
-        });
-        return found;
+            if (stmts[i] is not EX_Context ctx
+                || ctx.ContextExpression is not EX_FinalFunction ff
+                || ff.StackNode is not { } sn || !sn.IsImport()
+                || sn.ToImport(asset).ObjectName.ToString() != "Map_Keys")
+                continue;
+            return i;
+        }
+        return -1;
     }
+
+    private static EX_IntConst? FindCapLiteral(UAsset asset, FunctionExport fn)
+    {
+        var stmts = fn.ScriptBytecode ?? Array.Empty<KismetExpression>();
+        var mapKeys = FindMapKeysIndex(asset, fn);
+        if (mapKeys < 0 || mapKeys + 1 >= stmts.Length) return null;
+        if (stmts[mapKeys + 1] is not EX_LetBool let
+            || let.AssignmentExpression is not EX_CallMath call
+            || call.StackNode is not { } sn || !sn.IsImport()
+            || sn.ToImport(asset).ObjectName.ToString() != "Greater_IntInt"
+            || call.Parameters is not { Length: 2 }
+            || call.Parameters[1] is not EX_IntConst literal)
+            return null;
+        return literal;
+    }
+
+    private static bool AlreadyPatched(UAsset asset, FunctionExport fn) =>
+        FindMapKeysIndex(asset, fn) >= 0;
 
     public static bool Verify(string path, int cap)
     {
@@ -267,12 +293,15 @@ public static class PictoPopupCapKit
             if (mapKeys == 0 || stmts[mapKeys - 1] is not EX_PushExecutionFlow) return false;
             if (stmts[mapKeys + 4] is not EX_PushExecutionFlow) return false;
             if (stmts[mapKeys + 1] is not EX_LetBool let
-                || let.AssignmentExpression is not EX_Context check
-                || check.ContextExpression is not EX_FinalFunction isFn
-                || isFn.StackNode is not { } isn || !isn.IsImport()
-                || isn.ToImport(asset).ObjectName.ToString() != "Array_IsValidIndex"
-                || isFn.Parameters is not { Length: 2 }
-                || isFn.Parameters[1] is not EX_IntConst lit
+                || let.AssignmentExpression is not EX_CallMath call
+                || call.StackNode is not { } greater || !greater.IsImport()
+                || greater.ToImport(asset).ObjectName.ToString() != "Greater_IntInt"
+                || call.Parameters is not { Length: 2 }
+                || call.Parameters[0] is not EX_Context lengthCtx
+                || lengthCtx.ContextExpression is not EX_FinalFunction lengthFn
+                || lengthFn.StackNode is not { } lengthNode || !lengthNode.IsImport()
+                || lengthNode.ToImport(asset).ObjectName.ToString() != "Array_Length"
+                || call.Parameters[1] is not EX_IntConst lit
                 || lit.Value != cap - 1)
                 return false;
             if (stmts[mapKeys + 2] is not EX_JumpIfNot) return false;

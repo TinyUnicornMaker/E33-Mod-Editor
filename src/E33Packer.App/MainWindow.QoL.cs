@@ -31,11 +31,18 @@ public sealed partial class MainWindow
     private Control BuildBattleProcCard()
     {
         var q = _profile.QoL;
+        var capRow = IntRow(T("Max battle proc cards"), q.PictoPopupCap,
+            0, PictoPopupCapKit.MaxCap, v => q.PictoPopupCap = v,
+            tooltip: T("Limits how many picto/passive cards can stack on screen during battle. Set 0 to hide them completely."));
+        var limit = Toggle(T("Limit battle proc cards"), q.LimitBattleProcCards,
+            v => q.LimitBattleProcCards = v,
+            T("When off, the vanilla unlimited stack is used. When on, the number below is the maximum; 0 hides every proc card."));
+        EnableWith(limit, capRow);
+
         return Stack(
             Head(T("Battle proc cards")),
-            IntRow(T("Max battle proc cards (0 = vanilla)"), q.PictoPopupCap,
-                PictoPopupCapKit.VanillaCap, PictoPopupCapKit.MaxCap, v => q.PictoPopupCap = v,
-                tooltip: T("Limits how many picto/passive cards can stack on screen during battle. 0 leaves it vanilla.")));
+            limit,
+            capRow);
     }
 
     private Control BuildWeaponQolCard()
