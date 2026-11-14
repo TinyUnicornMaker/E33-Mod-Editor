@@ -108,6 +108,22 @@ public sealed partial class MainWindow
             NumberStyles.Float, CultureInfo.InvariantCulture, out value);
     }
 
+    /// <summary>Percentages always show their sign and keep the % inside the box.</summary>
+    private static string FormatPercent(double value)
+    {
+        var v = Math.Abs(value) < 0.00005 ? 0 : value;
+        var sign = v > 0 ? "+" : "";
+        return sign + v.ToString("0.####", CultureInfo.InvariantCulture) + "%";
+    }
+
+    private static bool TryParsePercent(string? text, out double value)
+    {
+        var s = (text ?? "").Trim();
+        if (s.EndsWith("%", StringComparison.Ordinal))
+            s = s[..^1].Trim();
+        return TryParseNumber(s, out value);
+    }
+
     /// <summary>
     /// Detach the reusable controls from the old visual tree before building a
     /// localized replacement. Avalonia refuses to re-parent a control while its
@@ -243,22 +259,29 @@ public sealed partial class MainWindow
     }
 
     private Control DoubleRow(string label, double value, double min, double max,
-        Action<double> set, string? suffix = null, string? tooltip = null)
+        Action<double> set, string? suffix = null, string? tooltip = null, bool percent = false)
     {
-        var display = value.ToString("0.####", CultureInfo.InvariantCulture);
+        string Format(double v) => percent
+            ? FormatPercent(v)
+            : v.ToString("0.####", CultureInfo.InvariantCulture);
+        bool TryParse(string? text, out double v) => percent
+            ? TryParsePercent(text, out v)
+            : TryParseNumber(text, out v);
+
+        var display = Format(value);
         var box = new TextBox
         {
             Text = display,
-            Width = 110,
+            Width = percent ? 84 : 110,
             FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
         };
-        var last = TryParseNumber(display, out var initial) ? initial : value;
+        var last = TryParse(display, out var initial) ? initial : value;
         void Commit()
         {
-            if (TryParseNumber(box.Text, out var v))
+            if (TryParse(box.Text, out var v))
             {
                 v = Math.Clamp(v, min, max);
-                box.Text = v.ToString("0.####", CultureInfo.InvariantCulture);
+                box.Text = Format(v);
                 if (Math.Abs(v - last) > 1e-9)
                 {
                     last = v;
@@ -268,12 +291,12 @@ public sealed partial class MainWindow
             }
             else
             {
-                box.Text = value.ToString("0.####", CultureInfo.InvariantCulture);
+                box.Text = Format(value);
             }
         }
         box.TextChanged += (_, _) =>
         {
-            if (TryParseNumber(box.Text, out var v)
+            if (TryParse(box.Text, out var v)
                 && v >= min && v <= max && Math.Abs(v - last) > 1e-9)
             {
                 last = v;
@@ -286,7 +309,7 @@ public sealed partial class MainWindow
         {
             if (e.Key is Key.Enter or Key.Return) Commit();
         };
-        return LabeledRow(label, box, suffix, tooltip);
+        return LabeledRow(label, box, percent ? null : suffix, tooltip);
     }
 
     private static Control LabeledRow(string label, Control control, string? suffix,
@@ -363,7 +386,7 @@ public sealed partial class MainWindow
                     Text = lockedText ?? "—",
                     Foreground = Muted,
                     FontSize = 12,
-                    Width = 58,
+                    Width = 76,
                     TextAlignment = TextAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                 };
@@ -376,17 +399,17 @@ public sealed partial class MainWindow
             int index = i;
             var box = new TextBox
             {
-                Text = (values[index] * 100).ToString("0.##", CultureInfo.InvariantCulture),
-                Width = 58,
+                Text = FormatPercent(values[index] * 100),
+                Width = 76,
                 FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
             };
             var last = values[index] * 100;
             void Commit()
             {
-                if (TryParseNumber(box.Text, out var v))
+                if (TryParsePercent(box.Text, out var v))
                 {
                     v = Math.Clamp(v, -100, 100000);
-                    box.Text = v.ToString("0.##", CultureInfo.InvariantCulture);
+                    box.Text = FormatPercent(v);
                     if (Math.Abs(v - last) < 1e-9) return;
                     last = v;
                     set(index, v / 100.0);
@@ -394,7 +417,7 @@ public sealed partial class MainWindow
                 }
                 else
                 {
-                    box.Text = last.ToString("0.##", CultureInfo.InvariantCulture);
+                    box.Text = FormatPercent(last);
                 }
             }
             box.LostFocus += (_, _) => Commit();
@@ -460,7 +483,7 @@ public sealed partial class MainWindow
                 Text = t,
                 Foreground = Gold,
                 FontSize = 12,
-                Width = 58,
+                Width = 76,
                 TextAlignment = TextAlignment.Center,
             });
         }

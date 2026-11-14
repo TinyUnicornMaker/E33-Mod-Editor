@@ -63,8 +63,7 @@ public sealed partial class MainWindow
                 T("The Mask Keeper keeps its mask moves after the sub-bosses are defeated.")),
             Toggle(T("Sirène keeps her full moveset"), q.SireneFullMoveset,
                 v => q.SireneFullMoveset = v,
-                T("Sirène keeps her Tisseur-synergy moves after Tisseur is defeated.")),
-            Note(T("Five-member party: always on.")));
+                T("Sirène keeps her Tisseur-synergy moves after Tisseur is defeated.")));
     }
 
     private Control BuildParryTimingsCard()
@@ -178,8 +177,8 @@ public sealed partial class MainWindow
             editable: 3, lockedText: T("curve"),
             lockedTooltip: T("T4–T5 boss HP is controlled by the hidden endgame curve."));
         var bossSpeedRow = DoubleRow(T("Boss speed boost"), (r.BossSpeed - 1) * 100,
-            -99, 10000, v => r.BossSpeed = 1 + v / 100, "%",
-            T("Percentage boost to boss speed. 0% = vanilla."));
+            -99, 10000, v => r.BossSpeed = 1 + v / 100, null,
+            T("Percentage boost to boss speed. 0% = vanilla."), percent: true);
         var extremeDefenseToggle = Toggle(T("Extreme T4–T5 boss defense"),
             r.ExtremeBossDefense, v => r.ExtremeBossDefense = v,
             T("Off uses the regular T4–T5 boss defense curve. On ramps defense from 1× at the T4 floor to 30× the regular curve at the top of T5."));

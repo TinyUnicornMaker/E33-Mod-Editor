@@ -400,7 +400,6 @@ internal static class AppLocalization
                 ["Sirène keeps her full moveset"] = "Sirène conserve toutes ses compétences",
                 ["Sirène keeps her Tisseur-synergy moves after Tisseur is defeated."] =
                     "Sirène conserve ses compétences de synergie avec Tisseur après sa défaite.",
-                ["Five-member party: always on."] = "Équipe de cinq : toujours active.",
                 ["Build convenience"] = "Confort de création",
                 ["Open the install folder after a build"] = "Ouvrir le dossier d'installation après une création",
                 ["Open the game's ~mods folder when the build finishes."] =
@@ -903,7 +902,6 @@ internal static class AppLocalization
                 ["Sirène keeps her full moveset"] = "Sirène zachowuje pełny zestaw ruchów",
                 ["Sirène keeps her Tisseur-synergy moves after Tisseur is defeated."] =
                     "Sirène zachowuje ruchy synergii z Tisseurem po jego pokonaniu.",
-                ["Five-member party: always on."] = "Drużyna pięciu osób: zawsze włączona.",
                 ["Build convenience"] = "Udogodnienia budowania",
                 ["Open the install folder after a build"] = "Otwórz folder instalacji po zbudowaniu",
                 ["Open the game's ~mods folder when the build finishes."] = "Otwórz folder ~mods gry po zakończeniu.",
@@ -1422,7 +1420,6 @@ internal static class AppLocalization
                 ["Sirène keeps her full moveset"] = "Сирена сохраняет полный набор приёмов",
                 ["Sirène keeps her Tisseur-synergy moves after Tisseur is defeated."] =
                     "Сирена сохраняет приёмы синергии с Тиссёром после его поражения.",
-                ["Five-member party: always on."] = "Отряд из пяти: всегда включён.",
                 ["Build convenience"] = "Удобство сборки",
                 ["Open the install folder after a build"] = "Открывать папку установки после сборки",
                 ["Open the game's ~mods folder when the build finishes."] = "Открывать папку ~mods игры по завершении сборки.",
