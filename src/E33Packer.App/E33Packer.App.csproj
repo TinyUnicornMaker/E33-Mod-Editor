@@ -88,7 +88,7 @@
       <PublishedExe Condition="'$(RuntimeIdentifier)' == 'win-x64'">$(PublishDir)ExpeditionInfinity.exe</PublishedExe>
       <PublishedExe Condition="'$(RuntimeIdentifier)' != 'win-x64'">$(PublishDir)ExpeditionInfinity</PublishedExe>
     </PropertyGroup>
-    <Copy SourceFiles="$(PublishedExe)" DestinationFiles="$(PublishDir)$(VersionedExeName)" Condition="Exists('$(PublishedExe)')" />
+    <Move SourceFiles="$(PublishedExe)" DestinationFiles="$(PublishDir)$(VersionedExeName)" Condition="Exists('$(PublishedExe)')" />
     <Message Text="Versioned artifact: $(PublishDir)$(VersionedExeName)" Importance="high" />
   </Target>
 
