@@ -22,19 +22,29 @@
 | **REPRO** | Needs exact reproduction details from the player |
 | **TESTING** | Actively being tested |
 | **VANILLA** | Confirmed vanilla behaviour or intended design |
-| **DEFER** | Feature / backlog, not a 1.2.1 release blocker |
+| **DEFER** | Feature / backlog, not a release blocker |
+
+## Standalone 1.3.6 scope
+
+- **Excluded:** Permadeath, Challenges (enemy HP/Defense/Speed options) and the
+  Burn stack cap. They are incomplete/broken and are not part of the standalone
+  packer.
+- **Core, always on:** Party of Five — confirmed fully working.
+- **Experimental, forced off:** Battle groups and RandomBattles.
+- The Gargant TTK, orb-summoning parry loop and Gestral arena payout are
+  vanilla behaviour, not issues.
 
 ## Bug / test tracker
 
 | ID | Report | Type | Status | Tested on | Evidence / next step |
 |---|---|---|---|---|---|
 | BR1.2-01a | White Nevrons feel weak (first map and the “grown” one) | Balance / verify | **OPEN** — pins deployed; new-game batch | Agent: deployed hash verified | Deployed `DT_jRPG_Enemies.uexp` matches the 19:31 build (`b88a9493…`). Pin rows: Jar 3.25→3,627; Demineur 4.875→18,252; Hexga 3.5208565→56,890; Rocher 21.125139→56,890; Troubadour 10.1684→404,560; Portier 45.5→1,570,023. `GO_Bourgeon_Quest` is **not pinned** and is the likely remaining outlier. See `Planning/New Game Test Batch 1.3.md`. |
-| BR1.2-01b | 32-hour Gargant side-quest fight | Balance / access | **OPEN** | — | Check TTK vs the 9,999 damage cap, whether the cap unlock is available before T4, and whether the quest is gated before Paintress. |
+| BR1.2-01b | 32-hour Gargant side-quest fight | Balance / access | **VANILLA** | — | Intended game behavior, not a mod issue. The 9,999 damage cap and quest gating are vanilla. |
 | BR1.2-02 | Shadow Bringer consumes 10 AP when AP > 10 | Bug | **PASS** | 1.3 in-game | Retested by the user: Shadow Bringer does **not** consume AP. Further edge-case testing is optional. |
 | BR1.2-03 | Clone kills give inconsistent EXP | Bug / exploit | **FIXED (code + rando-smoke)** | 1.3.4 code + `rando-smoke` 2026-11-06 | `MM_Danseuse_CloneAlpha` now pays 10% XP/chroma (`CloneRewardFactor`), and respawning clones (`MM_Danseuse_CloneAlpha`, `QUEST_Danseuse_DanceClass_Clone`) pay no catalysts or lumina. Runtime evidence: 200 chromatic-Danseuse summon kills ≈ 3.2B XP; the clone was on the main alpha's reward rate. `rando-smoke` asserts clone XP = 10% of main and no catalyst/lumina drops. `BV_SM_Abbest_Alpha_69` also splits the Tower Abbest XP outlier (venue scaling 86 vs native 1837 in the smoke pack). |
-| BR1.2-04 | Orb-summoning enemy attacks forever if parried | Vanilla / confirm | **REPRO** | — | Identify the enemy; test with the mod disabled. If vanilla, mark **VANILLA** and document. |
+| BR1.2-04 | Orb-summoning enemy attacks forever if parried | Vanilla / confirm | **VANILLA** | — | Confirmed intended behavior; not a mod issue and not a 1.3.6 blocker. |
 | BR1.2-05 | Auto / instant Picto Mastery not yet tested | Testing | **PASS** | 1.3 English 654321 22:30 — user | **InstantPictoMastery works in-game.** The hook masters the picto when it enters the inventory. Final implementation: no generated bool locals, bare `EX_Context` out-param calls, `Array_Get(array, index, outItem)` through `Default__KismetArrayLibrary`, direct cast/`EX_CallMath` branch expressions. Earlier failures: zero `ArrayDim` locals, `EX_Let` around out-param calls, two-parameter `Array_Get`, and a rejected generated `FBoolProperty`. Reopen only if a pickup route regresses. |
-| BR1.2-06 | Gestral arena is a fast Lumina grind | Intended / confirm | **OPEN** | — | Confirm `IsBoss` and the 5-Lumina payout; if intended, document. Use the existing Reduce Lumina Drops toggle if it needs nerfing. |
+| BR1.2-06 | Gestral arena is a fast Lumina grind | Intended / confirm | **VANILLA** | — | Intended payout; not an issue. Use the Reduce Lumina Drops toggle only if a player wants it slower. |
 | BR1.2-07 | Might gives less Attack than Vitality/Defense | Vanilla balance | **PASS** | 1.3 main pack 19:31 — user | Vanilla Might used fixed **55** vs S’s **110**. Deployed factor **192** (~1.75× S); user tested at 333 and lower-level weapons and confirmed the scaling feels appropriate. |
 | BR1.2-08 | Picto level above 33 / NG+ scaling | Verify / potential bug | **OPEN** | — | Check `DT_EquipmentScalingTable_Pictos` rows above 33; determine NG+ enemy-level scaling; document max picto level. |
 | BR1.2-09 | x10 weapon upgrade only gives one level | Bug / deployment | **PASS** | 1.3 in-game; 1.2.1 assets verified | Works in-game on 1.3. The 1.2.1 and 1.3 x10 assets are byte-identical. Feature is hold-to-bulk; tapping gives one level. Evidence: `work/verify-v121/REPORT.md`. |
@@ -42,7 +52,7 @@
 | BR1.2-13 | Lune — Meteor (`Lune_SkyBreak`) crashes on use | Crash | **PASS** | 1.3 main pack 18:36 — user | All Lune gradient attacks now work, including Meteor. `OnExecuteSkill` → 550; container verified. |
 | BR1.2-14 | Every damage instance crashes after the 18:26 rebuild | Crash | **PASS** | 1.3 main pack 18:36 — user | Basic attacks, shooting, Free Aim and skills all work. Root cause was the Row Damage block remapper; fixed with `insertedCount` and re-enabled at 20:36. |
 | BR1.2-15 | Row Damage disabled / rear three need 0.8 | Feature | **TESTING** | 1.3 main pack 20:36 | Row Damage re-enabled with the block remapper fix. Build log: back spots **[1,3,4]**, dealt **×0.8**, taken **×0.8**. Installed `AC_jRPG_CharacterBattleStats` has the row block and two `AddDamageModifier` calls. Needs an in-game rear-row check. |
-| BR1.2-16 | Tutorial Stalact HP after tutorial skip | Verify | **OPEN** — 68,670 at L25 | 1.3 main pack 20:36 | Routing is correct: `MM_Stalact_GradientAttackTutorial*1` still points at the tutorial row, now with the plain `BP_EnemyBattle_Stalact` actor. HP is `Elite[25] × 2.5 = 68,670`, not the native 90k/15M. The old Strong-based reference was 22,890, so this is 3× that. Decide whether to pin lower. |
+| BR1.2-16 | Tutorial Stalact HP after tutorial skip | Verify | **PASS** | 2026-11-14 — user | Tested in-game; tutorial Stalact uses the intended tutorial row/actor and the fight works correctly. No change needed. |
 | BR1.2-17 | World-map Grosse Tête T3 reward | Loot tier | **PASS** | 1.3 main pack 20:36 | `WM_GrossTete` → `BV_MF_GrossTete_50` at encounter level 50. Clone loot is T3: `UpgradeMaterial_Level3` ×5, **no Level5/Perfect catalyst**. Native `MF_GrossTete` remains T4 for its non-world fight; native/CFH Perfect catalyst is capped at 3. |
 | BR1.2-18 | Language builds | Localization | **TESTING** | English 21:06; Russian/French backups | English deployed at 21:06: source strings, `.pak` stub, `retoc verify` passed. Gameplay assets unchanged: Might 192, row block, Meteor 550, enemy hash `b88a9493…`. Russian build backed up at `work/pak-backup/2026-10-27-ru-before-en`; French at `work/pak-backup/2026-10-27-fr-before-ru`. |
 | BR1.2-19 | Lune Light-stain wildcard | Feature / test | **TESTING** | 1.3 English 654321 23:15 | **Enabled** (`Option.LightStainWildcard: true` in `work/skill_overhaul.json`). The strict `BP_StainHolderComponent` override is gone, so vanilla Light substitution is used for normal skills. Elemental Genesis and Elemental Cataclysm remain strict; Mayhem still never consumes Light. `lune-heal-smoke` wildcard checks pass; `retoc verify` passed. Needs an in-game Lune check. |
@@ -185,7 +195,7 @@ The most important single check is **Grown Bourgeon vs the normal Nevrons used t
 - **BR1.2-08 Picto levels / NG+** — NG+ or data check.
 - **Row Damage re-enable** — existing battle after re-enabling.
 - **BR1.2-05 Picto mastery** — acquisition matrix, separate.
-- **BR1.2-04 / BR1.2-06** — orbs confirm / arena documentation.
+- **BR1.2-04 / BR1.2-06** — confirmed vanilla, not issues.
 
 ### Resolved in this pass
 

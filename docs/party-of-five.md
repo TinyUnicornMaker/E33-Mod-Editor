@@ -347,6 +347,9 @@ byte-identical to vanilla, that no local-variable reference from the template
 function survives, that the ubergraph is byte-identical to vanilla, and that no
 other function in the asset changed.
 
+**In-game status: PASS (2026-11-14) — confirmed fully working.** Party of Five
+is core and always on in the standalone 1.3.6 build.
+
 > Flow-offset correctness: `EX_SwitchValue` offsets point *inside* the switch
 > expression, not at statement starts. An early version remapped them by
 > statement ordinal, which corrupted the arrow-select switch in

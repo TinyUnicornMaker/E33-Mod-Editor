@@ -49,6 +49,25 @@ public sealed class GeneratorPresetTests
     }
 
     [TestMethod]
+    public void StandaloneProfile_ExcludesIncompleteFeatures()
+    {
+        var profile = GeneratorPresets.Create(GeneratorPresets.Expedition, 123456);
+        var tweaks = profile.Balance.ToTweaks(profile.QoL);
+
+        Assert.IsFalse(tweaks.Permadeath,
+            "Permadeath is incomplete and must never ship from the standalone app.");
+
+        // The standalone pack options must not expose the incomplete features
+        // at all, so no profile or build can accidentally enable them.
+        var optionNames = typeof(FullPackKit.Options)
+            .GetProperties()
+            .Select(p => p.Name)
+            .ToList();
+        CollectionAssert.DoesNotContain(optionNames, "EnableChallenges");
+        CollectionAssert.DoesNotContain(optionNames, "BurnStackCap");
+    }
+
+    [TestMethod]
     public void Presets_ChangeOnlyTheirDocumentedKnobs()
     {
         var easy = GeneratorPresets.Create(GeneratorPresets.Easy);

@@ -47,29 +47,34 @@
     <None Include="tools\oodle-data-shared.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('tools\oodle-data-shared.dll')" />
   </ItemGroup>
 
-  <!-- Local linux debug retoc; CI drops a release binary into tools/ instead. -->
-  <ItemGroup Condition="Exists('tools/retoc') or Exists('tools/retoc.exe')">
+  <!-- Tool bootstrap binaries. Conditions are RID-aware so a Linux host can
+       cross-publish the Windows single-file app with the Windows tools. -->
+  <ItemGroup Condition="Exists('tools/retoc') and '$(RuntimeIdentifier)' != 'win-x64'">
     <None Include="tools/retoc" CopyToOutputDirectory="PreserveNewest" Condition="Exists('tools/retoc')" />
-    <None Include="tools/retoc.exe" CopyToOutputDirectory="PreserveNewest" Condition="Exists('tools/retoc.exe')" />
     <None Include="tools/*.so*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup Condition="Exists('tools/retoc.exe') and ('$(OS)' == 'Windows_NT' or '$(RuntimeIdentifier)' == 'win-x64')">
+    <None Include="tools/retoc.exe" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup Condition="Exists('tools/retoc') or Exists('tools/retoc.exe')">
     <None Include="tools/*.dll" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
-  <ItemGroup Condition="!Exists('tools/retoc') and Exists('..\..\tools\retoc_cli-x86_64-unknown-linux-gnu\retoc')">
+  <ItemGroup Condition="'$(OS)' != 'Windows_NT' and '$(RuntimeIdentifier)' != 'win-x64' and !Exists('tools/retoc') and Exists('..\..\tools\retoc_cli-x86_64-unknown-linux-gnu\retoc')">
     <None Include="..\..\tools\retoc_cli-x86_64-unknown-linux-gnu\retoc" CopyToOutputDirectory="PreserveNewest" Link="retoc" />
     <None Include="..\..\tools\retoc_cli-x86_64-unknown-linux-gnu\liboo2corelinux64.so.9" CopyToOutputDirectory="PreserveNewest" Link="liboo2corelinux64.so.9" Condition="Exists('..\..\tools\retoc_cli-x86_64-unknown-linux-gnu\liboo2corelinux64.so.9')" />
   </ItemGroup>
 
   <!-- repak is required for localized packs (it packs the locres .pak stub). -->
-  <ItemGroup Condition="Exists('..\..\tools\repak\repak') and '$(OS)' != 'Windows_NT'">
+  <ItemGroup Condition="Exists('..\..\tools\repak\repak') and '$(OS)' != 'Windows_NT' and '$(RuntimeIdentifier)' != 'win-x64'">
     <None Include="..\..\tools\repak\repak" CopyToOutputDirectory="PreserveNewest" Link="repak/repak" />
   </ItemGroup>
-  <ItemGroup Condition="Exists('..\..\tools\repak\repak.exe') and '$(OS)' == 'Windows_NT'">
+  <ItemGroup Condition="Exists('..\..\tools\repak\repak.exe') and ('$(OS)' == 'Windows_NT' or '$(RuntimeIdentifier)' == 'win-x64')">
     <None Include="..\..\tools\repak\repak.exe" CopyToOutputDirectory="PreserveNewest" Link="repak/repak.exe" />
   </ItemGroup>
-  <ItemGroup Condition="Exists('tools\repak\repak') and '$(OS)' != 'Windows_NT'">
+  <ItemGroup Condition="Exists('tools\repak\repak') and '$(OS)' != 'Windows_NT' and '$(RuntimeIdentifier)' != 'win-x64'">
     <None Include="tools\repak\repak" CopyToOutputDirectory="PreserveNewest" Link="repak/repak" />
   </ItemGroup>
-  <ItemGroup Condition="Exists('tools\repak\repak.exe') and '$(OS)' == 'Windows_NT'">
+  <ItemGroup Condition="Exists('tools\repak\repak.exe') and ('$(OS)' == 'Windows_NT' or '$(RuntimeIdentifier)' == 'win-x64')">
     <None Include="tools\repak\repak.exe" CopyToOutputDirectory="PreserveNewest" Link="repak/repak.exe" />
   </ItemGroup>
 

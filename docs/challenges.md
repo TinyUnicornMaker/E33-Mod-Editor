@@ -1,5 +1,10 @@
 # Challenges: Enemy Max Health, Defense and Speed
 
+> **Standalone scope:** `ChallengeKit` is **not** part of the Expedition
+> Infinity standalone packer. The feature is incomplete and is excluded from
+> 1.3.6; do not ship it in a deployed pack. This document is kept for the
+> full-editor/CLI experiment only.
+
 The save-point **Challenges** menu is data-driven. Each row is a
 `DataAsset` of class `BP_DataAsset_BattleChallenge_Numeric`:
 

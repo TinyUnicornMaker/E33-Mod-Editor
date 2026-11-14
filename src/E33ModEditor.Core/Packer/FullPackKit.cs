@@ -80,14 +80,6 @@ public static class FullPackKit
 
         public bool ForceRandomizerOn { get; set; }
 
-        /// <summary>Enable the save-point Challenges extension. Off for the
-        /// 1.3.5 release; the module is still under test.</summary>
-        public bool EnableChallenges { get; set; }
-
-        /// <summary>Enemy Burn stack cap applied by <see cref="BurnStackCapKit"/>.
-        /// 0 disables the module.</summary>
-        public int BurnStackCap { get; set; }
-
         public Action<string>? Log { get; set; }
         /// <summary>Donor retoc progress: done, total, current filter name.</summary>
         public Action<int, int, string>? OnExtractProgress { get; set; }
@@ -429,17 +421,9 @@ public static class FullPackKit
 
         StripUnroundtrippable(modDir, luneOn, log);
 
-        if (opt.EnableChallenges)
-        {
-            log("Challenges: Enemy Max Health, Defense and Speed options…");
-            total += ChallengeKit.Apply(modDir, log).Edits;
-        }
-
-        if (opt.BurnStackCap > 0)
-        {
-            log($"Burn cap: enemy Burn stacks capped at {opt.BurnStackCap}…");
-            total += BurnStackCapKit.Apply(modDir, opt.BurnStackCap);
-        }
+        // ChallengeKit, Permadeath and BurnStackCap are intentionally absent
+        // from the standalone pack path. They are incomplete/broken features
+        // and must never ship in a deployed Expedition Infinity pack.
 
         string? locCulture = null;
         if (language.Code != ModLocalization.English.Code)
