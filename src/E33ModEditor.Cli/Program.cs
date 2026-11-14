@@ -97,6 +97,7 @@ try
         "secondperson-pack" => CmdSecondPersonPack(args),
         "build-weaponoverlevel" => CmdBuildWeaponOverlevel(args),
         "weapon-overlevel-smoke" => CmdWeaponOverlevelSmoke(args),
+        "picto-scaling-smoke" => CmdPictoScalingSmoke(args),
         "bulk-smoke" => CmdBulkSmoke(args),
         "drop-smoke" => CmdDropSmoke(args),
         "dumpimports" => CmdDumpImports(args),
@@ -8560,6 +8561,20 @@ static int CmdWeaponOverlevelSmoke(string[] args)
     return 0;
 }
 
+/// <summary>Stages the core picto over-level table into a scratch dir and runs
+/// its Verify() — no game files, no ~mods install.</summary>
+static int CmdPictoScalingSmoke(string[] args)
+{
+    var dir = Path.Combine(EditorPaths.RepoRoot, "work", "standalone", "picto_scaling", "smoke");
+    if (Directory.Exists(dir)) Directory.Delete(dir, true);
+    Directory.CreateDirectory(dir);
+    int n = E33ModEditor.Core.PictoScalingKit.Apply(dir);
+    Console.WriteLine($"[picto-scaling-smoke] applied {n} level(s)");
+    E33ModEditor.Core.PictoScalingKit.Verify(dir);
+    Console.WriteLine("[picto-scaling-smoke] PASSED");
+    return 0;
+}
+
 /// <summary>Bulk-upgrade splice smoke: copies the vanilla Camp weapon-upgrade
 /// widget into a scratch dir, runs WeaponBulkUpgradeKit.Apply + Verify, then
 /// re-applies to prove idempotence. No game files, no ~mods install.</summary>
@@ -8750,8 +8765,6 @@ static int CmdRebuildMod(string[] args)
 {
     var language = E33ModEditor.Core.Localization.LocalizationKit.LoadLanguage();
     string? revision = null;
-    var enableChallenges = false;
-    var burnCap = 33;
     for (var i = 1; i < args.Length; i++)
     {
         if (args[i] is "--language" or "-l")
@@ -8777,26 +8790,6 @@ static int CmdRebuildMod(string[] args)
                 return 2;
             }
             revision = args[++i];
-        }
-        else if (args[i] is "--challenges" or "--challenge")
-        {
-            if (i + 1 >= args.Length)
-            {
-                Console.Error.WriteLine("--challenges needs on/off");
-                return 2;
-            }
-            var value = args[++i];
-            enableChallenges = value.Equals("on", StringComparison.OrdinalIgnoreCase)
-                || value.Equals("true", StringComparison.OrdinalIgnoreCase)
-                || value.Equals("1", StringComparison.OrdinalIgnoreCase);
-        }
-        else if (args[i] is "--burn-cap" or "--burncap")
-        {
-            if (i + 1 >= args.Length || !int.TryParse(args[++i], out burnCap))
-            {
-                Console.Error.WriteLine("--burn-cap needs an integer (0 disables)");
-                return 2;
-            }
         }
     }
     E33ModEditor.Core.Localization.LocalizationKit.SaveLanguage(language);
@@ -8829,8 +8822,6 @@ static int CmdRebuildMod(string[] args)
         Randomizer = rando,
         Compatibility = compat,
         Language = language,
-        EnableChallenges = enableChallenges,
-        BurnStackCap = burnCap,
         PackRevisionOverride = revision,
         Log = msg => Console.WriteLine("[rebuild-mod] " + msg),
     });
@@ -11528,6 +11519,7 @@ static int CmdDumpImports(string[] args)
                                                        tables copy; pass the overleveled work/mod copy
                                                        for pack-order compatibility)
           drop-smoke                                 weapon-only drop-level splice + verify (MaxDropLevel 222)
+          picto-scaling-smoke                        picto stats rows 34–333 at +1%/level + verify
           pictos-smoke                               painter element + auto-duration clone verification
           picto-tags [modDir]                        repair/apply picto categories and stage the
                                                      extended E_PassiveEffectCategory enum (default work/mod)

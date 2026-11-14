@@ -43,6 +43,10 @@ A save that contains the id is not enough. The packed `_P` mod must contain
 - There is one shared pictos level curve (`DT_EquipmentScalingTable_Pictos`).
   Per-pictos “unique curves” do not exist. Bonuses are
   `curve(level) × BaseStatMultipliers`.
+- Expedition Infinity extends that curve from level 34 to 333 at a flat
+  **+1% per level** (`PictoScalingKit`, core and always on). Vanilla rows 0–33
+  are untouched; the extension only makes pictos above 33 scale instead of
+  falling back to zero stats.
 - Do not put generated rows only onto `DT_jRPG_Items_Composite`.
 - Do not edit shops or drops from the pictos creator. Placement is a separate
   Chests / Drops / Randomizer concern.

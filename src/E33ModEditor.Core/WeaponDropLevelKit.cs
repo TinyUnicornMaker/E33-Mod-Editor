@@ -39,6 +39,10 @@ namespace E33ModEditor.Core;
 /// 1 → 6, 2 → 13. The formula is integer-only so no cast/new local is needed:
 /// <c>Clamp((level * MaxDropLevel) / 33, 1, MaxDropLevel)</c>.</para>
 ///
+/// <para>Picto drop levels stay 1–33. Their runtime scaling table is extended
+/// separately by <see cref="PictoScalingKit"/> so pictos above 33 (NG+, saves)
+/// have stats instead of falling back to zero.</para>
+///
 /// <para><b>Pack order.</b> This kit only raises the level the game asks for;
 /// the weapon scaling table must already contain rows up to
 /// <c>MaxDropLevel</c>. <c>FullPackKit</c> runs it right after
@@ -105,7 +109,7 @@ public static class WeaponDropLevelKit
 
         Console.WriteLine(
             $"[weapon-drop] MaxDropLevel {max}: weapon item levels 1–{VanillaMaxItemLevel} → " +
-            $"1–{max} (pictos stay 1–{VanillaMaxItemLevel})");
+            $"1–{max} (picto drop levels stay 1–{VanillaMaxItemLevel}; stats scale past 33)");
         return n;
     }
 
@@ -361,10 +365,7 @@ public static class WeaponDropLevelKit
 
         if (FileCopy.FindUnder(modDir, "FL_LootSystemHelpers.uasset") is not null)
             throw new InvalidDataException("[weapon-drop] shared loot helper must not be staged");
-        if (FileCopy.FindUnder(modDir, "DT_EquipmentScalingTable_Pictos.uasset") is not null)
-            throw new InvalidDataException("[weapon-drop] picto scaling table must not be staged");
-
-        Console.WriteLine($"[weapon-drop] Verify passed: weapon-only scaling to {max}, pictos untouched");
+        Console.WriteLine($"[weapon-drop] Verify passed: weapon-only drop scaling to {max}; picto drop levels stay 1–{VanillaMaxItemLevel} (stats scale via PictoScalingKit)");
     }
 
     private static void CheckGearFunction(UAsset asset, string function, int max)

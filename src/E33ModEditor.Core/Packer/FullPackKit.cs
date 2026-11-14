@@ -206,6 +206,9 @@ public static class FullPackKit
         total += WeaponEffectsCreateKit.Inject(modDir, copyTables: false);
         total += WeaponCurveKit.Apply(modDir);
         total += WeaponOverLevelKit.Apply(modDir);
+        // Core picto over-level scaling: rows 34–333 at +1%/level. No setting,
+        // no UI; always on so pictos above 33 never fall back to zero stats.
+        total += PictoScalingKit.Apply(modDir);
         log("Weapon drop levels…");
         total += WeaponDropLevelKit.Apply(modDir,
             opt.WeaponDropLevel ?? WeaponDropLevelKit.Settings.Load());
