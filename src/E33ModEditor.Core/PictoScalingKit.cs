@@ -6,8 +6,9 @@ namespace E33ModEditor.Core;
 
 /// <summary>
 /// Core picto over-level scaling. Vanilla rows 0–33 are untouched; rows 34–333
-/// continue the shared picture curve at a flat +1% per level over the level-33
-/// base. Always on in Expedition Infinity — there is no setting or UI.
+/// continue the shared picture curve at a flat +1% of the level-33 base per
+/// level — additive, not compounding. Always on in Expedition Infinity — there
+/// is no setting or UI.
 ///
 /// <para>This is separate from <see cref="WeaponDropLevelKit"/>, which keeps
 /// picto <em>drop</em> levels at 1–33. This kit only makes the scaling table
@@ -20,18 +21,21 @@ public static class PictoScalingKit
     public const string Table = "DT_EquipmentScalingTable_Pictos";
     public const int VanillaMaxLevel = 33;
     public const int MaxLevel = 333;
-    public const double PerLevel = 1.01;
+
+    /// <summary>Fraction of the level-33 base added per level past 33.</summary>
+    public const double PerLevel = 0.01;
 
     public const string HpKey = "E_jRPG_StatType::NewEnumerator1";
     public const string DefKey = "E_jRPG_StatType::NewEnumerator4";
     public const string CritKey = "E_jRPG_StatType::NewEnumerator6";
     public const string SpdKey = "E_jRPG_StatType::NewEnumerator7";
 
-    /// <summary>Flat +1% per level past 33. Levels at or below 33 are unchanged.</summary>
+    /// <summary>Linear +1% of the level-33 base per level past 33.
+    /// Level 333 is 4× the level-33 value; levels at or below 33 are unchanged.</summary>
     public static double ScaleValue(double at33, int level)
     {
         int steps = Math.Max(0, level - VanillaMaxLevel);
-        return at33 * Math.Pow(PerLevel, steps);
+        return at33 * (1.0 + PerLevel * steps);
     }
 
     public static int Apply(string modDir)
@@ -66,7 +70,7 @@ public static class PictoScalingKit
         ed.Apply(edits.ToString());
         ed.Save(dest);
         Verify(modDir);
-        Console.WriteLine($"[picto-scaling] {Table}: levels 34-{MaxLevel} at +1%/level (core, always on)");
+        Console.WriteLine($"[picto-scaling] {Table}: levels 34-{MaxLevel} at +1%/level linear (core, always on)");
         return MaxLevel - VanillaMaxLevel;
     }
 
@@ -96,7 +100,7 @@ public static class PictoScalingKit
             Check(row, lvl, null, "ChromaValue", chroma33, integer: true);
         }
 
-        Console.WriteLine($"[picto-scaling] Verify passed: rows 34-{MaxLevel} at +1%/level");
+        Console.WriteLine($"[picto-scaling] Verify passed: rows 34-{MaxLevel} at +1%/level linear");
     }
 
     private static void Check(JObject row, int level, string? map, string key,

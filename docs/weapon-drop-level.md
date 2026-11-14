@@ -102,8 +102,9 @@ prove idempotence, and confirms `MaxDropLevel: 33` stages nothing.
 
 - Picto **drop** levels are never raised above 33 by this kit.
   `FL_LootSystemHelpers` is deliberately not staged. `DT_EquipmentScalingTable_Pictos`
-  is staged by `PictoScalingKit`, which extends stats from 34–333 at +1%/level;
-  it does not change drop levels.
+  is staged by `PictoScalingKit`, which extends stats from 34–333 at a linear
+  +1% of the level-33 base per level (level 333 = 4×); it does not change drop
+  levels.
 - Early-game weapons scale too: with 222, a vanilla level-1 drop becomes 6 and
   a vanilla level-10 drop becomes 67. Lower `MaxDropLevel` if that is too strong.
 - If the third-party Bigger Party Mod compatibility path strips

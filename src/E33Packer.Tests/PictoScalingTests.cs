@@ -7,11 +7,13 @@ namespace E33Packer.Tests;
 public sealed class PictoScalingTests
 {
     [TestMethod]
-    public void ScaleValue_IsFlatOnePercentPast33()
+    public void ScaleValue_IsLinearOnePercentPast33()
     {
         Assert.AreEqual(1000, PictoScalingKit.ScaleValue(1000, 33), 1e-9);
         Assert.AreEqual(1010, PictoScalingKit.ScaleValue(1000, 34), 1e-6);
-        Assert.AreEqual(1000 * Math.Pow(1.01, 300), PictoScalingKit.ScaleValue(1000, 333), 1e-6);
+        Assert.AreEqual(1020, PictoScalingKit.ScaleValue(1000, 35), 1e-6);
+        Assert.AreEqual(1200, PictoScalingKit.ScaleValue(1000, 53), 1e-6);
+        Assert.AreEqual(4000, PictoScalingKit.ScaleValue(1000, 333), 1e-6);
     }
 
     [TestMethod]
