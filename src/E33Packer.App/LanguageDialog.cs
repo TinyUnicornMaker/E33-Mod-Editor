@@ -19,7 +19,7 @@ internal static class LanguageDialog
         {
             Title = "Expedition Infinity — language",
             Icon = AppIcon.Icon,
-            Width = 470,
+            Width = 640,
             SizeToContent = SizeToContent.Height,
             CanResize = false,
             ShowInTaskbar = false,
@@ -67,15 +67,16 @@ internal static class LanguageDialog
             {
                 new TextBlock
                 {
-                    Text = "English · Français · Polski · Русский",
+                    Text = "English · Français · Polski · Русский · Español",
                     FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman"),
-                    FontSize = 24,
+                    FontSize = 22,
                     Foreground = Gold,
+                    TextWrapping = TextWrapping.Wrap,
                 },
                 new TextBlock
                 {
                     Text = "Choose your language · Choisissez votre langue · " +
-                           "Wybierz język · Выберите язык",
+                           "Wybierz język · Выберите язык · Elige tu idioma",
                     TextWrapping = TextWrapping.Wrap,
                     Foreground = Cream,
                     FontSize = 13,

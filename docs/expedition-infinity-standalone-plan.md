@@ -74,7 +74,7 @@ The relevant setting objects already exist:
 | Weapon drop levels | `WeaponDropLevelKit.Settings` | enabled, max drop level |
 | Party of Five | `PartyFiveKit.Settings` | enabled + formation |
 | First-person camera | `FirstPersonCameraKit.Settings` | out of scope for seed generator |
-| Language | `ModLocalization` / `LocalizationKit` | en, fr, pl, ru |
+| Language | `ModLocalization` / `LocalizationKit` | en, fr, pl, ru, es |
 
 ### 2.3 What the old standalone actually builds
 
@@ -531,6 +531,7 @@ Purpose: choose the language baked into the generated pack.
 | Français | fr | fr-FR | Catalog exists; review notes minor issues |
 | Polski | pl | pl | Catalog exists; review notes mechanical issues |
 | Русский | ru | ru | Catalog exists; review notes mechanical issues |
+| Español (España) | es | es | Catalog exists; 1,244 table + 10 inline entries |
 
 Behavior:
 
@@ -1024,7 +1025,7 @@ Party of Five is **not** in this phase; it is always-on core from Phase 2.
 - `FullPackKit` option plumbing: a fake build with each setting produces the
   expected flag in the manifest (no game assets required for the settings
   layer).
-- `LocalizationKit.Validate` for en/fr/pl/ru (structural only).
+- `LocalizationKit.Validate` for en/fr/pl/ru/es (structural only).
 - CI builds the single-file app for linux-x64 and win-x64.
 
 ### Manual / integration (game installed)

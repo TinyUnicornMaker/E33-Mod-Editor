@@ -63,7 +63,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ExpeditionInfinity-linux-x64
-          path: dist/linux-x64/ExpeditionInfinity
+          path: dist/linux-x64/ExpeditionInfinity-*
           if-no-files-found: error
 
   windows:
@@ -96,7 +96,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ExpeditionInfinity-win-x64
-          path: dist/win-x64/ExpeditionInfinity.exe
+          path: dist/win-x64/ExpeditionInfinity-*.exe
           if-no-files-found: error
 
   release:
@@ -110,5 +110,5 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: |
-            ExpeditionInfinity-linux-x64/ExpeditionInfinity
-            ExpeditionInfinity-win-x64/ExpeditionInfinity.exe
+            ExpeditionInfinity-linux-x64/ExpeditionInfinity-*
+            ExpeditionInfinity-win-x64/ExpeditionInfinity-*.exe

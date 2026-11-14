@@ -3,6 +3,15 @@ set -euo pipefail
 
 app_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 binary="$app_dir/ExpeditionInfinity"
+# Published artifacts are named ExpeditionInfinity-<version>; accept either
+# the stable runtime copy or a versioned download.
+if [[ ! -x "$binary" ]]; then
+  for candidate in "$app_dir"/ExpeditionInfinity-*; do
+    if [[ -x "$candidate" && "$candidate" != *.exe ]]; then
+      binary="$candidate"
+    fi
+  done
+fi
 icon_src="$app_dir/expedition-infinity.png"
 data_home="${XDG_DATA_HOME:-$HOME/.local/share}"
 desktop_dir="$data_home/applications"

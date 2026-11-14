@@ -1,13 +1,13 @@
 # Localization / language selection
 
 The pack builder can bake one translated language into the mod. English is the
-default and the source language; French, Polish and Russian are shipped.
+default and the source language; French, Polish, Russian and Spanish (Spain) are shipped.
 
 ## Choosing a language
 
 - **GUI**: the launcher top bar has a **Language** dropdown. The choice is saved
   in `work/language.json` and mirrored into the project sidecar.
-- **CLI**: `dotnet <cli> rebuild-mod --language fr` (also `pl`, `ru`, `en`).
+- **CLI**: `dotnet <cli> rebuild-mod --language fr` (also `pl`, `ru`, `es`, `en`).
   Without a flag it reads `work/language.json`, then falls back to `en`.
 
 The language applies to a whole pack build. A pack is not multi-language at
@@ -54,6 +54,7 @@ Source data lives in `src/E33ModEditor.Core/Localization/Data/`:
 | `fr.json` | French translations |
 | `pl.json` | Polish translations |
 | `ru.json` | Russian translations |
+| `es.json` | Spanish (Spain) translations |
 
 Shape:
 
@@ -92,13 +93,13 @@ dotnet $CLI loc-catalog --out src/E33ModEditor.Core/Localization/Data
 #    the embedded data directory.
 
 # 4. Check coverage, markup IDs, placeholders, numbers and newlines.
-dotnet $CLI loc-validate --language fr
+dotnet $CLI loc-validate --language fr   # or es/pl/ru
 
 # 5. Merge into the stage and inspect the result.
-dotnet $CLI loc-apply --language fr
+dotnet $CLI loc-apply --language fr      # or es/pl/ru
 
 # 6. Build the real pack.
-dotnet $CLI rebuild-mod --language fr
+dotnet $CLI rebuild-mod --language fr    # or es/pl/ru
 ```
 
 ## Rules for translators

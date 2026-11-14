@@ -59,7 +59,7 @@ public static class FullPackKit
         public RandomizerKit.Settings? Randomizer { get; set; }
         public CompatibilityKit.Settings? Compatibility { get; set; }
         public bool IncludeSpoiler { get; set; } = true;
-        /// <summary>"en" (default), "fr", "pl" or "ru".</summary>
+        /// <summary>"en" (default), "fr", "pl", "ru" or "es".</summary>
         public string Language { get; set; } = "en";
         /// <summary>Optional pack-name revision suffix, e.g. <c>_v1.3</c>.
         /// Null keeps the shared default (<see cref="PackRevision"/>).</summary>

@@ -248,7 +248,7 @@ public static class LocalizationKit
 
     /// <summary>
     /// Compares the staged English tables with the vanilla en-US locres and
-    /// writes en/fr/pl/ru catalogs plus a review report. Only new or changed
+    /// writes en/fr/pl/ru/es catalogs plus a review report. Only new or changed
     /// keys are included: unchanged keys keep their official translations.
     /// </summary>
     public static void BuildCatalogs(string modDir, string outputDir, Action<string>? log = null)

@@ -19,6 +19,7 @@ public static class ModLocalization
         new Language("fr", "fr-FR", "Français"),
         new Language("pl", "pl", "Polski"),
         new Language("ru", "ru", "Русский"),
+        new Language("es", "es", "Español"),
     };
 
     private sealed class Catalog
