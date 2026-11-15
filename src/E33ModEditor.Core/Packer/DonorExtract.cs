@@ -123,7 +123,7 @@ public static class DonorExtract
                 Directory.CreateDirectory(dir);
                 log?.Invoke("  retoc " + filter);
                 progress?.Invoke(n, missing.Count, filter);
-                retoc.ToLegacy(dir, filter);
+                var retocOutput = retoc.ToLegacy(dir, filter, scriptObjects: false);
                 if (filter.EndsWith('_'))
                 {
                     var produced = Directory.EnumerateFiles(dir, "*.uasset",
@@ -131,12 +131,28 @@ public static class DonorExtract
                     if (produced) MarkPresent(filter);
                     else log?.Invoke($"  warning: {filter} matched no assets; cache not marked complete");
                 }
+                else
+                {
+                    var asset = FileCopy.FindTablesAsset(filter + ".uasset");
+                    if (asset is null || new FileInfo(asset).Length == 0)
+                        throw new InvalidDataException(
+                            $"[donor] retoc could not convert '{filter}' to a legacy .uasset. " +
+                            "Close Expedition 33, move any ~mods pack aside, and verify the game " +
+                            "files (a clean Steam install is required).\n" + retocOutput);
+                }
                 n++;
                 var after = n < missing.Count ? missing[n] : "";
                 progress?.Invoke(n, missing.Count, after);
             }
         }
         EnsureLegacyLookupLinks();
+        var stillMissing = Filters().Where(f => !IsPresent(f)).ToList();
+        if (stillMissing.Count > 0)
+            throw new InvalidDataException(
+                $"[donor] {stillMissing.Count} filter(s) are still missing after extraction: " +
+                string.Join(", ", stillMissing.Take(8)) +
+                (stillMissing.Count > 8 ? ", …" : "") +
+                ". Close Expedition 33, remove installed ~mods packs, and verify the game files.");
         log?.Invoke($"Extracted {n} filter(s).");
         progress?.Invoke(n, missing.Count, "");
         return n;

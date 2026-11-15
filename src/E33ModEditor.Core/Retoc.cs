@@ -34,7 +34,7 @@ public sealed class Retoc
     /// contaminated work/extracted once — 09-03). Move the pak set aside,
     /// re-extract, and re-pack (PackCombined reinstalls it) afterwards.
     /// </summary>
-    public void ToLegacy(string outputDir, string filter)
+    public string ToLegacy(string outputDir, string filter, bool scriptObjects = true)
     {
         var shadow = Directory.Exists(EditorPaths.ModsDir)
             ? Directory.EnumerateFiles(EditorPaths.ModsDir, "*.pak", SearchOption.TopDirectoryOnly)
@@ -47,7 +47,10 @@ public sealed class Retoc
                 $"({string.Join(", ", shadow)}) that would shadow vanilla assets in the extraction. " +
                 "Move them aside, re-extract, then re-pack to reinstall.");
         Directory.CreateDirectory(outputDir);
-        Run($"to-legacy --version UE5_4 -f \"{filter}\" \"{EditorPaths.PaksDir}\" \"{outputDir}\"", out _, failOnError: true);
+        var noScript = scriptObjects ? "" : "--no-script-objects ";
+        Run($"to-legacy --version UE5_4 {noScript}-f \"{filter}\" \"{EditorPaths.PaksDir}\" \"{outputDir}\"",
+            out var output, failOnError: true);
+        return output;
     }
 
     /// <summary>
@@ -394,6 +397,18 @@ public sealed class Retoc
             CreateNoWindow = true,
             StandardOutputEncoding = Encoding.UTF8,
         };
+        // retoc loads Oodle dynamically. Point the loader at the tool folder so
+        // the bundled oodle-data-shared.dll/.so is found even when the app's
+        // working directory is elsewhere (the Windows fresh-install failure).
+        var exeDir = Path.GetDirectoryName(exe);
+        if (!string.IsNullOrEmpty(exeDir))
+        {
+            psi.WorkingDirectory = exeDir;
+            var pathVar = OperatingSystem.IsWindows() ? "PATH" : "LD_LIBRARY_PATH";
+            var current = Environment.GetEnvironmentVariable(pathVar) ?? "";
+            var separator = OperatingSystem.IsWindows() ? ";" : ":";
+            psi.Environment[pathVar] = exeDir + separator + current;
+        }
         Process process;
         try
         {
