@@ -34,7 +34,7 @@ public sealed class Retoc
     /// contaminated work/extracted once — 09-03). Move the pak set aside,
     /// re-extract, and re-pack (PackCombined reinstalls it) afterwards.
     /// </summary>
-    public string ToLegacy(string outputDir, string filter, bool scriptObjects = true)
+    public string ToLegacy(string outputDir, string filter)
     {
         var shadow = Directory.Exists(EditorPaths.ModsDir)
             ? Directory.EnumerateFiles(EditorPaths.ModsDir, "*.pak", SearchOption.TopDirectoryOnly)
@@ -47,8 +47,7 @@ public sealed class Retoc
                 $"({string.Join(", ", shadow)}) that would shadow vanilla assets in the extraction. " +
                 "Move them aside, re-extract, then re-pack to reinstall.");
         Directory.CreateDirectory(outputDir);
-        var noScript = scriptObjects ? "" : "--no-script-objects ";
-        Run($"to-legacy --version UE5_4 {noScript}-f \"{filter}\" \"{EditorPaths.PaksDir}\" \"{outputDir}\"",
+        Run($"to-legacy --version UE5_4 -f \"{filter}\" \"{EditorPaths.PaksDir}\" \"{outputDir}\"",
             out var output, failOnError: true);
         return output;
     }
