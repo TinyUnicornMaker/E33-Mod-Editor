@@ -34,7 +34,7 @@ public sealed partial class MainWindow : Window
 
     private readonly TextBox _gameBox;
     private readonly TextBox _modsBox;
-    private SelectableTextBlock? _extractionLabel;
+    private TextBox? _extractionBox;
     private TextBox _seedBox = null!;
     private readonly TextBox _log;
     private readonly TextBlock _status;
@@ -478,18 +478,16 @@ public sealed partial class MainWindow : Window
         };
         extractionRow.Children.Add(Label(T("Game data folder"), 170,
             T("Where the one-time game data extraction (~1.2 GB) is stored.")));
-        _extractionLabel = new SelectableTextBlock
+        _extractionBox = new TextBox
         {
             Text = _app.ExtractionTablesFolder,
-            Foreground = Cream,
-            FontSize = 12,
-            TextWrapping = TextWrapping.Wrap,
-            VerticalAlignment = VerticalAlignment.Center,
+            IsReadOnly = true,
+            Watermark = T("Game data folder"),
         };
-        ToolTip.SetTip(_extractionLabel,
+        ToolTip.SetTip(_extractionBox,
             T("The extractor reads your game files once and keeps them here. Changing this folder moves the existing cache."));
-        Grid.SetColumn(_extractionLabel, 1);
-        extractionRow.Children.Add(_extractionLabel);
+        Grid.SetColumn(_extractionBox, 1);
+        extractionRow.Children.Add(_extractionBox);
         var browseExtraction = new Button { Content = T("Change…"), Margin = new Thickness(6, 0, 0, 0) };
         ToolTip.SetTip(browseExtraction, T("Choose a different folder for the extracted game data."));
         browseExtraction.Click += async (_, _) => await BrowseExtractionAsync();
@@ -1197,15 +1195,59 @@ public sealed partial class MainWindow : Window
             _status.Text = T("That folder does not look like Expedition 33.");
             return false;
         }
+
+        // If the install folder was the old game's default (or inside the old
+        // game), it should follow the newly chosen game folder. A custom
+        // install folder outside the game is preserved.
+        var previousRoot = GameLocator.NormalizeGameRoot(_gameBox.Text);
+        var previousPaks = previousRoot is null ? null : GameLocator.PaksDirOf(previousRoot);
+        var previousDefaultMods = previousPaks is null ? null : Path.Combine(previousPaks, "~mods");
+        var currentMods = _modsBox.Text?.Trim() ?? "";
+        var followsGame = string.IsNullOrWhiteSpace(currentMods)
+            || (previousDefaultMods is not null && PathEquals(currentMods, previousDefaultMods))
+            || (previousRoot is not null && IsUnder(currentMods, previousRoot));
+
         _gameBox.Text = root;
         var paks = GameLocator.PaksDirOf(root);
-        if (paks is not null && string.IsNullOrWhiteSpace(_modsBox.Text))
+        if (paks is not null && followsGame)
             _modsBox.Text = Path.Combine(paks, "~mods");
         _app.GameFolder = root;
         _app.ModsFolder = _modsBox.Text;
         _app.Save();
         _status.Text = T("Game folder ready.");
         return true;
+    }
+
+    private static bool PathEquals(string a, string b)
+    {
+        try
+        {
+            var comparison = OperatingSystem.IsWindows()
+                ? StringComparison.OrdinalIgnoreCase
+                : StringComparison.Ordinal;
+            return string.Equals(
+                Path.GetFullPath(a).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
+                Path.GetFullPath(b).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
+                comparison);
+        }
+        catch { return false; }
+    }
+
+    private static bool IsUnder(string path, string root)
+    {
+        try
+        {
+            var comparison = OperatingSystem.IsWindows()
+                ? StringComparison.OrdinalIgnoreCase
+                : StringComparison.Ordinal;
+            var fullPath = Path.GetFullPath(path)
+                .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+            var fullRoot = Path.GetFullPath(root)
+                .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+            return fullPath.Equals(fullRoot, comparison)
+                || fullPath.StartsWith(fullRoot + Path.DirectorySeparatorChar, comparison);
+        }
+        catch { return false; }
     }
 
     private void UseDefaultMods()
@@ -1313,9 +1355,9 @@ public sealed partial class MainWindow : Window
 
     private void RefreshExtractionLabel()
     {
-        if (_extractionLabel is null) return;
-        _extractionLabel.Text = _app.ExtractionTablesFolder;
-        ToolTip.SetTip(_extractionLabel,
+        if (_extractionBox is null) return;
+        _extractionBox.Text = _app.ExtractionTablesFolder;
+        ToolTip.SetTip(_extractionBox,
             _app.UsesDefaultExtractionFolder
                 ? T("The extractor reads your game files once and keeps them here. This is the default application folder.")
                 : T("The extractor reads your game files once and keeps them here. Changing this folder moves the existing cache."));
