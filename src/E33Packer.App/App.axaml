@@ -12,8 +12,8 @@
         <SolidColorBrush x:Key="MutedBrush" Color="#FF9C9280" />
         <SolidColorBrush x:Key="LineBrush" Color="#FF3B3529" />
         <Color x:Key="SystemAccentColor">#FFC9A961</Color>
-        <FontFamily x:Key="SerifDisplay">Georgia, Liberation Serif, Times New Roman</FontFamily>
-        <FontFamily x:Key="BodyFont">Inter, Segoe UI, DejaVu Sans</FontFamily>
+        <FontFamily x:Key="SerifDisplay">Georgia, Liberation Serif, Times New Roman, Songti SC, SimSun, Noto Serif CJK SC</FontFamily>
+        <FontFamily x:Key="BodyFont">Inter, Segoe UI, Microsoft YaHei, Noto Sans CJK SC, WenQuanYi Micro Hei, DejaVu Sans</FontFamily>
     </Application.Resources>
     <Application.Styles>
         <FluentTheme />

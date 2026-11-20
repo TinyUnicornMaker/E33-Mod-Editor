@@ -8679,13 +8679,13 @@ static int CmdLocApply(string[] args)
         {
             if (i + 1 >= args.Length)
             {
-                Console.Error.WriteLine("--language needs a value (en, fr, pl, ru, es)");
+                Console.Error.WriteLine("--language needs a value (en, fr, pl, ru, es, zh-Hans)");
                 return 2;
             }
             var found = E33ModEditor.Core.Localization.ModLocalization.Find(args[++i]);
             if (found is null)
             {
-                Console.Error.WriteLine("unsupported language; use en, fr, pl, ru or es");
+                Console.Error.WriteLine("unsupported language; use en, fr, pl, ru, es or zh-Hans");
                 return 2;
             }
             language = found.Code;
@@ -8717,13 +8717,13 @@ static int CmdLocValidate(string[] args)
         {
             if (i + 1 >= args.Length)
             {
-                Console.Error.WriteLine("--language needs a value (en, fr, pl, ru, es)");
+                Console.Error.WriteLine("--language needs a value (en, fr, pl, ru, es, zh-Hans)");
                 return 2;
             }
             var found = E33ModEditor.Core.Localization.ModLocalization.Find(args[++i]);
             if (found is null)
             {
-                Console.Error.WriteLine("unsupported language; use en, fr, pl, ru or es");
+                Console.Error.WriteLine("unsupported language; use en, fr, pl, ru, es or zh-Hans");
                 return 2;
             }
             language = found.Code;
@@ -8771,13 +8771,13 @@ static int CmdRebuildMod(string[] args)
         {
             if (i + 1 >= args.Length)
             {
-                Console.Error.WriteLine("--language needs a value (en, fr, pl, ru, es)");
+                Console.Error.WriteLine("--language needs a value (en, fr, pl, ru, es, zh-Hans)");
                 return 2;
             }
             var requested = E33ModEditor.Core.Localization.ModLocalization.Find(args[++i]);
             if (requested is null)
             {
-                Console.Error.WriteLine("unsupported language; use en, fr, pl, ru or es");
+                Console.Error.WriteLine("unsupported language; use en, fr, pl, ru, es or zh-Hans");
                 return 2;
             }
             language = requested.Code;
@@ -11574,12 +11574,12 @@ static int CmdDumpImports(string[] args)
                                  wipes DIR (default work/mod_fp), applies + verifies all four
                                  restore sources, packs Export/NAME_P.{pak,utoc,ucas} and
                                  installs to ~mods (--no-install skips the copy).
-          rebuild-mod [--language en|fr|pl|ru|es]
+          rebuild-mod [--language en|fr|pl|ru|es|zh-Hans]
                                  full pack; the language bakes a translated
                                  Game.locres (en = no override, the default)
           loc-languages                list pack languages and cultures
           loc-catalog [--out DIR]      compare work/mod with vanilla and write
-                                       en/fr/pl/ru/es catalogs + review report
+                                       en/fr/pl/ru/es/zh-Hans catalogs + review report
           loc-apply --language fr      merge the selected catalog into the
                                        staged work/mod Game.locres
           loc-validate --language fr   coverage + markup/number/newline checks

@@ -49,7 +49,7 @@ public class MainViewModel : ViewModelBase
     public ObservableCollection<ModuleVM> Modules { get; } = new();
     public ObservableCollection<RecordRow> Rows { get; } = new();
 
-    /// <summary>Language baked into the next Apply &amp; Pack (en/fr/pl/ru/es).</summary>
+    /// <summary>Language baked into the next Apply &amp; Pack (en/fr/pl/ru/es/zh-Hans).</summary>
     public ObservableCollection<ModLocalization.Language> PackLanguages { get; } = new(ModLocalization.Supported);
 
     private ModLocalization.Language _selectedPackLanguage = ModLocalization.English;

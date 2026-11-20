@@ -4,14 +4,14 @@ The standalone generator ships a **language-neutral English seed** plus shared
 language packs under `Export/Seeds/Languages/<culture>/` (one subfolder per
 culture). The selected culture's pak is installed next to the seed in `~mods`.
 The CLI/legacy path can still bake one culture into a per-seed
-`zz_<packName>_P.pak`; English is the source language. French, Polish, Russian
-and Spanish are shipped.
+`zz_<packName>_P.pak`; English is the source language. French, Polish, Russian,
+Spanish (Spain) and Simplified Chinese are shipped.
 
 ## Choosing a language
 
 - **GUI**: the launcher top bar has a **Language** dropdown. The choice is saved
   in `work/language.json` and mirrored into the project sidecar.
-- **CLI**: `dotnet <cli> rebuild-mod --language fr` (also `pl`, `ru`, `en`).
+- **CLI**: `dotnet <cli> rebuild-mod --language fr` (also `pl`, `ru`, `es`, `zh-Hans`, `en`).
   Without a flag it reads `work/language.json`, then falls back to `en`.
 
 The language applies to a whole pack build. A pack is not multi-language at
@@ -58,6 +58,8 @@ Source data lives in `src/E33ModEditor.Core/Localization/Data/`:
 | `fr.json` | French translations |
 | `pl.json` | Polish translations |
 | `ru.json` | Russian translations |
+| `es.json` | Spanish (Spain) translations |
+| `zh-Hans.json` | Simplified Chinese translations |
 
 Shape:
 

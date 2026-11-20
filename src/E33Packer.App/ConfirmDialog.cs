@@ -50,7 +50,7 @@ internal static class ConfirmDialog
                 new TextBlock
                 {
                     Text = title,
-                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman"),
+                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman, Songti SC, SimSun, Noto Serif CJK SC"),
                     FontSize = 22,
                     Foreground = Gold,
                     TextWrapping = TextWrapping.Wrap,

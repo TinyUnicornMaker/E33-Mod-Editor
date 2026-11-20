@@ -248,7 +248,7 @@ public static class LocalizationKit
 
     /// <summary>
     /// Compares the staged English tables with the vanilla en-US locres and
-    /// writes en/fr/pl/ru/es catalogs plus a review report. Only new or changed
+    /// writes en/fr/pl/ru/es/zh-Hans catalogs plus a review report. Only new or changed
     /// keys are included: unchanged keys keep their official translations.
     /// </summary>
     public static void BuildCatalogs(string modDir, string outputDir, Action<string>? log = null)
@@ -534,7 +534,7 @@ public static class LocalizationKit
                 issues.Add($"{composite.Replace('\0', '/')}: missing");
                 continue;
             }
-            Compare(composite.Replace('\0', '/'), english, text, issues);
+            Compare(composite.Replace('\0', '/'), english, text, issues, lang.Code == "zh-Hans");
         }
 
         foreach (var (key, english) in InlineSource)
@@ -543,16 +543,17 @@ public static class LocalizationKit
             if (string.Equals(text, english, StringComparison.Ordinal) && lang.Code != "en"
                 && !AllowUnchangedInline.Contains(key))
                 issues.Add($"inline:{key}: unchanged");
-            Compare("inline:" + key, english, text, issues);
+            Compare("inline:" + key, english, text, issues, lang.Code == "zh-Hans");
         }
         return issues;
     }
 
-    private static void Compare(string id, string english, string translation, List<string> issues)
+    private static void Compare(string id, string english, string translation, List<string> issues,
+        bool allowReordering = false)
     {
         var enTags = MarkupIds(english);
         var trTags = MarkupIds(translation);
-        if (!enTags.SequenceEqual(trTags))
+        if (!TagsMatch(enTags, trTags, allowReordering))
             issues.Add($"{id}: markup IDs differ [{string.Join(",", enTags)}] vs [{string.Join(",", trTags)}]");
 
         var enPlaceholders = Placeholders(english);
@@ -562,7 +563,13 @@ public static class LocalizationKit
 
         var enNumbers = Numbers(english);
         var trNumbers = Numbers(translation);
-        if (!enNumbers.SequenceEqual(trNumbers))
+        // Chinese word order may move clauses (and their tags/numbers), and
+        // Chinese counters may add a "1" that English expresses as an article.
+        // Require every English number to still be present, but allow extras.
+        var numbersMatch = allowReordering
+            ? ContainsAll(trNumbers, enNumbers)
+            : enNumbers.SequenceEqual(trNumbers);
+        if (!numbersMatch)
             issues.Add($"{id}: numbers differ [{string.Join(",", enNumbers)}] vs [{string.Join(",", trNumbers)}]");
 
         var enLines = english.Count(c => c == '\n');
@@ -570,6 +577,27 @@ public static class LocalizationKit
         if (enLines != trLines)
             issues.Add($"{id}: line breaks {enLines} vs {trLines}");
     }
+
+    private static bool TagsMatch(List<string> en, List<string> tr, bool allowReordering)
+    {
+        if (!allowReordering) return en.SequenceEqual(tr);
+        return Multiset(en).SequenceEqual(Multiset(tr));
+    }
+
+    private static bool ContainsAll(List<string> haystack, List<string> needle)
+    {
+        var counts = new Dictionary<string, int>(StringComparer.Ordinal);
+        foreach (var value in haystack) counts[value] = counts.GetValueOrDefault(value) + 1;
+        foreach (var value in needle)
+        {
+            if (!counts.TryGetValue(value, out var n) || n == 0) return false;
+            counts[value] = n - 1;
+        }
+        return true;
+    }
+
+    private static IEnumerable<string> Multiset(IEnumerable<string> values) =>
+        values.OrderBy(v => v, StringComparer.Ordinal);
 
     private static List<string> MarkupIds(string value) =>
         Regex.Matches(value, "id=\"([^\"]+)\"")

@@ -55,7 +55,7 @@ public sealed partial class MainWindow
     {
         Text = text,
         Foreground = Gold,
-        FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman"),
+        FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman, Songti SC, SimSun, Noto Serif CJK SC"),
         FontSize = 17,
         Margin = new Thickness(0, 6, 0, 4),
     };
@@ -64,7 +64,7 @@ public sealed partial class MainWindow
     {
         Text = text,
         Foreground = Gold,
-        FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman"),
+        FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman, Songti SC, SimSun, Noto Serif CJK SC"),
         FontSize = 14,
         Margin = new Thickness(0, 10, 0, 2),
     };
@@ -219,7 +219,7 @@ public sealed partial class MainWindow
         {
             Text = value.ToString(CultureInfo.InvariantCulture),
             Width = 110,
-            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
+            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, Microsoft YaHei, Noto Sans CJK SC, monospace"),
         };
         var last = value;
         void Commit()
@@ -273,7 +273,7 @@ public sealed partial class MainWindow
         {
             Text = display,
             Width = percent ? 84 : 110,
-            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
+            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, Microsoft YaHei, Noto Sans CJK SC, monospace"),
         };
         var last = TryParse(display, out var initial) ? initial : value;
         void Commit()
@@ -401,7 +401,7 @@ public sealed partial class MainWindow
             {
                 Text = FormatPercent(values[index] * 100),
                 Width = 76,
-                FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
+                FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, Microsoft YaHei, Noto Sans CJK SC, monospace"),
             };
             var last = values[index] * 100;
             void Commit()
@@ -443,7 +443,7 @@ public sealed partial class MainWindow
             {
                 Text = values[index].ToString("0.###", CultureInfo.InvariantCulture),
                 Width = 58,
-                FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
+                FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, Microsoft YaHei, Noto Sans CJK SC, monospace"),
             };
             var last = values[index];
             void Commit()

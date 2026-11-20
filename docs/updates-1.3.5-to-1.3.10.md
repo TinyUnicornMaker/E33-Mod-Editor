@@ -34,14 +34,20 @@ Mode-specific:
 - **Easy** — regular parry/dodge timings (0.15 / 0.22; the defense-window table
   is not staged), 25% weaker regular-enemy bonuses, instant Picto mastery.
 - **Normal** — standard Expedition Infinity.
-- **Hard** — Brutal as-is: tightened defense windows (0.1125 / 0.165), 2× HP
+- **Hard** — the Brutal preset plus extreme T4–T5 boss defense (1× at the T4
+  floor to 30× at L99): tightened defense windows (0.1125 / 0.165), 2× HP
   bonus, 1.5× speed/attack bonuses, half Lumina. Permadeath stays off.
+- **Boss defense (Hard only)** — the Hard seed enables
+  `ExtremeBossDefense`: 1× at the T4 floor, smoothly ramping to **30× the
+  regular defense curve at L99**. Easy and Normal keep the regular curve, so
+  the codex now shows the Hard endgame bosses at roughly 30× the Easy/Normal
+  defense at the same level.
 
 ### Shared language packs
 
 - Seed containers are language-neutral English (no locres inside the `.utoc`).
 - One pak per culture is built under `Languages/`:
-  `fr-FR`, `pl`, `ru`, `es`.
+  `fr-FR`, `pl`, `ru`, `es`, `zh-Hans`.
 - The generator installs the selected culture's pak alongside the seed; manual
   install instructions are in `INSTALL.txt`.
 - The `zz_` prefix keeps the language pak mounting after `pakchunk0`.
@@ -60,7 +66,7 @@ Expedition Infinity 1.3.10/
   [Normal] 87694963/
   [Hard] 23035873/
   Languages/
-    fr-FR/ pl/ ru/ es/
+    fr-FR/ pl/ ru/ es/ zh-Hans/
   BUILD.txt
   INSTALL.txt
   RELEASE-NOTES.md
@@ -124,7 +130,7 @@ Expedition Infinity 1.3.10/
 | Area | Change |
 |---|---|
 | Seeds | One seed → three curated seeds (Easy / Normal / Hard) |
-| Language | Four languages → five (Spanish); shared `Languages/<culture>/` packs |
+| Language | Four languages → six (Spanish, Simplified Chinese); shared `Languages/<culture>/` packs |
 | Pictos | Core over-level scaling 34–333 (linear, 4× at 333) |
 | Proc cards | Toggle added; `0` hides all; 1.3.10 seeds ship cap 0 |
 | Camera | Close/first-person camera disabled in all 1.3.10 seeds |

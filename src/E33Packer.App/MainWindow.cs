@@ -93,7 +93,7 @@ public sealed partial class MainWindow : Window
             IsReadOnly = true,
             AcceptsReturn = true,
             TextWrapping = TextWrapping.Wrap,
-            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
+            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, Microsoft YaHei, Noto Sans CJK SC, monospace"),
             FontSize = 12,
             MinHeight = 110,
             Height = 130,
@@ -393,7 +393,7 @@ public sealed partial class MainWindow : Window
         {
             Text = $"Expedition Infinity {AppVersion}",
             Foreground = Brush("#FFC9A961"),
-            FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman"),
+            FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman, Songti SC, SimSun, Noto Serif CJK SC"),
             FontSize = 27,
         });
         header.Children.Add(Tip(new TextBlock
@@ -534,7 +534,7 @@ public sealed partial class MainWindow : Window
         {
             Text = _profile.Seed.ToString(),
             Foreground = Cream,
-            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
+            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, Microsoft YaHei, Noto Sans CJK SC, monospace"),
             FontSize = 15,
             VerticalAlignment = VerticalAlignment.Center,
             MinWidth = 110,

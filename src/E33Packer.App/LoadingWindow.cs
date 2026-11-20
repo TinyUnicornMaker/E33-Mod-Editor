@@ -43,7 +43,7 @@ internal sealed class LoadingWindow : Window
                 {
                     Text = $"Expedition Infinity {GeneratorInfo.AppVersion}",
                     Foreground = new SolidColorBrush(Color.Parse("#FFC9A961")),
-                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman"),
+                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman, Songti SC, SimSun, Noto Serif CJK SC"),
                     FontSize = 26,
                     HorizontalAlignment = HorizontalAlignment.Center,
                 },

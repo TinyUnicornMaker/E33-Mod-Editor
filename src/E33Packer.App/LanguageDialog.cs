@@ -67,8 +67,8 @@ internal static class LanguageDialog
             {
                 new TextBlock
                 {
-                    Text = "English · Français · Polski · Русский · Español",
-                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman"),
+                    Text = "English · Français · Polski · Русский · Español · 简体中文",
+                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman, Songti SC, SimSun, Noto Serif CJK SC"),
                     FontSize = 22,
                     Foreground = Gold,
                     TextWrapping = TextWrapping.Wrap,
@@ -76,7 +76,7 @@ internal static class LanguageDialog
                 new TextBlock
                 {
                     Text = "Choose your language · Choisissez votre langue · " +
-                           "Wybierz język · Выберите язык · Elige tu idioma",
+                           "Wybierz język · Выберите язык · Elige tu idioma · 选择你的语言",
                     TextWrapping = TextWrapping.Wrap,
                     Foreground = Cream,
                     FontSize = 13,

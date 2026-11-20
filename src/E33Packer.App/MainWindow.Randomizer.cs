@@ -27,7 +27,7 @@ public sealed partial class MainWindow
         {
             Text = _profile.Seed.ToString(),
             Width = 150,
-            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
+            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, Microsoft YaHei, Noto Sans CJK SC, monospace"),
         };
         _seedBox = seedBox;
         seedBox.TextChanged += (_, _) =>

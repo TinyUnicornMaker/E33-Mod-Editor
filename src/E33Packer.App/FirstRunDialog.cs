@@ -59,7 +59,7 @@ internal static class FirstRunDialog
             Text = targetDir,
             TextWrapping = TextWrapping.Wrap,
             Foreground = Cream,
-            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
+            FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, Microsoft YaHei, Noto Sans CJK SC, monospace"),
             FontSize = 12,
         };
         var change = new Button
@@ -93,7 +93,7 @@ internal static class FirstRunDialog
                 new TextBlock
                 {
                     Text = resuming ? T("Finish game data setup") : T("First-time setup"),
-                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman"),
+                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman, Songti SC, SimSun, Noto Serif CJK SC"),
                     FontSize = 24,
                     Foreground = Gold,
                 },

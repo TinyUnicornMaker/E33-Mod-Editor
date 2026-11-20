@@ -74,7 +74,7 @@ The relevant setting objects already exist:
 | Weapon drop levels | `WeaponDropLevelKit.Settings` | enabled, max drop level |
 | Party of Five | `PartyFiveKit.Settings` | enabled + formation |
 | First-person camera | `FirstPersonCameraKit.Settings` | out of scope for seed generator |
-| Language | `ModLocalization` / `LocalizationKit` | en, fr, pl, ru |
+| Language | `ModLocalization` / `LocalizationKit` | en, fr, pl, ru, es, zh-Hans |
 
 ### 2.3 What the old standalone actually builds
 
@@ -211,7 +211,7 @@ resolved in §13: the generator uses 333; v7 shipped 500.
    deliberate design change from the shipped v7 500); AP 21, 3 turns,
    permadeath and the other current values stay.
 6. **Language switches both the pack language and the app UI.** English,
-   French, Polish and Russian use native language names and translated UI
+   French, Polish, Russian, Spanish and Simplified Chinese use native language names and translated UI
    strings. The first launch offers the language choice before game setup.
 7. **Per-platform one-file builds.** Linux x64 and Windows x64 are separate
    single-file executables, each carrying its own `retoc`/`repak`. A universal
@@ -933,7 +933,7 @@ Licences** dialog. Do not redistribute game assets.
 | 10b | Prefix filters counted ≥5 files as complete, skipping broad extraction | **High** | Fixed with `.donor/<filter>.ok` extraction markers |
 | 10c | Kits still look in editor-only `work/probe-*` / `extracted` folders | **High** | App creates compatibility links to `work/tables`; verified |
 | 10d | Windows language builds need a Windows `repak.exe` | **Medium** | `tools/repak/repak.exe` added; Windows artifact still needs a full test |
-| 11 | Non-English translations can contain text defects | **High** | All four languages ship with translated UI/pack text; no validation panel or beta badge is shown |
+| 11 | Non-English translations can contain text defects | **High** | All six languages ship with translated UI/pack text; no validation panel or beta badge is shown |
 | 12 | Core damage curve assumes Max AP 21 / 3 turns / 333 (or 500) level cap; exposing raw values can break it | **High** | Curated-only Balance tab; keep AP/turns/burn/crit fixed |
 | 13 | Party of Five is a heavy, risky submodule and will always be on | **Medium** | Test both platforms and existing saves; document that it is core, not a toggle |
 | 15 | App UI is English only while the Language tab selects pack content | **Low** | State clearly; add UI localization later if requested |
@@ -1031,7 +1031,7 @@ Party of Five is **not** in this phase; it is always-on core from Phase 2.
 - `FullPackKit` option plumbing: a fake build with each setting produces the
   expected flag in the manifest (no game assets required for the settings
   layer).
-- `LocalizationKit.Validate` for en/fr/pl/ru (structural only).
+- `LocalizationKit.Validate` for en/fr/pl/ru/es/zh-Hans (structural only).
 - CI builds the single-file app for linux-x64 and win-x64.
 
 ### Manual / integration (game installed)

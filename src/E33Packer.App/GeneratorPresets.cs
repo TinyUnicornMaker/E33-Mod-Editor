@@ -77,6 +77,10 @@ public static class GeneratorPresets
             case Brutal:
                 // Permadeath is not a completed feature; keep it off.
                 profile.Balance.Permadeath = false;
+                // The hard seed includes the alternate T4-T5 boss defense
+                // curve: 1x at the T4 floor ramping to 30x the regular curve
+                // at the top of T5 (L99).
+                profile.Randomizer.ExtremeBossDefense = true;
                 profile.Balance.TightenDefenseWindows = true;
                 profile.Balance.BuffRegularEnemies = true;
                 profile.Balance.ReduceLuminaDrops = true;

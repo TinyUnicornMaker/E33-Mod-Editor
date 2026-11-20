@@ -58,7 +58,7 @@ internal static class GameFolderDialog
                 new TextBlock
                 {
                     Text = T("Find Expedition 33"),
-                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman"),
+                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman, Songti SC, SimSun, Noto Serif CJK SC"),
                     FontSize = 24,
                     Foreground = Gold,
                 },
@@ -143,7 +143,7 @@ internal static class GameFolderDialog
                 new TextBlock
                 {
                     Text = T("Expedition 33 found"),
-                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman"),
+                    FontFamily = new FontFamily("Georgia, Liberation Serif, Times New Roman, Songti SC, SimSun, Noto Serif CJK SC"),
                     FontSize = 24,
                     Foreground = Gold,
                 },
@@ -158,7 +158,7 @@ internal static class GameFolderDialog
                     Text = path,
                     TextWrapping = TextWrapping.Wrap,
                     Foreground = Cream,
-                    FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, monospace"),
+                    FontFamily = new FontFamily("DejaVu Sans Mono, Consolas, Microsoft YaHei, Noto Sans CJK SC, monospace"),
                     FontSize = 12,
                 },
                 new TextBlock

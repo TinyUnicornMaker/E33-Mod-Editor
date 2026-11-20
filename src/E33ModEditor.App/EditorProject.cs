@@ -28,7 +28,7 @@ public sealed class EditorProject
     public JObject Camera { get; set; } = new();
     /// <summary>Party of Five submodule settings (work/party_five.json mirror).</summary>
     public JObject PartyFive { get; set; } = new();
-    /// <summary>Pack language: en (default), fr, pl, ru or es.</summary>
+    /// <summary>Pack language: en (default), fr, pl, ru, es or zh-Hans.</summary>
     public string Language { get; set; } = "en";
 
     public static string AutosavePath =>

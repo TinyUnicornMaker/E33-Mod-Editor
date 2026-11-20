@@ -59,7 +59,7 @@ public static class FullPackKit
         public RandomizerKit.Settings? Randomizer { get; set; }
         public CompatibilityKit.Settings? Compatibility { get; set; }
         public bool IncludeSpoiler { get; set; } = true;
-        /// <summary>"en" (default), "fr", "pl", "ru" or "es".</summary>
+        /// <summary>"en" (default), "fr", "pl", "ru", "es" or "zh-Hans".</summary>
         public string Language { get; set; } = "en";
         /// <summary>Optional pack-name revision suffix, e.g. <c>_v1.3</c>.
         /// Null keeps the shared default (<see cref="PackRevision"/>).</summary>
@@ -526,6 +526,7 @@ public static class FullPackKit
                 var cultureDir = Path.Combine(Path.GetFullPath(opt.LanguagePackRoot!), lang.Culture);
                 Directory.CreateDirectory(cultureDir);
                 var packName = $"zz_ExpeditionInfinity_{revision}_{lang.Culture}";
+                ModLocalization.SetLanguage(lang.Code);
                 LocalizationKit.Apply(modDir, lang.Code, log);
                 var issues = LocalizationKit.Validate(lang.Code);
                 if (issues.Count > 0)
@@ -541,6 +542,7 @@ public static class FullPackKit
                 var locDir = Path.Combine(modDir, "Sandfall", "Content", "Localization");
                 if (Directory.Exists(locDir)) Directory.Delete(locDir, true);
             }
+            ModLocalization.SetLanguage(ModLocalization.English.Code);
         }
         if (!string.IsNullOrEmpty(selectedLanguagePack)) packed.Add(selectedLanguagePack);
 
