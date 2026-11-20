@@ -70,6 +70,11 @@ public static class FullPackKit
         /// <see cref="EditorPaths.ExportDir"/> layout used by the CLI/editor.</summary>
         public string? SeedLibraryRoot { get; set; }
 
+        /// <summary>Optional human-readable folder name for this seed inside
+        /// <see cref="SeedLibraryRoot"/> (e.g. <c>[Easy] 61281975</c>). Null uses
+        /// the pack name. The pack files keep their canonical names.</summary>
+        public string? SeedFolderName { get; set; }
+
         /// <summary>When set, the seed container is language-neutral (English
         /// source) and the translated locres for every supported language is
         /// built once under this root, one subfolder per culture
@@ -115,10 +120,10 @@ public static class FullPackKit
     /// Folder that holds one seed's library copy. A null root keeps the legacy
     /// flat Export/ layout; a root produces Export/Seeds/&lt;packName&gt;.
     /// </summary>
-    public static string SeedLibraryPackDir(string? root, string packName) =>
+    public static string SeedLibraryPackDir(string? root, string packName, string? folderName = null) =>
         string.IsNullOrWhiteSpace(root)
             ? EditorPaths.ExportDir
-            : Path.Combine(Path.GetFullPath(root), packName);
+            : Path.Combine(Path.GetFullPath(root), string.IsNullOrWhiteSpace(folderName) ? packName : folderName);
 
     public static Result RebuildAndPack(Options opt)
     {
@@ -151,7 +156,7 @@ public static class FullPackKit
         }
         var randoOn = opt.ForceRandomizerOn || !rando.IsOff;
         var modName = ModNameFor(rando.Seed, opt.PackRevisionOverride);
-        var packDir = SeedLibraryPackDir(opt.SeedLibraryRoot, modName);
+        var packDir = SeedLibraryPackDir(opt.SeedLibraryRoot, modName, opt.SeedFolderName);
         var partyFive = opt.PartyFive ?? PartyFiveKit.Settings.Load();
         var compat = opt.Compatibility ?? new CompatibilityKit.Settings();
         string? compatUtoc = null;

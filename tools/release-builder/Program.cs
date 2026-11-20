@@ -6,11 +6,11 @@ using E33Packer.App;
 var repo = Path.GetFullPath(args.Length > 0 ? args[0] : ".");
 var paks = Environment.GetEnvironmentVariable("E33_PAKS")
     ?? Path.Combine(repo, "work", "paks-placeholder");
-var output = Path.GetFullPath(args.Length > 1 ? args[1] : Path.Combine(repo, "dist", "1.3.10"));
+var output = Path.GetFullPath(args.Length > 1 ? args[1] : Path.Combine(repo, "dist", "Expedition Infinity 1.3.10"));
 var language = args.Length > 2 ? args[2] : "en";
 var onlyMode = args.Length > 3 ? args[3] : "";
-var seedRoot = Path.Combine(output, "seeds");
-var langRoot = Path.Combine(output, "LanguagePacks");
+var seedRoot = output;
+var langRoot = Path.Combine(output, "Languages");
 Directory.CreateDirectory(seedRoot);
 EditorPaths.Configure(repo, paks, Path.Combine(repo, "tools"), Path.Combine(repo, "work", "mods-release-install"));
 DataTableEditor.ResetMappings();
@@ -26,11 +26,11 @@ int NewSeed(HashSet<int> used)
 }
 
 var used = new HashSet<int>();
-var modes = new (string Name, string Preset)[]
+var modes = new (string Name, string Label, string Preset)[]
 {
-    ("easy", GeneratorPresets.Easy),
-    ("normal", GeneratorPresets.Expedition),
-    ("hard", GeneratorPresets.Brutal),
+    ("easy", "Easy", GeneratorPresets.Easy),
+    ("normal", "Normal", GeneratorPresets.Expedition),
+    ("hard", "Hard", GeneratorPresets.Brutal),
 };
 
 var lines = new List<string>();
@@ -39,10 +39,10 @@ lines.Add($"Built: {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} UTC");
 lines.Add($"Pack revision: {GeneratorInfo.PackRevision}");
 lines.Add("Proc cards: LimitBattleProcCards=on, PictoPopupCap=0 (all seeds)");
 lines.Add("Close camera: off (all seeds)");
-lines.Add("Language packs: shared under LanguagePacks/<culture>/, installed alongside any seed");
+lines.Add("Language packs: shared under Languages/<culture>/, installed alongside any seed");
 lines.Add("");
 
-foreach (var (name, preset) in modes)
+foreach (var (name, label, preset) in modes)
 {
     var seed = NewSeed(used);
     var profile = GeneratorPresets.Create(preset, seed);
@@ -64,6 +64,7 @@ foreach (var (name, preset) in modes)
         LanguagePackRoot = langRoot,
         PackRevisionOverride = GeneratorInfo.PackRevision,
         SeedLibraryRoot = seedRoot,
+        SeedFolderName = $"[{label}] {seed}",
         InstallToMods = false,
         VerifyPack = true,
         IncludeSpoiler = true,
@@ -72,7 +73,7 @@ foreach (var (name, preset) in modes)
     };
     Console.WriteLine($"=== {name}: preset={preset} seed={seed} ===");
     var result = FullPackKit.RebuildAndPack(options);
-    lines.Add($"{name}: preset={preset} seed={seed} pack={result.PackName}");
+    lines.Add($"[{label}] {seed}: preset={preset} pack={result.PackName}");
     lines.Add($"  dir: {result.PackDirectory}");
     lines.Add($"  languagePack: {(string.IsNullOrEmpty(result.LanguagePack) ? "(English)" : result.LanguagePack)}");
     lines.Add($"  edits: {result.Edits}");

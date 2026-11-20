@@ -736,7 +736,7 @@ public sealed partial class MainWindow : Window
             PackRevisionOverride = PackRevision,
             SeedLibraryRoot = libraryRoot,
             // One language-neutral seed plus shared locres paks per culture.
-            LanguagePackRoot = Path.Combine(libraryRoot, "LanguagePacks"),
+            LanguagePackRoot = Path.Combine(libraryRoot, "Languages"),
             InstallToMods = true,
             VerifyPack = true,
             IncludeSpoiler = true,
