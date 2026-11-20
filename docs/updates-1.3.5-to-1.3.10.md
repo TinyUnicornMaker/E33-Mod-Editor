@@ -43,8 +43,11 @@ Mode-specific:
   the codex now shows the Hard endgame bosses at roughly 30× the Easy/Normal
   defense at the same level.
 
-### Shared language packs
+### Languages
 
+- **Simplified Chinese (`zh-Hans`)** is included as a sixth language. The first
+  launch language dialog, UI strings and the pack catalog are translated; the
+  `Languages/zh-Hans/` pak is built from the same catalog as the other cultures.
 - Seed containers are language-neutral English (no locres inside the `.utoc`).
 - One pak per culture is built under `Languages/`:
   `fr-FR`, `pl`, `ru`, `es`, `zh-Hans`.
