@@ -7,6 +7,8 @@ var repo = Path.GetFullPath(args.Length > 0 ? args[0] : ".");
 var paks = Environment.GetEnvironmentVariable("E33_PAKS")
     ?? Path.Combine(repo, "work", "paks-placeholder");
 var output = Path.GetFullPath(args.Length > 1 ? args[1] : Path.Combine(repo, "dist", "1.3.10"));
+var language = args.Length > 2 ? args[2] : "en";
+var onlyMode = args.Length > 3 ? args[3] : "";
 var seedRoot = Path.Combine(output, "seeds");
 var langRoot = Path.Combine(output, "LanguagePacks");
 Directory.CreateDirectory(seedRoot);
@@ -46,6 +48,8 @@ foreach (var (name, preset) in modes)
     var profile = GeneratorPresets.Create(preset, seed);
     profile.QoL.PictoPopupCap = 0;
     profile.QoL.LimitBattleProcCards = true;
+    if (!string.IsNullOrEmpty(onlyMode) && !string.Equals(onlyMode, name, StringComparison.OrdinalIgnoreCase))
+        continue;
     var options = new FullPackKit.Options
     {
         Seed = seed,
@@ -56,7 +60,7 @@ foreach (var (name, preset) in modes)
         WeaponDropLevel = profile.Balance.ToWeaponDropLevel(),
         PartyFive = PartyFiveKit.Settings.Load(),
         FirstPerson = new FirstPersonCameraKit.Settings { Enabled = false },
-        Language = "en",
+        Language = language,
         LanguagePackRoot = langRoot,
         PackRevisionOverride = GeneratorInfo.PackRevision,
         SeedLibraryRoot = seedRoot,
