@@ -580,12 +580,18 @@ ExpeditionInfinity/        application folder
     locres/                cached vanilla locres
   Export/
     Seeds/
-      ExpeditionInfinity_12345_v1.3_P/
-        ExpeditionInfinity_12345_v1.3_P.{pak,ucas,utoc}
-        zz_ExpeditionInfinity_12345_v1.3_P.pak   (non-English only)
-        ExpeditionInfinity_12345_v1.3_P_manifest.json
-        ExpeditionInfinity_12345_v1.3_P.eiseed.json
-        ExpeditionInfinity_12345_Spoiler.html
+      [Easy] 61281975/
+        ExpeditionInfinity_61281975_v1.3.10_P.{pak,ucas,utoc}
+        ExpeditionInfinity_61281975_v1.3.10_P_manifest.json
+        ExpeditionInfinity_61281975_v1.3.10_P.eiseed.json
+        ExpeditionInfinity_61281975_Spoiler.html
+      [Normal] 87694963/ ...
+      [Hard] 23035873/ ...
+      Languages/
+        fr-FR/zz_ExpeditionInfinity_v1.3.10_fr-FR.pak
+        pl/zz_ExpeditionInfinity_v1.3.10_pl.pak
+        ru/zz_ExpeditionInfinity_v1.3.10_ru.pak
+        es/zz_ExpeditionInfinity_v1.3.10_es.pak
   logs/
     build-2026-10-26T19-00-00.log
 ```

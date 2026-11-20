@@ -1,7 +1,11 @@
 # Localization / language selection
 
-The pack builder can bake one translated language into the mod. English is the
-default and the source language; French, Polish and Russian are shipped.
+The standalone generator ships a **language-neutral English seed** plus shared
+language packs under `Export/Seeds/Languages/<culture>/` (one subfolder per
+culture). The selected culture's pak is installed next to the seed in `~mods`.
+The CLI/legacy path can still bake one culture into a per-seed
+`zz_<packName>_P.pak`; English is the source language. French, Polish, Russian
+and Spanish are shipped.
 
 ## Choosing a language
 
@@ -28,16 +32,16 @@ runtime: it ships one culture's patched `Game.locres`.
    work/mod/Sandfall/Content/Localization/Game/<culture>/Game.locres
    ```
 
-4. `Retoc.PackCombined` packs that locres into a dedicated
-   `zz_<packName>_P.pak` with `repak` (retoc's `to-zen` only converts assets,
-   so non-asset files need the legacy pak). The `zz_` prefix makes it load
-   after `pakchunk0`; otherwise the base game's `Game.locres` wins duplicate
-   vanilla keys and modified skill text falls back to English while new keys
-   still work. As a deterministic fallback, the selected translation is also
-   written into the staged StringTable source; if the engine rejects a stale
-   source hash or a base locres entry wins, the skill still displays
-   in-language. The `.utoc`/`.ucas` still hold the assets. English ships no
-   locres pak.
+4. `Retoc.PackCombined` packs the seed assets; the shared layout writes each
+   culture's locres through `Retoc.PackLanguagePack` to
+   `Export/Seeds/Languages/<culture>/zz_ExpeditionInfinity_<revision>_<culture>.pak`
+   with `repak` (retoc's `to-zen` only converts assets, so non-asset files need
+   the legacy pak). The `zz_` prefix makes it load after `pakchunk0`; otherwise
+   the base game's `Game.locres` wins duplicate vanilla keys. The seed
+   container itself stays English. With the legacy per-seed layout the locres
+   is named `zz_<packName>_P.pak`, and the selected translation is also inlined
+   into the staged StringTable source as a fallback. The `.utoc`/`.ucas` hold
+   the assets; English needs no locres pak.
 
 Only **new or changed** keys are in the catalogs. Unchanged keys keep the
 game's official translations. For existing vanilla keys, the locres keeps the
