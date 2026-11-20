@@ -40,3 +40,8 @@ docs/**/*.designcraft
 # Local tool binaries
 tools/retoc-win/
 tools/liboodle-data-shared.so
+
+# Local retoc binaries
+tools/retoc
+tools/retoc.exe
+tools/liboo2corelinux64.so.9

@@ -719,6 +719,7 @@ public sealed partial class MainWindow : Window
         _profile.Randomizer.Seed = _profile.Seed;
         SaveLastProfile();
         var tweaks = _profile.Balance.ToTweaks(_profile.QoL);
+        var libraryRoot = Path.Combine(AppSettings.DataRoot, "Export", "Seeds");
         var options = new FullPackKit.Options
         {
             Seed = _profile.Seed,
@@ -728,9 +729,14 @@ public sealed partial class MainWindow : Window
             WeaponBulkUpgrade = _profile.QoL.ToWeaponBulkUpgrade(),
             WeaponDropLevel = _profile.Balance.ToWeaponDropLevel(),
             PartyFive = new PartyFiveKit.Settings { Enabled = true },
+            // The close camera is a separate local toggle in work/firstperson.json;
+            // the generator never enables it.
+            FirstPerson = new FirstPersonCameraKit.Settings { Enabled = false },
             Language = _profile.Language,
             PackRevisionOverride = PackRevision,
-            SeedLibraryRoot = Path.Combine(AppSettings.DataRoot, "Export", "Seeds"),
+            SeedLibraryRoot = libraryRoot,
+            // One language-neutral seed plus shared locres paks per culture.
+            LanguagePackRoot = Path.Combine(libraryRoot, "LanguagePacks"),
             InstallToMods = true,
             VerifyPack = true,
             IncludeSpoiler = true,
@@ -1061,6 +1067,10 @@ public sealed partial class MainWindow : Window
                 ["language"] = _profile.Language,
                 ["packName"] = packName,
                 ["packFiles"] = new JArray(result.PackedFiles.Select(Path.GetFileName)),
+                ["languagePack"] = string.IsNullOrEmpty(result.LanguagePack)
+                    ? ""
+                    : Path.GetFileName(result.LanguagePack),
+                ["languagePacks"] = new JArray(result.LanguagePacks.Select(Path.GetFileName)),
                 ["installedFiles"] = new JArray(result.InstalledFiles.Select(Path.GetFileName)),
                 ["spoiler"] = File.Exists(spoiler) ? Path.GetFileName(spoiler) : "",
                 ["profileName"] = _profile.Name,

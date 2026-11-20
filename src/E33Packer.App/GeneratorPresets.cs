@@ -48,6 +48,13 @@ public static class GeneratorPresets
         profile.QoL.LightStainWildcard = false;
         // Instant Picto Mastery is optional and off in the standard profile.
         profile.QoL.PictoMastery = "none";
+        // 1.3.10 release requirement: the three shipped presets hide battle
+        // proc cards entirely (cap 0). Custom keeps its own QoL value.
+        if (profile.Name != Custom)
+        {
+            profile.QoL.LimitBattleProcCards = true;
+            profile.QoL.PictoPopupCap = 0;
+        }
         switch (profile.Name)
         {
             case Easy:

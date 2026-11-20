@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>release-builder</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\E33Packer.App\E33Packer.App.csproj" />
+    <ProjectReference Include="..\..\src\E33ModEditor.Core\E33ModEditor.Core.csproj" />
+  </ItemGroup>
+</Project>

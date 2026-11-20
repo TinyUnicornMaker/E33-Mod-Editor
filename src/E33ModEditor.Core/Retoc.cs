@@ -120,6 +120,14 @@ public sealed class Retoc
     }
 
     /// <summary>
+    /// Packs the staged culture's <c>Game.locres</c> into a shared language
+    /// <c>.pak</c> (used by the 1.3.10 shared-language-pack layout). The pak is
+    /// named by the caller and lives in <paramref name="outputDir"/>.
+    /// </summary>
+    public string PackLanguagePack(string legacyDir, string outputDir, string name, string culture)
+        => PackLocresPak(legacyDir, name, culture, outputDir);
+
+    /// <summary>
     /// Packs every asset under <paramref name="legacyDir"/> into one
     /// <c>name.{pak,utoc,ucas}</c> set in <paramref name="outputDir"/> (default
     /// Export/), then optionally copies that set into the game's ~mods folder.
@@ -238,7 +246,13 @@ public sealed class Retoc
 
             foreach (var ext in new[] { ".pak", ".utoc", ".ucas" })
             {
-                foreach (var pattern in new[] { "ExpeditionInfinity*_P" + ext, "zz_ExpeditionInfinity*_P" + ext })
+                foreach (var pattern in new[]
+                         {
+                             "ExpeditionInfinity*_P" + ext,
+                             "zz_ExpeditionInfinity*_P" + ext,
+                             // 1.3.10 shared language packs
+                             "zz_ExpeditionInfinity_*" + ext,
+                         })
                 {
                     foreach (var existing in Directory.EnumerateFiles(dir, pattern, SearchOption.TopDirectoryOnly))
                     {

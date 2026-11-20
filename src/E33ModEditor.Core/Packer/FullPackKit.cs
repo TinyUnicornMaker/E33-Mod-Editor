@@ -70,6 +70,14 @@ public static class FullPackKit
         /// <see cref="EditorPaths.ExportDir"/> layout used by the CLI/editor.</summary>
         public string? SeedLibraryRoot { get; set; }
 
+        /// <summary>When set, the seed container is language-neutral (English
+        /// source) and the translated locres for every supported language is
+        /// built once under this root, one subfolder per culture
+        /// (<c>&lt;root&gt;/&lt;culture&gt;/zz_..._&lt;culture&gt;.pak</c>).
+        /// The selected language pack is installed alongside the seed.
+        /// Null keeps the legacy per-seed <c>zz_&lt;pack&gt;_P.pak</c>.</summary>
+        public string? LanguagePackRoot { get; set; }
+
         /// <summary>Copy the finished trio into <see cref="EditorPaths.ModsDir"/>.
         /// Set false for export-only builds.</summary>
         public bool InstallToMods { get; set; } = true;
@@ -95,6 +103,10 @@ public static class FullPackKit
         public string PackName { get; init; } = "";
         public string PackDirectory { get; init; } = "";
         public string SpoilerPath { get; init; } = "";
+        /// <summary>Selected language's shared pack (null for English).</summary>
+        public string LanguagePack { get; init; } = "";
+        /// <summary>Every shared language pack built for this release.</summary>
+        public IReadOnlyList<string> LanguagePacks { get; init; } = Array.Empty<string>();
         public IReadOnlyList<string> PackedFiles { get; init; } = Array.Empty<string>();
         public IReadOnlyList<string> InstalledFiles { get; init; } = Array.Empty<string>();
     }
@@ -121,8 +133,13 @@ public static class FullPackKit
         Stage(BuildStage.Validating, 0.01, "Validating build options…");
         ModLocalization.ResetCache();
         var language = ModLocalization.Find(opt.Language) ?? ModLocalization.English;
-        ModLocalization.SetLanguage(language.Code);
-        log($"[loc] language: {language.DisplayName} ({language.Culture})");
+        // A shared-language-pack build ships an English seed (language-neutral
+        // source) plus one locres pak per culture. Legacy builds localize the
+        // stage itself and keep their per-seed locres pak.
+        var sharedLanguagePacks = !string.IsNullOrWhiteSpace(opt.LanguagePackRoot);
+        ModLocalization.SetLanguage(sharedLanguagePacks ? ModLocalization.English.Code : language.Code);
+        log($"[loc] language: {language.DisplayName} ({language.Culture})" +
+            (sharedLanguagePacks ? $" — shared language packs under {opt.LanguagePackRoot}" : ""));
         var tweaks = opt.Tweaks ?? new GameplayTweaksKit.Settings();
         var rando = opt.Randomizer ?? new RandomizerKit.Settings();
         if (opt.Seed is int seed) rando.Seed = seed;
@@ -429,7 +446,7 @@ public static class FullPackKit
         // and must never ship in a deployed Expedition Infinity pack.
 
         string? locCulture = null;
-        if (language.Code != ModLocalization.English.Code)
+        if (!sharedLanguagePacks && language.Code != ModLocalization.English.Code)
         {
             Stage(BuildStage.Localization, 0.80, $"Localizing for {language.DisplayName}…");
             log($"Localizing for {language.DisplayName}…");
@@ -486,8 +503,41 @@ public static class FullPackKit
         Stage(BuildStage.Packing, 0.90, "Packing IoStore container…");
         log("Packing IoStore container…");
         var retoc = new Retoc();
-        var packed = retoc.PackCombined(modDir, modName, locCulture, packDir, install: false);
+        var packed = retoc.PackCombined(modDir, modName, locCulture, packDir, install: false).ToList();
         foreach (var f in packed) log("  " + f);
+
+        // Shared language packs: the seed container stays English; each culture
+        // gets one locres pak under <LanguagePackRoot>/<culture>/. The selected
+        // culture's pak is installed next to the seed.
+        var sharedPacks = new List<string>();
+        var selectedLanguagePack = "";
+        if (sharedLanguagePacks)
+        {
+            Stage(BuildStage.Localization, 0.92, "Packing shared language packs…");
+            log("Packing shared language packs…");
+            var revision = (opt.PackRevisionOverride ?? PackRevision).TrimStart('_');
+            foreach (var lang in ModLocalization.Supported.Where(l => l.Code != ModLocalization.English.Code))
+            {
+                var cultureDir = Path.Combine(Path.GetFullPath(opt.LanguagePackRoot!), lang.Culture);
+                Directory.CreateDirectory(cultureDir);
+                var packName = $"zz_ExpeditionInfinity_{revision}_{lang.Culture}";
+                LocalizationKit.Apply(modDir, lang.Code, log);
+                var issues = LocalizationKit.Validate(lang.Code);
+                if (issues.Count > 0)
+                    log($"[loc] warning: {lang.DisplayName}: {issues.Count} structural issue(s); first: " +
+                        string.Join(" | ", issues.Take(5)));
+                var pak = retoc.PackLanguagePack(modDir, cultureDir, packName, lang.Culture);
+                sharedPacks.Add(pak);
+                log($"  {lang.DisplayName}: {pak}");
+                if (string.Equals(lang.Code, language.Code, StringComparison.OrdinalIgnoreCase))
+                    selectedLanguagePack = pak;
+                // Do not leave the locres in the seed stage: it must never end
+                // up inside the language-neutral .utoc.
+                var locDir = Path.Combine(modDir, "Sandfall", "Content", "Localization");
+                if (Directory.Exists(locDir)) Directory.Delete(locDir, true);
+            }
+        }
+        if (!string.IsNullOrEmpty(selectedLanguagePack)) packed.Add(selectedLanguagePack);
 
         Stage(BuildStage.Verifying, 0.94, "Verifying packed container…");
         if (opt.VerifyPack)
@@ -528,7 +578,9 @@ public static class FullPackKit
             PackName = modName,
             PackDirectory = packDir,
             SpoilerPath = spoilerPath,
-            PackedFiles = packed.ToList(),
+            LanguagePack = selectedLanguagePack,
+            LanguagePacks = sharedPacks,
+            PackedFiles = packed,
             InstalledFiles = installed,
         };
     }
@@ -547,7 +599,7 @@ public static class FullPackKit
         var keepLoc = "zz_" + keepName;
         foreach (var ext in new[] { ".pak", ".utoc", ".ucas" })
         {
-            foreach (var pattern in new[] { ModBase + "*" + ModSuffix + ext, "zz_" + ModBase + "*" + ModSuffix + ext })
+            foreach (var pattern in new[] { ModBase + "*" + ModSuffix + ext, "zz_" + ModBase + "*" + ModSuffix + ext, "zz_" + ModBase + "_*" + ext })
             {
                 foreach (var file in Directory.EnumerateFiles(dir, pattern, SearchOption.TopDirectoryOnly))
                 {
@@ -576,7 +628,7 @@ public static class FullPackKit
             var keepLoc = "zz_" + keepName;
             foreach (var ext in new[] { ".pak", ".utoc", ".ucas" })
             {
-                foreach (var pattern in new[] { ModBase + "*" + ModSuffix + ext, "zz_" + ModBase + "*" + ModSuffix + ext })
+                foreach (var pattern in new[] { ModBase + "*" + ModSuffix + ext, "zz_" + ModBase + "*" + ModSuffix + ext, "zz_" + ModBase + "_*" + ext })
                 {
                     foreach (var file in Directory.EnumerateFiles(dir, pattern, SearchOption.TopDirectoryOnly))
                     {
