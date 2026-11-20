@@ -5,7 +5,10 @@ Standalone seed generator for the Clair Obscur: Expedition 33 game. Extracts ~1 
 
 ## Build
 
-Requires the **.NET 10 SDK**.
+Requires the **.NET 10 SDK**. Application binaries are published under
+`dist/application/<version>/`, separate from the mod release folder
+(`dist/Expedition Infinity <version>/`), because the executables trigger
+antivirus false positives.
 
 ```bash
 # Linux x64
@@ -15,7 +18,7 @@ CUE4PARSE_SKIP_NATIVE=true dotnet publish src/E33Packer.App/E33Packer.App.csproj
   -p:IncludeNativeLibrariesForSelfExtract=true \
   -p:IncludeAllContentForSelfExtract=true \
   -p:DebugType=None -p:PublishTrimmed=false \
-  -o dist/linux-x64
+  -o dist/application/1.3.10/linux
 
 # Windows x64 (run on Windows, or use the GitHub Actions Windows job)
 $env:CUE4PARSE_SKIP_NATIVE="true"
@@ -25,5 +28,5 @@ dotnet publish src/E33Packer.App/E33Packer.App.csproj `
   -p:IncludeNativeLibrariesForSelfExtract=true `
   -p:IncludeAllContentForSelfExtract=true `
   -p:DebugType=None -p:PublishTrimmed=false `
-  -o dist/win-x64
+  -o dist/application/1.3.10/windows
 ```
