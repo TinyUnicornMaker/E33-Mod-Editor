@@ -71,11 +71,24 @@ out of the pools, exactly as today.
    needs. A separate condition table tags each effect with the build condition
    it needs and forbids mutually exclusive conditions on one weapon (Full
    Strength "on full Health" next to Self Burn, …). See below.
-10. **T3+ bad-luck floor.** Every T3–T5 weapon carries at least one
+10. **Loop guards are enforced.** A separate `loops` list in the same condition
+    table names effect sets that are individually fine but together close an
+    unbounded feedback loop or an unkillable state. They never share a weapon,
+    both at roll time and in the pack-time sweep. Guards cover Monoco's
+    `Masks_WheelSpinOnFreeAimShot` (spin the wheel on every repeatable Free Aim
+    shot) with the mask-change AP payoffs (`Masks_GainAPOnMaskSwitch`,
+    `Masks_APOnAlmighty`, `Masks_GainAPAllAlliesOnAlmightySwitch`), which
+    otherwise refunds the shot that spun the wheel; and Verso's
+    `Perfection_SurvivorRankA` ("Can't die if at least Rank A") with every
+    effect that stops his rank falling below A
+    (`NoPerfectionLossButNoDamageIncrease`, `RankLossOneByOne`,
+    `NoPerfectionLossOnPowerlessEnemy`, `PerfectionBaseOnCurrentHP`, and the
+    `PerfectionLostOnHeal` + `StartRankSButNoHeal` combination).
+11. **T3+ bad-luck floor.** Every T3–T5 weapon carries at least one
     *unconditional* effect (raw damage, AP, crit, …): a T3+ weapon whose five
     picks are all payoffs has its wildcard replaced with a standalone effect.
     This keeps a guaranteed boss weapon from feeling worse than a random drop.
-11. **Early payoffs need an enabler.** T1–T3 weapons may not roll a payoff
+12. **Early payoffs need an enabler.** T1–T3 weapons may not roll a payoff
     whose status/stain/shield/charge engine is absent from the weapon. The
     roll tracks the enabler tags already picked (`shell-need` ← `shell-gen`,
     `buff-conditional` ← `buff-apply`, `burn-scale`/`burn-consume` ←
@@ -116,6 +129,30 @@ The archetypes answer "what is this effect about"; the condition layer answers
   (self burn / blight, self curse / berserk) or ends the run. `MacabrePower`
   wants the opposite (dying is its payoff) and so keeps the *informational*
   `death-trigger` tag instead.
+- **Loop guards.** `loops` blocks combinations that are not impossible but are
+  unbounded or unkillable. Current guards:
+  - `Masks_WheelSpinOnFreeAimShot` (Free Aim shots spin the Bestial Wheel)
+    never shares a weapon with `Masks_GainAPOnMaskSwitch` (+1 AP per mask
+    change), `Masks_APOnAlmighty` (+3 AP when in Almighty) or
+    `Masks_GainAPAllAlliesOnAlmightySwitch` (+2 AP to allies on Almighty
+    switch). Free Aim shots are repeatable, so a spin plus an AP-on-mask-change
+    payoff refunds the action that spun the wheel — infinite AP/shots.
+    `Masks_WheelSpinOnAttack` is deliberately allowed: a base attack resolves
+    once per turn.
+  - `Perfection_SurvivorRankA` ("Can't die if at least Rank A") never shares a
+    weapon with an effect that prevents his rank from falling below A:
+    `Perfection_NoPerfectionLossButNoDamageIncrease`,
+    `Perfection_RankLossOneByOne`,
+    `Perfection_NoPerfectionLossOnPowerlessEnemy`,
+    `Perfection_PerfectionBaseOnCurrentHP` (rank derived from missing Health,
+    so low Health puts him back at A/S), or the three-way
+    `Perfection_PerfectionLostOnHeal` + `Perfection_StartRankSButNoHeal`
+    (rank loss moved to healing, while healing is impossible from Rank S).
+    `Perfection_MinC` is allowed: C is below A, so it cannot keep the guard
+    active.
+
+  Both the roller and `SweepWeaponEligibility` enforce the list, and `fx-roll`
+  counts violations as failures.
 - **Everything soft is informational, not a conflict.** `counter`, `reckless`
   (damage taken), `multi-hit`, `first-hit`, `death-trigger` (MacabrePower),
   `revive`, and the whole **Shield / Shell** cluster describe a build axis
@@ -264,7 +301,7 @@ linked circles):
 | `src/E33ModEditor.Core/Loot/Data/weapon_effect_conditions.json` | stock condition table (embedded resource) |
 | `work/weapon_effect_conditions.json` | condition overlay, wins when present |
 | `src/E33ModEditor.Core/Loot/WeaponEffectConditions.cs` | loader: tags, `Conflicts`, `IsNeutral`, `PreferredTags`/`PreferWeight`, `ElementOf`, `Save()` |
-| `src/E33ModEditor.Core/Loot/WeaponEffectRoller.cs` | primary pick, per-slot archetype/effect draw, condition + element filters, synergy-weighted picks, neutral wildcard |
+| `src/E33ModEditor.Core/Loot/WeaponEffectRoller.cs` | primary pick, per-slot archetype/effect draw, condition + loop + element filters, synergy-weighted picks, neutral wildcard |
 | `src/E33ModEditor.Core/Loot/WeaponEffectTiers.cs` | shared `Allows(chars, character, id)` (Gustave rules live here now) + wildcard `allow` filter |
 | `src/E33ModEditor.Core/Loot/RandomizerKit.cs` | `RollWeaponPassives` drives the roller; melee element is rolled with the passives and reused for `BaseDamageType`; sweep checks stain element vs melee element |
 | `Planning/archetypes/build_archetypes.py` | regenerates the table, per-character lists, images, and installs stock + work overlay |
@@ -287,6 +324,7 @@ when adding effects or links, then re-run it.
 | Lune stain element mismatches | 0 |
 | Status-consume stacks (Slow/Powerless/Defenceless) | 0 |
 | **Condition conflicts on one weapon** | **0** |
+| **Feedback-loop combinations on one weapon** | **0** |
 | **Element mismatches (stain + element skill/AP families)** | **0** |
 | **T3+ weapons missing an unconditional floor** | **0** |
 | **T1–T3 payoffs without an enabler** | **0** |

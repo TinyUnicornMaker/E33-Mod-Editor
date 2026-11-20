@@ -15,9 +15,8 @@ The save-point **Challenges** menu is data-driven. Each row is a
 | `BattleModifierClass` | soft class spawned at battle start |
 | `AvailableValues` | map of option id (`MULT_<n>`) → numeric value |
 
-The spawned modifier BP loads the selected option and pushes it into the battle
-manager. `AddChallengeModifiers` in `AC_jRPG_BattleManager` iterates the
-manager's `ChallengeAssets` array, spawns each active modifier and calls
+`AddChallengeModifiers` in `AC_jRPG_BattleManager` iterates the manager's
+`ChallengeAssets` array, spawns each active modifier and calls
 `LoadChallengeAsset`.
 
 ## What the mod changes
@@ -30,9 +29,9 @@ manager's `ChallengeAssets` array, spawns each active modifier and calls
 - New `DA_BattleChallenge_EnemySpeedMultiplier`
   - `2 / 3 / 5 / 10`
 
-The new DAs use cloned, **no-op** modifier BPs
-(`BP_BattleModifierBuff_EnemiesDefenseMultiplier` /
-`...EnemiesSpeedMultiplier`) and are added to
+The new DAs point at the **existing** no-op base modifier class
+`BP_BattleModifierBuff_Challenge_Base` (its `LoadNumericValue` is empty), so no
+new modifier Blueprint assets are created. The DAs are added to
 `BP_GameDifficultyManager.ChallengeAssets` and to the
 `WBP_ChallengesListWidget` vertical box (one `WBP_ChallengeEntry` each).
 
@@ -43,9 +42,11 @@ and Speed are read **inside the existing**
 `Challenge_ApplyEnemyStatChanges` function, which already has the enemy stat
 map and the health block:
 
+- read `GameInstanceReference.DifficultyManager` directly, with `IsValid`
+  gates on both objects (the helper can return null early in the battle load)
 - for each of `BATTLECHALLENGE_ENEMYDEFENSEMULT` and
   `BATTLECHALLENGE_ENEMYSPEEDMULT`, call
-  `GetDifficultyManager().GetSelectedChallengeOption(...)`
+  `GetSelectedChallengeOption(...)`
 - resolve the challenge DA with `FindChallengeDefinition(...)`
 - read the selected value with `GetOptionNumericValue(...)`
 - multiply the stat map entries:
@@ -62,6 +63,10 @@ suffix. The health block uses **1** (`NewEnumerator1`).
 `Bad export index` fatal error at load. Patch only the existing function's
 locals and bytecode.
 
+Likewise, do **not** clone the health modifier BP for the new challenges. An
+unloadable cloned modifier class makes `AddChallengeModifiers` fail during
+battle load. Use the existing base class as the no-op modifier.
+
 ## Build hook
 
 `ChallengeKit.Apply(modDir, log)` runs from `FullPackKit` after Party of Five /
@@ -69,6 +74,11 @@ Gameplay Tweaks so it patches the already-merged `AC_jRPG_BattleManager` copy.
 It is idempotent and ends with `Verify`, which re-opens the staged assets and
 throws if a DA option count, manager entry, BattleManager lookup, menu row or
 string-table key is missing.
+
+For diagnostics, set `E33_CHALLENGES_STAT_PATCH=0` before the build. That keeps
+the new DAs and menu rows but leaves `Challenge_ApplyEnemyStatChanges` vanilla.
+If battles still crash with the patch disabled, the fault is in the DA/manager/
+modifier registration path, not the stat-application bytecode.
 
 ## Verification
 

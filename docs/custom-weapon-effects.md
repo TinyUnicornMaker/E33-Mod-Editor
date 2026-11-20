@@ -210,10 +210,16 @@ Weapons T1–T5 gets new passives:
    cluster) are **informational** and still combine freely. The same table also
    carries **`synergies`** (trigger tag → preferred tags): once a weapon holds a
    Shield Spender, later slots and the wildcard are weighted toward Shield
-   Makers so the spender gets a generator to refill from. The table is
-   `Loot/Data/weapon_effect_conditions.json`, authored by
+   Makers so the spender gets a generator to refill from. It also carries
+   **`loops`**: effect sets that are fine alone but together close an unbounded
+   feedback loop or make a character unkillable, so they never share a weapon
+   (Monoco's `Masks_WheelSpinOnFreeAimShot` + `Masks_GainAPOnMaskSwitch` — a
+   repeatable Free Aim shot spins the wheel, and every mask change refunds
+   1 AP; Verso's `Perfection_SurvivorRankA` + any effect that keeps his rank
+   at A or above). The
+   table is `Loot/Data/weapon_effect_conditions.json`, authored by
    `Planning/archetypes/build_conditions.py`; the pack-time sweep fails the
-   pack on any conflicting pair.
+   pack on any conflicting pair or completed loop.
 6. **Lune** stain effects are gated by the weapon's **melee element**
    (`BaseDamageType`): element-specific stains, echoes and payoffs of the other
    elements are removed from the pool. Physical/Void keep the neutral

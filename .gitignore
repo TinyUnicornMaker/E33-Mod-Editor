@@ -34,3 +34,9 @@ logs/
 .DS_Store
 Thumbs.db
 __pycache__/
+archive/
+docs/**/*.designcraft
+
+# Local tool binaries
+tools/retoc-win/
+tools/liboodle-data-shared.so

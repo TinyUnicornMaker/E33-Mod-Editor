@@ -43,11 +43,6 @@ A save that contains the id is not enough. The packed `_P` mod must contain
 - There is one shared pictos level curve (`DT_EquipmentScalingTable_Pictos`).
   Per-pictos “unique curves” do not exist. Bonuses are
   `curve(level) × BaseStatMultipliers`.
-- Expedition Infinity extends that curve from level 34 to 333 at a **linear
-  +1% of the level-33 base per level** (`PictoScalingKit`, core and always on).
-  It is additive, not compounding: level 333 is 4× the level-33 value. Vanilla
-  rows 0–33 are untouched; the extension only makes pictos above 33 scale
-  instead of falling back to zero stats.
 - Do not put generated rows only onto `DT_jRPG_Items_Composite`.
 - Do not edit shops or drops from the pictos creator. Placement is a separate
   Chests / Drops / Randomizer concern.
@@ -116,7 +111,7 @@ retuned to the ladder value) — see `PictosMagnitudeKit.BaseTierRenames`,
   vanilla base and on both clones)
 - Full Strength I–V (+5/10/20/30/50% on full Health; 5/10/20/30/50 lumina;
   I const-patched)
-- Charging Critical I–II (20% once per turn; II keeps the same latch)
+- Charging Critical I (vanilla once/turn 20%) / II (20% every crit)
 - Infinite (The One donor; max Health 3,333,333). **Only drops from Act 3
   Lumière Renoir** (`L_Boss_Curator`); never chests, shops, or other enemies.
 - Death's Dividend (clone of weapon `DamageBonusOnRevive`: +10% damage per

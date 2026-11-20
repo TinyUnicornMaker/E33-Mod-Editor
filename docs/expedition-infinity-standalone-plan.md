@@ -74,7 +74,7 @@ The relevant setting objects already exist:
 | Weapon drop levels | `WeaponDropLevelKit.Settings` | enabled, max drop level |
 | Party of Five | `PartyFiveKit.Settings` | enabled + formation |
 | First-person camera | `FirstPersonCameraKit.Settings` | out of scope for seed generator |
-| Language | `ModLocalization` / `LocalizationKit` | en, fr, pl, ru, es |
+| Language | `ModLocalization` / `LocalizationKit` | en, fr, pl, ru |
 
 ### 2.3 What the old standalone actually builds
 
@@ -362,6 +362,7 @@ generator. The UI exposes only percentage boosts:
 | Regular Nevron attack boost T1–T5 | +10/+20/+50/+100/+200% | −100–100000% | Applied after the seed roll |
 | Boss HP boost T1–T3 | +50/+150/+900% | −100–100000% | Percentage over vanilla boss HP; T4–T5 use the hidden endgame curve |
 | Boss speed boost | +100% | −99–10000% | Percentage over vanilla boss speed |
+| Extreme T4–T5 boss defense | off | off / on | Off uses the regular endgame curve; on ramps from 1× at the T4 floor to 30× the regular curve at the top of T5 |
 | Regular pictos chance | 10% | 0–100 | |
 | Elite pictos chance | 66% | 0–100 | |
 | Perfect catalyst chance | 3.125% | 0–100 | T5-area level 80+ regulars/elites |
@@ -531,7 +532,6 @@ Purpose: choose the language baked into the generated pack.
 | Français | fr | fr-FR | Catalog exists; review notes minor issues |
 | Polski | pl | pl | Catalog exists; review notes mechanical issues |
 | Русский | ru | ru | Catalog exists; review notes mechanical issues |
-| Español (España) | es | es | Catalog exists; 1,244 table + 10 inline entries |
 
 Behavior:
 
@@ -1025,7 +1025,7 @@ Party of Five is **not** in this phase; it is always-on core from Phase 2.
 - `FullPackKit` option plumbing: a fake build with each setting produces the
   expected flag in the manifest (no game assets required for the settings
   layer).
-- `LocalizationKit.Validate` for en/fr/pl/ru/es (structural only).
+- `LocalizationKit.Validate` for en/fr/pl/ru (structural only).
 - CI builds the single-file app for linux-x64 and win-x64.
 
 ### Manual / integration (game installed)
