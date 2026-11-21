@@ -44,9 +44,11 @@ runtime: it ships one culture's patched `Game.locres`.
    the assets; English needs no locres pak.
 
 Only **new or changed** keys are in the catalogs. Unchanged keys keep the
-game's official translations. For existing vanilla keys, the locres keeps the
-original vanilla `SourceStringHash` so the engine does not reject the
-translated entry as stale; new keys use CRC32 of their English source.
+game's official translations. Every catalog entry uses the CRC32 of the staged
+English source (`LocresHash.SourceHash`) as its `SourceStringHash`. The engine
+hashes the *loaded* StringTable source; using the old vanilla hash for a changed
+key made it reject the translation and fall back to English. Unchanged keys are
+not in the catalog and keep the base game's translation.
 
 ## Translation catalogs
 

@@ -55,6 +55,16 @@ Mode-specific:
   install instructions are in `INSTALL.txt`.
 - The `zz_` prefix keeps the language pak mounting after `pakchunk0`.
 
+### Localization fix
+
+- Changed vanilla keys now write the CRC32 of the staged English source as
+  their locres `SourceStringHash`. Previously they kept the old vanilla hash,
+  so the engine rejected the translation and showed the English StringTable
+  source — the mixed-language tooltips (e.g. “Virtuous Flames”, English Rain of
+  Fire descriptions) in the first Chinese test.
+- The seven inline/culture-invariant strings still need per-language asset
+  overrides; they are not in the locres.
+
 ### Setup fixes
 
 - Choosing a new game folder now updates the install folder to that game's

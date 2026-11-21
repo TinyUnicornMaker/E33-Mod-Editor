@@ -393,15 +393,14 @@ public static class LocalizationKit
                 missing.Add($"{table}/{key}");
                 continue;
             }
-            // Existing vanilla keys carry the original source hash in their
-            // FText history. The engine rejects a translation whose hash no
-            // longer matches and falls back to the source text. Keep the
-            // vanilla hash for existing keys; only truly new keys get the new
-            // English-source hash.
-            uint sourceHash = locres.Namespaces.TryGetValue(table, out var tableNs)
-                && tableNs.Entries.TryGetValue(key, out var existing)
-                    ? existing.SourceHash
-                    : LocresHash.SourceHash(english);
+            // The engine hashes the *loaded* StringTable source (the staged mod
+            // text) and only accepts a locres entry whose SourceStringHash
+            // matches it. For changed vanilla keys the old vanilla hash no
+            // longer matches the staged English text, so the engine rejects the
+            // translation and falls back to the English source. Use the hash of
+            // the catalog's English source for every entry; new keys already
+            // needed this, and unchanged keys hash to their vanilla value.
+            uint sourceHash = LocresHash.SourceHash(english);
             locres.Set(table, key, text, sourceHash);
             applied++;
         }
