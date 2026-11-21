@@ -17,11 +17,11 @@ namespace E33ModEditor.Core;
 /// reason                     locked     Ultima Power
 /// Invalid (0)                 9,999      333,333
 /// SkillCast (1)              33,333      unlimited (0)
-/// BuffEffect / Burn (2)       3,333      333,333
+/// BuffEffect / Burn (2)       3,333      3,333,333
 /// FreeAim (3)                 3,333      333,333
 /// Attack (4)                  6,666      333,333
 /// Counter (5)               333,333      unlimited (0)
-/// Lumina (6)                  9,999      333,333
+/// Lumina (6)                  9,999      3,333,333
 /// Item (7)                    9,999      333,333
 /// GradientCounter (8)       333,333      unlimited (0)
 /// RangeCounter (9)          333,333      unlimited (0)
@@ -60,6 +60,7 @@ public static class DamageCapKit
 
     // Unlocked (Ultima Power).
     public const int UnlockedOtherCap = 333333;
+    public const int UnlockedLuminaBuffCap = 3333333;
     public const int Unlimited = 0;
 
     // Cooked EDamageReason values: NewEnumerator2=0 (Invalid),
@@ -94,12 +95,16 @@ public static class DamageCapKit
 
     /// <summary>
     /// Cap used while the hero has the unlock reference (Ultima Power).
-    /// Skills and counters are unlimited; everything else is 333,333.
+    /// Skills and counters are unlimited; BuffEffect/Burn and Lumina are raised
+    /// to 3,333,333; everything else stays at 333,333.
     /// </summary>
-    public static int UnlockedCap(byte reason) =>
-        reason is SkillCast or Counter or GradientCounter or RangeCounter or AoeCounter or JumpCounter
-            ? Unlimited
-            : UnlockedOtherCap;
+    public static int UnlockedCap(byte reason) => reason switch
+    {
+        SkillCast or Counter or GradientCounter or RangeCounter or AoeCounter or JumpCounter
+            => Unlimited,
+        BuffEffect or Lumina => UnlockedLuminaBuffCap,
+        _ => UnlockedOtherCap,
+    };
 
     // ───────────────────────────── pack ─────────────────────────────
 
@@ -223,9 +228,11 @@ public static class DamageCapKit
                          && ints.Contains(FreeAimCap) && ints.Contains(AttackCap)
                          && ints.Contains(CounterCap) && ints.Contains(OtherCap)
                          && ints.Contains(UnlockedOtherCap)
+                         && ints.Contains(UnlockedLuminaBuffCap)
                          && ints.Contains(Unlimited);
         bool reasonSet = reasons.Contains(BuffEffect) && reasons.Contains(SkillCast)
                          && reasons.Contains(FreeAim) && reasons.Contains(Attack)
+                         && reasons.Contains(Lumina)
                          && CounterReasons.All(reasons.Contains);
 
         bool ok = unlockCheck && challenge && fclamp && unlockedEquals && unlockedFlowOk
@@ -315,8 +322,11 @@ public static class DamageCapKit
             locked = Select(CounterCap, locked, r);
         locked = Conv(locked);
 
-        // Ultima Power: skills/counters unlimited, everything else 333,333.
+        // Ultima Power: skills/counters unlimited; BuffEffect/Burn and Lumina
+        // raised to 3,333,333; everything else 333,333.
         KismetExpression unlocked = new EX_IntConst { Value = UnlockedOtherCap };
+        unlocked = Select(UnlockedLuminaBuffCap, unlocked, BuffEffect);
+        unlocked = Select(UnlockedLuminaBuffCap, unlocked, Lumina);
         foreach (var r in new[] { SkillCast, Counter, GradientCounter, RangeCounter, AoeCounter, JumpCounter })
             unlocked = Select(Unlimited, unlocked, r);
         unlocked = Conv(unlocked);

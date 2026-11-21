@@ -408,11 +408,11 @@ lookup:
 |---|---:|---:|
 | 0 Invalid | 9,999 | 333,333 |
 | 1 SkillCast | 33,333 | unlimited |
-| 2 BuffEffect / Burn | 3,333 | 333,333 |
+| 2 BuffEffect / Burn | 3,333 | 3,333,333 |
 | 3 FreeAim | 3,333 | 333,333 |
 | 4 Attack (base attack) | 6,666 | 333,333 |
 | 5 Counter | 333,333 | unlimited |
-| 6 Lumina | 9,999 | 333,333 |
+| 6 Lumina | 9,999 | 3,333,333 |
 | 7 Item | 9,999 | 333,333 |
 | 8 GradientCounter | 333,333 | unlimited |
 | 9 RangeCounter | 333,333 | unlimited |
@@ -422,9 +422,14 @@ lookup:
 ⚠ Burn's damage-over-time tick is `DamageReason 2` (**BuffEffect**), not
 "Invalid". Its aggregator passes `2` in the reason slot of
 `MakeDamageBuilder`, with the Fire element, and applies the total through
-`AddStraightDamageFlat`. Each Burn tick therefore uses the **3,333 / 333,333**
-row. `Invalid` is numeric **0** (`NewEnumerator2`); the old "Burn = Invalid"
-note confused the enumerator name with the numeric value.
+`AddStraightDamageFlat`. Each Burn tick therefore uses the
+**3,333 / 3,333,333** row. `Invalid` is numeric **0** (`NewEnumerator2`); the
+old "Burn = Invalid" note confused the enumerator name with the numeric value.
+
+`DamageReason 6` (**Lumina**) is used by weapon/passive-triggered Lightning
+strikes such as `TriggerLightningOnCrit`; it uses **9,999 / 3,333,333**.
+Skills/counters remain unlimited with Ultima Power; the other reasons stay at
+333,333.
 
 The locked caps are inserted immediately after the vanilla `9999` assignment,
 inside the "no unlock reference" branch. The unlocked caps are a second block

@@ -10,6 +10,10 @@
   23035873); only the pack revision and the Burn/BuffEffect mapping changed.
 - Old `.eiseed.json` profiles still load.
 
+> **1.4.2 update:** the Ultima caps for `BuffEffect / Burn` (2) and `Lumina`
+> (6) were later raised to **3,333,333**. The 1.4.1 values below are
+> historical; see `release-notes-1.4.2.md`.
+
 ## 1.4.1 — Burn / BuffEffect correction
 
 The cooked `EDamageReason` enum maps:

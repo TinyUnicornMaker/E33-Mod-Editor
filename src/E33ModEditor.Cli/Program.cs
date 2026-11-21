@@ -9703,8 +9703,10 @@ static int CmdDamageCapSmoke(string[] args)
             $"BuffEffect/Burn DamageReason = {DamageCapKit.BuffEffect} (want 2 / NewEnumerator1)");
         Check(DamageCapKit.LockedCap(DamageCapKit.BuffEffect) == DamageCapKit.BuffEffectCap,
             $"Burn/BuffEffect locked cap = {DamageCapKit.LockedCap(DamageCapKit.BuffEffect)} (want {DamageCapKit.BuffEffectCap})");
-        Check(DamageCapKit.UnlockedCap(DamageCapKit.BuffEffect) == DamageCapKit.UnlockedOtherCap,
-            $"Burn/BuffEffect Ultima cap = {DamageCapKit.UnlockedCap(DamageCapKit.BuffEffect)} (want {DamageCapKit.UnlockedOtherCap})");
+        Check(DamageCapKit.UnlockedCap(DamageCapKit.BuffEffect) == DamageCapKit.UnlockedLuminaBuffCap,
+            $"Burn/BuffEffect Ultima cap = {DamageCapKit.UnlockedCap(DamageCapKit.BuffEffect)} (want {DamageCapKit.UnlockedLuminaBuffCap})");
+        Check(DamageCapKit.UnlockedCap(DamageCapKit.Lumina) == DamageCapKit.UnlockedLuminaBuffCap,
+            $"Lumina Ultima cap = {DamageCapKit.UnlockedCap(DamageCapKit.Lumina)} (want {DamageCapKit.UnlockedLuminaBuffCap})");
 
         Console.WriteLine("reason  locked   ultima");
         for (byte reason = 0; reason <= 11; reason++)

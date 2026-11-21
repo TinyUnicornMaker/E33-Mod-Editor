@@ -4,6 +4,10 @@ Released 2026-11-21. This is a **data-only seed-pack correction**; no new
 generator application binary is shipped in this release. Seed packs use
 `_v1.4.1_P`.
 
+> **1.4.2 update:** the Ultima caps for `BuffEffect / Burn` (2) and `Lumina`
+> (6) were later raised to **3,333,333**. The 1.4.1 values below are
+> historical; see `release-notes-1.4.2.md`.
+
 ## What changed
 
 1.4.0 mapped the two non-direct damage reasons backwards:
