@@ -1233,7 +1233,11 @@
       "PASSIVE_WepFx_TurnStart3_Description": "Au début du tour, si le personnage n'a pas de pigments, 3 pigments aléatoires sont générés.",
       "PASSIVE_WepFx_TurnStart3_Name": "Pigments vides +3",
       "PASSIVE_WepFx_TurnStart4_Description": "Au début du tour, si le personnage n'a pas de pigments, 4 pigments aléatoires sont générés.",
-      "PASSIVE_WepFx_TurnStart4_Name": "Pigments vides +4"
+      "PASSIVE_WepFx_TurnStart4_Name": "Pigments vides +4",
+      "PASSIVE_AutoBurn_Name": "Auto Brûlure",
+      "PASSIVE_AutoBurn_Description": "Applique Brûlure à soi-même au début du combat.",
+      "PASSIVE_AutoCurse_Name": "Auto Malédiction",
+      "PASSIVE_AutoCurse_Description": "Applique Malédiction à soi-même au début du combat."
     },
     "ST_Items": {
       "ITEM_UpgradeMaterial_Level1_Description": "Peut servir au camp pour améliorer les armes jusqu'au niveau 33.",

@@ -1233,7 +1233,11 @@
       "PASSIVE_WepFx_TurnStart3_Description": "On turn start, if no Stains, 3 random Stains are generated.",
       "PASSIVE_WepFx_TurnStart3_Name": "Empty Stains +3",
       "PASSIVE_WepFx_TurnStart4_Description": "On turn start, if no Stains, 4 random Stains are generated.",
-      "PASSIVE_WepFx_TurnStart4_Name": "Empty Stains +4"
+      "PASSIVE_WepFx_TurnStart4_Name": "Empty Stains +4",
+      "PASSIVE_AutoBurn_Name": "Auto Burn",
+      "PASSIVE_AutoBurn_Description": "Self apply Burn on battle start.",
+      "PASSIVE_AutoCurse_Name": "Auto Curse",
+      "PASSIVE_AutoCurse_Description": "Self apply Curse on battle start."
     },
     "ST_Items": {
       "ITEM_UpgradeMaterial_Level1_Description": "Can be used at Camp to upgrade weapons up to level 33.",

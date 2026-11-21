@@ -1233,7 +1233,11 @@
       "PASSIVE_WepFx_TurnStart3_Description": "Na początku tury, jeśli nie masz plam, powstają 3 losowe plamy.",
       "PASSIVE_WepFx_TurnStart3_Name": "Puste plamy +3",
       "PASSIVE_WepFx_TurnStart4_Description": "Na początku tury, jeśli nie masz plam, powstają 4 losowe plamy.",
-      "PASSIVE_WepFx_TurnStart4_Name": "Puste plamy +4"
+      "PASSIVE_WepFx_TurnStart4_Name": "Puste plamy +4",
+      "PASSIVE_AutoBurn_Name": "Automatyczne Oparzenie",
+      "PASSIVE_AutoBurn_Description": "Nakłada Oparzenie na siebie na początku walki.",
+      "PASSIVE_AutoCurse_Name": "Automatyczna Klątwa",
+      "PASSIVE_AutoCurse_Description": "Nakłada Klątwę na siebie na początku walki."
     },
     "ST_Items": {
       "ITEM_UpgradeMaterial_Level1_Description": "Można go użyć w obozie, by ulepszyć bronie do poziomu 33.",

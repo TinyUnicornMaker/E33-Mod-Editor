@@ -1233,7 +1233,11 @@
       "PASSIVE_WepFx_TurnStart3_Description": "В начале хода, если нет пигментов, создаются 3 случайных пигмента.",
       "PASSIVE_WepFx_TurnStart3_Name": "Пустые пигменты +3",
       "PASSIVE_WepFx_TurnStart4_Description": "В начале хода, если нет пигментов, создаются 4 случайных пигмента.",
-      "PASSIVE_WepFx_TurnStart4_Name": "Пустые пигменты +4"
+      "PASSIVE_WepFx_TurnStart4_Name": "Пустые пигменты +4",
+      "PASSIVE_AutoBurn_Name": "Авто-ожог",
+      "PASSIVE_AutoBurn_Description": "Накладывает Ожог на себя в начале боя.",
+      "PASSIVE_AutoCurse_Name": "Авто-проклятие",
+      "PASSIVE_AutoCurse_Description": "Накладывает Проклятие на себя в начале боя."
     },
     "ST_Items": {
       "ITEM_UpgradeMaterial_Level1_Description": "Можно использовать в лагере, чтобы улучшить оружие до уровня 33.",

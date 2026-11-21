@@ -1233,7 +1233,11 @@
       "PASSIVE_WepFx_TurnStart3_Description": "Al inicio del turno, si no hay Borrones, se generan 3 Borrones aleatorios.",
       "PASSIVE_WepFx_TurnStart3_Name": "Borrones vacíos +3",
       "PASSIVE_WepFx_TurnStart4_Description": "Al inicio del turno, si no hay Borrones, se generan 4 Borrones aleatorios.",
-      "PASSIVE_WepFx_TurnStart4_Name": "Borrones vacíos +4"
+      "PASSIVE_WepFx_TurnStart4_Name": "Borrones vacíos +4",
+      "PASSIVE_AutoBurn_Name": "Quemadura automática",
+      "PASSIVE_AutoBurn_Description": "Aplica Quemadura a sí mismo al inicio del combate.",
+      "PASSIVE_AutoCurse_Name": "Maldición automática",
+      "PASSIVE_AutoCurse_Description": "Aplica Maldición a sí mismo al inicio del combate."
     },
     "ST_Items": {
       "ITEM_UpgradeMaterial_Level1_Description": "Se puede usar en el campamento para mejorar las armas hasta el nivel 33.",

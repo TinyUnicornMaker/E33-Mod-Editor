@@ -66,6 +66,10 @@ Mode-specific:
   (`PASSIVE_*`) in `DT_PassiveEffects` / `DT_jRPG_Items` instead of
   culture-invariant English. The shared language packs translate those rows
   too; previously they were baked English and ignored the locres.
+- Vanilla inline rows **Auto Burn** / **Auto Curse** are now staged as
+  `PASSIVE_AutoBurn_*` / `PASSIVE_AutoCurse_*` StringTable entries, with
+  Chinese translations (`自动着火`, `自动诅咒`) and translations for the other
+  shipped cultures.
 - The seven genuinely inline strings (Super Spark, Super Sonic, Rupture Shot,
   Uno Puncho, Gradient Overcharge template) still need per-language asset
   overrides; they are not in the locres.

@@ -446,6 +446,10 @@ public static class FullPackKit
 
         StripUnroundtrippable(modDir, luneOn, log);
 
+        // Vanilla rows that shipped with culture-invariant English (Auto Burn,
+        // Auto Curse) need StringTable keys before the locres is built.
+        total += LocalizationFixKit.Apply(modDir);
+
         // ChallengeKit, Permadeath and BurnStackCap are intentionally absent
         // from the standalone pack path. They are incomplete/broken features
         // and must never ship in a deployed Expedition Infinity pack.

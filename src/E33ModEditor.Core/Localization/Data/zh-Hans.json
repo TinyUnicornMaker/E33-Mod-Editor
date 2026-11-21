@@ -1233,7 +1233,11 @@
       "PASSIVE_WepFx_TurnStart3_Description": "回合开始时，如果没有异色，便随机产生3个异色。",
       "PASSIVE_WepFx_TurnStart3_Name": "无异色时+3",
       "PASSIVE_WepFx_TurnStart4_Description": "回合开始时，如果没有异色，便随机产生4个异色。",
-      "PASSIVE_WepFx_TurnStart4_Name": "无异色时+4"
+      "PASSIVE_WepFx_TurnStart4_Name": "无异色时+4",
+      "PASSIVE_AutoBurn_Name": "自动着火",
+      "PASSIVE_AutoBurn_Description": "战斗开始时，对自身施加着火。",
+      "PASSIVE_AutoCurse_Name": "自动诅咒",
+      "PASSIVE_AutoCurse_Description": "战斗开始时，对自身施加诅咒。"
     },
     "ST_Items": {
       "ITEM_UpgradeMaterial_Level1_Description": "可以在营地使用，能将武器强化至最高33级。",
