@@ -174,7 +174,7 @@ public static class WeaponEffectsCreateKit
     /// <summary>
     /// Vanilla ConsumingAttack gates on <c>DamageReason == 4</c> (base attack).
     /// The "Skills" variants used to flip that to <c>!= 4</c>, which also matched
-    /// Burn/status damage-over-time ticks (<c>DamageReason == 2</c>, "Invalid")
+    /// Burn/status damage-over-time ticks (<c>DamageReason == 2</c>, "BuffEffect")
     /// and every counter/Lumina/item hit. Because the burn aggregator credits
     /// its DOT to the character who first applied Burn, a wearer with this
     /// passive would eat the whole Burn stack on the DOT tick — making Burn

@@ -12,6 +12,10 @@
   because the self-contained executables can trigger antivirus false
   positives.
 
+> **1.4.1 errata:** 1.4.0 shipped with the numeric `BuffEffect` and `Invalid`
+> rows swapped. Burn is `BuffEffect` (2), so 1.4.0 actually capped it at 9,999.
+> 1.4.1 corrects this to 3,333; the table below shows the intended mapping.
+
 ## 1.4.0 — source damage caps
 
 The single vanilla 9,999 hero cap is replaced by a `DamageReason` lookup in
@@ -22,9 +26,9 @@ added; the existing Ultima Power reference counter selects the second state.
 
 | Source | Cap |
 |---|---:|
-| Buff effect | **3,333** |
+| Invalid | 9,999 |
 | Skills | **33,333** |
-| DOT / invalid | 9,999 |
+| BuffEffect / Burn | **3,333** |
 | Free Aim | **3,333** |
 | Base attack | **6,666** |
 | Counter | **333,333** |
@@ -39,7 +43,7 @@ added; the existing Ultima Power reference counter selects the second state.
 
 - Skills and **all counter variants** are fully unlocked.
 - Free Aim, base attack and buff effect are capped at **333,333**.
-- DOT, Lumina and Item damage are also capped at 333,333.
+- Invalid, Lumina and Item damage are also capped at 333,333.
 
 Challenge damage-limit overrides still apply and can lower any cap. Enemy
 damage is unaffected.

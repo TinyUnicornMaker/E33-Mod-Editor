@@ -6,7 +6,7 @@ using E33Packer.App;
 var repo = Path.GetFullPath(args.Length > 0 ? args[0] : ".");
 var paks = Environment.GetEnvironmentVariable("E33_PAKS")
     ?? Path.Combine(repo, "work", "paks-placeholder");
-var output = Path.GetFullPath(args.Length > 1 ? args[1] : Path.Combine(repo, "dist", "Expedition Infinity 1.4.0"));
+var output = Path.GetFullPath(args.Length > 1 ? args[1] : Path.Combine(repo, "dist", "Expedition Infinity 1.4.1"));
 var language = args.Length > 2 ? args[2] : "en";
 var onlyMode = args.Length > 3 ? args[3] : "";
 var forcedSeed = args.Length > 4 && int.TryParse(args[4], out var fs) ? fs : (int?)null;
@@ -33,7 +33,7 @@ var modes = new (string Name, string Label, string Preset)[]
     ("normal", "Normal", GeneratorPresets.Expedition),
     ("hard", "Hard", GeneratorPresets.Brutal),
 };
-// Keep the curated 1.3.x seed numbers for 1.4.0; the pack revision changes,
+// Keep the curated 1.3.x seed numbers for 1.4.x; the pack revision changes,
 // the loot/stat rolls do not.
 var curatedSeeds = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
 {

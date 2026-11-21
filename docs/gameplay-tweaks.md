@@ -406,9 +406,9 @@ lookup:
 
 | `DamageReason` | No Ultima Power | Ultima Power |
 |---|---:|---:|
-| 0 BuffEffect | 3,333 | 333,333 |
+| 0 Invalid | 9,999 | 333,333 |
 | 1 SkillCast | 33,333 | unlimited |
-| 2 Invalid / DOT | 9,999 | 333,333 |
+| 2 BuffEffect / Burn | 3,333 | 333,333 |
 | 3 FreeAim | 3,333 | 333,333 |
 | 4 Attack (base attack) | 6,666 | 333,333 |
 | 5 Counter | 333,333 | unlimited |
@@ -418,6 +418,13 @@ lookup:
 | 9 RangeCounter | 333,333 | unlimited |
 | 10 AOECounter | 333,333 | unlimited |
 | 11 JumpCounter | 333,333 | unlimited |
+
+⚠ Burn's damage-over-time tick is `DamageReason 2` (**BuffEffect**), not
+"Invalid". Its aggregator passes `2` in the reason slot of
+`MakeDamageBuilder`, with the Fire element, and applies the total through
+`AddStraightDamageFlat`. Each Burn tick therefore uses the **3,333 / 333,333**
+row. `Invalid` is numeric **0** (`NewEnumerator2`); the old "Burn = Invalid"
+note confused the enumerator name with the numeric value.
 
 The locked caps are inserted immediately after the vanilla `9999` assignment,
 inside the "no unlock reference" branch. The unlocked caps are a second block

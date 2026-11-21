@@ -2,6 +2,10 @@
 
 Released 2026-11-21. App version **1.4.0**; seed packs use `_v1.4.0_P`.
 
+> **1.4.1 errata:** 1.4.0 shipped with the numeric `BuffEffect` and `Invalid`
+> rows swapped. Burn is `BuffEffect` (2), so 1.4.0 actually capped it at 9,999.
+> 1.4.1 corrects this to 3,333; the table below shows the intended mapping.
+
 ## Headline: different damage caps by source
 
 1.4.0 replaces the single hard-coded 9,999 hero cap with source-based caps in
@@ -13,9 +17,9 @@ Power) drive the two states.
 
 | Source | `DamageReason` | Cap |
 |---|---:|---:|
-| Buff effect | 0 | **3,333** |
+| Invalid | 0 | 9,999 |
 | Skills | 1 | **33,333** |
-| DOT / invalid | 2 | 9,999 |
+| BuffEffect / Burn | 2 | **3,333** |
 | Free Aim | 3 | **3,333** |
 | Base attack | 4 | **6,666** |
 | Counter | 5 | **333,333** |
@@ -31,7 +35,7 @@ Power) drive the two states.
 - **Skills and every counter variant are fully unlocked** (no cap from this
   system).
 - **Free Aim, base attack and buff effect are capped at 333,333.**
-- DOT, Lumina and Item damage are also capped at 333,333.
+- Invalid, Lumina and Item damage are also capped at 333,333.
 
 The challenge `HeroesDamageLimitOverride` still runs afterwards and can lower
 any cap. Enemy damage is unchanged: the vanilla hero-only team check remains.

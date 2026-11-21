@@ -130,7 +130,7 @@ The hub groups created passives by theme. Within a theme each passive is its own
 - **Skill Consume Burn (5)** — `WepFx_BurnConsume1Skills`…`5Skills` (I–V): skills consume up to 25/50/100/250/1000 Burn for +1% damage per Burn. `BP_LU_ConsumingAttack` kept on Burn (no buff retarget); skills-only via the `*Skills` id-suffix patch (**`DamageReason == 1`**, SkillCast). Not in the status-consume exclusive group.
 
   > **Do not use `DamageReason != 4` here.** Burn's damage-over-time tick is
-  > `DamageReason == 2` ("Invalid") and the Burn aggregator credits that tick
+  > `DamageReason == 2` ("BuffEffect") and the Burn aggregator credits that tick
   > to the character who *first* applied Burn. With `!= 4` the passive fires on
   > its own DOT, removes the full stack (up to the cap), and Burn can never be
   > stacked — even by other party members once the wearer applied the first

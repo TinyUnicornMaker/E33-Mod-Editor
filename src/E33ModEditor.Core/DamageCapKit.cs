@@ -15,9 +15,9 @@ namespace E33ModEditor.Core;
 ///
 /// <code>
 /// reason                     locked     Ultima Power
-/// BuffEffect (0)              3,333      333,333
+/// Invalid (0)                 9,999      333,333
 /// SkillCast (1)              33,333      unlimited (0)
-/// Invalid / DOT (2)           9,999      333,333
+/// BuffEffect / Burn (2)       3,333      333,333
 /// FreeAim (3)                 3,333      333,333
 /// Attack (4)                  6,666      333,333
 /// Counter (5)               333,333      unlimited (0)
@@ -29,6 +29,12 @@ namespace E33ModEditor.Core;
 /// JumpCounter (11)          333,333      unlimited (0)
 /// anything else               9,999      333,333
 /// </code>
+///
+/// The numeric values above come from <c>EDamageReason</c>'s cooked
+/// <c>DisplayNameMap</c>, not the enumerator names:
+/// <c>NewEnumerator2=0</c> is Invalid, <c>NewEnumerator0=1</c> is SkillCast and
+/// <c>NewEnumerator1=2</c> is BuffEffect. Burn's aggregator passes reason 2,
+/// so Burn is the BuffEffect row (3,333 / 333,333), not Invalid.
 ///
 /// The locked caps are inserted directly after the vanilla 9,999 assignment
 /// (inside the "not unlocked" branch). The unlocked caps are a second block
@@ -56,9 +62,12 @@ public static class DamageCapKit
     public const int UnlockedOtherCap = 333333;
     public const int Unlimited = 0;
 
-    public const byte BuffEffect = 0;
+    // Cooked EDamageReason values: NewEnumerator2=0 (Invalid),
+    // NewEnumerator0=1 (SkillCast), NewEnumerator1=2 (BuffEffect).
+    // Burn's DOT tick passes BuffEffect (2).
+    public const byte Invalid = 0;
     public const byte SkillCast = 1;
-    public const byte Invalid = 2;
+    public const byte BuffEffect = 2;
     public const byte FreeAim = 3;
     public const byte Attack = 4;
     public const byte Counter = 5;
@@ -75,7 +84,7 @@ public static class DamageCapKit
     /// <summary>Cap used while the hero has no damage-limit unlock reference.</summary>
     public static int LockedCap(byte reason) => reason switch
     {
-        BuffEffect => BuffEffectCap,
+        BuffEffect => BuffEffectCap, // Burn's DOT tick uses this reason
         SkillCast => SkillCap,
         FreeAim => FreeAimCap,
         Attack => AttackCap,

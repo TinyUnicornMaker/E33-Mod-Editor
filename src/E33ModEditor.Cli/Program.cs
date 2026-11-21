@@ -9697,6 +9697,15 @@ static int CmdDamageCapSmoke(string[] args)
             : new UAsset(bdDest, EngineVersion.VER_UE5_4);
         Check(DamageCapKit.PatchApplyClamp(bd2) == 0, "ApplyClamp patch is idempotent");
 
+        Check(DamageCapKit.Invalid == 0,
+            $"Invalid DamageReason = {DamageCapKit.Invalid} (want 0 / NewEnumerator2)");
+        Check(DamageCapKit.BuffEffect == 2,
+            $"BuffEffect/Burn DamageReason = {DamageCapKit.BuffEffect} (want 2 / NewEnumerator1)");
+        Check(DamageCapKit.LockedCap(DamageCapKit.BuffEffect) == DamageCapKit.BuffEffectCap,
+            $"Burn/BuffEffect locked cap = {DamageCapKit.LockedCap(DamageCapKit.BuffEffect)} (want {DamageCapKit.BuffEffectCap})");
+        Check(DamageCapKit.UnlockedCap(DamageCapKit.BuffEffect) == DamageCapKit.UnlockedOtherCap,
+            $"Burn/BuffEffect Ultima cap = {DamageCapKit.UnlockedCap(DamageCapKit.BuffEffect)} (want {DamageCapKit.UnlockedOtherCap})");
+
         Console.WriteLine("reason  locked   ultima");
         for (byte reason = 0; reason <= 11; reason++)
             Console.WriteLine($"{reason,6}  {DamageCapKit.LockedCap(reason),6}  " +
