@@ -62,7 +62,12 @@ Mode-specific:
   so the engine rejected the translation and showed the English StringTable
   source — the mixed-language tooltips (e.g. “Virtuous Flames”, English Rain of
   Fire descriptions) in the first Chinese test.
-- The seven inline/culture-invariant strings still need per-language asset
+- Weapon passives and pictos now store a `StringTableEntry` reference
+  (`PASSIVE_*`) in `DT_PassiveEffects` / `DT_jRPG_Items` instead of
+  culture-invariant English. The shared language packs translate those rows
+  too; previously they were baked English and ignored the locres.
+- The seven genuinely inline strings (Super Spark, Super Sonic, Rupture Shot,
+  Uno Puncho, Gradient Overcharge template) still need per-language asset
   overrides; they are not in the locres.
 
 ### Setup fixes

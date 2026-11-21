@@ -619,14 +619,21 @@ public static class PictosCreateKit
     /// </summary>
     private static void SetLocText(TextPropertyData t, string key, string display)
     {
-        display = ModLocalization.Key(key, display);
-        t.HistoryType = TextHistoryType.None;
-        t.Flags = ETextFlag.CultureInvariant;
+        // Point the row at the StringTable key instead of baking English inline.
+        // The shared language locres can then translate it (weapon passives and
+        // pictos were stuck in English when the text was culture-invariant).
+        t.HistoryType = TextHistoryType.StringTableEntry;
+        t.Flags = 0;
         t.Namespace = null;
-        t.Value = new FString(display);
-        t.CultureInvariantString = new FString(display);
-        t.TableId = null;
+        t.Value = new FString(key);
+        t.CultureInvariantString = null;
+        t.TableId = FName.FromString(t.Name.Asset, TableIdForKey(key));
     }
+
+    internal static string TableIdForKey(string key) =>
+        key.StartsWith("ITEM_", StringComparison.Ordinal)
+            ? "/Game/StringTables/Gameplay/ST_Items.ST_Items"
+            : "/Game/StringTables/Gameplay/ST_PassiveEffects.ST_PassiveEffects";
 
     /// <summary>
     /// Sets a row's culture-invariant display text, adding the field when the
@@ -642,15 +649,14 @@ public static class PictosCreateKit
             SetLocText(existing, key, value);
             return;
         }
-        value = ModLocalization.Key(key, value);
         var text = new TextPropertyData(new FName(ed.Asset, fieldName))
         {
-            Flags = ETextFlag.CultureInvariant,
-            HistoryType = TextHistoryType.None,
+            Flags = 0,
+            HistoryType = TextHistoryType.StringTableEntry,
             Namespace = null,
-            Value = new FString(value),
-            CultureInvariantString = new FString(value),
-            TableId = null,
+            Value = new FString(key),
+            CultureInvariantString = null,
+            TableId = FName.FromString(ed.Asset, TableIdForKey(key)),
         };
         row.Value.Add(text);
     }

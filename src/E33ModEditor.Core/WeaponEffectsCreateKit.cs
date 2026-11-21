@@ -982,13 +982,12 @@ public static class WeaponEffectsCreateKit
 
     private static void SetLocText(TextPropertyData t, string key, string display)
     {
-        display = ModLocalization.Key(key, display);
-        t.HistoryType = TextHistoryType.None;
-        t.Flags = ETextFlag.CultureInvariant;
+        t.HistoryType = TextHistoryType.StringTableEntry;
+        t.Flags = 0;
         t.Namespace = null;
-        t.Value = new FString(display);
-        t.CultureInvariantString = new FString(display);
-        t.TableId = null;
+        t.Value = new FString(key);
+        t.CultureInvariantString = null;
+        t.TableId = FName.FromString(t.Name.Asset, PictosCreateKit.TableIdForKey(key));
     }
 
     private static void Validate(EffectSpec spec)
