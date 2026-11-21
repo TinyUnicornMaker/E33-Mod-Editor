@@ -1576,7 +1576,6 @@ public sealed partial class MainWindow : Window
             string.Equals(p.QoL.PictoMastery, "instant", StringComparison.OrdinalIgnoreCase)
                 ? "instant"
                 : "none";
-        if (p.Name == GeneratorPresets.Expedition) p.QoL.PictoMastery = "none";
         p.QoL.PictoPopupCap = Math.Clamp(p.QoL.PictoPopupCap,
             PictoPopupCapKit.MinCap, PictoPopupCapKit.MaxCap);
         // Format 2 used 0 to mean "vanilla" because there was no toggle. Keep

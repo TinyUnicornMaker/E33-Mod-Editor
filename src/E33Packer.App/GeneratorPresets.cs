@@ -62,8 +62,9 @@ public static class GeneratorPresets
                 profile.Balance.TightenDefenseWindows = false;
                 profile.Balance.DodgeWindow = 0.22;
                 profile.Balance.ParryWindow = 0.15;
-                profile.Balance.ReduceLuminaDrops = false;
-                profile.Balance.LuminaDropMultiplier = 1.0;
+                // Easy: double regular Lumina drops.
+                profile.Balance.ReduceLuminaDrops = true;
+                profile.Balance.LuminaDropMultiplier = 2.0;
                 // 25% weaker enemy stat bonuses than the Expedition preset.
                 profile.Balance.RegularEnemyHpBonus =
                     Scale(RegularEnemyBuffKit.DefaultHpBonus, 0.75);
@@ -72,6 +73,12 @@ public static class GeneratorPresets
                 profile.Balance.RegularEnemyAttackBonus =
                     Scale(RegularEnemyBuffKit.DefaultAttackBonus, 0.75);
                 profile.QoL.PictoMastery = "instant";
+                break;
+
+            case Expedition:
+                // Normal keeps vanilla Lumina drops (1x).
+                profile.Balance.ReduceLuminaDrops = false;
+                profile.Balance.LuminaDropMultiplier = 1.0;
                 break;
 
             case Brutal:
@@ -101,6 +108,10 @@ public static class GeneratorPresets
                 profile.Name = Expedition;
                 break;
         }
+        // Easy and Normal ship with instant Picto mastery; Brutal keeps
+        // vanilla battle-by-battle progression. Custom keeps the user's value.
+        if (profile.Name is Easy or Expedition) profile.QoL.PictoMastery = "instant";
+        else if (profile.Name == Brutal) profile.QoL.PictoMastery = "none";
         return profile;
     }
 

@@ -32,11 +32,13 @@ Common to all three:
 Mode-specific:
 
 - **Easy** — regular parry/dodge timings (0.15 / 0.22; the defense-window table
-  is not staged), 25% weaker regular-enemy bonuses, instant Picto mastery.
-- **Normal** — standard Expedition Infinity.
+  is not staged), 25% weaker regular-enemy bonuses, instant Picto mastery,
+  **2× Lumina drops**.
+- **Normal** — standard Expedition Infinity, instant Picto mastery,
+  **1× Lumina drops**.
 - **Hard** — the Brutal preset plus extreme T4–T5 boss defense (1× at the T4
   floor to 30× at L99): tightened defense windows (0.1125 / 0.165), 2× HP
-  bonus, 1.5× speed/attack bonuses, half Lumina. Permadeath stays off.
+  bonus, **0.5× Lumina drops**. Permadeath stays off.
 - **Boss defense (Hard only)** — the Hard seed enables
   `ExtremeBossDefense`: 1× at the T4 floor, smoothly ramping to **30× the
   regular defense curve at L99**. Easy and Normal keep the regular curve, so
@@ -54,6 +56,15 @@ Mode-specific:
 - The generator installs the selected culture's pak alongside the seed; manual
   install instructions are in `INSTALL.txt`.
 - The `zz_` prefix keeps the language pak mounting after `pakchunk0`.
+
+### Picto scaling and Lumina
+
+- All three seeds include `DT_EquipmentScalingTable_Pictos` levels **34–333** at
+  a linear +1% of the level-33 base per level (level 333 = 4×); picto drop
+  levels remain 1–33.
+- Easy: 2× Lumina drops. Normal: 1×. Hard: 0.5×.
+- Easy and Normal enable instant Picto mastery; Hard keeps vanilla
+  battle-by-battle progression.
 
 ### Localization fix
 
