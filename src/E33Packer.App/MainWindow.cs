@@ -1031,7 +1031,7 @@ public sealed partial class MainWindow : Window
             _status.Text = T("Settings validation failed.");
             return false;
         }
-        if (_profile.Balance.LevelCap is < 99 or > 999 || _profile.Balance.AttributeCap is < 99 or > 500)
+        if (_profile.Balance.LevelCap is < 99 or > 1000 || _profile.Balance.AttributeCap is < 99 or > 1000)
         {
             Append("Balance: level cap / attribute cap out of range.");
             _status.Text = T("Settings validation failed.");
@@ -1555,8 +1555,8 @@ public sealed partial class MainWindow : Window
             p.Balance.RegularEnemySpeedBonus, RegularEnemyBuffKit.DefaultSpeedBonus, -0.95, 30);
         p.Balance.RegularEnemyAttackBonus = NormalizeArray(
             p.Balance.RegularEnemyAttackBonus, RegularEnemyBuffKit.DefaultAttackBonus, -0.95, 30);
-        p.Balance.LevelCap = Math.Clamp(p.Balance.LevelCap, 99, 999);
-        p.Balance.AttributeCap = Math.Clamp(p.Balance.AttributeCap, 99, 500);
+        p.Balance.LevelCap = Math.Clamp(p.Balance.LevelCap, 99, 1000);
+        p.Balance.AttributeCap = Math.Clamp(p.Balance.AttributeCap, 99, 1000);
         p.Balance.ExtraXpPerLevel = Math.Clamp(p.Balance.ExtraXpPerLevel, 1, 99_999_999);
         p.Balance.AttributePointsPerLevel = Math.Clamp(p.Balance.AttributePointsPerLevel, 0, 20);
         p.Balance.SkillPointsPerLevel = Math.Clamp(p.Balance.SkillPointsPerLevel, 1, 10);

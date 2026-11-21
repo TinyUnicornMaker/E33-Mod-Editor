@@ -127,6 +127,7 @@ try
         "random-battles-smoke" => CmdRandomBattlesSmoke(args),
         "row-damage-smoke" => CmdRowDamageSmoke(args),
         "damage-cap-smoke" => CmdDamageCapSmoke(args),
+        "level-cap-smoke" => CmdLevelCapSmoke(args),
         _ => Unknown(args[0]),
     };
 }
@@ -3544,6 +3545,111 @@ static int CmdTweaksSmoke(string[] args)
             }
             Walk(fn.ScriptBytecode);
         }
+    }
+}
+
+/// <summary>
+/// Verifies the generated level/attribute tables actually cover the editor's
+/// 1,000 cap without adding rows past it. This is a table-shape check only;
+/// progression values keep the existing scaling curve.
+/// </summary>
+static int CmdLevelCapSmoke(string[] args)
+{
+    var dir = Path.Combine(EditorPaths.RepoRoot, "work", "mod_levelcapsmoke");
+    if (Directory.Exists(dir)) Directory.Delete(dir, true);
+    Directory.CreateDirectory(dir);
+
+    int checks = 0, fails = 0;
+    void Check(bool ok, string msg)
+    {
+        checks++;
+        Console.WriteLine((ok ? "ok   " : "FAIL ") + msg);
+        if (!ok) fails++;
+    }
+
+    try
+    {
+        var s = new GameplayTweaksKit.Settings
+        {
+            LevelCap = GameplayTweaksKit.ExpandedLevelCap,
+            AttributePointsPerLevel = 2,
+            AttributeCap = GameplayTweaksKit.MaxAttributeCap,
+            DisableTutorials = true,
+            TightenDefenseWindows = false,
+        };
+        GameplayTweaksKit.Apply(dir, s);
+
+        var levelPath = GameplayTweaksKit.FindAsset(dir, "DT_CharactersLevelScaling.uasset")
+            ?? throw new FileNotFoundException("DT_CharactersLevelScaling");
+        var levelEd = new DataTableEditor(levelPath);
+        Check(levelEd.HasRow("Level_333"), "DT_CharactersLevelScaling has Level_333");
+        Check(levelEd.HasRow("Level_1000"), "DT_CharactersLevelScaling has Level_1000");
+        Check(!levelEd.HasRow("Level_1001"), "DT_CharactersLevelScaling stops at Level_1000");
+
+        var xpPath = GameplayTweaksKit.FindAsset(dir, "DT_jRPG_Levels.uasset")
+            ?? throw new FileNotFoundException("DT_jRPG_Levels");
+        var xpEd = new DataTableEditor(xpPath);
+        Check(xpEd.HasRow("333"), "DT_jRPG_Levels has row 333");
+        Check(xpEd.HasRow("1000"), "DT_jRPG_Levels has row 1000");
+        Check(!xpEd.HasRow("1001"), "DT_jRPG_Levels stops at row 1000");
+
+        foreach (var curveName in new[]
+                 {
+                     "Curve_StatsPerLevel_HP", "Curve_StatsPerLevel_PAttack",
+                     "Curve_StatsPerLevel_Speed", "Curve_StatsPerLevel_CritRate",
+                     "Curve_StatsPerLevel_Defense",
+                 })
+        {
+            var path = GameplayTweaksKit.FindAsset(dir, curveName + ".uasset")
+                ?? throw new FileNotFoundException(curveName);
+            var keys = CurveKeys(path);
+            Check(keys.Any(k => Math.Abs(k.Time - 1000) < 0.01f), $"{curveName}: key at 1000");
+        }
+
+        foreach (var attr in new[] { "Agility", "Defense", "Luck", "Vitality", "Strength" })
+        {
+            var path = GameplayTweaksKit.FindAsset(dir, "DT_AttributeStatScaling_" + attr + ".uasset")
+                ?? throw new FileNotFoundException("DT_AttributeStatScaling_" + attr);
+            var ed = new DataTableEditor(path);
+            Check(ed.HasRow("Points_1000"), $"{attr}: Points_1000 exists");
+            Check(!ed.HasRow("Points_1001"), $"{attr}: table stops at Points_1000");
+        }
+    }
+    catch (Exception ex)
+    {
+        Check(false, "exception: " + ex.Message);
+        Console.Error.WriteLine(ex);
+    }
+
+    Console.WriteLine(fails == 0
+        ? $"[level-cap-smoke] {checks} checks passed"
+        : $"[level-cap-smoke] {fails}/{checks} FAILED");
+    return fails == 0 ? 0 : 1;
+
+    static List<(float Time, float Value)> CurveKeys(string path)
+    {
+        var map = DataTableEditor.Mappings;
+        var u = map is not null
+            ? new UAsset(path, EngineVersion.VER_UE5_4, map)
+            : new UAsset(path, EngineVersion.VER_UE5_4);
+        var exp = u.Exports.OfType<NormalExport>().FirstOrDefault()
+            ?? throw new InvalidDataException(Path.GetFileName(path) + " has no export");
+        var curve = exp.Data.FirstOrDefault(p =>
+            DataTableEditor.CleanName(p.Name) == "FloatCurve") as UAssetAPI.PropertyTypes.Structs.StructPropertyData
+            ?? throw new InvalidDataException(Path.GetFileName(path) + " has no FloatCurve");
+        var keys = curve.Value.FirstOrDefault(p =>
+            DataTableEditor.CleanName(p.Name) == "Keys") as UAssetAPI.PropertyTypes.Objects.ArrayPropertyData
+            ?? throw new InvalidDataException(Path.GetFileName(path) + " has no Keys");
+        var result = new List<(float Time, float Value)>();
+        foreach (var e in keys.Value)
+        {
+            var k = e as UAssetAPI.PropertyTypes.Structs.RichCurveKeyPropertyData
+                ?? (e as UAssetAPI.PropertyTypes.Structs.StructPropertyData)?.Value
+                    .OfType<UAssetAPI.PropertyTypes.Structs.RichCurveKeyPropertyData>()
+                    .FirstOrDefault();
+            if (k is not null) result.Add((k.Value.Time, k.Value.Value));
+        }
+        return result;
     }
 }
 
@@ -11675,6 +11781,7 @@ static int CmdDumpImports(string[] args)
           row-damage-smoke       stage + verify the back-row damage patch (no game files)
           damage-cap-smoke       stage + verify source damage caps (all DamageReason values,
                                  locked + Ultima Power) and crit composition
+          level-cap-smoke        stage + verify level/attribute tables cover 1000 without extra rows
           firstperson [flags]    camera preset tuning (--preset overshoulder|firstperson,
                                  --arm/--forward/--side.../--monoco-arm/--monoco-side/
                                  --climb-arm/--climb-scale/--worldmap-aperture,

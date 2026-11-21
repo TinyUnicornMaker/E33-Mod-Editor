@@ -228,7 +228,7 @@ public class SaveEditorViewModel : ViewModelBase
     public Func<bool>? StatusAffinityEnabled { get; set; }
     public Func<bool>? DamageLimitEnabled { get; set; }
 
-    /// <summary>Current level cap from the Gameplay Tweaks settings (99 vanilla / 999 expanded).</summary>
+    /// <summary>Current level cap from the Gameplay Tweaks settings (99 vanilla / 1000 expanded).</summary>
     public Func<int>? LevelCapProvider { get; set; }
     public int LevelCap => LevelCapProvider?.Invoke() ?? GameplayTweaksKit.VanillaLevelCap;
 

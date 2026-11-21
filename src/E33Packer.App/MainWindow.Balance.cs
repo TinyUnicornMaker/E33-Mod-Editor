@@ -26,7 +26,7 @@ public sealed partial class MainWindow
         return Stack(
             Head(T("Progression")),
             Note(T("Level and stat growth.")),
-            IntRow(T("Character level cap"), b.LevelCap, 99, 999, v => b.LevelCap = v,
+            IntRow(T("Character level cap"), b.LevelCap, 99, 1000, v => b.LevelCap = v,
                 tooltip: T("Maximum character level.")),
             IntRow(T("Attribute point cap"), b.AttributeCap, 99, GameplayTweaksKit.MaxAttributeCap,
                 v => b.AttributeCap = v, tooltip: T("Maximum points in a single attribute.")),

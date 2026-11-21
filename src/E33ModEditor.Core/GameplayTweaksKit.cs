@@ -17,7 +17,7 @@ namespace E33ModEditor.Core;
 public static class GameplayTweaksKit
 {
     public const int VanillaLevelCap = 99;
-    public const int ExpandedLevelCap = 999;
+    public const int ExpandedLevelCap = 1000;
     public const int DefaultLevelCap = 250;
     public const int VanillaMaxAp = 9;
     public const int VanillaConsecutiveTurns = 2;
@@ -39,7 +39,7 @@ public static class GameplayTweaksKit
     public const double VanillaDodgeWindow = 0.22;
     public const double VanillaParryWindow = 0.15;
     public const int VanillaAttributeCap = 99;
-    public const int MaxAttributeCap = 500;
+    public const int MaxAttributeCap = 1000;
     public const int MinPictoPopupCap = PictoPopupCapKit.MinCap;
     public const int DefaultPictoPopupCap = PictoPopupCapKit.DefaultCap;
 
@@ -172,7 +172,7 @@ public static class GameplayTweaksKit
         public bool ExpandedLevels => LevelCap > VanillaLevelCap;
         public int AttributeTableCap => Math.Max(
             Math.Max(VanillaAttributeCap, AttributeCap),
-            LevelCap * Math.Max(1, AttributePointsPerLevel));
+            Math.Min(ExpandedLevelCap, LevelCap * Math.Max(1, AttributePointsPerLevel)));
 
         public bool IsVanilla =>
             LevelCap == VanillaLevelCap
@@ -1116,7 +1116,6 @@ public static class GameplayTweaksKit
             // Quadratic term so the curve lands exactly on the target at 200.
             double accel = (target - knee - slope * span) / (span * span);
             double endSlope = slope + 2 * accel * span;
-
             for (int p = 0; p <= max; p++)
             {
                 var name = "Points_" + p;

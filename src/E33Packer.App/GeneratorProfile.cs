@@ -71,12 +71,12 @@ public sealed class BalanceOptions
         var mastery = (qol.PictoMastery ?? "none").Trim().ToLowerInvariant();
         return new GameplayTweaksKit.Settings
         {
-            LevelCap = Math.Clamp(LevelCap, 99, 999),
+            LevelCap = Math.Clamp(LevelCap, 99, 1000),
             ExtraXpPerLevel = Math.Clamp(ExtraXpPerLevel, 1, 99_999_999),
             AttributePointsPerLevel = Math.Clamp(AttributePointsPerLevel, 0, 20),
             SkillPointsPerLevel = Math.Clamp(SkillPointsPerLevel, 1, 10),
             LuminaPerLevel = Math.Clamp(LuminaPerLevel, 1, 10),
-            AttributeCap = Math.Clamp(AttributeCap, 99, 500),
+            AttributeCap = Math.Clamp(AttributeCap, 99, 1000),
             HpMult = Math.Clamp(HpMult, 0.1, 10),
             AttackMult = Math.Clamp(AttackMult, 0.1, 10),
             SpeedMult = Math.Clamp(SpeedMult, 0.1, 10),

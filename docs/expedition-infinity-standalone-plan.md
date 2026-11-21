@@ -87,13 +87,13 @@ Current differences (old standalone vs the current shipped preset):
 
 | Setting | Code default (old standalone) | Current `work/` preset |
 |---|---:|---:|
-| Character level cap | 250 | 500 |
+| Character level cap | 250 | 333 |
 | Max AP | 9 | 21 |
 | Max consecutive turns | 2 | 3 |
 | Permadeath | false | false (feature not completed; always off) |
 | Max Foretell | 20 | 30 |
 | Crit damage addend | 0.5 (×1.5) | 1.5 (×2.5) |
-| Attribute cap | 99 | 500 |
+| Attribute cap | 99 | 333 |
 | Max shields | 9 | 5 |
 | Burn multiplier | 0.66 | 0.075 |
 | Burn tail-off | 2.0 | 3.0 |
@@ -422,10 +422,10 @@ changing the core content.
 | | Parry window | 0.1125 s | 0.01–1.0 |
 | Boss movesets | Mask Keeper full moveset | on | `MaskKeeperFullMoveset` |
 | | Sirène full moveset | on | `SireneFullMoveset` |
-| Progression | Character level cap | 333 | 99–999; see note below |
+| Progression | Character level cap | 333 | 99–1000; see note below |
 | | XP per extra level | 33,333,333 | 1–99,999,999 |
 | | Attribute points/level | 2 | 0–20 |
-| | Attribute cap | 333 | 99–500 |
+| | Attribute cap | 333 | 99–1000 |
 | | Skill points/level | 1 | 1–10 |
 | | Lumina per level | 2 | 1–10 |
 | Player power | HP / Attack / Speed / Crit / Defense × | 1.0 each | 0.1–10 |

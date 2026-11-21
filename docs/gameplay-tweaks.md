@@ -226,9 +226,10 @@ both:
    They are structurally identical (`S_Stats_AttributesScaling`, a `Stats` map,
    row-name base `Points`). Rows `Points_100 … ` are cloned from `Points_99` and
    filled by continuing the `Points_90`→`Points_99` slope per stat.
-   Note the extension target is `max(AttributeCap, LevelCap × AttributePointsPerLevel)`
-   — so raising the level cap also extends these tables (that path predates the
-   cap setting).
+   Note the extension target is
+   `max(AttributeCap, min(1000, LevelCap × AttributePointsPerLevel))` — so
+   raising the level cap also extends these tables, and the generated rows never
+   go past the 1,000 ceiling the editor exposes.
 2. **The assignment UI clamp** — `WBP_Raw_Attributes_Display`
    (`UI/Widgets/InGame_Menu/Stats_Panel/`) is the one asset that owns
    `AllowedMaxValue`, and both `SetAllowedMaxValue` and `SetAllowedMinValue`
@@ -250,7 +251,7 @@ rewrites the whole point curve so stats stop tailing off as values climb.
 | --- | --- |
 | 1–80 | straight line from 0 landing on the vanilla `Points_80` value — vanilla's uneven early gains (Vitality runs 6, 13, … 19, 18, 16, 14, 11, 10, 7) become one flat per-point rate |
 | 81–200 | accelerates — quadratic, continuous in value *and* slope at 80 — so `Points_200` lands on **3 × the vanilla `Points_99` value** |
-| 201+ | continues at the 200 slope, so the table stays monotone to `AttributeTableCap` |
+| 201+ | continues at the 200 slope, so the table stays monotone to `AttributeTableCap` (up to 1,000) |
 
 Constants: `AttributeCurveKnee` (80), `AttributeCurveTarget` (200),
 `AttributeCurveTargetMultiple` (3.0). Resulting endpoints:
@@ -267,7 +268,7 @@ Note `Points_80` is preserved exactly and `Points_0` stays 0, so the opening
 curve is pinned to vanilla at both ends; 81–99 is slightly stronger than vanilla
 because the acceleration starts at the knee.
 
-**Setting.** `AttributeCap`, integer, range `99` (vanilla) … `500`, default `99`.
+**Setting.** `AttributeCap`, integer, range `99` (vanilla) … `1000`, default `99`.
 `99` means "vanilla" — `IsVanilla` includes it, so nothing is staged and any
 previously staged copies are removed.
 
@@ -282,8 +283,25 @@ points-per-level fields too if you want a full 200 in a single attribute.
 
 **Verification.** `tweaks-smoke` asserts all five tables reach
 `Points_200` (and exactly `AttributeTableCap`, with no row past it) and dumps the
-widget's patched constants. In-game: level up, assign an attribute past 99, and
-confirm the stat keeps scaling and the wheel allows it.
+widget's patched constants. `level-cap-smoke` checks the character level table,
+XP table, all five stat curves, and all five attribute tables reach 1,000 and
+stop there. In-game: level up, assign an attribute past 99, and confirm the stat
+keeps scaling and the wheel allows it.
+
+## Table ceiling: 1,000
+
+The expanded tables support character levels and attribute points through
+**1,000**. The editor fields are clamped to the same ceiling: character level
+cap **99–1000**, attribute point cap **99–1000**. `AttributeTableCap` is
+`max(AttributeCap, min(1000, LevelCap × AttributePointsPerLevel))`, so the
+attribute tables cover the configured cap and never generate rows past 1,000.
+
+Below the ceiling, values keep the existing scaling rules — this is table
+support, not a new progression curve. The character stat table continues the
+90→99 slope, the five `Curve_StatsPerLevel_*` curves extend at their last
+segment slope, and the five attribute tables continue the 200-point slope.
+Level 333 remains the Expedition Infinity balance anchor; the pack's shipped
+preset is unchanged.
 
 ## Enemy and lumina balance (`BuffRegularEnemies` / `ReduceLuminaDrops`)
 
