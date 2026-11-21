@@ -18,7 +18,7 @@ CUE4PARSE_SKIP_NATIVE=true dotnet publish src/E33Packer.App/E33Packer.App.csproj
   -p:IncludeNativeLibrariesForSelfExtract=true \
   -p:IncludeAllContentForSelfExtract=true \
   -p:DebugType=None -p:PublishTrimmed=false \
-  -o dist/application/1.3.10/linux
+  -o dist/application/1.4.0/linux
 
 # Windows x64 (run on Windows, or use the GitHub Actions Windows job)
 $env:CUE4PARSE_SKIP_NATIVE="true"
@@ -28,5 +28,5 @@ dotnet publish src/E33Packer.App/E33Packer.App.csproj `
   -p:IncludeNativeLibrariesForSelfExtract=true `
   -p:IncludeAllContentForSelfExtract=true `
   -p:DebugType=None -p:PublishTrimmed=false `
-  -o dist/application/1.3.10/windows
+  -o dist/application/1.4.0/windows
 ```

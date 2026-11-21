@@ -1062,6 +1062,8 @@ public sealed partial class MainWindow : Window
                 ["format"] = 1,
                 ["app"] = "Expedition Infinity",
                 ["appVersion"] = AppVersion,
+                // Core, always-on seed setting. No UI; recorded for build provenance.
+                ["damageCaps"] = true,
                 ["seed"] = result.Seed,
                 ["builtAt"] = DateTime.UtcNow.ToString("o"),
                 ["language"] = _profile.Language,

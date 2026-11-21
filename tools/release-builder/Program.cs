@@ -6,7 +6,7 @@ using E33Packer.App;
 var repo = Path.GetFullPath(args.Length > 0 ? args[0] : ".");
 var paks = Environment.GetEnvironmentVariable("E33_PAKS")
     ?? Path.Combine(repo, "work", "paks-placeholder");
-var output = Path.GetFullPath(args.Length > 1 ? args[1] : Path.Combine(repo, "dist", "Expedition Infinity 1.3.10"));
+var output = Path.GetFullPath(args.Length > 1 ? args[1] : Path.Combine(repo, "dist", "Expedition Infinity 1.4.0"));
 var language = args.Length > 2 ? args[2] : "en";
 var onlyMode = args.Length > 3 ? args[3] : "";
 var forcedSeed = args.Length > 4 && int.TryParse(args[4], out var fs) ? fs : (int?)null;
@@ -33,6 +33,14 @@ var modes = new (string Name, string Label, string Preset)[]
     ("normal", "Normal", GeneratorPresets.Expedition),
     ("hard", "Hard", GeneratorPresets.Brutal),
 };
+// Keep the curated 1.3.x seed numbers for 1.4.0; the pack revision changes,
+// the loot/stat rolls do not.
+var curatedSeeds = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+{
+    ["easy"] = 61281975,
+    ["normal"] = 87694963,
+    ["hard"] = 23035873,
+};
 
 var lines = new List<string>();
 lines.Add($"Expedition Infinity {GeneratorInfo.AppVersion} — release build");
@@ -40,12 +48,14 @@ lines.Add($"Built: {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} UTC");
 lines.Add($"Pack revision: {GeneratorInfo.PackRevision}");
 lines.Add("Proc cards: LimitBattleProcCards=on, PictoPopupCap=0 (all seeds)");
 lines.Add("Close camera: off (all seeds)");
+lines.Add("Core damage caps: on (source-based; no UI)");
 lines.Add("Language packs: shared under Languages/<culture>/, installed alongside any seed");
 lines.Add("");
 
 foreach (var (name, label, preset) in modes)
 {
-    var seed = forcedSeed ?? NewSeed(used);
+    var seed = forcedSeed
+        ?? (curatedSeeds.TryGetValue(name, out var curated) ? curated : NewSeed(used));
     var profile = GeneratorPresets.Create(preset, seed);
     profile.QoL.PictoPopupCap = 0;
     profile.QoL.LimitBattleProcCards = true;

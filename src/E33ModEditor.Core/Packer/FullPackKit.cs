@@ -248,17 +248,40 @@ public static class FullPackKit
             total += MightScalingKit.Apply(modDir);
             MightScalingKit.Verify(modDir);
         }
+        // Source damage caps (Buff 3,333 / Base Attack 6,666 / Free Aim 3,333 /
+        // Skills 33,333 / Counters 333,333; Ultima Power unlocks skills and
+        // counters, everything else 333,333). This is a core damage-curve
+        // setting; the seed generator always enables it and has no UI for it.
+        // It must run after the crit kit: CritDamageKit stages a fresh
+        // BP_BattleDamages, and both edits live in different functions of the
+        // same asset.
+        string? damagePath = GameplayTweaksKit.FindAsset(modDir, "BP_BattleDamages.uasset");
+        if (tweaks.DamageCaps)
+        {
+            log("Applying source damage caps…");
+            total += DamageCapKit.Apply(modDir);
+            damagePath = GameplayTweaksKit.FindAsset(modDir, "BP_BattleDamages.uasset")
+                ?? throw new FileNotFoundException(
+                    "damage caps were requested but BP_BattleDamages is not staged");
+            if (!DamageCapKit.Verify(damagePath))
+                throw new InvalidDataException(
+                    "damage-cap verification failed: BP_BattleDamages.ApplyClamp does not " +
+                    "match the configured source caps");
+        }
         if (tweaks.NeedsCritDamage)
         {
-            var critPath = GameplayTweaksKit.FindAsset(modDir, "BP_BattleDamages.uasset")
+            damagePath ??= GameplayTweaksKit.FindAsset(modDir, "BP_BattleDamages.uasset")
                 ?? throw new FileNotFoundException(
                     "crit-rate patch was requested but BP_BattleDamages is not staged");
-            if (!CritDamageKit.Verify(critPath, tweaks.CritDamageIncrease, tweaks.CritRateDamageScaling))
+            if (!CritDamageKit.Verify(damagePath, tweaks.CritDamageIncrease, tweaks.CritRateDamageScaling))
                 throw new InvalidDataException(
                     "crit-rate verification failed: BP_BattleDamages.ApplyCriticalHitModifiers " +
                     "does not match the configured addend/scaling");
-            log("[crit] verified crit-rate damage scaling in the staged pack");
         }
+        if (tweaks.DamageCaps)
+            log("[damagecap] verified source caps" + (tweaks.NeedsCritDamage ? " + crit scaling" : ""));
+        else if (tweaks.NeedsCritDamage)
+            log("[crit] verified crit-rate damage scaling in the staged pack");
 
         var overhaul = opt.SkillOverhaul ?? SkillOverhaulKit.LoadSettings();
         var gustaveOn = overhaul.CharacterEnabled("Gustave");

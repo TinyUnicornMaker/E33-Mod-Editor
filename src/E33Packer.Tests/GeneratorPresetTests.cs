@@ -38,14 +38,25 @@ public sealed class GeneratorPresetTests
         Assert.AreEqual(1.5f, tweaks.CritDamageIncrease);
         Assert.IsTrue(tweaks.CritRateDamageScaling);
         Assert.IsFalse(tweaks.Permadeath);
-        Assert.IsFalse(tweaks.InstantPictoMastery);
+        Assert.IsTrue(tweaks.InstantPictoMastery);
         Assert.IsTrue(tweaks.LimitPictoPopups);
-        Assert.AreEqual(5, tweaks.PictoPopupCap);
-        Assert.AreEqual("none", profile.QoL.PictoMastery);
+        Assert.AreEqual(0, tweaks.PictoPopupCap);
+        Assert.AreEqual("instant", profile.QoL.PictoMastery);
         Assert.IsTrue(profile.Balance.BuffRegularEnemies);
         Assert.IsFalse(profile.Randomizer.BattleGroups);
         Assert.IsFalse(profile.Randomizer.RandomBattles);
         Assert.AreEqual(5, profile.Randomizer.MaxEnemiesPerBattle);
+    }
+
+    [TestMethod]
+    public void DamageCaps_AreCoreAndAlwaysOn()
+    {
+        foreach (var name in GeneratorPresets.Names)
+        {
+            var profile = GeneratorPresets.Create(name, 123);
+            Assert.IsTrue(profile.Balance.ToTweaks(profile.QoL).DamageCaps,
+                $"{name} must enable the core source damage caps.");
+        }
     }
 
     [TestMethod]
@@ -75,8 +86,8 @@ public sealed class GeneratorPresetTests
         Assert.IsFalse(easy.Balance.TightenDefenseWindows);
         Assert.AreEqual(1.0, easy.Balance.HpMult);
         Assert.IsFalse(easy.Balance.Permadeath);
-        Assert.IsFalse(easy.Balance.ReduceLuminaDrops);
-        Assert.AreEqual(1.0, easy.Balance.LuminaDropMultiplier);
+        Assert.IsTrue(easy.Balance.ReduceLuminaDrops);
+        Assert.AreEqual(2.0, easy.Balance.LuminaDropMultiplier);
         Assert.AreEqual("instant", easy.QoL.PictoMastery);
         Assert.IsFalse(easy.QoL.LightStainWildcard);
         Assert.IsTrue(easy.Balance.ToTweaks(easy.QoL).DisableTutorials);
@@ -175,9 +186,9 @@ public sealed class GeneratorOptionMappingTests
     [TestMethod]
     public void PackName_MatchesShippedV13Containers()
     {
-        Assert.AreEqual("_v1.3.10", GeneratorInfo.PackRevision);
-        Assert.AreEqual("ExpeditionInfinity_123456_v1.3.10_P", GeneratorInfo.PackName(123456));
-        Assert.AreEqual("ExpeditionInfinity_7539815_v1.3.10_P", GeneratorInfo.PackName(7539815));
+        Assert.AreEqual("_v1.4.0", GeneratorInfo.PackRevision);
+        Assert.AreEqual("ExpeditionInfinity_123456_v1.4.0_P", GeneratorInfo.PackName(123456));
+        Assert.AreEqual("ExpeditionInfinity_7539815_v1.4.0_P", GeneratorInfo.PackName(7539815));
     }
 
     [TestMethod]
@@ -201,8 +212,10 @@ public sealed class GeneratorOptionMappingTests
     [TestMethod]
     public void InstantPictoMastery_IsToggleable()
     {
+        // Expedition ships instant mastery; the toggle still works for custom
+        // profiles and for switching it back off.
         var profile = GeneratorPresets.Create(GeneratorPresets.Expedition);
-        Assert.AreEqual("none", profile.QoL.PictoMastery);
+        Assert.AreEqual("instant", profile.QoL.PictoMastery);
 
         profile.QoL.PictoMastery = "none";
         var off = profile.Balance.ToTweaks(profile.QoL);

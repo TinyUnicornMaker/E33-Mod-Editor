@@ -396,3 +396,56 @@ conflict, but keep that order if you move the kits around.
 addend+scaling, asserts the base constant equals `1 + addend` and (when scaling)
 the `FMax(…, 1.0)` floor and the `CallFunc_GetCriticalRollToBeat_Value` read are
 present with valid jump targets, then reverts and asserts the asset is gone.
+
+## Source damage caps (`BP_BattleDamages.ApplyClamp`)
+
+Vanilla has one hard-coded 9,999 hero cap, removed completely once
+`DamageLimitUnlockRefCount` (Ultima Power) is present. `DamageCapKit` replaces
+that flat constant with a `DamageReason` lookup and a second unlocked-state
+lookup:
+
+| `DamageReason` | No Ultima Power | Ultima Power |
+|---|---:|---:|
+| 0 BuffEffect | 3,333 | 333,333 |
+| 1 SkillCast | 33,333 | unlimited |
+| 2 Invalid / DOT | 9,999 | 333,333 |
+| 3 FreeAim | 3,333 | 333,333 |
+| 4 Attack (base attack) | 6,666 | 333,333 |
+| 5 Counter | 333,333 | unlimited |
+| 6 Lumina | 9,999 | 333,333 |
+| 7 Item | 9,999 | 333,333 |
+| 8 GradientCounter | 333,333 | unlimited |
+| 9 RangeCounter | 333,333 | unlimited |
+| 10 AOECounter | 333,333 | unlimited |
+| 11 JumpCounter | 333,333 | unlimited |
+
+The locked caps are inserted immediately after the vanilla `9999` assignment,
+inside the "no unlock reference" branch. The unlocked caps are a second block
+before the challenge override: when `local_clampValue` is still `0`
+(unlocked), it is replaced by the unlocked cap; a `0` result means the final
+`if (local_clampValue > 0)` clamp is skipped, i.e. unlimited. The challenge
+override still runs afterwards, so challenge modifiers can lower any cap.
+
+**Why no new property/picto.** `DamageReason` already identifies every source,
+and the unlock state is the existing binary `DamageLimitUnlockRefCount`. No
+extra `SF_ReferenceCounter`, `DamageLimitTier` property, or middle-tier picto is
+needed. This avoids the class-schema/asset-creation path that crashed the old
+three-tier attempt.
+
+**Seed generator.** `GameplayTweaksKit.Settings.DamageCaps` is a core,
+always-on setting. `GeneratorProfile.Balance.ToTweaks` forces it true for every
+preset; there is no UI control. `FullPackKit` skips the cap patch only if a
+diagnostic JSON explicitly sets it false.
+
+**Order.** `DamageLimitKit.RemoveThreeTier` deletes `BP_BattleDamages` before
+`GameplayTweaksKit.Apply` / `CritDamageKit`; `FullPackKit` then calls
+`DamageCapKit.Apply` after the crit block. The cap kit stages a fresh copy when
+crit is vanilla and reuses the crit-staged copy otherwise. Both edits target
+different functions (`ApplyClamp` vs `ApplyCriticalHitModifiers`), so they
+compose. Keep the cap call after the crit call.
+
+**Verification.** `damage-cap-smoke` patches a throw-away copy, evaluates the
+installed `SelectInt` chains for all 12 reasons in both states, checks jump
+targets and idempotence, and composes with `CritDamageKit`. In-game test still
+required: Free Aim, base attack, skill, all five counter types, DOT, and the
+same set with Ultima Power equipped.

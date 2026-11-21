@@ -92,6 +92,9 @@ public sealed class BalanceOptions
             MaxGradientCharges = 10,
             CritDamageIncrease = 1.5f,
             CritRateDamageScaling = true,
+            // Source-based damage caps are part of the core damage curve.
+            // Always on in the seed generator; intentionally not in the UI.
+            DamageCaps = true,
             BurnMultiplier = 0.075,
             BurnPlayerScale = 0.01,
             BurnDuration = 3,

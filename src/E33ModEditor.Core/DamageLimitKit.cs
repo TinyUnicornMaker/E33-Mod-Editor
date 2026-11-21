@@ -14,8 +14,6 @@ namespace E33ModEditor.Core;
 public static class DamageLimitKit
 {
     public const string UltimaId = "UltimaPower";
-    public const string UltimaDisplay = "Ultima Power";
-    public const string UltimaDesc = "Raises damage limit to 777 (test).";
     private const string PaintedId = "OverPowered";
     // New desired name/desc for Painted Power.
     // The description is intentionally the original flavour text; the functional

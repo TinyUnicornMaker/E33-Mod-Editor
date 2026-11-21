@@ -126,6 +126,7 @@ try
         "random-battles" => CmdRandomBattles(args),
         "random-battles-smoke" => CmdRandomBattlesSmoke(args),
         "row-damage-smoke" => CmdRowDamageSmoke(args),
+        "damage-cap-smoke" => CmdDamageCapSmoke(args),
         _ => Unknown(args[0]),
     };
 }
@@ -8765,6 +8766,7 @@ static int CmdRebuildMod(string[] args)
 {
     var language = E33ModEditor.Core.Localization.LocalizationKit.LoadLanguage();
     string? revision = null;
+    bool noInstall = false;
     for (var i = 1; i < args.Length; i++)
     {
         if (args[i] is "--language" or "-l")
@@ -8790,6 +8792,10 @@ static int CmdRebuildMod(string[] args)
                 return 2;
             }
             revision = args[++i];
+        }
+        else if (args[i] is "--no-install" or "-n")
+        {
+            noInstall = true;
         }
     }
     E33ModEditor.Core.Localization.LocalizationKit.SaveLanguage(language);
@@ -8823,9 +8829,12 @@ static int CmdRebuildMod(string[] args)
         Compatibility = compat,
         Language = language,
         PackRevisionOverride = revision,
+        InstallToMods = !noInstall,
         Log = msg => Console.WriteLine("[rebuild-mod] " + msg),
     });
-    Console.WriteLine("[rebuild-mod] staged " + result.Edits + $" asset edits; {E33ModEditor.Core.Packer.FullPackKit.ModNameFor(result.Seed, revision)} installed (seed {result.Seed}):");
+    Console.WriteLine("[rebuild-mod] staged " + result.Edits +
+        $" asset edits; {E33ModEditor.Core.Packer.FullPackKit.ModNameFor(result.Seed, revision)} " +
+        $"{(noInstall ? "exported" : "installed")} (seed {result.Seed}):");
     foreach (var f in result.PackedFiles) Console.WriteLine("       " + f);
     return 0;
 }
@@ -9645,6 +9654,95 @@ static int CmdRowDamageSmoke(string[] args)
     Console.WriteLine(fails == 0
         ? $"[row-damage-smoke] {checks} checks passed"
         : $"[row-damage-smoke] {fails}/{checks} FAILED");
+    return fails == 0 ? 0 : 1;
+}
+
+static int CmdDamageCapSmoke(string[] args)
+{
+    var dir = Path.Combine(EditorPaths.RepoRoot, "work", "mod_damagecapsmoke");
+    if (Directory.Exists(dir)) Directory.Delete(dir, true);
+    Directory.CreateDirectory(dir);
+
+    int checks = 0, fails = 0;
+    void Check(bool ok, string msg)
+    {
+        checks++;
+        Console.WriteLine((ok ? "ok   " : "FAIL ") + msg);
+        if (!ok) fails++;
+    }
+
+    try
+    {
+        // 1. Source caps in ApplyClamp.
+        var bdSrc = FileCopy.FindUnder(
+                Path.Combine(EditorPaths.RepoRoot, "work", "tables", "battle_damages"),
+                DamageCapKit.BattleDamages + ".uasset")
+            ?? FileCopy.FindTablesAsset(DamageCapKit.BattleDamages + ".uasset")
+            ?? throw new FileNotFoundException(DamageCapKit.BattleDamages + ".uasset");
+        var bdDest = Path.Combine(dir, DamageCapKit.BattleDamages + ".uasset");
+        FileCopy.AssetPair(bdSrc, bdDest);
+
+        var map = DataTableEditor.Mappings;
+        var bd = map is not null
+            ? new UAsset(bdDest, EngineVersion.VER_UE5_4, map)
+            : new UAsset(bdDest, EngineVersion.VER_UE5_4);
+        int n = DamageCapKit.PatchApplyClamp(bd);
+        Check(n == 1, $"ApplyClamp patched ({n} edit)");
+        bd.Write(bdDest);
+        Check(DamageCapKit.Verify(bdDest), "source caps verify for every DamageReason");
+
+        // Idempotence: a second pass must not insert another block.
+        var bd2 = map is not null
+            ? new UAsset(bdDest, EngineVersion.VER_UE5_4, map)
+            : new UAsset(bdDest, EngineVersion.VER_UE5_4);
+        Check(DamageCapKit.PatchApplyClamp(bd2) == 0, "ApplyClamp patch is idempotent");
+
+        Console.WriteLine("reason  locked   ultima");
+        for (byte reason = 0; reason <= 11; reason++)
+            Console.WriteLine($"{reason,6}  {DamageCapKit.LockedCap(reason),6}  " +
+                              $"{DamageCapKit.UnlockedCap(reason),6}");
+
+        // 2. The pack entry point must stage BP_BattleDamages when crit is off
+        //    and be idempotent when called twice.
+        var stageDir = Path.Combine(EditorPaths.RepoRoot, "work", "mod_damagecapstage");
+        if (Directory.Exists(stageDir)) Directory.Delete(stageDir, true);
+        Directory.CreateDirectory(stageDir);
+        Check(DamageCapKit.Apply(stageDir) == 1, "Apply stages + patches BP_BattleDamages");
+        var stagedPath = FileCopy.FindUnder(stageDir, DamageCapKit.BattleDamages + ".uasset");
+        Check(stagedPath is not null && DamageCapKit.Verify(stagedPath),
+            "staged BP_BattleDamages verifies");
+        Check(DamageCapKit.Apply(stageDir) == 0, "Apply is idempotent on an existing stage");
+
+        // 3. Composition with the crit patch (both own BP_BattleDamages but
+        //    different functions). Crit must stage first; the cap patch runs on
+        //    the staged copy.
+        var compose = Path.Combine(EditorPaths.RepoRoot, "work", "mod_damagecapcompose");
+        if (Directory.Exists(compose)) Directory.Delete(compose, true);
+        Directory.CreateDirectory(compose);
+        int critN = CritDamageKit.Apply(compose, 1.5f, true);
+        Check(critN >= 1, $"compose: crit patch applied ({critN} edit(s))");
+        var composePath = FileCopy.FindUnder(compose, DamageCapKit.BattleDamages + ".uasset");
+        Check(composePath is not null, "compose: BP_BattleDamages staged");
+        if (composePath is not null)
+        {
+            var cAsset = map is not null
+                ? new UAsset(composePath, EngineVersion.VER_UE5_4, map)
+                : new UAsset(composePath, EngineVersion.VER_UE5_4);
+            Check(DamageCapKit.PatchApplyClamp(cAsset) == 1, "compose: cap patch applied");
+            cAsset.Write(composePath);
+            Check(DamageCapKit.Verify(composePath), "compose: cap patch verifies");
+            Check(CritDamageKit.Verify(composePath, 1.5f, true), "compose: crit patch survives");
+        }
+    }
+    catch (Exception ex)
+    {
+        Check(false, "exception: " + ex.Message);
+        Console.Error.WriteLine(ex);
+    }
+
+    Console.WriteLine(fails == 0
+        ? $"[damage-cap-smoke] {checks} checks passed"
+        : $"[damage-cap-smoke] {fails}/{checks} FAILED");
     return fails == 0 ? 0 : 1;
 }
 
@@ -11564,6 +11662,8 @@ static int CmdDumpImports(string[] args)
                                  re-roll the encounter on every battle start (experimental)
           random-battles-smoke   runtime variants + PossibleEncounters + StartBattle check
           row-damage-smoke       stage + verify the back-row damage patch (no game files)
+          damage-cap-smoke       stage + verify source damage caps (all DamageReason values,
+                                 locked + Ultima Power) and crit composition
           firstperson [flags]    camera preset tuning (--preset overshoulder|firstperson,
                                  --arm/--forward/--side.../--monoco-arm/--monoco-side/
                                  --climb-arm/--climb-scale/--worldmap-aperture,
@@ -11574,9 +11674,10 @@ static int CmdDumpImports(string[] args)
                                  wipes DIR (default work/mod_fp), applies + verifies all four
                                  restore sources, packs Export/NAME_P.{pak,utoc,ucas} and
                                  installs to ~mods (--no-install skips the copy).
-          rebuild-mod [--language en|fr|pl|ru|es|zh-Hans]
+          rebuild-mod [--language en|fr|pl|ru|es|zh-Hans] [--revision SUFFIX] [--no-install]
                                  full pack; the language bakes a translated
-                                 Game.locres (en = no override, the default)
+                                 Game.locres (en = no override, the default).
+                                 --no-install exports without copying to ~mods.
           loc-languages                list pack languages and cultures
           loc-catalog [--out DIR]      compare work/mod with vanilla and write
                                        en/fr/pl/ru/es/zh-Hans catalogs + review report

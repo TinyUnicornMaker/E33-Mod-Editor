@@ -176,9 +176,9 @@ public class MainViewModel : ViewModelBase
         {
             if (!Set(ref _damageLimitEnabled, value)) return;
             SaveCreateToggles();
-            Status = value
-                ? "Damage Limit Mods (Painted 999999 / Ultima unlimited) will be added on the next CLI/standalone build."
-                : "Damage Limit Mods will be omitted from the next pack. Painted Power returns to unlimited.";
+            Status = "Source damage caps: Base Attack 6,666 / Buff 3,333 / Free Aim 3,333 / " +
+                     "Skills 33,333 / Counters 333,333. Ultima Power unlocks skills and counters; " +
+                     "other damage is capped at 333,333.";
         }
     }
 
@@ -2136,7 +2136,7 @@ public class MainViewModel : ViewModelBase
             _painterConversionEnabled = o.Value<bool?>("PainterConversion") ?? false;
             _statusAffinityEnabled = o.Value<bool?>("StatusAffinity") ?? false;
             _pictosMagnitudeEnabled = o.Value<bool?>("PictosMagnitude") ?? false;
-            _damageLimitEnabled = o.Value<bool?>("DamageLimit") ?? false;
+            _damageLimitEnabled = o.Value<bool?>("DamageLimit") ?? true;
             _weaponEffectsEnabled = o.Value<bool?>("WeaponEffects")
                 ?? WeaponEffectsCreateKit.Specs.Count > 0;
         }

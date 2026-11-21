@@ -73,6 +73,14 @@ public static class GameplayTweaksKit
         /// off is vanilla.
         /// </summary>
         public bool CritRateDamageScaling { get; set; } = true;
+
+        /// <summary>
+        /// Source-based damage caps (see <see cref="DamageCapKit"/>). This is a
+        /// core damage-curve invariant: the seed generator always sets it on and
+        /// does not expose it in the UI. The standalone pack path still honours
+        /// it so the hidden JSON/profile value can turn it off for diagnostics.
+        /// </summary>
+        public bool DamageCaps { get; set; } = true;
         public int MaxShields { get; set; } = VanillaMaxShields;
         public int LuminaPerLevel { get; set; } = 2;
         public int MaxGradientCharges { get; set; } = DefaultMaxGradientCharges;
@@ -243,6 +251,7 @@ public static class GameplayTweaksKit
             ["MaxForetell"] = MaxForetell,
             ["CritDamageIncrease"] = CritDamageIncrease,
             ["CritRateDamageScaling"] = CritRateDamageScaling,
+            ["DamageCaps"] = DamageCaps,
             ["MaxShields"] = MaxShields,
             ["LuminaPerLevel"] = LuminaPerLevel,
             ["MaxGradientCharges"] = MaxGradientCharges,
@@ -295,6 +304,7 @@ public static class GameplayTweaksKit
             MaxForetell = o.Value<float?>("MaxForetell") ?? VanillaMaxForetell;
             CritDamageIncrease = o.Value<float?>("CritDamageIncrease") ?? VanillaCritDamageIncrease;
             CritRateDamageScaling = o.Value<bool?>("CritRateDamageScaling") ?? true;
+            DamageCaps = o.Value<bool?>("DamageCaps") ?? true;
             MaxShields = o.Value<int?>("MaxShields") ?? VanillaMaxShields;
             LuminaPerLevel = o.Value<int?>("LuminaPerLevel") ?? 2;
             MaxGradientCharges = Math.Clamp(o.Value<int?>("MaxGradientCharges") ?? DefaultMaxGradientCharges, 1, 99);
