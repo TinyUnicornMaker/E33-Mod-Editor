@@ -119,22 +119,34 @@ public sealed class GeneratorPresetTests
     }
 
     [TestMethod]
-    public void WeaponTiers_ExcludeDebugToolsAndMilerim()
+    public void WeaponTiers_IncludeBaguettesAndExcludeCutTools()
     {
-        var tiers = new ItemTiers();
-        tiers.ResetToStock();
-        var used = tiers.Column(ItemTiers.Weapon, "Tier1")
-            .Concat(tiers.Column(ItemTiers.Weapon, "Tier2"))
-            .Concat(tiers.Column(ItemTiers.Weapon, "Tier3"))
-            .Concat(tiers.Column(ItemTiers.Weapon, "Tier4"))
-            .Concat(tiers.Column(ItemTiers.Weapon, "Tier5"))
-            .ToHashSet(StringComparer.Ordinal);
-        CollectionAssert.DoesNotContain(used.ToList(), "Milerim");
-        Assert.IsFalse(used.Any(x => x.StartsWith("Debug", StringComparison.Ordinal)),
-            "Debug weapons must stay in Weapon.DoNotUse.");
+        var tiers = ItemTiers.Load();
+        var t1 = tiers.Column(ItemTiers.Weapon, "Tier1").ToHashSet(StringComparer.Ordinal);
+        var t3 = tiers.Column(ItemTiers.Weapon, "Tier3").ToHashSet(StringComparer.Ordinal);
+        var t4 = tiers.Column(ItemTiers.Weapon, "Tier4").ToHashSet(StringComparer.Ordinal);
+        var t5 = tiers.Column(ItemTiers.Weapon, "Tier5").ToHashSet(StringComparer.Ordinal);
         var doNotUse = tiers.Column(ItemTiers.Weapon, "DoNotUse").ToHashSet(StringComparer.Ordinal);
+
+        var catalog = new LootCatalog();
+        foreach (var id in new[] { "DebugSciel", "DebugLune", "DebugVerso", "DebugMaelle", "DebugMonoco" })
+        {
+            Assert.IsTrue(t1.Contains(id), $"{id} Baguette must be in T1.");
+            Assert.IsTrue(RandomizerKit.WeaponAllowedAtTier(catalog, "Weapon", id, 1),
+                $"{id} Baguette must pass the T1 roster gate.");
+        }
+        foreach (var id in new[] { "Sirenaro_1", "Sirenaro_2", "Sirenim_1", "Sirenim_2", "Sirenon_1", "Sirenon_2", "Sirenum_1", "Sirenum_2", "Sireso_1", "Sireso_2" })
+            Assert.IsTrue(t3.Contains(id), $"{id} Siren variant must be in T3.");
+        foreach (var id in new[] { "Reacharo_1", "Reacharo_2", "Reacherim_1", "Reacherim_2", "Reacheron_1", "Reacheron_2", "Reacheso_1", "Reacheso_2", "Reachum_1", "Reachum_2" })
+            Assert.IsTrue(t4.Contains(id), $"{id} Reacher variant must be in T4.");
+        foreach (var id in new[] { "VD_Maelle_1", "VD_Maelle_2", "VD_Lune_1", "VD_Lune_2", "VD_Monoco_1", "VD_Monoco_2", "VD_Sciel_1", "VD_Sciel_2", "VD_Verso_1", "VD_Verso_2", "VD_Verso_3" })
+            Assert.IsTrue(t5.Contains(id), $"{id} VD variant must be in T5.");
+
         Assert.IsTrue(doNotUse.Contains("Milerim"));
-        Assert.IsTrue(doNotUse.Contains("DebugLune"));
+        Assert.IsTrue(doNotUse.Contains("03_Weapon_Placeholder"));
+        Assert.IsTrue(doNotUse.Contains("MitigatedPerfection"));
+        Assert.IsFalse(t1.Concat(t3).Concat(t4).Concat(t5).Any(doNotUse.Contains),
+            "A weapon cannot be both tiered and DoNotUse.");
     }
 
     [TestMethod]
@@ -245,9 +257,9 @@ public sealed class GeneratorOptionMappingTests
     [TestMethod]
     public void PackName_MatchesShippedV13Containers()
     {
-        Assert.AreEqual("_v1.4.5", GeneratorInfo.PackRevision);
-        Assert.AreEqual("ExpeditionInfinity_123456_v1.4.5_P", GeneratorInfo.PackName(123456));
-        Assert.AreEqual("ExpeditionInfinity_7539815_v1.4.5_P", GeneratorInfo.PackName(7539815));
+        Assert.AreEqual("_v1.4.6", GeneratorInfo.PackRevision);
+        Assert.AreEqual("ExpeditionInfinity_123456_v1.4.6_P", GeneratorInfo.PackName(123456));
+        Assert.AreEqual("ExpeditionInfinity_7539815_v1.4.6_P", GeneratorInfo.PackName(7539815));
     }
 
     [TestMethod]

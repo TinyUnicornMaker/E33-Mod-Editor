@@ -523,7 +523,12 @@
       "Nibalum",
       "Velokan",
       "Telarim",
-      "Nosaram"
+      "Nosaram",
+      "DebugSciel",
+      "DebugLune",
+      "DebugVerso",
+      "DebugMaelle",
+      "DebugMonoco"
     ],
     "Tier2": [
       "Sakaram",
@@ -575,7 +580,17 @@
       "Sidaro",
       "Duollison",
       "Dualim",
-      "Contorson"
+      "Contorson",
+      "Sirenaro_1",
+      "Sirenaro_2",
+      "Sirenim_1",
+      "Sirenim_2",
+      "Sirenon_1",
+      "Sirenon_2",
+      "Sirenum_1",
+      "Sirenum_2",
+      "Sireso_1",
+      "Sireso_2"
     ],
     "Tier4": [
       "Blodam",
@@ -596,7 +611,17 @@
       "Sadon",
       "Charnon",
       "Garganon",
-      "Brumaro"
+      "Brumaro",
+      "Reacharo_1",
+      "Reacharo_2",
+      "Reacherim_1",
+      "Reacherim_2",
+      "Reacheron_1",
+      "Reacheron_2",
+      "Reacheso_1",
+      "Reacheso_2",
+      "Reachum_1",
+      "Reachum_2"
     ],
     "Tier5": [
       "Scaverim",
@@ -609,41 +634,11 @@
       "GDC_Weapon_Monoco",
       "Joyaro",
       "Simoso",
-      "Simonim"
-    ],
-    "DoNotUse": [
-      "03_Weapon_Placeholder",
-      "MitigatedPerfection",
-      "DebugSciel",
-      "DebugLune",
-      "DebugVerso",
-      "DebugMaelle",
-      "DebugMonoco",
-      "Milerim",
-      "Reacharo_1",
-      "Reacharo_2",
-      "Reacherim_1",
-      "Reacherim_2",
-      "Reacheron_1",
-      "Reacheron_2",
-      "Reacheso_1",
-      "Reacheso_2",
-      "Reachum_1",
-      "Reachum_2",
-      "Sirenaro_1",
-      "Sirenaro_2",
-      "Sirenim_1",
-      "Sirenim_2",
-      "Sirenon_1",
-      "Sirenon_2",
-      "Sirenum_1",
-      "Sirenum_2",
-      "Sireso_1",
-      "Sireso_2",
-      "VD_Lune_1",
-      "VD_Lune_2",
+      "Simonim",
       "VD_Maelle_1",
       "VD_Maelle_2",
+      "VD_Lune_1",
+      "VD_Lune_2",
       "VD_Monoco_1",
       "VD_Monoco_2",
       "VD_Sciel_1",
@@ -651,6 +646,11 @@
       "VD_Verso_1",
       "VD_Verso_2",
       "VD_Verso_3"
+    ],
+    "DoNotUse": [
+      "03_Weapon_Placeholder",
+      "MitigatedPerfection",
+      "Milerim"
     ]
   }
 }

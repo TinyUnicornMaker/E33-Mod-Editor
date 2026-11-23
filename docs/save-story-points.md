@@ -102,8 +102,9 @@ dotnet $CLI save-story "$SAV" out.sav \
 (`prologue`, `spring-meadows`, …, `monoco-station`, …, `renoir-defeated`).
 `--no-gear` skips the weapon/pictos grant; `--no-master` leaves pictos at
 their current mastery. The gear catalogues come from `work/items.json`,
-`work/current-weapons.json` and `work/item_tiers.json`; debug, GDC,
-placeholder and cut-content ids are excluded.
+`work/current-weapons.json` and the single tier source
+`src/E33ModEditor.Core/Loot/Data/item_tiers.json`. `GrantAllGear` still skips
+debug, GDC and placeholder ids when filling a save.
 
 What the command does:
 

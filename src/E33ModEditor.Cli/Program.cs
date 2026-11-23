@@ -673,6 +673,16 @@ static int CmdRandoSmoke(string[] args)
         if (!ok) randoFails++;
     }
 
+    // Ranked weapons are written to loot by their bare family name
+    // (Reacherim_1 → Reacherim), so a pool lookup must accept either an exact
+    // row id or the family's _1/_2 variant.
+    static bool PoolHas(IEnumerable<string> pool, string id)
+    {
+        if (string.IsNullOrEmpty(id)) return false;
+        if (pool.Contains(id)) return true;
+        return pool.Contains(id + "_1") || pool.Contains(id + "_2");
+    }
+
     var catalog = NewLootCatalogWithExtras();
     catalog.Rebuild(
         Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(Path.Combine(EditorPaths.RepoRoot, "work", "chests.json"))),
@@ -854,7 +864,7 @@ static int CmdRandoSmoke(string[] args)
                 : null;
             var item = ents is { Count: 1 } ? ents[0]?["ItemID"]?.ToString() ?? "" : "";
             bool InPoolAnyTier(string id, string type) =>
-                Enumerable.Range(1, 5).Any(t => catalog.PoolFor(type, t).Contains(id));
+                Enumerable.Range(1, 5).Any(t => PoolHas(catalog.PoolFor(type, t), id));
             var isPictos = InPoolAnyTier(item, "Pictos");
             var isWeapon = InPoolAnyTier(item, "Weapon");
             if (row is null || secs is not { Count: 1 } || ents is not { Count: 1 }
@@ -864,8 +874,8 @@ static int CmdRandoSmoke(string[] args)
                 Console.Error.WriteLine($"rando-smoke FAILED: {id} does not hold exactly one pictos/weapon (got {item})");
                 continue;
             }
-            if (!catalog.PoolFor("Pictos", check.Tier).Contains(item)
-                && !catalog.PoolFor("Weapon", check.Tier).Contains(item))
+            if (!PoolHas(catalog.PoolFor("Pictos", check.Tier), item)
+                && !PoolHas(catalog.PoolFor("Weapon", check.Tier), item))
             {
                 badTier++;
                 Console.Error.WriteLine($"rando-smoke FAILED: {id} holds {item} outside T{check.Tier}");
@@ -1736,7 +1746,7 @@ static int CmdRandoSmoke(string[] args)
         // Pool membership, not TypeOf(): a tier-listed cut picto (SpeedsterDodge,
         // CursedPower, …) reads as its "Cut Content Items" category, not "Pictos".
         bool InPool(string id, string type) =>
-            Enumerable.Range(1, 5).Any(t => spread.PoolFor(type, t).Contains(id));
+            Enumerable.Range(1, 5).Any(t => PoolHas(spread.PoolFor(type, t), id));
         int LuminaTotal(string id) => LootOf(id)
             .Where(e => (e["Item"]?["RowName"]?.ToString() ?? "") == "Consumable_LuminaPoint")
             .Sum(e => e["Quantity"]?.ToObject<int>() ?? 0);
@@ -2162,7 +2172,7 @@ static int CmdRandoSmoke(string[] args)
             int PoolTier(string id)
             {
                 for (int t = 1; t <= 5; t++)
-                    if (spread.PoolFor("Pictos", t).Contains(id) || spread.PoolFor("Weapon", t).Contains(id))
+                    if (PoolHas(spread.PoolFor("Pictos", t), id) || PoolHas(spread.PoolFor("Weapon", t), id))
                         return t;
                 return 0;
             }
@@ -2208,7 +2218,7 @@ static int CmdRandoSmoke(string[] args)
             Chk(t3Pictos.Count == 3 && t3Pictos.Distinct(StringComparer.Ordinal).Count() == 3,
                 $"Old Lumiere Renoir drops three distinct T3 pictos (got {string.Join(",", t3Pictos)})");
 
-            var t3Weapons = ids.Where(id => spread.PoolFor("Weapon", 3).Contains(id)).ToList();
+            var t3Weapons = ids.Where(id => PoolHas(spread.PoolFor("Weapon", 3), id)).ToList();
             Chk(t3Weapons.Count == 2 && t3Weapons.Distinct(StringComparer.Ordinal).Count() == 2,
                 $"Old Lumiere Renoir drops two distinct T3 weapons (got {string.Join(",", t3Weapons)})");
 
@@ -2238,7 +2248,7 @@ static int CmdRandoSmoke(string[] args)
             Chk(t3Pictos.Count == 3 && t3Pictos.Distinct(StringComparer.Ordinal).Count() == 3,
                 $"Sirene boss drops three distinct T3 pictos (got {string.Join(",", t3Pictos)})");
 
-            var t3Weapons = ids.Where(id => spread.PoolFor("Weapon", 3).Contains(id)).ToList();
+            var t3Weapons = ids.Where(id => PoolHas(spread.PoolFor("Weapon", 3), id)).ToList();
             Chk(t3Weapons.Count == 2 && t3Weapons.Distinct(StringComparer.Ordinal).Count() == 2,
                 $"Sirene boss drops two distinct T3 weapons (got {string.Join(",", t3Weapons)})");
 
@@ -2275,7 +2285,7 @@ static int CmdRandoSmoke(string[] args)
             Chk(t4Pictos.Count == 3 && t4Pictos.Distinct(StringComparer.Ordinal).Count() == 3,
                 $"{label} drops three distinct T4 pictos (got {string.Join(",", t4Pictos)})");
 
-            var t4Weapons = ids.Where(id => spread.PoolFor("Weapon", 4).Contains(id)).ToList();
+            var t4Weapons = ids.Where(id => PoolHas(spread.PoolFor("Weapon", 4), id)).ToList();
             Chk(t4Weapons.Count == 1 && t4Weapons.Distinct(StringComparer.Ordinal).Count() == 1,
                 $"{label} drops one T4 weapon (got {string.Join(",", t4Weapons)})");
 
@@ -2350,7 +2360,7 @@ static int CmdRandoSmoke(string[] args)
             // magnitude variants (BurnOnHit5, Immaculate5, …) are registered
             // with a placeholder PictosTier, but sit in the correct pool.
             for (int t = 1; t <= 5; t++)
-                if (spread.PoolFor("Pictos", t).Contains(id) || spread.PoolFor("Weapon", t).Contains(id))
+                if (PoolHas(spread.PoolFor("Pictos", t), id) || PoolHas(spread.PoolFor("Weapon", t), id))
                     return t;
             return 0;
         }
@@ -2535,7 +2545,7 @@ static int CmdRandoSmoke(string[] args)
             {
                 var opick = E33ModEditor.Core.Loot.DialogueRewardKit.TakeOwnedExactTier(spread, oplace, owner, 3, new Random(333333));
                 Chk(opick is not null && E33ModEditor.Core.Loot.DialogueRewardKit.WeaponCharacter(spread, opick) == owner, $"golgra[{key}] owner draw is a {owner} weapon ({opick})");
-                Chk(opick is not null && spread.PoolFor("Weapon", 3).Contains(opick), $"golgra[{key}] owner draw is exact T3 ({opick})");
+                Chk(opick is not null && PoolHas(spread.PoolFor("Weapon", 3), opick), $"golgra[{key}] owner draw is exact T3 ({opick})");
             }
             // Guaranteed story gifts must never fall back to the vanilla T5
             // Medalum just because the owner's T3 pool was already placed:
@@ -2577,7 +2587,7 @@ static int CmdRandoSmoke(string[] args)
                 "registrar vanilla Medalum slot is replaced");
             var regNames = E33ModEditor.Core.Loot.DialogueRewardKit.ReadOwnerRewardArrayAt(reg, regStart, 6);
             Chk(regNames.Count == 6, $"registrar Rewards reads back 6 names ({regNames.Count})");
-            Chk(regNames.All(id => spread.PoolFor("Weapon", 3).Contains(id)),
+            Chk(regNames.All(id => PoolHas(spread.PoolFor("Weapon", 3), id)),
                 "registrar Rewards rewrites to exact T3 weapons");
             for (int i = 0; i < regSlots.Length && i < regNames.Count; i++)
                 Chk(E33ModEditor.Core.Loot.DialogueRewardKit.WeaponCharacter(spread, regNames[i]) == regSlots[i].Owner,

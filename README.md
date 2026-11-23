@@ -2,6 +2,8 @@
 
 Standalone seed generator for the Clair Obscur: Expedition 33 game. Extracts ~1 GB of game assets on first launch. Builds a pak mod based on the user's settings.
 
+See [docs/updates.md](docs/updates.md) for the running update history.
+
 
 ## Build
 
@@ -18,7 +20,7 @@ CUE4PARSE_SKIP_NATIVE=true dotnet publish src/E33Packer.App/E33Packer.App.csproj
   -p:IncludeNativeLibrariesForSelfExtract=true \
   -p:IncludeAllContentForSelfExtract=true \
   -p:DebugType=None -p:PublishTrimmed=false \
-  -o dist/application/1.4.5/linux
+  -o dist/application/1.4.6/linux
 
 # Windows x64 (run on Windows, or use the GitHub Actions Windows job)
 $env:CUE4PARSE_SKIP_NATIVE="true"
@@ -28,5 +30,5 @@ dotnet publish src/E33Packer.App/E33Packer.App.csproj `
   -p:IncludeNativeLibrariesForSelfExtract=true `
   -p:IncludeAllContentForSelfExtract=true `
   -p:DebugType=None -p:PublishTrimmed=false `
-  -o dist/application/1.4.5/windows
+  -o dist/application/1.4.6/windows
 ```

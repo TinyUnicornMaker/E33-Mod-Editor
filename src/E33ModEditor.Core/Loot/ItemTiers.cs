@@ -4,10 +4,9 @@ using Newtonsoft.Json.Linq;
 namespace E33ModEditor.Core.Loot;
 
 /// <summary>
-/// Pictos / Weapon T1–T5 plus DoNotUse. Stock list is the original
-/// randomizer item_tiers.json; the editor overlay lives in work/item_tiers.json
-/// and is also written back to the Core data file so a shippable stock list
-/// can be edited in-tool.
+/// Pictos / Weapon T1–T5 plus DoNotUse. The single source of truth is the
+/// Core data file; the embedded copy is the read-only fallback for packaged
+/// installs that do not carry the source tree.
 /// </summary>
 public sealed class ItemTiers
 {
@@ -21,9 +20,6 @@ public sealed class ItemTiers
     /// <summary>Flat keys like Pictos_Tier2 used by the randomizer pools.</summary>
     public Dictionary<string, List<string>> Flat { get; } = new(StringComparer.Ordinal);
 
-    public static string OverlayPath =>
-        Path.Combine(EditorPaths.RepoRoot, "work", "item_tiers.json");
-
     public static string StockSourcePath =>
         Path.Combine(EditorPaths.RepoRoot, "src", "E33ModEditor.Core", "Loot", "Data", "item_tiers.json");
 
@@ -31,17 +27,18 @@ public sealed class ItemTiers
     {
         var t = new ItemTiers();
         t.ResetToStock();
-        if (File.Exists(OverlayPath))
-        {
-            try { t.ReplaceFromJson(File.ReadAllText(OverlayPath)); }
-            catch { /* keep stock */ }
-        }
-        t.RebuildFlat();
         return t;
     }
 
     public void ResetToStock()
     {
+        // The checked-in Core file is the source of truth. The embedded copy
+        // is only a fallback for packaged installs without the source tree.
+        if (File.Exists(StockSourcePath))
+        {
+            ReplaceFromJson(File.ReadAllText(StockSourcePath));
+            return;
+        }
         Data = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, List<string>>>>(
                    ReadStock()) ?? NewEmpty();
         EnsureColumns();
@@ -66,15 +63,11 @@ public sealed class ItemTiers
     public void Save()
     {
         var json = ToJson();
-        Directory.CreateDirectory(Path.GetDirectoryName(OverlayPath)!);
-        File.WriteAllText(OverlayPath, json);
-        try
-        {
-            var dir = Path.GetDirectoryName(StockSourcePath);
-            if (!string.IsNullOrEmpty(dir) && Directory.Exists(dir))
-                File.WriteAllText(StockSourcePath, json);
-        }
-        catch { /* source tree may be read-only in a packed install */ }
+        var dir = Path.GetDirectoryName(StockSourcePath);
+        if (string.IsNullOrEmpty(dir) || !Directory.Exists(dir))
+            throw new DirectoryNotFoundException(
+                "Item tier source directory is unavailable: " + StockSourcePath);
+        File.WriteAllText(StockSourcePath, json);
         RebuildFlat();
     }
 

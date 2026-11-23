@@ -218,6 +218,9 @@ public static class RandomizerKit
     public static bool WeaponAllowedAtTier(LootCatalog catalog, string type, string id, int tier)
     {
         if (!string.Equals(type, "Weapon", StringComparison.OrdinalIgnoreCase)) return true;
+        // The debug Baguettes are intentionally placed as T1 joke weapons for
+        // every owner, including Sciel/Verso/Monoco before their join tier.
+        if (id.StartsWith("Debug", StringComparison.OrdinalIgnoreCase)) return true;
         var owner = DialogueRewardKit.WeaponCharacter(catalog, id);
         return CharacterJoinTier.TryGetValue(owner, out var join) && join <= Math.Clamp(tier, 1, 5);
     }

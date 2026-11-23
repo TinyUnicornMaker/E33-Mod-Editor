@@ -17,9 +17,9 @@ content that no longer exists.
 - Re-run the machine check any time: `dotnet …/E33ModEditor.Cli.dll loot-audit`
   (fails listing any tier id that resolves to nothing).
 
-## Pictos tier list (`item_tiers.json`, stock + `work/` overlay)
+## Pictos tier list (`src/E33ModEditor.Core/Loot/Data/item_tiers.json`)
 
-Dead ids removed from `Pictos.DoNotUse` (both copies):
+Dead ids removed from `Pictos.DoNotUse` (single source):
 
 | Id | Why dead |
 |---|---|

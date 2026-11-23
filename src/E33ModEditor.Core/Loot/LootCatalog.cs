@@ -652,7 +652,7 @@ public sealed class LootCatalog
     private Dictionary<string, ItemInfo> LoadItems()
     {
         var arr = JArray.Parse(ReadEmbedded("item_data.json"));
-        var tiers = FlattenTiers(LoadJson<Dictionary<string, Dictionary<string, List<string>>>>("item_tiers.json"));
+        var tiers = ItemTiers.Flat;
         var pictos = new Dictionary<string, int>(StringComparer.Ordinal);
         var weapons = new Dictionary<string, int>(StringComparer.Ordinal);
         for (int t = 1; t <= MaxTier; t++)
@@ -700,16 +700,6 @@ public sealed class LootCatalog
             };
         }
         return map;
-    }
-
-    private static Dictionary<string, List<string>> FlattenTiers(
-        Dictionary<string, Dictionary<string, List<string>>> raw)
-    {
-        var d = new Dictionary<string, List<string>>(StringComparer.Ordinal);
-        foreach (var (cat, tiers) in raw)
-        foreach (var (tier, items) in tiers)
-            d[$"{cat}_{tier}"] = items;
-        return d;
     }
 
     private static Dictionary<string, int> LoadAreaLevels()

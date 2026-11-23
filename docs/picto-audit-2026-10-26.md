@@ -35,7 +35,7 @@ Verified directly from the built `work/mod` data:
 | String table | `work/mod/Sandfall/Content/StringTables/Gameplay/ST_PassiveEffects.uasset` |
 | Item rows | `work/mod/Sandfall/Content/jRPGTemplate/Datatables/DT_jRPG_Items.uasset` |
 | Stat definitions | `work/mod/Sandfall/Content/Gameplay/Pictos/DT_PictosDefinitions.uasset` |
-| Loot tiers | `work/item_tiers.json` and `src/E33ModEditor.Core/Loot/Data/item_tiers.json` (identical) |
+| Loot tiers | `src/E33ModEditor.Core/Loot/Data/item_tiers.json` (single source) |
 | Effect logic | kismet dumps of the staged BPs and vanilla donors under `work/mod` / `work/tables` |
 
 Dumps were produced with the repo CLI (`dump`, `st`, `dumpkismet`, `dumpasset`) and cross-checked between the built table and the effect Blueprint. Where this report says “built”, it means the value in the staged `work/mod` table, not a source constant. Two items are explicitly labelled as inferred because the built package does not expose the value as a parsable CDO in this dump: Super Sonic’s buff multiplier (2.0, from `SpecialPictosKit`/the buff CDO description) and Revive Bomb Slow’s 2-turn default (from the `ReviveDebuffKit` comments).
@@ -151,7 +151,7 @@ The received multiplier never moves off `0.9`. The source comment says the desig
 | Blighted Power | T2 | T3 | T4 | 5/10/20% | 5/10/15 |
 | **Berserk Power** | **T2** | **T4** | **T5** | 5/10/20% | 5/10/15 |
 
-`work/item_tiers.json` puts `BerserkPower2` in `Tier4` and `BerserkPower3` in `Tier5`. With identical effects and costs to the other two families, this is almost certainly a copy-paste placement error. Expected: II → Tier3, III → Tier4.
+`src/E33ModEditor.Core/Loot/Data/item_tiers.json` puts `BerserkPower2` in `Tier4` and `BerserkPower3` in `Tier5`. With identical effects and costs to the other two families, this is almost certainly a copy-paste placement error. Expected: II → Tier3, III → Tier4.
 
 ### C8. Stale ST text — Stun Boost I
 
@@ -352,8 +352,8 @@ For Burning Skin/Longer Burn the later tier is the better deal; for the identica
 | Ultima Power | row text vs `BP_LU_Overpowered` | Flavour text hides conditional unlock | Medium |
 | Revive with Shell/Rush/Curse/Berserk/Blight | row text | Omits “all allies” target | Low |
 | SOS / Auto / Rupture | row text | Omits durations (5 / 3 / 5 turns) | Low |
-| Painter conversions | `work/item_tiers.json` | Identical effect split T4/T5 | Low |
-| Berserk Power II/III | `work/item_tiers.json` | T4/T5 vs peers T3/T4 | Medium |
+| Painter conversions | `src/E33ModEditor.Core/Loot/Data/item_tiers.json` | Identical effect split T4/T5 | Low |
+| Berserk Power II/III | `src/E33ModEditor.Core/Loot/Data/item_tiers.json` | T4/T5 vs peers T3/T4 | Medium |
 
 No missing `DT_PassiveEffects`, `DT_PictosDefinitions`, `DT_jRPG_Items`, or asset references were found for any created picto. Every new id resolves to a staged `BP_LU_*` and `DA_GearPictos_*`; all new stat-definition rows are non-zero. `BootyHunter` intentionally points at `BP_LU_DeadEnergyII` and reads `DeadEnergyII_ApAmount = 5` (the old `BootyHunter_ApAmount = 3` row is dead). `DeathBombPhysical` intentionally points at the vanilla `BP_LU_DeathBomb` and reads `DeathBombPhysical_FinalDamageMultiplier = 0.5`.
 

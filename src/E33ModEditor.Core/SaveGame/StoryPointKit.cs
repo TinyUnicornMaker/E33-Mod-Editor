@@ -181,7 +181,6 @@ public static class StoryPointKit
         var repo = EditorPaths.RepoRoot;
         var weaponsPath = Path.Combine(repo, "work", "current-weapons.json");
         var itemsPath = Path.Combine(repo, "work", "items.json");
-        var tiersPath = Path.Combine(repo, "work", "item_tiers.json");
         if (!File.Exists(weaponsPath) || !File.Exists(itemsPath))
         {
             log?.Invoke("[story] gear catalogs missing (work/current-weapons.json + work/items.json); skipped");
@@ -194,11 +193,9 @@ public static class StoryPointKit
             .Distinct(StringComparer.Ordinal)
             .ToList();
 
-        var doNotUse = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        if (File.Exists(tiersPath))
-            foreach (var p in JObject.Parse(File.ReadAllText(tiersPath))
-                         .SelectToken("Pictos.DoNotUse") as JArray ?? new JArray())
-                if (p.Type == JTokenType.String) doNotUse.Add(p.ToString());
+        var doNotUse = new HashSet<string>(
+            Loot.ItemTiers.Load().Column(Loot.ItemTiers.Pictos, "DoNotUse"),
+            StringComparer.OrdinalIgnoreCase);
 
         var pictos = JObject.Parse(File.ReadAllText(itemsPath)).Properties()
             .Where(p => p.Value?["Item_Type"]?.ToString() == "NewEnumerator10")
