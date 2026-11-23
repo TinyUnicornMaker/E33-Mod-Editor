@@ -50,8 +50,15 @@ internal static class RandomizerPanels
         parts.Add(Toggle("Merchant inventories", r.Merchants, v => r.Merchants = v));
 
         parts.Add(PictosEditorPanels.Head("Weapons"));
-        parts.Add(Toggle("Randomize weapon passives", r.WeaponPassives, v => r.WeaponPassives = v));
-        parts.Add(Toggle("Randomize weapon attack / free-aim stats and elements", r.WeaponStats, v => r.WeaponStats = v));
+        var passivesToggle = Toggle("Randomize weapon passives", r.WeaponPassives,
+            v => r.WeaponPassives = v);
+        var statsToggle = Toggle("Randomize weapon attack / free-aim stats and elements (requires passives)",
+            r.WeaponStats, v => r.WeaponStats = v);
+        statsToggle.IsEnabled = passivesToggle.IsChecked == true;
+        passivesToggle.IsCheckedChanged += (_, _) =>
+            statsToggle.IsEnabled = passivesToggle.IsChecked == true;
+        parts.Add(passivesToggle);
+        parts.Add(statsToggle);
 
         parts.Add(PictosEditorPanels.Head("Monsters"));
         parts.Add(Toggle("Randomize monster stats (HP / attack / speed / …; XP and chroma stay vanilla)", r.MonsterStats, v => r.MonsterStats = v));
@@ -128,7 +135,7 @@ internal static class RandomizerPanels
             Margin = new Thickness(0, 0, 0, 4),
         };
 
-    private static Control Toggle(string label, bool on, Action<bool> set)
+    private static CheckBox Toggle(string label, bool on, Action<bool> set)
     {
         var box = new CheckBox
         {

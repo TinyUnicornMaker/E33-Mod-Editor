@@ -63,8 +63,15 @@ public static class RandomizerKit
         public bool PaintCages { get; set; } = true;
         public bool EnemyDrops { get; set; } = true;
         public bool Merchants { get; set; } = true;
+        /// <summary>Roll weapon passives. Off keeps the whole weapon vanilla:
+        /// the three original Level2-4 effects, stats and element stay as the
+        /// game shipped them (only the added fifth slot and the retimed
+        /// 33/66/111/222/333 unlock boundaries differ).</summary>
         public bool WeaponPassives { get; set; } = true;
         public bool MonsterStats { get; set; } = true;
+        /// <summary>Roll attack, free-aim and element. Only applies when
+        /// <see cref="WeaponPassives"/> is on; passives off is an all-or-nothing
+        /// vanilla weapon.</summary>
         public bool WeaponStats { get; set; } = true;
 
         /// <summary>
@@ -151,9 +158,14 @@ public static class RandomizerKit
         /// <summary>Potency shapes placed per type (Shape of Health / Energy / Life).</summary>
         public int ShapesPerType { get; set; } = 2;
 
+        /// <summary>
+        /// True when no setting can change anything. Weapon stats only roll
+        /// alongside passives: passives off keeps the whole weapon vanilla, so
+        /// the stats toggle alone is not an active source.
+        /// </summary>
         public bool IsOff =>
             !Chests && !PaintCages && !EnemyDrops && !Merchants && !WeaponPassives
-            && !MonsterStats && !WeaponStats && !BattleGroups && !RandomBattles;
+            && !MonsterStats && !BattleGroups && !RandomBattles;
     }
 
     public static readonly double[] DefaultStatLo = { 0.95, 1.00, 1.10, 1.20, 1.50 };
@@ -718,7 +730,11 @@ public static class RandomizerKit
 
         if (!s.Chests && !s.PaintCages) RestoreVanilla(modDir, ChestsTable);
         if (!s.EnemyDrops && !s.MonsterStats) RestoreVanilla(modDir, EnemiesTable);
-        if (!s.WeaponPassives && !s.WeaponStats) RestoreVanilla(modDir, WeaponsTable);
+        // Passives off means the whole weapon stays vanilla. Do not restore the
+        // table wholesale: WeaponPassiveSlotKit has already added the empty
+        // Level5 field, and the core kit's 33/66/111/222/333 unlock boundaries
+        // must stay in place. Skipping the weapon pass below leaves that staged
+        // vanilla table untouched.
         if (!s.Merchants) RestoreMerchantTables(modDir);
 
         int n = 0;
@@ -753,7 +769,7 @@ public static class RandomizerKit
         // per-row boss-curve defense pins land exactly (vanilla bases are 0).
         if (s.MonsterStats && enemiesPath != null)
             EnemyDefenseKit.StageArchetypeDefense(modDir);
-        if (s.WeaponPassives || s.WeaponStats)
+        if (s.WeaponPassives)
             // WeaponPassiveSlotKit stages the definitions table with the fifth
             // slot already added; keep it instead of clobbering it with vanilla.
             weaponsPath = FindAsset(modDir, WeaponsTable + ".uasset") ?? CopyTable(WeaponsTable, modDir);
@@ -790,7 +806,10 @@ public static class RandomizerKit
         if (s.MonsterStats && enemiesPath != null)
             n += RandomizeMonsterStats(enemiesPath, catalog, rng, s);
         if (s.Merchants) n += RandomizeMerchants(modDir, catalog, rng, s, placement);
-        if ((s.WeaponPassives || s.WeaponStats) && weaponsPath != null)
+        // Weapon stats roll only with passives. If passives are off the entire
+        // weapon definition (three vanilla effects at Level2-4, stats, element)
+        // stays as staged.
+        if (s.WeaponPassives && weaponsPath != null)
             n += RandomizeWeapons(weaponsPath, catalog, rng, s);
 
         // Experimental battle groups: this runs last so loot/stat passes see the
@@ -3367,12 +3386,28 @@ public static class RandomizerKit
         bool hasSlot5 = ed.Table.Table.Data.Count > 0
             && ed.Table.Table.Data[0].Value.Any(p => DataTableEditor.CleanName(p.Name) == WeaponPassiveSlotKit.Field);
         var edits = new Newtonsoft.Json.Linq.JObject();
+        // Passives-only rolls must use the element already on the weapon: the
+        // stats pass (which writes BaseDamageType) is off, so drawing a fresh
+        // element here would make every stain/element passive disagree with
+        // the row and trip the final eligibility sweep.
+        var fixedElements = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        if (s.WeaponPassives && !s.WeaponStats)
+        {
+            foreach (var row in ed.Table.Table.Data)
+            {
+                var raw = ed.DumpRow(row)["BaseDamageType"]?.ToString() ?? "";
+                if (raw.StartsWith("EAttackType::", StringComparison.OrdinalIgnoreCase))
+                    raw = raw["EAttackType::".Length..];
+                if (StainsMechanicKit.ElementNames.ContainsKey(raw))
+                    fixedElements[DataTableEditor.CleanName(row.Name)] = raw;
+            }
+        }
         // Pre-roll passives to keep rng order identical to previous two-pass (passives first)
         var loadoutMap = new Dictionary<string, WeaponPassiveLoadout>(StringComparer.OrdinalIgnoreCase);
         if (s.WeaponPassives)
         {
             var owners = WeaponOwners();
-            var loadouts = RollWeaponPassives(catalog, owners, rng, hasSlot5 ? 5 : 4);
+            var loadouts = RollWeaponPassives(catalog, owners, rng, hasSlot5 ? 5 : 4, fixedElements);
             foreach (var w in loadouts) loadoutMap[w.WeaponId] = w;
         }
 
@@ -3392,7 +3427,8 @@ public static class RandomizerKit
                 var chromaRoll = RollBand(effTier, rng, s);
                 var elements = WeaponElementPool(effTier);
                 // Reuse the melee element rolled with the passives (it gated the
-                // Lune stain pool); fall back to a fresh draw when passives are off.
+                // stain/element pools); fall back to a fresh draw only for a
+                // tiered row the coverage check did not give a loadout.
                 var meleeEl = s.WeaponPassives && loadoutMap.TryGetValue(id, out var statLoadout)
                               && !string.IsNullOrEmpty(statLoadout.MeleeElement)
                     ? statLoadout.MeleeElement
@@ -3493,8 +3529,13 @@ public static class RandomizerKit
     /// </summary>
     public static IReadOnlyDictionary<string, string> WeaponOwners() => LoadWeaponOwners();
 
+    /// <param name="fixedMeleeElements">Optional per-weapon element override.
+    /// Used when weapon stats stay vanilla so passives are rolled against the
+    /// element the weapon already has instead of a fresh draw the table will
+    /// never receive.</param>
     public static List<WeaponPassiveLoadout> RollWeaponPassives(
-        LootCatalog catalog, IReadOnlyDictionary<string, string> owners, Random rng, int maxSlots = 5)
+        LootCatalog catalog, IReadOnlyDictionary<string, string> owners, Random rng, int maxSlots = 5,
+        IReadOnlyDictionary<string, string>? fixedMeleeElements = null)
     {
         // Ensure deterministic order and fill any weapons missing from ItemTiers (defensive)
         var complete = new Dictionary<string, string>(owners, StringComparer.OrdinalIgnoreCase);
@@ -3519,9 +3560,14 @@ public static class RandomizerKit
 
             // The melee element drives the Lune stain gate, and RandomizeWeapons
             // assigns the same draw to BaseDamageType, so the passives and the
-            // weapon element can never disagree.
+            // weapon element can never disagree. When stats are not randomized,
+            // reuse the weapon's existing element instead of drawing one.
             var elementPool = WeaponElementPool(weaponTier);
-            var meleeElement = elementPool[rng.Next(elementPool.Count)];
+            var meleeElement = fixedMeleeElements is not null
+                               && fixedMeleeElements.TryGetValue(id, out var fixedElement)
+                               && StainsMechanicKit.ElementNames.ContainsKey(fixedElement)
+                ? fixedElement
+                : elementPool[rng.Next(elementPool.Count)];
             var meleeName = StainsMechanicKit.ElementNames.TryGetValue(meleeElement, out var name)
                 ? name : "";
 
@@ -3614,6 +3660,10 @@ public static class RandomizerKit
     /// Final eligibility sweep of the packed weapons table against a freshly
     /// loaded catalog. Returns one line per forbidden (weapon, passive) pair;
     /// empty list means clean.
+    /// <para>Only meaningful for a table whose passives the randomizer wrote:
+    /// vanilla rows intentionally contain combos the roller would never pick
+    /// (owner/allocation and element mismatches), so a passives-off build must
+    /// not call this.</para>
     /// </summary>
     public static List<string> SweepWeaponEligibility(string modDir)
     {

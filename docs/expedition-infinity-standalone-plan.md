@@ -315,9 +315,9 @@ Purpose: produce the seed and control what the seed rolls.
 | Paint Cages | 21 cages roll one tier-appropriate picto/weapon |
 | Enemy drops | Regular/elite/boss/overworld drops |
 | Merchant inventories | Tier-appropriate stock |
-| Weapon passives | Effect rolls per weapon/tier/character |
+| Weapon passives | Effect rolls per weapon/tier/character; off keeps the whole weapon vanilla (three original effects, stats and element) |
 | Monster stats | HP/attack/speed/defense bands |
-| Weapon stats | Attack, free-aim and element rolls |
+| Weapon stats | Attack, free-aim and element rolls; only applies when weapon passives are on |
 
 If all are off, the build is "core + Balance/QoL only" and the seed does
 nothing. Show that clearly.

@@ -60,6 +60,22 @@ public sealed class GeneratorPresetTests
     }
 
     [TestMethod]
+    public void DamageCaps_AreEditableAndFreeAimDefaultsOn()
+    {
+        var profile = GeneratorPresets.Create(GeneratorPresets.Expedition, 123);
+        Assert.IsTrue(profile.Balance.FreeAimPenalty);
+        Assert.IsFalse(profile.QoL.TargetGlow);
+
+        profile.Balance.DamageCaps.Normal[DamageCapKit.FreeAim] = 0;
+        profile.Balance.DamageCaps.Ultima[DamageCapKit.SkillCast] = 12345;
+        var tweaks = profile.Balance.ToTweaks(profile.QoL);
+        Assert.AreEqual(0, tweaks.DamageCapsConfig.Normal[DamageCapKit.FreeAim]);
+        Assert.AreEqual(12345, tweaks.DamageCapsConfig.Ultima[DamageCapKit.SkillCast]);
+        Assert.AreEqual(0, DamageCapKit.LockedCap(DamageCapKit.FreeAim, tweaks.DamageCapsConfig));
+        Assert.AreEqual(12345, DamageCapKit.UnlockedCap(DamageCapKit.SkillCast, tweaks.DamageCapsConfig));
+    }
+
+    [TestMethod]
     public void StandaloneProfile_ExcludesIncompleteFeatures()
     {
         var profile = GeneratorPresets.Create(GeneratorPresets.Expedition, 123456);
@@ -76,6 +92,49 @@ public sealed class GeneratorPresetTests
             .ToList();
         CollectionAssert.DoesNotContain(optionNames, "EnableChallenges");
         CollectionAssert.DoesNotContain(optionNames, "BurnStackCap");
+    }
+
+    [TestMethod]
+    public void WeaponStats_OnlyCountsWhenPassivesAreOn()
+    {
+        var settings = new RandomizerKit.Settings
+        {
+            Chests = false,
+            PaintCages = false,
+            EnemyDrops = false,
+            Merchants = false,
+            WeaponPassives = false,
+            MonsterStats = false,
+            WeaponStats = true,
+            BattleGroups = false,
+            RandomBattles = false,
+        };
+
+        Assert.IsTrue(settings.IsOff,
+            "Weapon stats alone must not activate the randomizer: passives off keeps the whole weapon vanilla.");
+
+        settings.WeaponPassives = true;
+        Assert.IsFalse(settings.IsOff,
+            "Randomized weapon passives are an active source even when stats stay vanilla.");
+    }
+
+    [TestMethod]
+    public void WeaponTiers_ExcludeDebugToolsAndMilerim()
+    {
+        var tiers = new ItemTiers();
+        tiers.ResetToStock();
+        var used = tiers.Column(ItemTiers.Weapon, "Tier1")
+            .Concat(tiers.Column(ItemTiers.Weapon, "Tier2"))
+            .Concat(tiers.Column(ItemTiers.Weapon, "Tier3"))
+            .Concat(tiers.Column(ItemTiers.Weapon, "Tier4"))
+            .Concat(tiers.Column(ItemTiers.Weapon, "Tier5"))
+            .ToHashSet(StringComparer.Ordinal);
+        CollectionAssert.DoesNotContain(used.ToList(), "Milerim");
+        Assert.IsFalse(used.Any(x => x.StartsWith("Debug", StringComparison.Ordinal)),
+            "Debug weapons must stay in Weapon.DoNotUse.");
+        var doNotUse = tiers.Column(ItemTiers.Weapon, "DoNotUse").ToHashSet(StringComparer.Ordinal);
+        Assert.IsTrue(doNotUse.Contains("Milerim"));
+        Assert.IsTrue(doNotUse.Contains("DebugLune"));
     }
 
     [TestMethod]
@@ -186,9 +245,9 @@ public sealed class GeneratorOptionMappingTests
     [TestMethod]
     public void PackName_MatchesShippedV13Containers()
     {
-        Assert.AreEqual("_v1.4.2", GeneratorInfo.PackRevision);
-        Assert.AreEqual("ExpeditionInfinity_123456_v1.4.2_P", GeneratorInfo.PackName(123456));
-        Assert.AreEqual("ExpeditionInfinity_7539815_v1.4.2_P", GeneratorInfo.PackName(7539815));
+        Assert.AreEqual("_v1.4.3", GeneratorInfo.PackRevision);
+        Assert.AreEqual("ExpeditionInfinity_123456_v1.4.3_P", GeneratorInfo.PackName(123456));
+        Assert.AreEqual("ExpeditionInfinity_7539815_v1.4.3_P", GeneratorInfo.PackName(7539815));
     }
 
     [TestMethod]

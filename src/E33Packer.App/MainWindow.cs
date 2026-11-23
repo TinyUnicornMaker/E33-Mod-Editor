@@ -741,6 +741,7 @@ public sealed partial class MainWindow : Window
             VerifyPack = true,
             IncludeSpoiler = true,
             ForceRandomizerOn = false,
+            TargetGlow = _profile.QoL.TargetGlow,
             CancellationToken = token,
             Log = msg => Dispatcher.UIThread.Post(() => Append(msg)),
             OnExtractProgress = (done, total, current) =>
@@ -1062,7 +1063,7 @@ public sealed partial class MainWindow : Window
                 ["format"] = 1,
                 ["app"] = "Expedition Infinity",
                 ["appVersion"] = AppVersion,
-                // Core, always-on seed setting. No UI; recorded for build provenance.
+                // Core source caps; the actual Normal/Ultima table is in the profile.
                 ["damageCaps"] = true,
                 ["seed"] = result.Seed,
                 ["builtAt"] = DateTime.UtcNow.ToString("o"),
@@ -1563,6 +1564,8 @@ public sealed partial class MainWindow : Window
         p.Balance.LuminaPerLevel = Math.Clamp(p.Balance.LuminaPerLevel, 1, 10);
         p.Balance.LuminaDropMultiplier = Math.Clamp(p.Balance.LuminaDropMultiplier, 0.1, 5.0);
         p.Balance.MaxDropLevel = Math.Clamp(p.Balance.MaxDropLevel, 33, 333);
+        p.Balance.DamageCaps ??= DamageCapKit.Caps.Default();
+        p.Balance.DamageCaps.Normalize();
         p.Balance.DodgeWindow = Math.Clamp(p.Balance.DodgeWindow, 0.01, 1.0);
         p.Balance.ParryWindow = Math.Clamp(p.Balance.ParryWindow, 0.01, 1.0);
         p.Balance.HpMult = Math.Clamp(p.Balance.HpMult, 0.1, 10);

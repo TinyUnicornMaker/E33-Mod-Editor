@@ -6,7 +6,7 @@ using E33Packer.App;
 var repo = Path.GetFullPath(args.Length > 0 ? args[0] : ".");
 var paks = Environment.GetEnvironmentVariable("E33_PAKS")
     ?? Path.Combine(repo, "work", "paks-placeholder");
-var output = Path.GetFullPath(args.Length > 1 ? args[1] : Path.Combine(repo, "dist", "Expedition Infinity 1.4.2"));
+var output = Path.GetFullPath(args.Length > 1 ? args[1] : Path.Combine(repo, "dist", "Expedition Infinity 1.4.3"));
 var language = args.Length > 2 ? args[2] : "en";
 var onlyMode = args.Length > 3 ? args[3] : "";
 var forcedSeed = args.Length > 4 && int.TryParse(args[4], out var fs) ? fs : (int?)null;
@@ -48,7 +48,7 @@ lines.Add($"Built: {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} UTC");
 lines.Add($"Pack revision: {GeneratorInfo.PackRevision}");
 lines.Add("Proc cards: LimitBattleProcCards=on, PictoPopupCap=0 (all seeds)");
 lines.Add("Close camera: off (all seeds)");
-lines.Add("Core damage caps: on (source-based; no UI)");
+lines.Add("Damage caps: editable; Free Aim repeat penalty on; target glow off");
 lines.Add("Language packs: shared under Languages/<culture>/, installed alongside any seed");
 lines.Add("");
 
@@ -80,6 +80,7 @@ foreach (var (name, label, preset) in modes)
         VerifyPack = true,
         IncludeSpoiler = true,
         ForceRandomizerOn = false,
+        TargetGlow = profile.QoL.TargetGlow,
         Log = m => Console.WriteLine($"[{name}] {m}"),
     };
     Console.WriteLine($"=== {name}: preset={preset} seed={seed} ===");

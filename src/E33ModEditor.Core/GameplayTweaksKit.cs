@@ -81,6 +81,10 @@ public static class GameplayTweaksKit
         /// it so the hidden JSON/profile value can turn it off for diagnostics.
         /// </summary>
         public bool DamageCaps { get; set; } = true;
+        public DamageCapKit.Caps DamageCapsConfig { get; set; } = DamageCapKit.Caps.Default();
+        /// <summary>Apply the per-shot Free Aim repeat penalty. Balance toggle;
+        /// on by default for the Expedition Infinity presets.</summary>
+        public bool FreeAimPenalty { get; set; } = true;
         public int MaxShields { get; set; } = VanillaMaxShields;
         public int LuminaPerLevel { get; set; } = 2;
         public int MaxGradientCharges { get; set; } = DefaultMaxGradientCharges;
@@ -252,6 +256,8 @@ public static class GameplayTweaksKit
             ["CritDamageIncrease"] = CritDamageIncrease,
             ["CritRateDamageScaling"] = CritRateDamageScaling,
             ["DamageCaps"] = DamageCaps,
+            ["DamageCapsConfig"] = DamageCapsConfig.ToJson(),
+            ["FreeAimPenalty"] = FreeAimPenalty,
             ["MaxShields"] = MaxShields,
             ["LuminaPerLevel"] = LuminaPerLevel,
             ["MaxGradientCharges"] = MaxGradientCharges,
@@ -305,6 +311,8 @@ public static class GameplayTweaksKit
             CritDamageIncrease = o.Value<float?>("CritDamageIncrease") ?? VanillaCritDamageIncrease;
             CritRateDamageScaling = o.Value<bool?>("CritRateDamageScaling") ?? true;
             DamageCaps = o.Value<bool?>("DamageCaps") ?? true;
+            DamageCapsConfig = DamageCapKit.Caps.FromJson(o["DamageCapsConfig"]);
+            FreeAimPenalty = o.Value<bool?>("FreeAimPenalty") ?? true;
             MaxShields = o.Value<int?>("MaxShields") ?? VanillaMaxShields;
             LuminaPerLevel = o.Value<int?>("LuminaPerLevel") ?? 2;
             MaxGradientCharges = Math.Clamp(o.Value<int?>("MaxGradientCharges") ?? DefaultMaxGradientCharges, 1, 99);

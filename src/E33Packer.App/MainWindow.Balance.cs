@@ -14,6 +14,7 @@ public sealed partial class MainWindow
             Note(T("Adjust progression, attributes, boss movesets and parry timing after the seed rolls.")),
             Card(BuildProgressionCard()),
             Card(BuildAttributesCard()),
+            Card(BuildDamageCapsCard()),
             Card(BuildNevronSectionCard()),
             Card(BuildBossMovesetCard()),
             Card(BuildParryTimingsCard()),
@@ -51,6 +52,140 @@ public sealed partial class MainWindow
             DoubleRow(T("Speed ×"), b.SpeedMult, 0.1, 10, v => b.SpeedMult = v),
             DoubleRow(T("Critical Rate ×"), b.CritMult, 0.1, 10, v => b.CritMult = v),
             DoubleRow(T("Defense ×"), b.DefenseMult, 0.1, 10, v => b.DefenseMult = v));
+    }
+
+    private Control BuildDamageCapsCard()
+    {
+        var b = _profile.Balance;
+        b.DamageCaps.Normalize();
+
+        var rows = new List<Control>
+        {
+            new Grid
+            {
+                ColumnDefinitions = ColumnDefinitions.Parse("260,120,120"),
+                Margin = new Thickness(0, 4, 0, 2),
+                Children =
+                {
+                    Label(T("Damage source")),
+                    HeaderCell(T("Normal"), 1),
+                    HeaderCell(T("Ultima"), 2),
+                },
+            },
+        };
+
+        for (int i = 0; i < DamageCapKit.ReasonCount; i++)
+        {
+            int index = i;
+            rows.Add(CapRow(
+                T(DamageCapKit.ReasonLabels[index]),
+                b.DamageCaps.Normal[index],
+                b.DamageCaps.Ultima[index],
+                v =>
+                {
+                    b.DamageCaps.Normal[index] = v;
+                    MarkCustom();
+                },
+                v =>
+                {
+                    b.DamageCaps.Ultima[index] = v;
+                    MarkCustom();
+                }));
+        }
+
+        var freeAim = Toggle(T("Free Aim repeat penalty (3% per shot)"),
+            b.FreeAimPenalty, v => b.FreeAimPenalty = v,
+            T("Each regular Free Aim shot in the same turn multiplies damage by 0.97, up to shot 100. Skills, counters, Burn and Lumina are unaffected."));
+
+        return Stack(
+            Head(T("Damage caps")),
+            Note(T("Set the cap for each damage source before and after Ultima Power unlocks. 0 means no cap.")),
+            rows[0],
+            rows[1],
+            rows[2],
+            rows[3],
+            rows[4],
+            rows[5],
+            rows[6],
+            rows[7],
+            rows[8],
+            rows[9],
+            rows[10],
+            rows[11],
+            rows[12],
+            freeAim);
+    }
+
+    private static TextBlock HeaderCell(string text, int column)
+    {
+        var label = Label(text);
+        label.FontWeight = Avalonia.Media.FontWeight.SemiBold;
+        Grid.SetColumn(label, column);
+        return label;
+    }
+
+    private static Control CapRow(string label, int normal, int ultima,
+        Action<int> setNormal, Action<int> setUltima)
+    {
+        var grid = new Grid
+        {
+            ColumnDefinitions = ColumnDefinitions.Parse("260,120,120"),
+            Margin = new Thickness(0, 1),
+        };
+        grid.Children.Add(Label(label));
+        var normalBox = CapBox(normal, setNormal);
+        Grid.SetColumn(normalBox, 1);
+        grid.Children.Add(normalBox);
+        var ultimaBox = CapBox(ultima, setUltima);
+        Grid.SetColumn(ultimaBox, 2);
+        grid.Children.Add(ultimaBox);
+        return grid;
+    }
+
+    private static TextBox CapBox(int value, Action<int> set)
+    {
+        var box = new TextBox
+        {
+            Text = value.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            Width = 105,
+            FontFamily = new Avalonia.Media.FontFamily(
+                "DejaVu Sans Mono, Consolas, Microsoft YaHei, Noto Sans CJK SC, monospace"),
+        };
+        var last = value;
+        void Commit()
+        {
+            if (int.TryParse(box.Text, System.Globalization.NumberStyles.Integer,
+                    System.Globalization.CultureInfo.InvariantCulture, out var v))
+            {
+                v = Math.Clamp(v, 0, DamageCapKit.MaxCap);
+                box.Text = v.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                if (v != last)
+                {
+                    last = v;
+                    set(v);
+                }
+            }
+            else
+            {
+                box.Text = last.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            }
+        }
+        box.TextChanged += (_, _) =>
+        {
+            if (int.TryParse(box.Text, System.Globalization.NumberStyles.Integer,
+                    System.Globalization.CultureInfo.InvariantCulture, out var v)
+                && v >= 0 && v <= DamageCapKit.MaxCap && v != last)
+            {
+                last = v;
+                set(v);
+            }
+        };
+        box.LostFocus += (_, _) => Commit();
+        box.KeyDown += (_, e) =>
+        {
+            if (e.Key is Avalonia.Input.Key.Enter or Avalonia.Input.Key.Return) Commit();
+        };
+        return box;
     }
 
     private Control BuildBossMovesetCard()

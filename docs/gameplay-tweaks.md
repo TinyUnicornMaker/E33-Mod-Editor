@@ -430,7 +430,7 @@ lookup:
 | 3 FreeAim | 3,333 | 333,333 |
 | 4 Attack (base attack) | 6,666 | 333,333 |
 | 5 Counter | 333,333 | unlimited |
-| 6 Lumina | 9,999 | 3,333,333 |
+| 6 Lumina | 3,333 | 3,333,333 |
 | 7 Item | 9,999 | 333,333 |
 | 8 GradientCounter | 333,333 | unlimited |
 | 9 RangeCounter | 333,333 | unlimited |
@@ -445,7 +445,7 @@ lookup:
 old "Burn = Invalid" note confused the enumerator name with the numeric value.
 
 `DamageReason 6` (**Lumina**) is used by weapon/passive-triggered Lightning
-strikes such as `TriggerLightningOnCrit`; it uses **9,999 / 3,333,333**.
+strikes such as `TriggerLightningOnCrit`; it uses **3,333 / 3,333,333**.
 Skills/counters remain unlimited with Ultima Power; the other reasons stay at
 333,333.
 
@@ -456,15 +456,33 @@ before the challenge override: when `local_clampValue` is still `0`
 `if (local_clampValue > 0)` clamp is skipped, i.e. unlimited. The challenge
 override still runs afterwards, so challenge modifiers can lower any cap.
 
+## Free Aim repeat penalty
+
+Regular Free Aim shots taken in the same turn are multiplicative-reduced by
+**3% per shot taken** (`FreeAimSpamKit`):
+
+```text
+shot damage multiplier = 0.97 ^ ShotsFired
+```
+
+`ShotsFired` is the shooter component's real class property, reset to `0` when
+Free Aim starts and incremented for each shot. The first shot is `0.97×`, the
+second `0.9409×`, the third `0.912673×`, and so on. The lookup table covers
+shots **1–100**; shot 100 and anything beyond it use `0.97^100`. The modifier is
+added only to the regular Free Aim damage builder, immediately before
+`DealDamages`; skills that use free-aim targeting, base attacks, counters,
+Burn, Lumina and every other damage source are untouched.
+
 **Why no new property/picto.** `DamageReason` already identifies every source,
 and the unlock state is the existing binary `DamageLimitUnlockRefCount`. No
 extra `SF_ReferenceCounter`, `DamageLimitTier` property, or middle-tier picto is
 needed. This avoids the class-schema/asset-creation path that crashed the old
 three-tier attempt.
 
-**Seed generator.** `GameplayTweaksKit.Settings.DamageCaps` is a core,
-always-on setting. `GeneratorProfile.Balance.ToTweaks` forces it true for every
-preset; there is no UI control. `FullPackKit` skips the cap patch only if a
+**Seed generator.** The Balance tab exposes a **Normal** and **Ultima** cap
+per damage source. Set a row to `0` for no cap. `GameplayTweaksKit.Settings.DamageCaps`
+is a core, always-on setting; the table is the UI. `GeneratorProfile.Balance.ToTweaks`
+forces it true for every preset. `FullPackKit` skips the cap patch only if a
 diagnostic JSON explicitly sets it false.
 
 **Order.** `DamageLimitKit.RemoveThreeTier` deletes `BP_BattleDamages` before

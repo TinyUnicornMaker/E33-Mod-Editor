@@ -177,6 +177,13 @@ Tier Editor tabs:
 - **Characters** — one row per effect; click Gustave / Lune / Maelle / Sciel /
   Verso / Monoco to allow or block.
 
+When **Randomize weapon passives** is off, the whole weapon definition stays
+vanilla: the original three effects at `Level2Lumina`–`Level4Lumina`, attack /
+free-aim stats and element. Only the added empty fifth slot and the retimed
+33/66/111/222/333 unlock boundaries apply, so the vanilla effects unlock at
+66/111/222. The separate **weapon stats and elements** toggle has no effect
+while passives are off.
+
 When **Randomize weapon passives** is on (default), each weapon that is in
 Weapons T1–T5 gets new passives:
 

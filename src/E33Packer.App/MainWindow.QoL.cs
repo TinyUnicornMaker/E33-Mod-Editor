@@ -14,6 +14,7 @@ public sealed partial class MainWindow
             Note(T("Convenience changes. Core balance is unchanged.")),
             Card(BuildPictoQolCard()),
             Card(BuildBattleProcCard()),
+            Card(BuildTargetGlowCard()),
             Card(BuildWeaponQolCard()),
             Card(BuildBuildQolCard()));
     }
@@ -43,6 +44,16 @@ public sealed partial class MainWindow
             Head(T("Battle proc cards")),
             limit,
             capRow);
+    }
+
+    private Control BuildTargetGlowCard()
+    {
+        var q = _profile.QoL;
+        return Stack(
+            Head(T("Target glow")),
+            Toggle(T("Show a coloured glow on the selected ally"), q.TargetGlow,
+                v => q.TargetGlow = v,
+                T("Quality-of-life targeting aid. Off by default.")));
     }
 
     private Control BuildWeaponQolCard()

@@ -3,6 +3,7 @@ using UAssetAPI.ExportTypes;
 using UAssetAPI.Kismet.Bytecode;
 using UAssetAPI.Kismet.Bytecode.Expressions;
 using UAssetAPI.UnrealTypes;
+using Newtonsoft.Json.Linq;
 
 namespace E33ModEditor.Core;
 
@@ -21,7 +22,7 @@ namespace E33ModEditor.Core;
 /// FreeAim (3)                 3,333      333,333
 /// Attack (4)                  6,666      333,333
 /// Counter (5)               333,333      unlimited (0)
-/// Lumina (6)                  9,999      3,333,333
+/// Lumina (6)                  3,333      3,333,333
 /// Item (7)                    9,999      333,333
 /// GradientCounter (8)       333,333      unlimited (0)
 /// RangeCounter (9)          333,333      unlimited (0)
@@ -34,7 +35,7 @@ namespace E33ModEditor.Core;
 /// <c>DisplayNameMap</c>, not the enumerator names:
 /// <c>NewEnumerator2=0</c> is Invalid, <c>NewEnumerator0=1</c> is SkillCast and
 /// <c>NewEnumerator1=2</c> is BuffEffect. Burn's aggregator passes reason 2,
-/// so Burn is the BuffEffect row (3,333 / 333,333), not Invalid.
+/// so Burn is the BuffEffect row (3,333 / 3,333,333), not Invalid.
 ///
 /// The locked caps are inserted directly after the vanilla 9,999 assignment
 /// (inside the "not unlocked" branch). The unlocked caps are a second block
@@ -56,12 +57,100 @@ public static class DamageCapKit
     public const int FreeAimCap = 3333;
     public const int AttackCap = 6666;
     public const int CounterCap = 333333;
+    public const int LuminaCap = 3333;
     public const int OtherCap = 9999;
 
     // Unlocked (Ultima Power).
     public const int UnlockedOtherCap = 333333;
     public const int UnlockedLuminaBuffCap = 3333333;
     public const int Unlimited = 0;
+
+    public const int ReasonCount = 12;
+    public const int MaxCap = 99_999_999;
+    public static readonly string[] ReasonLabels =
+    {
+        "Invalid / other",
+        "Skill cast",
+        "Buff effect / Burn",
+        "Free Aim",
+        "Base attack",
+        "Counter",
+        "Lumina",
+        "Item",
+        "Gradient counter",
+        "Range counter",
+        "AOE counter",
+        "Jump counter",
+    };
+
+    public static readonly int[] DefaultNormal =
+    {
+        OtherCap, SkillCap, BuffEffectCap, FreeAimCap, AttackCap, CounterCap,
+        LuminaCap, OtherCap, CounterCap, CounterCap, CounterCap, CounterCap,
+    };
+
+    public static readonly int[] DefaultUltima =
+    {
+        UnlockedOtherCap, Unlimited, UnlockedLuminaBuffCap, UnlockedOtherCap,
+        UnlockedOtherCap, Unlimited, UnlockedLuminaBuffCap, UnlockedOtherCap,
+        Unlimited, Unlimited, Unlimited, Unlimited,
+    };
+
+    /// <summary>Editable normal and Ultima caps, indexed by DamageReason 0–11.
+    /// A value of 0 means no cap.</summary>
+    public sealed class Caps
+    {
+        public int[] Normal { get; set; } = (int[])DefaultNormal.Clone();
+        public int[] Ultima { get; set; } = (int[])DefaultUltima.Clone();
+
+        public static Caps Default() => new();
+
+        public Caps Clone() => new()
+        {
+            Normal = (int[])Normal.Clone(),
+            Ultima = (int[])Ultima.Clone(),
+        };
+
+        public void Normalize()
+        {
+            Normal = NormalizeArray(Normal, DefaultNormal);
+            Ultima = NormalizeArray(Ultima, DefaultUltima);
+        }
+
+        public JObject ToJson() => new()
+        {
+            ["Normal"] = new JArray(Normal),
+            ["Ultima"] = new JArray(Ultima),
+        };
+
+        public static Caps FromJson(JToken? token)
+        {
+            var caps = Default();
+            if (token is not JObject o) return caps;
+            caps.Normal = ReadArray(o["Normal"], DefaultNormal);
+            caps.Ultima = ReadArray(o["Ultima"], DefaultUltima);
+            caps.Normalize();
+            return caps;
+        }
+
+        private static int[] ReadArray(JToken? token, int[] fallback)
+        {
+            if (token is not JArray a) return (int[])fallback.Clone();
+            var values = a.Select(x => x.Type == JTokenType.Integer ? x.Value<int>() : 0).ToArray();
+            return NormalizeArray(values, fallback);
+        }
+
+        private static int[] NormalizeArray(int[]? values, int[] fallback)
+        {
+            var result = new int[ReasonCount];
+            for (int i = 0; i < ReasonCount; i++)
+            {
+                var v = values is not null && i < values.Length ? values[i] : fallback[i];
+                result[i] = Math.Clamp(v, 0, MaxCap);
+            }
+            return result;
+        }
+    }
 
     // Cooked EDamageReason values: NewEnumerator2=0 (Invalid),
     // NewEnumerator0=1 (SkillCast), NewEnumerator1=2 (BuffEffect).
@@ -83,47 +172,39 @@ public static class DamageCapKit
         { Counter, GradientCounter, RangeCounter, AoeCounter, JumpCounter };
 
     /// <summary>Cap used while the hero has no damage-limit unlock reference.</summary>
-    public static int LockedCap(byte reason) => reason switch
+    public static int LockedCap(byte reason, Caps? caps = null)
     {
-        BuffEffect => BuffEffectCap, // Burn's DOT tick uses this reason
-        SkillCast => SkillCap,
-        FreeAim => FreeAimCap,
-        Attack => AttackCap,
-        Counter or GradientCounter or RangeCounter or AoeCounter or JumpCounter => CounterCap,
-        _ => OtherCap,
-    };
+        var values = (caps ?? Caps.Default()).Normal;
+        return values[reason < values.Length ? reason : 0];
+    }
 
-    /// <summary>
-    /// Cap used while the hero has the unlock reference (Ultima Power).
-    /// Skills and counters are unlimited; BuffEffect/Burn and Lumina are raised
-    /// to 3,333,333; everything else stays at 333,333.
-    /// </summary>
-    public static int UnlockedCap(byte reason) => reason switch
+    /// <summary>Cap used while the hero has the unlock reference (Ultima Power).</summary>
+    public static int UnlockedCap(byte reason, Caps? caps = null)
     {
-        SkillCast or Counter or GradientCounter or RangeCounter or AoeCounter or JumpCounter
-            => Unlimited,
-        BuffEffect or Lumina => UnlockedLuminaBuffCap,
-        _ => UnlockedOtherCap,
-    };
+        var values = (caps ?? Caps.Default()).Ultima;
+        return values[reason < values.Length ? reason : 0];
+    }
 
     // ───────────────────────────── pack ─────────────────────────────
 
     /// <summary>Stage and patch BP_BattleDamages in a mod directory.</summary>
-    public static int Apply(string modDir)
+    public static int Apply(string modDir, Caps? caps = null)
     {
         var path = FileCopy.FindUnder(modDir, BattleDamages + ".uasset")
             ?? Stage(modDir);
         var asset = Open(path);
-        int n = PatchApplyClamp(asset);
+        int n = PatchApplyClamp(asset, caps);
         if (n > 0) asset.Write(path);
-        if (!Verify(path))
+        if (!Verify(path, caps))
             throw new InvalidDataException(
                 "[damagecap] verification failed after writing " + BattleDamages);
         return n;
     }
 
-    public static bool Verify(string uassetPath)
+    public static bool Verify(string uassetPath, Caps? caps = null)
     {
+        var configured = (caps ?? Caps.Default()).Clone();
+        configured.Normalize();
         var asset = Open(uassetPath);
         var fn = asset.Exports.OfType<FunctionExport>()
             .FirstOrDefault(f => f.ObjectName.ToString() == ClampFunction);
@@ -207,16 +288,16 @@ public static class DamageCapKit
         {
             var locked = Eval(asset, capLets[0].Expression, reason);
             var unlocked = Eval(asset, capLets[1].Expression, reason);
-            if (locked is null || Math.Abs(locked.Value - LockedCap(reason)) > 1e-9)
+            if (locked is null || Math.Abs(locked.Value - LockedCap(reason, configured)) > 1e-9)
             {
                 Console.WriteLine($"[damagecap] verify: locked reason {reason} -> {locked?.ToString() ?? "null"} " +
-                                  $"(want {LockedCap(reason)})");
+                                  $"(want {LockedCap(reason, configured)})");
                 return false;
             }
-            if (unlocked is null || Math.Abs(unlocked.Value - UnlockedCap(reason)) > 1e-9)
+            if (unlocked is null || Math.Abs(unlocked.Value - UnlockedCap(reason, configured)) > 1e-9)
             {
                 Console.WriteLine($"[damagecap] verify: unlocked reason {reason} -> {unlocked?.ToString() ?? "null"} " +
-                                  $"(want {UnlockedCap(reason)})");
+                                  $"(want {UnlockedCap(reason, configured)})");
                 return false;
             }
         }
@@ -224,19 +305,14 @@ public static class DamageCapKit
         try { PartyFiveKit.VerifyJumps(asset, fn); }
         catch { return false; }
 
-        bool constants = ints.Contains(BuffEffectCap) && ints.Contains(SkillCap)
-                         && ints.Contains(FreeAimCap) && ints.Contains(AttackCap)
-                         && ints.Contains(CounterCap) && ints.Contains(OtherCap)
-                         && ints.Contains(UnlockedOtherCap)
-                         && ints.Contains(UnlockedLuminaBuffCap)
-                         && ints.Contains(Unlimited);
+        bool constants = configured.Normal.Concat(configured.Ultima).All(ints.Contains);
         bool reasonSet = reasons.Contains(BuffEffect) && reasons.Contains(SkillCast)
                          && reasons.Contains(FreeAim) && reasons.Contains(Attack)
                          && reasons.Contains(Lumina)
                          && CounterReasons.All(reasons.Contains);
 
         bool ok = unlockCheck && challenge && fclamp && unlockedEquals && unlockedFlowOk
-                  && selectInt >= 10 && convDouble == 2
+                  && selectInt >= 22 && convDouble == 2
                   && reasonReads >= 2 && constants && reasonSet;
         Console.WriteLine($"[damagecap] verify {ClampFunction}: caps=2 unlock={unlockCheck} " +
                           $"challenge={challenge} clamp={fclamp} unlockedEq={unlockedEquals} " +
@@ -247,8 +323,10 @@ public static class DamageCapKit
 
     // ─────────────────────────── bytecode patch ───────────────────────────
 
-    public static int PatchApplyClamp(UAsset asset)
+    public static int PatchApplyClamp(UAsset asset, Caps? caps = null)
     {
+        var configured = (caps ?? Caps.Default()).Clone();
+        configured.Normalize();
         var fn = asset.Exports.OfType<FunctionExport>()
             .FirstOrDefault(f => f.ObjectName.ToString() == ClampFunction)
             ?? throw new InvalidDataException($"[damagecap] {ClampFunction} not found");
@@ -312,23 +390,16 @@ public static class DamageCapKit
             Parameters = new KismetExpression[] { e },
         };
 
-        // Locked caps. Unlisted reasons keep the vanilla 9,999.
-        KismetExpression locked = new EX_IntConst { Value = OtherCap };
-        locked = Select(BuffEffectCap, locked, BuffEffect);
-        locked = Select(SkillCap, locked, SkillCast);
-        locked = Select(FreeAimCap, locked, FreeAim);
-        locked = Select(AttackCap, locked, Attack);
-        foreach (var r in CounterReasons)
-            locked = Select(CounterCap, locked, r);
+        // Editable source caps. Reason 0 doubles as the fallback for unknown
+        // reasons; every other reason gets an explicit select branch.
+        KismetExpression locked = new EX_IntConst { Value = configured.Normal[0] };
+        for (byte r = 1; r < ReasonCount; r++)
+            locked = Select(configured.Normal[r], locked, r);
         locked = Conv(locked);
 
-        // Ultima Power: skills/counters unlimited; BuffEffect/Burn and Lumina
-        // raised to 3,333,333; everything else 333,333.
-        KismetExpression unlocked = new EX_IntConst { Value = UnlockedOtherCap };
-        unlocked = Select(UnlockedLuminaBuffCap, unlocked, BuffEffect);
-        unlocked = Select(UnlockedLuminaBuffCap, unlocked, Lumina);
-        foreach (var r in new[] { SkillCast, Counter, GradientCounter, RangeCounter, AoeCounter, JumpCounter })
-            unlocked = Select(Unlimited, unlocked, r);
+        KismetExpression unlocked = new EX_IntConst { Value = configured.Ultima[0] };
+        for (byte r = 1; r < ReasonCount; r++)
+            unlocked = Select(configured.Ultima[r], unlocked, r);
         unlocked = Conv(unlocked);
 
         // 1) Insert the locked cap right after the vanilla 9,999 assignment.

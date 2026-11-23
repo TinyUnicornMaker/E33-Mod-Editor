@@ -93,6 +93,10 @@ public static class FullPackKit
 
         public bool ForceRandomizerOn { get; set; }
 
+        /// <summary>Per-character selected-ally hover glow. Off by default;
+        /// the standalone CLI can opt in with <c>work/target_glow.json</c>.</summary>
+        public bool TargetGlow { get; set; } = false;
+
         public Action<string>? Log { get; set; }
         /// <summary>Donor retoc progress: done, total, current filter name.</summary>
         public Action<int, int, string>? OnExtractProgress { get; set; }
@@ -248,10 +252,8 @@ public static class FullPackKit
             total += MightScalingKit.Apply(modDir);
             MightScalingKit.Verify(modDir);
         }
-        // Source damage caps (Buff 3,333 / Base Attack 6,666 / Free Aim 3,333 /
-        // Skills 33,333 / Counters 333,333; Ultima Power unlocks skills and
-        // counters, everything else 333,333). This is a core damage-curve
-        // setting; the seed generator always enables it and has no UI for it.
+        // Source damage caps. The Normal and Ultima caps are editable in the
+        // seed generator's Balance tab; 0 means no cap.
         // It must run after the crit kit: CritDamageKit stages a fresh
         // BP_BattleDamages, and both edits live in different functions of the
         // same asset.
@@ -259,11 +261,11 @@ public static class FullPackKit
         if (tweaks.DamageCaps)
         {
             log("Applying source damage caps…");
-            total += DamageCapKit.Apply(modDir);
+            total += DamageCapKit.Apply(modDir, tweaks.DamageCapsConfig);
             damagePath = GameplayTweaksKit.FindAsset(modDir, "BP_BattleDamages.uasset")
                 ?? throw new FileNotFoundException(
                     "damage caps were requested but BP_BattleDamages is not staged");
-            if (!DamageCapKit.Verify(damagePath))
+            if (!DamageCapKit.Verify(damagePath, tweaks.DamageCapsConfig))
                 throw new InvalidDataException(
                     "damage-cap verification failed: BP_BattleDamages.ApplyClamp does not " +
                     "match the configured source caps");
@@ -467,6 +469,34 @@ public static class FullPackKit
             }
         }
 
+        // Per-slot coloured hover glow. Runs after Party of Five / row damage so
+        // it adds to the shared Battle_Base copy instead of restaging vanilla.
+        // In Bigger Party Mod compatibility mode we must not ship our own
+        // Battle_Base: it would shadow the mod's copy and break its 4th slot.
+        if (opt.TargetGlow && compatUtoc is null)
+        {
+            log("Targeting glow…");
+            total += TargetGlowKit.Apply(modDir, new TargetGlowKit.Settings { Enabled = true });
+        }
+        else if (opt.TargetGlow)
+        {
+            log("[target-glow] skipped in Bigger Party Mod compatibility mode");
+        }
+
+        // Free Aim repeat penalty: each regular Free Aim shot in the same turn
+        // multiplies the shot damage by 0.97. Applied after Party of Five,
+        // row-damage and target-glow because those kits also touch the battle
+        // character base.
+        if (tweaks.FreeAimPenalty && compatUtoc is null)
+        {
+            log("Applying Free Aim repeat penalty…");
+            total += FreeAimSpamKit.Apply(modDir);
+        }
+        else if (tweaks.FreeAimPenalty)
+        {
+            log("[freeaim] skipped in Bigger Party Mod compatibility mode");
+        }
+
         StripUnroundtrippable(modDir, luneOn, log);
 
         // Vanilla rows that shipped with culture-invariant English (Auto Burn,
@@ -504,12 +534,21 @@ public static class FullPackKit
             log($"[compat] removed {stripped} asset(s) from our pack so the mod's copies win");
         }
 
-        var sweep = RandomizerKit.SweepWeaponEligibility(modDir);
-        if (sweep.Count > 0)
-            throw new InvalidOperationException(
-                "Pack aborted — forbidden weapon passives:\n  "
-                + string.Join("\n  ", sweep.Take(25))
-                + (sweep.Count > 25 ? $"\n  …and {sweep.Count - 25} more" : ""));
+        // Only sweep passives the randomizer actually rolled. When the option
+        // is off the whole weapon table stays vanilla, and vanilla combos
+        // deliberately predate the randomizer's allocation rules — e.g.
+        // Lanceram's Gustave-owned Perfection_* set and off-element stain
+        // families. Sweeping those aborts every passives-off build even though
+        // nothing is wrong.
+        if (rando.WeaponPassives)
+        {
+            var sweep = RandomizerKit.SweepWeaponEligibility(modDir);
+            if (sweep.Count > 0)
+                throw new InvalidOperationException(
+                    "Pack aborted — forbidden weapon passives:\n  "
+                    + string.Join("\n  ", sweep.Take(25))
+                    + (sweep.Count > 25 ? $"\n  …and {sweep.Count - 25} more" : ""));
+        }
 
         string spoilerPath = "";
         if (opt.IncludeSpoiler)

@@ -39,6 +39,10 @@ public sealed class BalanceOptions
     public bool ReduceLuminaDrops { get; set; }
     public double LuminaDropMultiplier { get; set; } = 1.0;
 
+    // Damage caps and Free Aim balance
+    public DamageCapKit.Caps DamageCaps { get; set; } = DamageCapKit.Caps.Default();
+    public bool FreeAimPenalty { get; set; } = true;
+
     // Progression
     public int LevelCap { get; set; } = 333;
     public int ExtraXpPerLevel { get; set; } = 33_333_333;
@@ -93,8 +97,10 @@ public sealed class BalanceOptions
             CritDamageIncrease = 1.5f,
             CritRateDamageScaling = true,
             // Source-based damage caps are part of the core damage curve.
-            // Always on in the seed generator; intentionally not in the UI.
+            // The table is editable in the Balance tab.
             DamageCaps = true,
+            DamageCapsConfig = DamageCaps.Clone(),
+            FreeAimPenalty = FreeAimPenalty,
             BurnMultiplier = 0.075,
             BurnPlayerScale = 0.01,
             BurnDuration = 3,
@@ -151,6 +157,8 @@ public sealed class QoLOptions
     public bool BulkTapPlusOne { get; set; }
     public bool MaskKeeperFullMoveset { get; set; } = true;
     public bool SireneFullMoveset { get; set; } = true;
+    /// <summary>Per-slot hover glow on the selected ally. Off by default.</summary>
+    public bool TargetGlow { get; set; } = false;
 
     public SkillOverhaulKit.Settings ToSkillOverhaul()
     {

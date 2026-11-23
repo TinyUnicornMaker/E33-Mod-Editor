@@ -121,6 +121,9 @@ try
         "compat-smoke" => CmdCompatSmoke(args),
         "party5" => CmdParty5(args),
         "party5-smoke" => CmdParty5Smoke(args),
+        "target-glow" => CmdTargetGlow(args),
+        "target-glow-minimal" => CmdTargetGlowMinimal(args),
+        "target-glow-smoke" => CmdTargetGlowSmoke(args),
         "battle-groups" => CmdBattleGroups(args),
         "battle-groups-smoke" => CmdBattleGroupsSmoke(args),
         "random-battles" => CmdRandomBattles(args),
@@ -128,6 +131,7 @@ try
         "row-damage-smoke" => CmdRowDamageSmoke(args),
         "damage-cap-smoke" => CmdDamageCapSmoke(args),
         "level-cap-smoke" => CmdLevelCapSmoke(args),
+        "free-aim-smoke" => CmdFreeAimSmoke(args),
         _ => Unknown(args[0]),
     };
 }
@@ -1101,15 +1105,21 @@ static int CmdRandoSmoke(string[] args)
         return 1;
     }
 
-    var wep = FileCopy.FindUnder(dir, "DT_WeaponDefinitions.uasset")
-        ?? throw new FileNotFoundException("mod weapons");
+    // Weapon passives off is an all-or-nothing vanilla weapon: the randomizer
+    // must not stage or rewrite DT_WeaponDefinitions at all.
+    var wep = FileCopy.FindUnder(dir, "DT_WeaponDefinitions.uasset");
     var ene = FileCopy.FindUnder(dir, "DT_jRPG_Enemies.uasset")
         ?? throw new FileNotFoundException("mod enemies");
-    var wepEd = new DataTableEditor(wep);
+    var wepEd = wep is null ? null : new DataTableEditor(wep);
     var eneEd = new DataTableEditor(ene);
 
     void DumpWeapon(string id)
     {
+        if (wepEd is null)
+        {
+            Console.WriteLine($"{id} vanilla (weapon passives off)");
+            return;
+        }
         if (!wepEd.TryGetRow(id, out var row))
         {
             Console.WriteLine("MISSING " + id);
@@ -3653,6 +3663,46 @@ static int CmdLevelCapSmoke(string[] args)
     }
 }
 
+static int CmdFreeAimSmoke(string[] args)
+{
+    var dirArg = args.Length > 1 && !args[1].StartsWith("--", StringComparison.Ordinal)
+        ? args[1] : null;
+    var dir = dirArg is null
+        ? Path.Combine(EditorPaths.RepoRoot, "work", "mod_freeaimsmoke")
+        : Path.GetFullPath(dirArg);
+    if (dirArg is null && Directory.Exists(dir)) Directory.Delete(dir, true);
+    Directory.CreateDirectory(dir);
+
+    int checks = 0, fails = 0;
+    void Check(bool ok, string msg)
+    {
+        checks++;
+        Console.WriteLine((ok ? "ok   " : "FAIL ") + msg);
+        if (!ok) fails++;
+    }
+
+    try
+    {
+        int n = FreeAimSpamKit.Apply(dir);
+        Check(n == 1, $"repeat penalty installed ({n} edit)");
+        var path = FileCopy.FindUnder(dir, FreeAimSpamKit.BattleBase + ".uasset");
+        Check(path is not null, "battle base staged");
+        if (path is not null)
+            Check(FreeAimSpamKit.Verify(path), "0.97^shots Free Aim penalty verifies");
+        Check(FreeAimSpamKit.Apply(dir) == 0, "repeat penalty is idempotent");
+    }
+    catch (Exception ex)
+    {
+        Check(false, "exception: " + ex.Message);
+        Console.Error.WriteLine(ex);
+    }
+
+    Console.WriteLine(fails == 0
+        ? $"[free-aim-smoke] {checks} checks passed"
+        : $"[free-aim-smoke] {fails}/{checks} FAILED");
+    return fails == 0 ? 0 : 1;
+}
+
 /// <summary>
 /// Verifies the Skill Overhaul apply pipeline: an enabled change lands in the
 /// mod table, then disabling it reverts the cell to vanilla on the next pack.
@@ -4762,6 +4812,8 @@ static int CmdKismetDump(string[] args)
             Console.WriteLine($"{p.GetType().Name} type={p.SerializedType} {p.Name} size={p.ElementSize} flags={p.PropertyFlags}");
             if (p is UAssetAPI.FieldTypes.FBoolProperty b)
                 Console.WriteLine($"  BOOL FieldSize={b.FieldSize} ByteOffset={b.ByteOffset} ByteMask={b.ByteMask} FieldMask={b.FieldMask}");
+            if (p is UAssetAPI.FieldTypes.FObjectProperty op && op.PropertyClass is { } pc)
+                Console.WriteLine($"  OBJECT CLASS={(pc.IsImport() ? pc.ToImport(u).ObjectName.ToString() : "export#" + pc.Index)}");
         }
         return 0;
     }
@@ -4979,6 +5031,16 @@ static int CmdDumpCdo(string[] args)
     {
         var ne = exp as UAssetAPI.ExportTypes.NormalExport;
         Console.WriteLine($"-- {exp.ObjectName} class={FmtIdx(u, exp.ClassIndex)} ({(ne?.Data.Count ?? 0)} props) size={exp.SerialSize} export={exp.GetType().Name} --");
+        if (exp is UAssetAPI.ExportTypes.ClassExport cls)
+        {
+            foreach (var cp in cls.LoadedProperties ?? Array.Empty<UAssetAPI.FieldTypes.FProperty>())
+            {
+                var obj = cp is UAssetAPI.FieldTypes.FObjectProperty op && op.PropertyClass is { } pc
+                    ? $" objclass={(pc.IsImport() ? pc.ToImport(u).ObjectName.ToString() : "export#" + pc.Index)}"
+                    : "";
+                Console.WriteLine($"  CLASSVAR {cp.GetType().Name} type={cp.SerializedType} {cp.Name} size={cp.ElementSize} flags={cp.PropertyFlags}{obj}");
+            }
+        }
         if (ne is null) continue;
         if (exp is UAssetAPI.ExportTypes.EnumExport en)
         {
@@ -8936,6 +8998,7 @@ static int CmdRebuildMod(string[] args)
         Language = language,
         PackRevisionOverride = revision,
         InstallToMods = !noInstall,
+        TargetGlow = E33ModEditor.Core.TargetGlowKit.Settings.Load().Enabled,
         Log = msg => Console.WriteLine("[rebuild-mod] " + msg),
     });
     Console.WriteLine("[rebuild-mod] staged " + result.Edits +
@@ -9803,6 +9866,27 @@ static int CmdDamageCapSmoke(string[] args)
             : new UAsset(bdDest, EngineVersion.VER_UE5_4);
         Check(DamageCapKit.PatchApplyClamp(bd2) == 0, "ApplyClamp patch is idempotent");
 
+        // Custom caps, including an unlimited (0) cap, must patch and verify.
+        var custom = DamageCapKit.Caps.Default();
+        custom.Normal[DamageCapKit.SkillCast] = 0;
+        custom.Normal[DamageCapKit.FreeAim] = 12345;
+        custom.Ultima[DamageCapKit.FreeAim] = 0;
+        custom.Ultima[DamageCapKit.BuffEffect] = 7654321;
+        var customPath = Path.Combine(dir, "BP_BattleDamages_custom.uasset");
+        FileCopy.AssetPair(bdSrc, customPath);
+        var customAsset = map is not null
+            ? new UAsset(customPath, EngineVersion.VER_UE5_4, map)
+            : new UAsset(customPath, EngineVersion.VER_UE5_4);
+        Check(DamageCapKit.PatchApplyClamp(customAsset, custom) == 1,
+            "custom damage-cap patch applied");
+        customAsset.Write(customPath);
+        Check(DamageCapKit.Verify(customPath, custom),
+            "custom damage caps verify (including unlimited)");
+        Check(DamageCapKit.LockedCap(DamageCapKit.FreeAim, custom) == 12345,
+            "custom Free Aim normal cap = 12345");
+        Check(DamageCapKit.UnlockedCap(DamageCapKit.FreeAim, custom) == 0,
+            "custom Free Aim Ultima cap = unlimited");
+
         Check(DamageCapKit.Invalid == 0,
             $"Invalid DamageReason = {DamageCapKit.Invalid} (want 0 / NewEnumerator2)");
         Check(DamageCapKit.BuffEffect == 2,
@@ -9811,6 +9895,8 @@ static int CmdDamageCapSmoke(string[] args)
             $"Burn/BuffEffect locked cap = {DamageCapKit.LockedCap(DamageCapKit.BuffEffect)} (want {DamageCapKit.BuffEffectCap})");
         Check(DamageCapKit.UnlockedCap(DamageCapKit.BuffEffect) == DamageCapKit.UnlockedLuminaBuffCap,
             $"Burn/BuffEffect Ultima cap = {DamageCapKit.UnlockedCap(DamageCapKit.BuffEffect)} (want {DamageCapKit.UnlockedLuminaBuffCap})");
+        Check(DamageCapKit.LockedCap(DamageCapKit.Lumina) == DamageCapKit.LuminaCap,
+            $"Lumina locked cap = {DamageCapKit.LockedCap(DamageCapKit.Lumina)} (want {DamageCapKit.LuminaCap})");
         Check(DamageCapKit.UnlockedCap(DamageCapKit.Lumina) == DamageCapKit.UnlockedLuminaBuffCap,
             $"Lumina Ultima cap = {DamageCapKit.UnlockedCap(DamageCapKit.Lumina)} (want {DamageCapKit.UnlockedLuminaBuffCap})");
 
@@ -9861,6 +9947,52 @@ static int CmdDamageCapSmoke(string[] args)
         ? $"[damage-cap-smoke] {checks} checks passed"
         : $"[damage-cap-smoke] {fails}/{checks} FAILED");
     return fails == 0 ? 0 : 1;
+}
+
+static int CmdTargetGlow(string[] args)
+{
+    var dir = GetOption(args, "--out")
+        ?? Path.Combine(EditorPaths.RepoRoot, "work", "mod_targetglow");
+    Directory.CreateDirectory(dir);
+    var settings = new TargetGlowKit.Settings { Enabled = true };
+    int edits = TargetGlowKit.Apply(dir, settings);
+    var path = FileCopy.FindUnder(dir, "BP_jRPG_Character_Battle_Base.uasset")
+        ?? throw new FileNotFoundException("staged BP_jRPG_Character_Battle_Base missing");
+    TargetGlowKit.VerifyPersistent(path);
+    Console.WriteLine($"[target-glow] {edits} edit(s), staged at {path}");
+    return 0;
+}
+
+static int CmdTargetGlowMinimal(string[] args)
+{
+    var dir = GetOption(args, "--out")
+        ?? Path.Combine(EditorPaths.RepoRoot, "work", "mod_targetglowminimal");
+    Directory.CreateDirectory(dir);
+    int edits = TargetGlowKit.ApplyMinimal(dir);
+    Console.WriteLine($"[target-glow-minimal] {edits} edit(s) in {dir}");
+    return 0;
+}
+
+static int CmdTargetGlowSmoke(string[] args)
+{
+    var dir = Path.Combine(EditorPaths.RepoRoot, "work", "mod_targetglowsmoke");
+    if (Directory.Exists(dir)) Directory.Delete(dir, true);
+    Directory.CreateDirectory(dir);
+
+    var settings = new TargetGlowKit.Settings { Enabled = true };
+    int edits = TargetGlowKit.Apply(dir, settings);
+    if (edits != 1) throw new InvalidDataException($"target glow staged {edits} edits (expect 1)");
+
+    var path = FileCopy.FindUnder(dir, "BP_jRPG_Character_Battle_Base.uasset")
+        ?? throw new FileNotFoundException("staged BP_jRPG_Character_Battle_Base missing");
+    TargetGlowKit.VerifyPersistent(path);
+
+    // Second pass must recognise the block instead of duplicating it.
+    int again = TargetGlowKit.Apply(dir, settings);
+    if (again != 0) throw new InvalidDataException($"target glow re-applied {again} edits (expect 0)");
+
+    Console.WriteLine("[target-glow-smoke] PASS: persistent per-character target glow staged and verified");
+    return 0;
 }
 
 static int CmdParty5Smoke(string[] args)
@@ -11782,6 +11914,10 @@ static int CmdDumpImports(string[] args)
           damage-cap-smoke       stage + verify source damage caps (all DamageReason values,
                                  locked + Ultima Power) and crit composition
           level-cap-smoke        stage + verify level/attribute tables cover 1000 without extra rows
+          free-aim-smoke         stage + verify the per-shot Free Aim repeat penalty
+          target-glow            stage the selected-ally glow (personal opt-in)
+          target-glow-minimal    diagnostic glow without colour dispatch
+          target-glow-smoke      stage + verify the selected-ally glow
           firstperson [flags]    camera preset tuning (--preset overshoulder|firstperson,
                                  --arm/--forward/--side.../--monoco-arm/--monoco-side/
                                  --climb-arm/--climb-scale/--worldmap-aperture,

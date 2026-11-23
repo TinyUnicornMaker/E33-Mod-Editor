@@ -139,13 +139,19 @@ public sealed partial class MainWindow
             },
             T("Chests, Nevron drops and shops only. Dialogue rewards are untouched."));
 
+        var passivesToggle = Toggle(T("Weapon passives"), r.WeaponPassives,
+            v => r.WeaponPassives = v,
+            T("Turns weapon randomization on or off. Off keeps the whole weapon vanilla."));
+        var statsToggle = Toggle(T("Weapon stats and elements"), r.WeaponStats,
+            v => r.WeaponStats = v,
+            T("Rolls attack, free-aim and element. Requires weapon passives to be on."));
+        EnableWith(passivesToggle, statsToggle);
+
         return Stack(
             Head(T("Loot options")),
             Note(T("Drop rates, weapon rolls and loot quantities.")),
-            Toggle(T("Weapon passives"), r.WeaponPassives, v => r.WeaponPassives = v,
-                T("Rolls the passive effect on weapons.")),
-            Toggle(T("Weapon stats and elements"), r.WeaponStats, v => r.WeaponStats = v,
-                T("Rolls weapon attack, free-aim and element.")),
+            passivesToggle,
+            statsToggle,
             DoubleRow(T("Regular Nevron picto chance"), r.RegularPictosChance, 0, 100,
                 v => r.RegularPictosChance = v, null, T("Chance a regular Nevron drops a picto."), percent: true),
             DoubleRow(T("Elite Nevron picto chance"), r.ElitePictosChance, 0, 100,

@@ -35,6 +35,11 @@ The top bar switches **Nevron data** between:
 Drop/source lists always use the seed's staged chest and enemy tables. The
 vanilla dataset is only the enemy-stat comparison.
 
+Picto names, effects and Lumina costs are read from the staged
+`DT_PassiveEffects`, `DT_PictosDefinitions`, `ST_PassiveEffects` and `ST_Items`
+tables, with the vanilla tables as fallback. That is what gives mod-added
+pictos their full effect text instead of a blank description.
+
 ### Cut content
 
 Cut content is hidden by default. Use **Show cut content** to include

@@ -212,8 +212,12 @@ public static class SpoilerCodexKit
                 var definitionId = prop.Value.Value<string>("DefinitionID") ?? "";
                 if (definitionId.Length > 0) _weaponDefinitionIds.Add(definitionId);
             }
-            _pictosDefs = DumpVanilla("DT_PictosDefinitions") ?? new JObject();
-            _passiveEffects = DumpVanilla("DT_PassiveEffects") ?? new JObject();
+            // Prefer the staged tables: mod-created pictos only exist in
+            // work/mod, and their display names, effects and Lumina costs are
+            // written to the staged DT_* / ST_* copies by the picto kits. The
+            // vanilla tables remain the fallback for unmodified rows.
+            _pictosDefs = DumpStaged("DT_PictosDefinitions") ?? new JObject();
+            _passiveEffects = DumpStaged("DT_PassiveEffects") ?? new JObject();
 
             _stItems = LoadStringTable("ST_Items");
             _stPassives = LoadStringTable("ST_PassiveEffects");
@@ -893,7 +897,7 @@ public static class SpoilerCodexKit
 
         private string ItemName(string id, LootCatalog.ItemInfo? info, JObject? raw)
         {
-            var fromTable = _stItems.GetValueOrDefault($"ITEM_{id}_Name") ?? "";
+            var fromTable = LookupString(_stItems, $"ITEM_{id}_Name");
             if (fromTable.Length > 0) return fromTable;
 
             var custom = CleanItemName(info?.DisplayName ?? "");
@@ -901,14 +905,15 @@ public static class SpoilerCodexKit
 
             var display = raw?.Value<string>("Item_DisplayName") ?? "";
             var key = StripRef(display);
-            return _stItems.GetValueOrDefault(key) ?? PrettyId(id);
+            var resolved = LookupString(_stItems, key);
+            return resolved.Length > 0 ? resolved : PrettyId(id);
         }
 
         private string ItemDescription(string id)
         {
-            var description = _stItems.GetValueOrDefault($"ITEM_{id}_Description") ?? "";
+            var description = LookupString(_stItems, $"ITEM_{id}_Description");
             if (description.Length == 0)
-                description = _stPassives.GetValueOrDefault($"PASSIVE_{id}_Description") ?? "";
+                description = LookupString(_stPassives, $"PASSIVE_{id}_Description");
             if (description.Length == 0)
                 description = ResolveStRef((_passiveEffects[id] as JObject)?.Value<string>("Description"), _stPassives);
             return description.Trim();
@@ -916,7 +921,7 @@ public static class SpoilerCodexKit
 
         private string PassiveName(string id)
         {
-            var name = _stPassives.GetValueOrDefault($"PASSIVE_{id}_Name") ?? "";
+            var name = LookupString(_stPassives, $"PASSIVE_{id}_Name");
             if (name.Length == 0)
             {
                 var effect = _passiveEffects[id] as JObject;
@@ -929,7 +934,7 @@ public static class SpoilerCodexKit
 
         private string PassiveDescription(string id)
         {
-            var description = _stPassives.GetValueOrDefault($"PASSIVE_{id}_Description") ?? "";
+            var description = LookupString(_stPassives, $"PASSIVE_{id}_Description");
             if (description.Length == 0)
                 description = ResolveStRef((_passiveEffects[id] as JObject)?.Value<string>("Description"), _stPassives);
             if (description.Length == 0)
@@ -967,13 +972,26 @@ public static class SpoilerCodexKit
                 var effect = _passiveEffects[id] as JObject;
                 var created = _pictosCreated.GetValueOrDefault(id);
                 var cut = baseItem.Value<bool?>("cut") == true;
-                var description = created?.Description ?? baseItem.Value<string>("description") ?? "";
+                // The staged string tables are the source of truth for modded
+                // pictos; the created-CSV text is only a fallback for stages
+                // that predate those string-table rows. An empty CSV value
+                // must not mask a real PASSIVE_*_Description.
+                var name = FirstNonEmpty(
+                    LookupString(_stPassives, $"PASSIVE_{id}_Name"),
+                    LookupString(_stItems, $"ITEM_{id}_Name"),
+                    created?.Name,
+                    baseItem.Value<string>("name"),
+                    id);
+                var description = FirstNonEmpty(
+                    ItemDescription(id),
+                    created?.Description,
+                    baseItem.Value<string>("description"));
                 var createdFlag = created is not null || ((_rawItems[id] as JObject) is null && !cut);
 
                 list.Add(new JObject
                 {
                     ["id"] = id,
-                    ["name"] = created?.Name ?? baseItem.Value<string>("name") ?? id,
+                    ["name"] = name,
                     ["description"] = description,
                     ["tier"] = TierToken(TierOf("Pictos", id)),
                     ["cut"] = cut,
@@ -1334,18 +1352,33 @@ public static class SpoilerCodexKit
             catch { return null; }
         }
 
-        private static Dictionary<string, string> LoadStringTable(string table)
+        /// <summary>
+        /// Load a string table from vanilla, then overlay the staged work/mod
+        /// copy. Modded pictos keep their Name / Description only in the staged
+        /// ST_PassiveEffects, so reading vanilla alone leaves their codex
+        /// descriptions blank.
+        /// </summary>
+        private Dictionary<string, string> LoadStringTable(string table)
         {
-            var asset = FileCopy.FindTablesAsset(table + ".uasset");
-            if (asset is null) return new Dictionary<string, string>(StringComparer.Ordinal);
-            try
+            var merged = new Dictionary<string, string>(StringComparer.Ordinal);
+
+            void Merge(string? asset)
             {
-                return new Dictionary<string, string>(DataTableEditor.OpenStringTable(asset), StringComparer.Ordinal);
+                if (asset is null) return;
+                try
+                {
+                    foreach (var (key, value) in DataTableEditor.OpenStringTable(asset))
+                        merged[key] = value;
+                }
+                catch
+                {
+                    // Optional metadata; a damaged table must not abort the build.
+                }
             }
-            catch
-            {
-                return new Dictionary<string, string>(StringComparer.Ordinal);
-            }
+
+            Merge(FileCopy.FindTablesAsset(table + ".uasset"));
+            Merge(FileCopy.FindUnder(_modDir, table + ".uasset"));
+            return merged;
         }
 
         private static JObject LoadJson(string path)
@@ -1385,6 +1418,22 @@ public static class SpoilerCodexKit
         private static string FirstNonEmpty(params string?[] values) =>
             values.FirstOrDefault(v => !string.IsNullOrWhiteSpace(v)) ?? "";
 
+        /// <summary>
+        /// Exact key first, then a case-insensitive match. A few vanilla/string
+        /// table rows differ only by capitalisation (for example
+        /// <c>CritChanceOnWeak</c> vs <c>PASSIVE_CritCHanceOnWeak_Description</c>),
+        /// and the codex should still show their effect.
+        /// </summary>
+        private static string LookupString(Dictionary<string, string> table, string key)
+        {
+            if (key.Length == 0) return "";
+            if (table.TryGetValue(key, out var exact)) return exact;
+            foreach (var (candidate, value) in table)
+                if (string.Equals(candidate, key, StringComparison.OrdinalIgnoreCase))
+                    return value;
+            return "";
+        }
+
         private static string StripRef(string? value)
         {
             if (string.IsNullOrEmpty(value)) return "";
@@ -1397,9 +1446,9 @@ public static class SpoilerCodexKit
         {
             var key = StripRef(value);
             if (key.Length == 0) return "";
-            return table.GetValueOrDefault(key)
-                   ?? table.GetValueOrDefault(value ?? "")
-                   ?? "";
+            var resolved = LookupString(table, key);
+            if (resolved.Length > 0) return resolved;
+            return LookupString(table, value ?? "");
         }
 
         private static string Element(string? raw)
