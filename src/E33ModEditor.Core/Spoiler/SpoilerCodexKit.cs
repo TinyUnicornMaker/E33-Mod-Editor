@@ -580,6 +580,12 @@ public static class SpoilerCodexKit
             var encounterList = _encountersByEnemy.GetValueOrDefault(id) ?? new List<string>();
             var encounterSample = JArray.FromObject(encounterList.Take(12));
 
+            // Boss-venue clones inherit the donor's geography (Spring Meadows,
+            // Sirene, …) but are fought in the venue that borrows them. Use the
+            // encounter name so the card agrees with the item-source area.
+            if (id.StartsWith(BossVenueKit.VariantPrefix, StringComparison.OrdinalIgnoreCase))
+                area = SourceArea(id, area, encounterSample);
+
             return new JObject
             {
                 ["id"] = id,
@@ -603,34 +609,46 @@ public static class SpoilerCodexKit
 
         private (LootCatalog.EnemyInfo? Info, string? Area, string? Tag) ResolveEnemyMeta(string id)
         {
-            if (_catalog.Enemies.TryGetValue(id, out var exact))
+            var isT5 = id.StartsWith(EndgameVariantKit.VariantPrefix, StringComparison.OrdinalIgnoreCase);
+            var isWorld = id.StartsWith(WorldMapVariantKit.VariantPrefix, StringComparison.OrdinalIgnoreCase);
+            var isVenue = id.StartsWith(BossVenueKit.VariantPrefix, StringComparison.OrdinalIgnoreCase);
+
+            // Exact rows win normally, but the variant AI rows are registered
+            // with DisplayName = donor row id. Prefer the donor's player-facing
+            // name and add an explicit venue tag instead of showing the raw id.
+            if (!isT5 && !isWorld && !isVenue
+                && _catalog.Enemies.TryGetValue(id, out var exact))
                 return (exact, null, null);
 
             var baseId = id;
             string? area = null;
             string? tag = null;
-            if (id.StartsWith(EndgameVariantKit.VariantPrefix, StringComparison.Ordinal))
+            if (isT5)
             {
                 baseId = id[EndgameVariantKit.VariantPrefix.Length..];
                 area = "Endgame (T5)";
                 tag = "T5";
             }
-            else if (id.StartsWith(WorldMapVariantKit.VariantPrefix, StringComparison.Ordinal))
+            else if (isWorld)
             {
                 baseId = id[WorldMapVariantKit.VariantPrefix.Length..];
                 area = "World Map";
                 tag = "World Map";
             }
-            else if (id.StartsWith(BossVenueKit.VariantPrefix, StringComparison.Ordinal))
+            else if (isVenue)
             {
-                baseId = Regex.Replace(id[BossVenueKit.VariantPrefix.Length..], @"_\d+$", "");
+                var rest = id[BossVenueKit.VariantPrefix.Length..];
+                var levelMatch = Regex.Match(rest, @"_(\d+)$");
+                baseId = levelMatch.Success ? rest[..levelMatch.Index] : rest;
                 area = "Venue variant";
-                tag = "Venue";
+                tag = levelMatch.Success ? $"Venue L{levelMatch.Groups[1].Value}" : "Venue";
             }
 
-            return _catalog.Enemies.TryGetValue(baseId, out var baseInfo)
-                ? (baseInfo, area, tag)
-                : (null, area, tag);
+            if (_catalog.Enemies.TryGetValue(baseId, out var baseInfo))
+                return (baseInfo, area, tag);
+            if (_catalog.Enemies.TryGetValue(id, out var variantInfo))
+                return (variantInfo, area, tag);
+            return (null, area, tag);
         }
 
         /// <summary>
@@ -789,6 +807,9 @@ public static class SpoilerCodexKit
             {
                 if (existing.Value<string>("kind") == kind
                     && existing.Value<string>("name") == name
+                    && string.Equals(existing.Value<string>("area") ?? "",
+                        source.Value<string>("area") ?? "", StringComparison.Ordinal)
+                    && (existing.Value<int?>("level") ?? 0) == (source.Value<int?>("level") ?? 0)
                     && Math.Abs((existing.Value<double?>("chance") ?? 100.0) - chance) < 0.0001
                     && (existing.Value<int?>("qty") ?? 1) == qty
                     && (existing.Value<bool?>("cut") == true) == cut)
