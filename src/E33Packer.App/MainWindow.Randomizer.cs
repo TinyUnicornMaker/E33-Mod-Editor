@@ -164,11 +164,11 @@ public sealed partial class MainWindow
                 tooltip: T("Lumina awarded by a Petank.")),
             IntRow(T("Merchant pictos + weapon slots"), r.MerchantGearSlots, 0, 20,
                 v => r.MerchantGearSlots = v, tooltip: T("Extra gear slots in shops.")),
-            IntRow(T("Tint shards per type (T1–T4)"), r.TintsPerType, 0, 99, v => r.TintsPerType = v,
+            IntRow(T("Tint shards per type (T1–T3)"), r.TintsPerType, 0, 99, v => r.TintsPerType = v,
                 tooltip: T("Tint shards found in early and mid-game chests.")),
             IntRow(T("Chroma Elixir shards (T1–T4)"), r.ChromaElixirShards, 0, 99,
                 v => r.ChromaElixirShards = v, tooltip: T("Chroma Elixir shards found in early and mid-game chests.")),
-            IntRow(T("Shapes per type (T1–T4)"), r.ShapesPerType, 0, 20, v => r.ShapesPerType = v,
+            IntRow(T("Shapes per type (T1–T3)"), r.ShapesPerType, 0, 20, v => r.ShapesPerType = v,
                 tooltip: T("Shapes found in early and mid-game chests.")),
             adjustLumina,
             multiplierRow);

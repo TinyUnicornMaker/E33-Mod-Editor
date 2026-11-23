@@ -306,6 +306,89 @@ public static class RandomizerKit
             return pick;
         }
 
+        /// <summary>True when any distributable id in the requested tiers is
+        /// still unassigned. Pre-seeded starters/quest rewards never count.</summary>
+        public bool HasUnassignedAtTiers(LootCatalog catalog, string type, IEnumerable<int> tiers, int sourceTier)
+        {
+            var src = Math.Clamp(sourceTier, 1, 5);
+            foreach (var tier in tiers.Distinct())
+                foreach (var id in Pool(catalog, type, tier))
+                    if (!Placed.Contains(id) && !PreSeeded.Contains(id)
+                        && WeaponAllowedAtTier(catalog, type, id, src))
+                        return true;
+            return false;
+        }
+
+        /// <summary>True when any distributable id of the type is unassigned,
+        /// regardless of tier.</summary>
+        public bool HasUnassignedAnyTier(LootCatalog catalog, string type, int sourceTier) =>
+            HasUnassignedAtTiers(catalog, type, new[] { 1, 2, 3, 4, 5 }, sourceTier);
+
+        /// <summary>Random unassigned item in the requested tiers.</summary>
+        public string? TakeUnassignedAtTiers(LootCatalog catalog, string type,
+            IEnumerable<int> tiers, int sourceTier, Random rng)
+        {
+            var src = Math.Clamp(sourceTier, 1, 5);
+            var candidates = new List<string>();
+            foreach (var tier in tiers.Distinct())
+                foreach (var id in Pool(catalog, type, tier))
+                    if (!Placed.Contains(id) && !PreSeeded.Contains(id)
+                        && WeaponAllowedAtTier(catalog, type, id, src)
+                        && !candidates.Contains(id, StringComparer.Ordinal))
+                        candidates.Add(id);
+            if (candidates.Count == 0) return null;
+            var pick = candidates[rng.Next(candidates.Count)];
+            Placed.Add(pick);
+            return pick;
+        }
+
+        /// <summary>Random unassigned item of any tier.</summary>
+        public string? TakeUnassignedAnyTier(LootCatalog catalog, string type,
+            int sourceTier, Random rng) =>
+            TakeUnassignedAtTiers(catalog, type, new[] { 1, 2, 3, 4, 5 }, sourceTier, rng);
+
+        /// <summary>True when the requested tiers have any repeatable pool item.</summary>
+        public bool HasPoolAtTiers(LootCatalog catalog, string type, IEnumerable<int> tiers, int sourceTier)
+        {
+            var src = Math.Clamp(sourceTier, 1, 5);
+            foreach (var tier in tiers.Distinct())
+                if (Pool(catalog, type, tier).Any(id => !PreSeeded.Contains(id)
+                    && WeaponAllowedAtTier(catalog, type, id, src)))
+                    return true;
+            return false;
+        }
+
+        /// <summary>Random tier-appropriate item, allowed to repeat an assigned id.</summary>
+        public string? TakeRandomAtTiers(LootCatalog catalog, string type,
+            IEnumerable<int> tiers, int sourceTier, Random rng)
+        {
+            var src = Math.Clamp(sourceTier, 1, 5);
+            var candidates = new List<string>();
+            foreach (var tier in tiers.Distinct())
+                foreach (var id in Pool(catalog, type, tier))
+                    if (!PreSeeded.Contains(id)
+                        && WeaponAllowedAtTier(catalog, type, id, src)
+                        && !candidates.Contains(id, StringComparer.Ordinal))
+                        candidates.Add(id);
+            if (candidates.Count == 0) return null;
+            var pick = candidates[rng.Next(candidates.Count)];
+            Placed.Add(pick);
+            return pick;
+        }
+
+        /// <summary>
+        /// Chest draw: use an unassigned item from the area queue first, then a
+        /// tier-appropriate repeat. This is the final source in the pack, so
+        /// duplicates are expected once bosses/enemies/shops have covered the pool.
+        /// </summary>
+        public string? TakeForChest(LootCatalog catalog, string type, int tier,
+            string area, Random rng)
+        {
+            var t = Math.Clamp(tier, 1, 5);
+            if (TryTakeArea(type, t, area, out var id)) return id;
+            return TakeRandomAtTiers(catalog, type, new[] { t }, t, rng);
+        }
+
         /// <summary>
         /// Shop stock draw: a gear id of <paramref name="type"/> at
         /// <paramref name="tier"/>, distinct from what this shop already stocks
@@ -317,27 +400,27 @@ public static class RandomizerKit
         /// </summary>
         public string? TakeForShop(LootCatalog catalog, string type, int tier, Random rng, HashSet<string> stock)
         {
+            var t = Math.Clamp(tier, 1, 5);
+            // Shops run after all enemy drops. Prefer an unassigned item at the
+            // shop's own tier; if that tier is covered, repeat a tier-appropriate
+            // item. Do not leak a lower tier into the shop.
             for (int pass = 0; pass < 2; pass++)
             {
-                for (int t = Math.Clamp(tier, 1, 5); t >= 1; t--)
+                var candidates = new List<string>();
+                foreach (var id in Pool(catalog, type, t))
                 {
-                    var reserved = ReservedFor(type, t);
-                    var candidates = new List<string>();
-                    foreach (var id in Pool(catalog, type, t))
-                    {
-                        if (stock.Contains(id)) continue;
-                        if (pass == 0 && (Placed.Contains(id) || reserved.Contains(id))) continue;
-                        if (!WeaponAllowedAtTier(catalog, type, id, t)) continue;
-                        // Family-identity ranked weapons (Reach*/Siren* _1/_2)
-                        // render as "?" in merchant UI; never stock them.
-                        if (type == "Weapon" && PictosMagnitudeKit.IsQuirkedRankedWeapon(id)) continue;
-                        candidates.Add(id);
-                    }
-                    if (candidates.Count == 0) continue;
-                    var pick = candidates[rng.Next(candidates.Count)];
-                    Placed.Add(pick);
-                    return pick;
+                    if (stock.Contains(id) || PreSeeded.Contains(id)) continue;
+                    if (pass == 0 && Placed.Contains(id)) continue;
+                    if (!WeaponAllowedAtTier(catalog, type, id, t)) continue;
+                    // Family-identity ranked weapons (Reach*/Siren* _1/_2)
+                    // render as "?" in merchant UI; never stock them.
+                    if (type == "Weapon" && PictosMagnitudeKit.IsQuirkedRankedWeapon(id)) continue;
+                    candidates.Add(id);
                 }
+                if (candidates.Count == 0) continue;
+                var pick = candidates[rng.Next(candidates.Count)];
+                Placed.Add(pick);
+                return pick;
             }
             return null;
         }
@@ -704,8 +787,8 @@ public static class RandomizerKit
         var seed = s.Seed >= 0 ? s.Seed : Environment.TickCount % 99_999_999;
         s.Seed = seed;
         var rng = new Random(seed);
-        // One shared placement state across chests → drops → shops so no
-        // picto/weapon is ever handed out twice in a pack.
+        // One shared placement state across enemies → shops → chests, so
+        // unique items are assigned in the requested tier order.
         var placement = new LootPlacement();
 
         // Refresh the defense-picto ban from the packed table so created pictos
@@ -774,38 +857,38 @@ public static class RandomizerKit
             // slot already added; keep it instead of clobbering it with vanilla.
             weaponsPath = FindAsset(modDir, WeaponsTable + ".uasset") ?? CopyTable(WeaponsTable, modDir);
 
-        // Spread each tier's pictos/weapons across areas in proportion to their
-        // drop points before anything draws, so a tier's gear turns up across all
-        // its areas instead of draining into whichever area rolls first. Own RNG
-        // so the main draw stream is unaffected.
-        if (s.Chests || s.PaintCages || s.EnemyDrops)
-            placement.AllocateByArea(catalog, new Random(seed ^ 0x51ED2701),
-                includeChests: s.Chests || s.EnemyDrops,
-                includePaintCages: s.PaintCages || s.EnemyDrops);
-
-        // Priority order: Boss > Chests / Paint Cages > Regular. Bosses claim
-        // their guaranteed gear first, so encounter guarantees get first pick of
-        // tier-correct unique gear; chests then take the remainder; the
-        // regular/elite/overworld draws happen last (below).
-        var reservedBossGear = (s.EnemyDrops && enemiesPath != null)
-            ? ReserveBossGear(enemiesPath, catalog, rng, placement)
-            : new Dictionary<string, List<(string ItemId, int Qty, double Chance)>>(StringComparer.Ordinal);
-
-        if (s.Chests || s.PaintCages)
-            n += RandomizeChests(modDir, catalog, rng, s, placement);
-
-        // Chest rows are done: release every unspent area share (per-area
-        // releases already fired as areas completed; this catches enemy-only
-        // areas and disabled-chest configurations) so nothing strands and
-        // enemy/shop draws see the full remainder.
-        if (s.Chests || s.PaintCages || s.EnemyDrops)
-            placement.ReleaseAll();
-
+        // Assignment order is deliberate: bosses/nevrons T1→T5, then shops,
+        // then chests. Boss and enemy rows claim unique gear first; shops and
+        // chests prefer whatever is still unassigned but fall back to duplicate
+        // tier-appropriate items. Area allocation happens only after enemies and
+        // shops, immediately before chests.
+        var reservedBossGear = new Dictionary<string, List<(string ItemId, int Qty, double Chance)>>(StringComparer.Ordinal);
         if (s.EnemyDrops && enemiesPath != null)
-            n += RandomizeEnemyDrops(enemiesPath, catalog, rng, s, placement, reservedBossGear);
+        {
+            for (int tier = 1; tier <= 5; tier++)
+            {
+                foreach (var (id, gear) in ReserveBossGear(enemiesPath, catalog, rng, placement, onlyTier: tier))
+                    reservedBossGear[id] = gear;
+                n += RandomizeEnemyDrops(enemiesPath, catalog, rng, s, placement,
+                    reservedBossGear, onlyTier: tier, copyAliases: false);
+            }
+            n += FinalizeUnreachableAliases(enemiesPath);
+        }
         if (s.MonsterStats && enemiesPath != null)
             n += RandomizeMonsterStats(enemiesPath, catalog, rng, s);
         if (s.Merchants) n += RandomizeMerchants(modDir, catalog, rng, s, placement);
+
+        // Remaining unique gear is split across chest areas only after enemies
+        // and shops have taken their picks. Chests then use those queues first,
+        // then repeat tier-appropriate items.
+        if (s.Chests || s.PaintCages)
+        {
+            placement.AllocateByArea(catalog, new Random(seed ^ 0x51ED2701),
+                includeChests: s.Chests,
+                includePaintCages: s.PaintCages);
+            n += RandomizeChests(modDir, catalog, rng, s, placement);
+            placement.ReleaseAll();
+        }
         // Weapon stats roll only with passives. If passives are off the entire
         // weapon definition (three vanilla effects at Level2-4, stats, element)
         // stays as staged.
@@ -1746,7 +1829,14 @@ public static class RandomizerKit
             rowsLeft[rkey] = rowsLeft.GetValueOrDefault(rkey) + 1;
         }
 
-        foreach (var row in ed.Table.Table.Data)
+        // Chests are the final assignment source; process them by tier so a
+        // low-tier chest cannot consume a high-tier item before the intended
+        // tier gets its pass.
+        var orderedRows = ed.Table.Table.Data
+            .OrderBy(row => catalog.Checks.FirstOrDefault(c =>
+                IsChestSource(c.Source) && c.Id == DataTableEditor.CleanName(row.Name))?.Tier ?? 1)
+            .ToList();
+        foreach (var row in orderedRows)
         {
             var id = DataTableEditor.CleanName(row.Name);
             var check = catalog.Checks.FirstOrDefault(c => IsChestSource(c.Source) && c.Id == id);
@@ -1896,8 +1986,8 @@ public static class RandomizerKit
         var second = first == "Pictos" ? "Weapon" : "Pictos";
         var id = placement.TakeForAreaStrict(first, tier, areaKey)
                  ?? placement.TakeForAreaStrict(second, tier, areaKey)
-                 ?? placement.TakeUniqueOrRepeat(catalog, first, tier, rng)
-                 ?? placement.TakeUniqueOrRepeat(catalog, second, tier, rng)
+                 ?? placement.TakeForChest(catalog, first, tier, areaKey, rng)
+                 ?? placement.TakeForChest(catalog, second, tier, areaKey, rng)
                  ?? placement.TakeDistinctRepeatAtTier(catalog, first, tier, rng, Array.Empty<string>())
                  ?? placement.TakeDistinctRepeatAtTier(catalog, second, tier, rng, Array.Empty<string>());
         return id ?? throw new InvalidDataException(
@@ -1914,9 +2004,15 @@ public static class RandomizerKit
 
         // Override one rolled lumina/chroma drop somewhere in the target tier
         // so quotas carve the requirement out of the normal distribution.
-        bool Swap(string itemId, int tier)
+        // maxTier keeps early-game tint/shape quotas out of T4/T5 even when
+        // the preferred tier has no swappable entry.
+        bool Swap(string itemId, int tier, int maxTier = 5, bool allowTierFallback = true)
         {
-            foreach (var t in new[] { tier, 1, 2, 3, 4, 5 }.Distinct())
+            var target = Math.Clamp(tier, 1, maxTier);
+            var allowed = allowTierFallback
+                ? new[] { target }.Concat(Enumerable.Range(1, Math.Clamp(maxTier, 1, 5))).Distinct()
+                : new[] { target };
+            foreach (var t in allowed)
             {
                 if (!byTier.TryGetValue(t, out var list)) continue;
                 var options = new List<(ArrayPropertyData Ents, int Idx, UAsset Asset)>();
@@ -1934,12 +2030,14 @@ public static class RandomizerKit
             return false;
         }
 
-        void Place(string itemId, int tier)
+        void Place(string itemId, int tier, int maxTier = 5, bool allowTierFallback = true)
         {
-            if (Swap(itemId, tier)) { n++; return; }
+            if (Swap(itemId, tier, maxTier, allowTierFallback)) { n++; return; }
             // Nothing to override – give it its own section so it lands as a
             // real drop instead of becoming an alternative in a weighted pick.
-            var tierList = byTier.GetValueOrDefault(Math.Clamp(tier, 1, 5)) ?? byTier.GetValueOrDefault(1);
+            var max = Math.Clamp(maxTier, 1, 5);
+            var tierList = byTier.GetValueOrDefault(Math.Clamp(tier, 1, max));
+            if (allowTierFallback) tierList ??= byTier.GetValueOrDefault(1);
             if (tierList is null || tierList.Count == 0) return;
             var slot = tierList[0];
             var template = slot.Sections.Value.OfType<StructPropertyData>().FirstOrDefault();
@@ -1960,22 +2058,27 @@ public static class RandomizerKit
         // Capacity shards — Healing / Energy / Revive. These are what raise
         // how many of each tint the party can carry; the tint items themselves
         // are baseline (you start with one of each) and are never dropped.
+        // Tints are early-game only: all placements and fallbacks stop at T3.
         for (int si = 0; si < TintShardIds.Length; si++)
         {
             for (int i = 0; i < shards; i++)
-                Place(TintShardIds[si], 1 + ((si + i) % 4));
+                Place(TintShardIds[si], 1 + ((si + i) % 3), maxTier: 3,
+                    allowTierFallback: false);
         }
 
-        // Chroma Elixir Shard — capacity for the party heal.
+        // Chroma Elixir Shard — capacity for the party heal. It is not a tint
+        // or shape, so it keeps its existing T1–T4 placement.
         for (int i = 0; i < elixirShards; i++)
             Place(ChromaElixirShardId, 1 + (i % 4));
 
         // Potency shapes — Shape of Health / Energy / Life. Each applied shape
         // raises the matching tint one grade (Small → normal → Strong).
+        // Shapes are early-game only too: all placements stop at T3.
         for (int si = 0; si < ShapeIds.Length; si++)
         {
             for (int i = 0; i < shapes; i++)
-                Place(ShapeIds[si], 1 + ((si * shapes + i) % 4));
+                Place(ShapeIds[si], 1 + ((si * shapes + i) % 3), maxTier: 3,
+                    allowTierFallback: false);
         }
         return n;
     }
@@ -2216,7 +2319,7 @@ public static class RandomizerKit
         var u = rng.NextDouble();
         if (u < 0.25)
         {
-            var pick = placement.TakeForArea(catalog, "Pictos", tier, areaKey, rng);
+            var pick = placement.TakeForChest(catalog, "Pictos", tier, areaKey, rng);
             if (pick is not null && ChestGearBanned(areaKey) && DefensePictos.Contains(pick))
             {
                 placement.Placed.Remove(pick);
@@ -2227,7 +2330,7 @@ public static class RandomizerKit
         if (u < 0.28)
         {
             if (ChestGearBanned(areaKey)) return ChromaForTier(tier, rng);
-            return placement.TakeForArea(catalog, "Weapon", tier, areaKey, rng) ?? ChromaForTier(tier, rng);
+            return placement.TakeForChest(catalog, "Weapon", tier, areaKey, rng) ?? ChromaForTier(tier, rng);
         }
         if (u < 0.64) return "Consumable_LuminaPoint";
         return ChromaPackIds[rng.Next(ChromaPackIds.Length)];
@@ -2281,14 +2384,48 @@ public static class RandomizerKit
     // ───────────────────── enemy drops ─────────────────────
 
     /// <summary>
+    /// Unreachable non-tutorial rows whose reward is owned by a reachable venue
+    /// clone. They must not reserve or roll a separate package; like the
+    /// tutorial aliases, they copy the reachable row's final loot.
+    /// </summary>
+    private static readonly Dictionary<string, string> UnreachableAliases = new(StringComparer.Ordinal)
+    {
+        ["SM_Boss_Eveque_Ice_ALPHA_CleaTower"] = "BV_SM_Boss_Eveque_Ice_ALPHA_CleaTower_87",
+        ["GO_Goblu_CleaTower"] = "BV_GO_Goblu_CleaTower_69",
+        ["GO_Luster_Alpha_CleasTower"] = "BV_GO_Luster_Alpha_CleasTower_81",
+        ["SC_LampMaster_CleasTower"] = "BV_SC_LampMaster_CleasTower_66",
+        ["ML_Gargant_Gold"] = "BV_ML_Gargant_Gold_41",
+    };
+
+    /// <summary>Unreachable non-tutorial rows that should pay nothing at all.</summary>
+    private static readonly HashSet<string> UnreachableNoDrops = new(StringComparer.Ordinal)
+    {
+        "MM_Braseleur_NoFreeAim",
+        "ML_CultistMage_Gold",
+        "ML_Danseuse_Clone_Gold",
+        "QUEST_DemineurWithoutMine",
+        "QUEST_DemineurWithMine",
+        "QUEST_WeaponlessChalier",
+    };
+
+    private static bool IsUnreachableAlias(string id) =>
+        TutorialDisableKit.UnreachableTutorialMap.ContainsKey(id)
+        || UnreachableAliases.ContainsKey(id)
+        || UnreachableNoDrops.Contains(id);
+
+    private static IEnumerable<KeyValuePair<string, string>> AllUnreachableAliases() =>
+        TutorialDisableKit.UnreachableTutorialMap.Concat(UnreachableAliases);
+
+    /// <summary>
     /// Boss gear reservation: Boss/Alpha/SuperBoss rows claim their
-    /// guaranteed gear BEFORE chests roll, so the boss promise holds no
-    /// matter how small the pools run. Returns row id → drop specs
-    /// (item id, qty, chance); RandomizeEnemyDrops stamps them in. Boss gear
-    /// draws may repeat a tier-appropriate item once the cascade is exhausted.
+    /// guaranteed gear during the tier-ordered enemy pass, before shops and
+    /// chests. Returns row id → drop specs (item id, qty, chance);
+    /// RandomizeEnemyDrops stamps them in. Boss gear draws may repeat a
+    /// tier-appropriate item once the coverage pool is exhausted.
     /// </summary>
     public static Dictionary<string, List<(string ItemId, int Qty, double Chance)>> ReserveBossGear(
-        string enemiesPath, LootCatalog catalog, Random rng, LootPlacement placement)
+        string enemiesPath, LootCatalog catalog, Random rng, LootPlacement placement,
+        int? onlyTier = null)
     {
         var reserved = new Dictionary<string, List<(string, int, double)>>(StringComparer.Ordinal);
         var ed = new DataTableEditor(enemiesPath);
@@ -2312,29 +2449,46 @@ public static class RandomizerKit
                         ?? ChromaForTier(tier, rng), 1, 100));
             }
 
-            var isBoss = arch is "Boss" or "Alpha" or "SuperBoss"
-                || (over is null && WhiteNevronBoss.Contains(DataTableEditor.CleanName(row.Name)))
-                || (over is null && bossRow && IsRealBossRow(DataTableEditor.CleanName(row.Name), enemy, arch));
-            // A Replace override IS the package, so the archetype recipe is
-            // skipped for that row (otherwise it would double up).
-            if (isBoss && over?.Replace != true)
+            // A T4/T5 boss gets exactly one T4/T5 weapon-or-picto. The rest of
+            // its pictos are deliberately early content, so endgame bosses do
+            // not hog the high-tier pool.
+            string? TakeT4T5Gear()
             {
-                if (arch is "SuperBoss")
-                {
-                    // 2 weapons + 2 pictos, 66% third picto, 33% fourth.
-                    Take("Weapon", 2, 100);
-                    Take("Pictos", 2, 100);
-                    Take("Pictos", 1, 66);
-                    Take("Pictos", 1, 33);
-                }
-                else
-                {
-                    // 1 weapon + 1 picto, 66% second picto, 33% third.
-                    Take("Weapon", 1, 100);
-                    Take("Pictos", 1, 100);
-                    Take("Pictos", 1, 66);
-                    Take("Pictos", 1, 33);
-                }
+                var types = new[] { "Weapon", "Pictos" };
+                // Own tier first, then only lower tiers. A T4 boss never draws
+                // a T5 item; a T5 boss prefers T5 and can fall back to T4/T1-3.
+                var ownTier = Math.Clamp(tier, 4, 5);
+                var allowed = Enumerable.Range(1, ownTier).Reverse().ToArray();
+                var choices = types.Where(t => placement.HasUnassignedAtTiers(
+                    catalog, t, new[] { ownTier }, ownTier)).ToList();
+                if (choices.Count == 0)
+                    choices = types.Where(t => placement.HasUnassignedAtTiers(
+                        catalog, t, allowed, ownTier)).ToList();
+                if (choices.Count == 0)
+                    choices = types.Where(t => placement.HasPoolAtTiers(
+                        catalog, t, new[] { ownTier }, ownTier)).ToList();
+                if (choices.Count == 0)
+                    choices = types.Where(t => placement.HasPoolAtTiers(
+                        catalog, t, allowed, ownTier)).ToList();
+                if (choices.Count == 0) return null;
+                var type = choices[rng.Next(choices.Count)];
+                return placement.TakeUnassignedAtTiers(catalog, type, new[] { ownTier }, ownTier, rng)
+                    ?? placement.TakeUnassignedAtTiers(catalog, type, allowed, ownTier, rng)
+                    ?? placement.TakeRandomAtTiers(catalog, type, new[] { ownTier }, ownTier, rng)
+                    ?? placement.TakeRandomAtTiers(catalog, type, allowed, ownTier, rng);
+            }
+
+            void TakeEarlyPicto()
+            {
+                var id = placement.TakeUnassignedAtTiers(
+                             catalog, "Pictos", new[] { 1, 2, 3 }, tier, rng)
+                         ?? placement.TakeRandomAtTiers(
+                             catalog, "Pictos", new[] { 1, 2, 3 }, tier, rng);
+                gear.Add((id ?? ChromaForTier(3, rng), 1, 100));
+            }
+
+            void AddBossEconomy()
+            {
                 // Catalysts scale by band, in addition to the regular gear
                 // (~10 levels per band):
                 //   T4 low  (L 60–69) : 5×L5 + 3–5×L4
@@ -2347,34 +2501,65 @@ public static class RandomizerKit
                 // infinite farm. Its weapon/pictos remain, but XP/chroma are
                 // 10% (see CloneRewardFactor).
                 var respawningClone = RespawningNoRewards.Contains(rowId);
-                if (!respawningClone)
+                if (respawningClone) return;
+                if (tier >= 4)
                 {
-                    if (tier >= 4)
-                    {
-                        var bossLevel = EnemyRowLevel(row, enemy);
-                        int l5, l4Lo, l4Hi;
-                        if (tier >= 5 && bossLevel >= 90) { l5 = 21; l4Lo = 11; l4Hi = 25; }
-                        else if (tier >= 5)               { l5 = 15; l4Lo = 6;  l4Hi = 10; }
-                        else if (bossLevel >= 70)         { l5 = 10; l4Lo = 3;  l4Hi = 5;  }
-                        else                              { l5 = 5;  l4Lo = 3;  l4Hi = 5;  }
-                        // Grosse Tete can be killed by dodging his attacks without
-                        // ever hitting him, so the surviving variants cap the
-                        // Perfect Catalyst payload at 3 (vanilla recipe: 5/15).
-                        // The WM variant is T3 and never reaches this branch.
-                        if (IsGrosseTete(rowId)) l5 = Math.Min(l5, GrosseTetePerfectCatalystQty);
-                        if (l5 > 0)
-                            gear.Add(("UpgradeMaterial_Level5", l5, 100));
-                        gear.Add(("UpgradeMaterial_Level4", rng.Next(l4Lo, l4Hi + 1), 100));
-                    }
-                    else
-                    {
-                        gear.Add((CatalystForTier(tier), rng.Next(3, 6), 100));
-                    }
-                    gear.Add(("Consumable_LuminaPoint", 5, 100));
+                    var bossLevel = EnemyRowLevel(row, enemy);
+                    int l5, l4Lo, l4Hi;
+                    if (tier >= 5 && bossLevel >= 90) { l5 = 21; l4Lo = 11; l4Hi = 25; }
+                    else if (tier >= 5)               { l5 = 15; l4Lo = 6;  l4Hi = 10; }
+                    else if (bossLevel >= 70)         { l5 = 10; l4Lo = 3;  l4Hi = 5;  }
+                    else                              { l5 = 5;  l4Lo = 3;  l4Hi = 5;  }
+                    if (IsGrosseTete(rowId)) l5 = Math.Min(l5, GrosseTetePerfectCatalystQty);
+                    if (l5 > 0)
+                        gear.Add(("UpgradeMaterial_Level5", l5, 100));
+                    gear.Add(("UpgradeMaterial_Level4", rng.Next(l4Lo, l4Hi + 1), 100));
                 }
+                else
+                {
+                    gear.Add((CatalystForTier(tier), rng.Next(3, 6), 100));
+                }
+                gear.Add(("Consumable_LuminaPoint", 5, 100));
             }
 
-            if (over is not null)
+            var isBoss = arch is "Boss" or "Alpha" or "SuperBoss"
+                || WhiteNevronBoss.Contains(DataTableEditor.CleanName(row.Name))
+                || (bossRow && IsRealBossRow(DataTableEditor.CleanName(row.Name), enemy, arch));
+            // Hand-authored packages are exempt. Normal T4/T5 bosses use the
+            // one-item + early-picto rule.
+            var useT4T5BossRule = isBoss && tier >= 4 && over is null;
+            if (useT4T5BossRule)
+            {
+                var one = TakeT4T5Gear();
+                gear.Add((one ?? ChromaForTier(tier, rng), 1, 100));
+                int earlyPictos = arch is "SuperBoss" ? 2 : 1;
+                for (int i = 0; i < earlyPictos; i++) TakeEarlyPicto();
+                if (rng.NextDouble() * 100 < 66) TakeEarlyPicto();
+                if (rng.NextDouble() * 100 < 33) TakeEarlyPicto();
+                AddBossEconomy();
+            }
+            else if (isBoss && over?.Replace != true)
+            {
+                if (arch is "SuperBoss")
+                {
+                    // T1–T3 keeps the existing boss recipe.
+                    Take("Weapon", 2, 100);
+                    Take("Pictos", 2, 100);
+                    Take("Pictos", 1, 66);
+                    Take("Pictos", 1, 33);
+                }
+                else
+                {
+                    // T1–T3: 1 weapon + 1 picto, 66% second picto, 33% third.
+                    Take("Weapon", 1, 100);
+                    Take("Pictos", 1, 100);
+                    Take("Pictos", 1, 66);
+                    Take("Pictos", 1, 33);
+                }
+                AddBossEconomy();
+            }
+
+            if (over is not null && !useT4T5BossRule)
                 AppendOverride(catalog, placement, owners ??= WeaponOwners(), over, areaKey, rng, gear);
 
             return gear;
@@ -2382,6 +2567,7 @@ public static class RandomizerKit
         foreach (var row in ed.Table.Table.Data)
         {
             var id = DataTableEditor.CleanName(row.Name);
+            if (IsUnreachableAlias(id)) continue;
             if (Named(row.Value, "PossibleLoot") is not ArrayPropertyData) continue;
             catalog.Enemies.TryGetValue(id, out var enemy);
             var arch = enemy?.Archetype ?? "Regular";
@@ -2413,6 +2599,7 @@ public static class RandomizerKit
 
             var tier = catalog.AreaTierForEnemy(id, enemy,
                 LootCatalog.TierFromLevel(EnemyRowLevel(row, enemy)), isBossRow: true);
+            if (onlyTier is { } only && tier != only) continue;
             var areaKey = catalog.AreaKeyFor(id);
             if (ChalierTrio.Contains(id))
             {
@@ -2590,7 +2777,8 @@ public static class RandomizerKit
     }
 
     private static int RandomizeEnemyDrops(string path, LootCatalog catalog, Random rng, Settings s,
-        LootPlacement placement, Dictionary<string, List<(string ItemId, int Qty, double Chance)>> reservedBossGear)
+        LootPlacement placement, Dictionary<string, List<(string ItemId, int Qty, double Chance)>> reservedBossGear,
+        int? onlyTier = null, bool copyAliases = true)
     {
         var ed = new DataTableEditor(path);
         StructPropertyData? dummy = null;
@@ -2623,6 +2811,7 @@ public static class RandomizerKit
             var id = DataTableEditor.CleanName(row.Name);
             var loot = Named(row.Value, "PossibleLoot") as ArrayPropertyData;
             if (loot is null) continue;
+            if (IsUnreachableAlias(id)) continue;
             catalog.Enemies.TryGetValue(id, out var enemy);
             var arch = enemy?.Archetype ?? "Regular";
             if (arch == "Merchant") continue;
@@ -2644,6 +2833,7 @@ public static class RandomizerKit
             var rowTier = LootCatalog.TierFromLevel(level);
             var tier = catalog.AreaTierForEnemy(id, enemy, rowTier,
                 isBossRow: reservedBossGear.ContainsKey(id));
+            if (onlyTier is { } only && tier != only) continue;
             var drops = new List<StructPropertyData>(preserved);
             var overworld = IsOverworld(id, enemy);
             var areaKey = catalog.AreaKeyFor(id);
@@ -2722,7 +2912,59 @@ public static class RandomizerKit
             loot.Value = drops.Cast<PropertyData>().ToArray();
             changed++;
         }
+        if (copyAliases) changed += CopyUnreachableTutorialLoot(ed);
         ed.Save(path);
+        return changed;
+    }
+
+    private static int FinalizeUnreachableAliases(string path)
+    {
+        var ed = new DataTableEditor(path);
+        int changed = CopyUnreachableTutorialLoot(ed);
+        changed += ClearUnreachableNoDrops(ed);
+        if (changed > 0) ed.Save(path);
+        return changed;
+    }
+
+    private static int ClearUnreachableNoDrops(DataTableEditor ed)
+    {
+        int changed = 0;
+        foreach (var row in ed.Table.Table.Data)
+        {
+            var id = DataTableEditor.CleanName(row.Name);
+            if (!UnreachableNoDrops.Contains(id)) continue;
+            if (Named(row.Value, "PossibleLoot") is not ArrayPropertyData loot) continue;
+            if (loot.Value.Length == 0) continue;
+            loot.Value = Array.Empty<PropertyData>();
+            changed++;
+        }
+        return changed;
+    }
+
+    /// <summary>
+    /// Unreachable tutorial/non-tutorial aliases must not consume a separate
+    /// boss package or unique gear roll. The playable redirect has already
+    /// been randomized; make each alias carry that final PossibleLoot array.
+    /// </summary>
+    private static int CopyUnreachableTutorialLoot(DataTableEditor ed)
+    {
+        var rows = ed.Table.Table.Data
+            .Select(r => (Id: DataTableEditor.CleanName(r.Name), Row: r))
+            .GroupBy(x => x.Id, StringComparer.Ordinal)
+            .ToDictionary(g => g.Key, g => g.First().Row, StringComparer.Ordinal);
+        int changed = 0;
+        foreach (var (alias, normal) in AllUnreachableAliases())
+        {
+            if (!rows.TryGetValue(alias, out var target)
+                || !rows.TryGetValue(normal, out var source)) continue;
+            if (Named(target.Value, "PossibleLoot") is not ArrayPropertyData targetLoot) continue;
+            var sourceLoot = Named(source.Value, "PossibleLoot") as ArrayPropertyData;
+            targetLoot.Value = sourceLoot is null
+                ? Array.Empty<PropertyData>()
+                : sourceLoot.Value.OfType<StructPropertyData>()
+                    .Select(x => (PropertyData)x.Clone()).ToArray();
+            changed++;
+        }
         return changed;
     }
 
@@ -2837,7 +3079,11 @@ public static class RandomizerKit
         EnsureExtracted("DT_Merchant_");
         var root = Path.Combine(EditorPaths.RepoRoot, "work", "tables");
         var files = Directory.Exists(root)
-            ? Directory.EnumerateFiles(root, "DT_Merchant_*.uasset", SearchOption.AllDirectories).ToList()
+            ? Directory.EnumerateFiles(root, "DT_Merchant_*.uasset", SearchOption.AllDirectories)
+                .OrderBy(f => LootCatalog.MerchantTiers.TryGetValue(
+                    Path.GetFileNameWithoutExtension(f), out var shopTier) ? shopTier : 2)
+                .ThenBy(f => f, StringComparer.Ordinal)
+                .ToList()
             : new List<string>();
         int changed = 0;
         foreach (var src in files)

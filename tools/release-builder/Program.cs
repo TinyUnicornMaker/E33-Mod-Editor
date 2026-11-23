@@ -6,7 +6,7 @@ using E33Packer.App;
 var repo = Path.GetFullPath(args.Length > 0 ? args[0] : ".");
 var paks = Environment.GetEnvironmentVariable("E33_PAKS")
     ?? Path.Combine(repo, "work", "paks-placeholder");
-var output = Path.GetFullPath(args.Length > 1 ? args[1] : Path.Combine(repo, "dist", "Expedition Infinity 1.4.4"));
+var output = Path.GetFullPath(args.Length > 1 ? args[1] : Path.Combine(repo, "dist", "Expedition Infinity 1.4.5"));
 var language = args.Length > 2 ? args[2] : "en";
 var onlyMode = args.Length > 3 ? args[3] : "";
 var forcedSeed = args.Length > 4 && int.TryParse(args[4], out var fs) ? fs : (int?)null;

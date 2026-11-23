@@ -73,6 +73,19 @@ public static class TutorialDisableKit
         new("MM_Pelerin_MonocoTuto", "MM_Pelerin"),
     };
 
+    /// <summary>
+    /// Tutorial enemy rows that vanilla repoints to a playable row. The
+    /// actor-swap rows above are deliberately excluded: their encounters still
+    /// use the tutorial row, so they are real fights and keep their own loot.
+    /// The randomizer must not reserve or roll gear for these aliases; it
+    /// copies the playable row's final possible-loot array instead.
+    /// </summary>
+    public static IReadOnlyDictionary<string, string> UnreachableTutorialMap { get; } =
+        EnemyMap
+            .Where(x => !ActorSwaps.Any(a =>
+                string.Equals(a.Tutorial, x.Tutorial, StringComparison.Ordinal)))
+            .ToDictionary(x => x.Tutorial, x => x.Normal, StringComparer.Ordinal);
+
     public static int Apply(string modDir)
     {
         int n = PatchTutorialSystem(modDir);

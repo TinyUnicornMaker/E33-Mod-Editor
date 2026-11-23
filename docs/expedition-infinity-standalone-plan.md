@@ -368,9 +368,9 @@ generator. The UI exposes only percentage boosts:
 | Perfect catalyst chance | 3.125% | 0–100 | T5-area level 80+ regulars/elites |
 | Petank lumina | 50 | 0–9999 | Chromatic Petank pays 1000 |
 | Merchant gear slots | 4 | 0–20 | Pictos + weapons per shop |
-| Tint shards per type | 9 | 0–99 | T1–T4 chests |
+| Tint shards per type | 9 | 0–99 | T1–T3 chests |
 | Chroma Elixir shards | 2 | 0–99 | T1–T4 chests |
-| Shapes per type | 2 | 0–20 | T1–T4 chests |
+| Shapes per type | 2 | 0–20 | T1–T3 chests |
 
 Presets (app-level): **Expedition** (current), **Easy**, **Brutal**,
 **Custom**. Presets only change the settings above; they never touch core

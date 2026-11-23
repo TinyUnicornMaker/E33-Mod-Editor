@@ -1983,7 +1983,7 @@ static int CmdRandoSmoke(string[] args)
             foreach (var (native, l5, variant, venueL5) in new[]
                      {
                          ("GO_Demineur_ALPHA", 21, "BV_GO_Demineur_ALPHA_68", 5),
-                         ("SM_Boss_Eveque_Ice_ALPHA", 15, "BV_SM_Boss_Eveque_Ice_ALPHA_50", 0),
+                         ("SM_Boss_Eveque_Ice_ALPHA", 15, "BV_SM_Boss_Eveque_Ice_ALPHA_50", 5),
                          ("MF_Moissonneuse_ALPHA", 21, "BV_MF_Moissonneuse_ALPHA_50", 0),
                      })
             {
@@ -2256,7 +2256,8 @@ static int CmdRandoSmoke(string[] args)
                 "Sirene boss recipe suppressed (no T4/T5 catalyst)");
         }
 
-        // Paintress + Painted Renoir packages REPLACE their boss recipes: one
+        // Hand-authored T4/T5 packages are exempt from the one-item boss rule.
+        // The Paintress and Painted Renoir keep their authored packages: one
         // random T4 weapon, three distinct T4 pictos and 33 Grandiose
         // (UpgradeMaterial_Level4) Chroma Catalysts.
         foreach (var (boss, label) in new[]
@@ -2373,10 +2374,27 @@ static int CmdRandoSmoke(string[] args)
                 .Where(id => TierOfItem(id) > 0)
                 .Select(id => (Id: id, Tier: TierOfItem(id)))
                 .ToList();
-            var off = gear.Where(g => !catTiers.Contains(g.Tier)).ToList();
+            var highCatalyst = catTiers.Any(t => t >= 4);
+            var off = highCatalyst
+                ? gear.Where(g => g.Tier >= 4 && !catTiers.Contains(g.Tier)).ToList()
+                : gear.Where(g => !catTiers.Contains(g.Tier)).ToList();
             var tiers = string.Join("/T", catTiers.OrderBy(t => t));
-            Chk(off.Count == 0, $"Dualliste {duel} gear tier matches catalyst T{tiers}"
-                + (off.Count == 0 ? "" : " (off: " + string.Join(", ", off.Select(o => $"{o.Id}=T{o.Tier}")) + ")"));
+            if (highCatalyst)
+            {
+                var high = gear.Count(g => g.Tier >= 4);
+                var low = gear.Count(g => g.Tier is >= 1 and <= 3);
+                Chk(high == 1 && low >= 1 && off.Count == 0,
+                    $"Dualliste {duel} has one T4/T5 gear item and early pictos (catalyst T{tiers})"
+                    + (high == 1 && low >= 1 && off.Count == 0
+                        ? ""
+                        : $" (high={high} low={low} off=" +
+                          string.Join(", ", off.Select(o => $"{o.Id}=T{o.Tier}")) + ")"));
+            }
+            else
+            {
+                Chk(off.Count == 0, $"Dualliste {duel} gear tier matches catalyst T{tiers}"
+                    + (off.Count == 0 ? "" : " (off: " + string.Join(", ", off.Select(o => $"{o.Id}=T{o.Tier}")) + ")"));
+            }
         }
 
         // Consumables: capacity shards (9/9/9 + 2 elixir) and potency shapes

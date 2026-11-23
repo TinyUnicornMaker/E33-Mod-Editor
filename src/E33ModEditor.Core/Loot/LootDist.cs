@@ -101,15 +101,17 @@ public static class LootDist
 
         // Capacity shards (Healing / Energy / Revive tint shards) + Chroma
         // Elixir Shards, and the potency shapes, all placed by the randomizer.
+        // Tint shards and shapes are early-game only (T1–T3); the Chroma
+        // Elixir remains on its existing T1–T4 schedule.
         for (int si = 0; si < 3; si++)
         {
             for (int i = 0; i < s.TintsPerType; i++)
-                Add(d, "Chest", 1 + ((si + i) % 4), Catalysts, 1, 1);
+                Add(d, "Chest", 1 + ((si + i) % 3), Catalysts, 1, 1);
         }
         for (int i = 0; i < s.ChromaElixirShards; i++)
             Add(d, "Chest", 1 + (i % 4), Catalysts, 1, 1);
         for (int i = 0; i < s.ShapesPerType * 3; i++)
-            Add(d, "Chest", 1 + (i % 4), Other, 1, 1);
+            Add(d, "Chest", 1 + (i % 3), Other, 1, 1);
 
         bool chalierCounted = false;
         foreach (var check in catalog.Checks.Where(c => c.Source == "Enemy"))
@@ -148,9 +150,20 @@ public static class LootDist
                 Add(d, "Enemy", tier, Lumina, Math.Max(1, s.PetankLumina), 1);
             else if (arch is "SuperBoss")
             {
-                // Fixed rule: 2 weapons + 2 pictos, 66% third picto, 33% fourth.
-                Add(d, "Enemy", tier, Pictos, 2.99, 4);
-                Add(d, "Enemy", tier, Weapons, 2, 2);
+                if (tier >= 4)
+                {
+                    // Exactly one T4/T5 weapon-or-picto; the remaining picto
+                    // slots are early-game (T1–T3).
+                    Add(d, "Enemy", tier, Pictos, 0.5, 1);
+                    Add(d, "Enemy", tier, Weapons, 0.5, 1);
+                    AddEarlyPictos(d, 2.99);
+                }
+                else
+                {
+                    // T1–T3: 2 weapons + 2 pictos, 66% third picto, 33% fourth.
+                    Add(d, "Enemy", tier, Pictos, 2.99, 4);
+                    Add(d, "Enemy", tier, Weapons, 2, 2);
+                }
                 // Catalysts: T4 1×L5 + 3–5×L4; T5 low 2×L5 + 6–10×L4;
                 // T5 high 3×L5 + 11–25×L4 (band by level). Expected ~mid-band.
                 Add(d, "Enemy", tier, Catalysts, tier >= 5 ? 15.5 : (tier >= 4 ? 5.0 : 4.0), tier >= 4 ? 2 : 1);
@@ -158,9 +171,19 @@ public static class LootDist
             }
             else if (arch is "Boss" or "Alpha")
             {
-                // Fixed rule: 1 weapon + 1 picto, 66% second picto, 33% third.
-                Add(d, "Enemy", tier, Pictos, 1.99, 3);
-                Add(d, "Enemy", tier, Weapons, 1, 1);
+                if (tier >= 4)
+                {
+                    // Exactly one T4/T5 weapon-or-picto; extra pictos are T1–T3.
+                    Add(d, "Enemy", tier, Pictos, 0.5, 1);
+                    Add(d, "Enemy", tier, Weapons, 0.5, 1);
+                    AddEarlyPictos(d, 1.99);
+                }
+                else
+                {
+                    // T1–T3: 1 weapon + 1 picto, 66% second picto, 33% third.
+                    Add(d, "Enemy", tier, Pictos, 1.99, 3);
+                    Add(d, "Enemy", tier, Weapons, 1, 1);
+                }
                 Add(d, "Enemy", tier, Catalysts, tier >= 5 ? 15.5 : (tier >= 4 ? 5.0 : 4.0), tier >= 4 ? 2 : 1);
                 // The chromatic Petank replaces the standard boss 5 lumina
                 // with its signature 1000, rather than stacking both.
@@ -198,6 +221,17 @@ public static class LootDist
                 Add(d, "Enemy", tier, Catalysts, s.T5PerfectCatalystChance / 100.0, 1);
         }
         return d;
+    }
+
+    /// <summary>
+    /// Early pictos added to T4/T5 boss packages. They are spread evenly over
+    /// T1–T3; actual placement prefers unassigned ids then repeats.
+    /// </summary>
+    private static void AddEarlyPictos(
+        Dictionary<(string Source, int Tier, string Bucket), Cell> d, double expected)
+    {
+        for (int t = 1; t <= 3; t++)
+            Add(d, "Enemy", t, Pictos, expected / 3.0, t == 1 ? 1 : 0);
     }
 
     /// <summary>

@@ -245,9 +245,9 @@ public sealed class GeneratorOptionMappingTests
     [TestMethod]
     public void PackName_MatchesShippedV13Containers()
     {
-        Assert.AreEqual("_v1.4.4", GeneratorInfo.PackRevision);
-        Assert.AreEqual("ExpeditionInfinity_123456_v1.4.4_P", GeneratorInfo.PackName(123456));
-        Assert.AreEqual("ExpeditionInfinity_7539815_v1.4.4_P", GeneratorInfo.PackName(7539815));
+        Assert.AreEqual("_v1.4.5", GeneratorInfo.PackRevision);
+        Assert.AreEqual("ExpeditionInfinity_123456_v1.4.5_P", GeneratorInfo.PackName(123456));
+        Assert.AreEqual("ExpeditionInfinity_7539815_v1.4.5_P", GeneratorInfo.PackName(7539815));
     }
 
     [TestMethod]
